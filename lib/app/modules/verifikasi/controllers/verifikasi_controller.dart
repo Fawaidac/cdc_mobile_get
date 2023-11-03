@@ -1,23 +1,83 @@
+import 'dart:convert';
+
+import 'package:cdc/app/routes/app_pages.dart';
+import 'package:cdc/app/services/api_services.dart';
+import 'package:cdc/resource/colors.dart';
+import 'package:cdc/resource/fonts.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class VerifikasiController extends GetxController {
-  //TODO: Implement VerifikasiController
+  var nimOrEmail = TextEditingController();
+  var loading = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    updateUser();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<void> checkVerifikasi() async {
+    if (nimOrEmail.text.isEmpty) {
+      Get.snackbar("Error", "Email atau NIM harus diisi",
+          margin: const EdgeInsets.all(10));
+    } else {
+      try {
+        loading(true);
+        final response = await verifikasi(nimOrEmail.text);
+        if (response['code'] == 200) {
+          final data = response['data'];
+
+          final String nama = data['nama_lengkap'];
+          final String email = data['email'];
+          final String nim = data['nim'];
+          final String alamat = data['alamat_domisili'];
+          final String prodi = data['program_studi'];
+
+          Get.offNamed(Routes.REGISTER, parameters: {
+            "nama": nama,
+            "email": email,
+            "nim": nim,
+            "alamat": alamat,
+            "prodi": prodi
+          });
+        } else if (response['message'] ==
+            'ops , data nim atau email kamu tidak ditemukan silahkan ajukan pengajuan data alumni') {
+          Get.snackbar("Error",
+              "Nim atau Email anda tidak ditemukan, Silahkan ajukan pengajuan data alumni",
+              margin: const EdgeInsets.all(10));
+        } else {
+          Get.snackbar("Error", response['message'],
+              margin: const EdgeInsets.all(10));
+        }
+      } catch (e) {
+        print(e);
+      } finally {
+        loading(false);
+      }
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  static Future<Map<String, dynamic>> updateUser() async {
+    final res = await http.get(
+      Uri.parse('${ApiServices.baseUrl}/alumni/update'),
+    );
+    final data = jsonDecode(res.body);
+    return data;
   }
 
-  void increment() => count.value++;
+  static Future<Map<String, dynamic>> verifikasi(String key) async {
+    final Map<String, dynamic> body = {
+      'key': key,
+    };
+    final res = await http.post(
+        Uri.parse('${ApiServices.baseUrl}/verifikasi/alumni'),
+        body: jsonEncode(body),
+        headers: {
+          'Content-Type': 'application/json',
+        });
+    final data = jsonDecode(res.body);
+    return data;
+  }
 }

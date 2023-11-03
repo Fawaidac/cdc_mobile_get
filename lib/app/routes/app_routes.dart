@@ -9,6 +9,8 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
   static const RECOVERY_PASSWORD = _Paths.RECOVERY_PASSWORD;
   static const VERIFIKASI = _Paths.VERIFIKASI;
+  static const REGISTER = _Paths.REGISTER;
+  static const AKTIFASI = _Paths.AKTIFASI;
 }
 
 abstract class _Paths {
@@ -19,4 +21,6 @@ abstract class _Paths {
   static const LOGIN = '/login';
   static const RECOVERY_PASSWORD = '/recovery-password';
   static const VERIFIKASI = '/verifikasi';
+  static const REGISTER = '/register';
+  static const AKTIFASI = '/aktifasi';
 }
