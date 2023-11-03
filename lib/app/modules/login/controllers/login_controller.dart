@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 
-class OnboardingController extends GetxController {
-  var onLastPage = false.obs;
+class LoginController extends GetxController {
+  //TODO: Implement LoginController
+
+  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,4 +18,6 @@ class OnboardingController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void increment() => count.value++;
 }

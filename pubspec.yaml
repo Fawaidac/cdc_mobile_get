@@ -10,6 +10,8 @@ dependencies:
   http: 1.1.0
   shared_preferences: 2.2.2
   get: 4.6.6
+  google_fonts: 6.1.0
+  smooth_page_indicator: 1.1.0
   flutter: 
     sdk: flutter
 
