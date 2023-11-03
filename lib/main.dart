@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/splash/bindings/splash_binding.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,8 +9,10 @@ void main() {
   runApp(
     GetMaterialApp(
       title: "Application",
+      debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      initialBinding: SplashBinding(),
     ),
   );
 }
