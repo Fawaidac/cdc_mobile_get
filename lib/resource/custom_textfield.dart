@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatefulWidget {
   TextEditingController controller;
   String label;

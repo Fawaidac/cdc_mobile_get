@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/login_controller.dart';
 
+// ignore: must_be_immutable
 class LoginView extends GetView<LoginController> {
   LoginView({Key? key}) : super(key: key);
 
@@ -125,29 +126,37 @@ class LoginView extends GetView<LoginController> {
                   ],
                 ),
               ),
-              Container(
-                  margin: const EdgeInsets.fromLTRB(0, 5, 0, 15),
-                  height: 48,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [second, first]),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        )),
-                    onPressed: () {
-                      controller.checkLogin(nik.text, password.text);
-                    },
-                    child: Text('Masuk',
-                        style: MyFont.poppins(
-                          fontSize: 14,
-                          color: white,
-                        )),
-                  )),
+              Obx(
+                () => Container(
+                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 15),
+                    height: 48,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [second, first]),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                      onPressed: () {
+                        controller.checkLogin(nik.text, password.text);
+                      },
+                      child: controller.loading.value == true
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                color: white,
+                              ),
+                            )
+                          : Text('Masuk',
+                              style: MyFont.poppins(
+                                fontSize: 14,
+                                color: white,
+                              )),
+                    )),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

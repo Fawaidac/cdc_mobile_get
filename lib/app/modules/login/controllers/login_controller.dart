@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 class LoginController extends GetxController {
   var showPassword = true.obs;
+  var loading = false.obs;
 
   void toggleShowPassword() {
     showPassword.value = !showPassword.value;
@@ -21,6 +22,7 @@ class LoginController extends GetxController {
           margin: const EdgeInsets.all(10));
     } else {
       try {
+        loading(true);
         final response = await login(nik, password);
         if (response['code'] == 200) {
           Get.snackbar("Success", "Login berhasil",
@@ -33,6 +35,8 @@ class LoginController extends GetxController {
       } catch (e) {
         print("Error: $e");
         Get.snackbar("Error", "Terjadi kesalahan saat login");
+      } finally {
+        loading(false);
       }
     }
   }
