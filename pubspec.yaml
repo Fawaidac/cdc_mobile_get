@@ -7,9 +7,9 @@ environment:
 
 dependencies: 
   cupertino_icons: ^1.0.2
-  get: 4.6.6
   http: 1.1.0
   shared_preferences: 2.2.2
+  get: 4.6.6
   flutter: 
     sdk: flutter
 
@@ -19,5 +19,8 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - images/
+    - assets/
   uses-material-design: true
 
