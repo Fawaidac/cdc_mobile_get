@@ -315,7 +315,7 @@ class DetailPostItemView extends GetView<DetailPostController> {
                       itemCount: controller.comments.length,
                       itemBuilder: (context, index) {
                         final comment = controller.comments[index];
-                        // final userData = user;
+
                         final User data = comment.user;
                         String dateTime = comment.createdAt.toString();
                         final date = DateTime.parse(dateTime);
@@ -351,7 +351,7 @@ class DetailPostItemView extends GetView<DetailPostController> {
                                     fontSize: 12, color: black),
                               ),
                               onTap: () {
-                                // _showModalSheet(context, comment.id);
+                                showModalSheet(comment.id);
                               },
                             ),
                             Padding(
@@ -373,6 +373,35 @@ class DetailPostItemView extends GetView<DetailPostController> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  void showModalSheet(String idComment) {
+    Get.bottomSheet(
+      Container(
+        color: white,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 15,
+            right: 15,
+            bottom: Get.mediaQuery.viewInsets.bottom + 20,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.delete, color: Colors.black),
+                title: Text(
+                  "Hapus Komentar",
+                  style: AppFonts.poppins(fontSize: 12, color: Colors.black),
+                ),
+                onTap: () => homeC.handleDeleteComment(idComment, id),
+              )
+            ],
+          ),
         ),
       ),
     );

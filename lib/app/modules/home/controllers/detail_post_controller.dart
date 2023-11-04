@@ -25,6 +25,5 @@ class DetailPostController extends GetxController {
 
   void initializeComments(List<CommentModel> commentModel) {
     comments.assignAll(commentModel);
-    print(comments);
   }
 }

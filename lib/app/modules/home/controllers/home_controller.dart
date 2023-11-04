@@ -67,7 +67,6 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-
     scrollController.dispose();
   }
 
@@ -76,6 +75,23 @@ class HomeController extends GetxController {
     if (response['code'] == 201) {
       postList.clear();
       Get.snackbar("Success", "Berhasil mengomentari postingan",
+          margin: const EdgeInsets.all(10));
+      postList.refresh();
+      fetchData();
+      Get.offAllNamed(Routes.HOMEPAGE);
+    } else {
+      Get.snackbar("Error", response['message'],
+          margin: const EdgeInsets.all(10));
+    }
+  }
+
+  Future<void> handleDeleteComment(String idComment, String idPost) async {
+    final response = await deleteComment(idPost, idComment);
+    if (response['code'] == 200) {
+      print(idPost);
+      print(idComment);
+      postList.clear();
+      Get.snackbar("Success", "Berhasil menghapus postingan",
           margin: const EdgeInsets.all(10));
       postList.refresh();
       fetchData();
@@ -101,6 +117,31 @@ class HomeController extends GetxController {
           "Authorization": "Bearer $token",
           'Content-Type': 'application/json',
         });
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
+  static Future<Map<String, dynamic>> deleteComment(
+      String postID, String commentID) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token == null) {
+      throw Exception("Token not found");
+    }
+
+    final response = await http.delete(
+      Uri.parse('${ApiServices.baseUrl}/user/post/comment'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'post_id': postID,
+        'comment_id': commentID,
+      }),
+    );
+
     final data = jsonDecode(response.body);
     return data;
   }
