@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyFont {
+class AppFonts {
   static const String defaultFontFamily = 'Poppins';
 
   final double fontSize;
@@ -9,7 +9,7 @@ class MyFont {
   final FontWeight fontWeight;
   final String fontFamily;
 
-  const MyFont({
+  const AppFonts({
     required this.fontSize,
     required this.color,
     this.fontWeight = FontWeight.normal,

@@ -8,6 +8,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/otp/bindings/otp_binding.dart';
+import '../modules/otp/views/otp_view.dart';
 import '../modules/recovery_password/bindings/recovery_password_binding.dart';
 import '../modules/recovery_password/views/recovery_password_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -64,6 +66,11 @@ class AppPages {
       name: _Paths.AKTIFASI,
       page: () => const AktifasiView(),
       binding: AktifasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP,
+      page: () =>  OtpView(),
+      binding: OtpBinding(),
     ),
   ];
 }

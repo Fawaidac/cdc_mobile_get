@@ -27,7 +27,7 @@ class LoginController extends GetxController {
         if (response['code'] == 200) {
           Get.snackbar("Success", "Login berhasil",
               margin: const EdgeInsets.all(10));
-          // Misalnya, navigasi ke halaman beranda:
+
           // Get.offNamed(Routes.HOME);
         } else {
           Get.snackbar("Error", response['message']);

@@ -1,5 +1,5 @@
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/fonts.dart';
+import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +51,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             textInputAction: widget.textInputAction,
             controller: widget.controller,
             obscureText: widget.isObscure,
-            style: MyFont.poppins(fontSize: 13, color: black),
+            style: AppFonts.poppins(fontSize: 13, color: black),
             keyboardType: widget.keyboardType,
             enabled: widget.isEnable,
             onChanged: (value) {

@@ -11,6 +11,7 @@ abstract class Routes {
   static const VERIFIKASI = _Paths.VERIFIKASI;
   static const REGISTER = _Paths.REGISTER;
   static const AKTIFASI = _Paths.AKTIFASI;
+  static const OTP = _Paths.OTP;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const VERIFIKASI = '/verifikasi';
   static const REGISTER = '/register';
   static const AKTIFASI = '/aktifasi';
+  static const OTP = '/otp';
 }

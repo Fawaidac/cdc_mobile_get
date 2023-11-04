@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

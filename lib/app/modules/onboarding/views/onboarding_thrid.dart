@@ -1,5 +1,5 @@
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/fonts.dart';
+import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingThrid extends StatelessWidget {
@@ -20,7 +20,7 @@ class OnBoardingThrid extends StatelessWidget {
           ),
           Text(
             "Eksplorasi",
-            style: MyFont.poppins(
+            style: AppFonts.poppins(
                 fontSize: 14, color: black, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -31,7 +31,7 @@ class OnBoardingThrid extends StatelessWidget {
             child: Text(
               "Temukan rekan alumni dan jelajahi aplikasi sesuai dengan keinginan anda, share pengalaman, pendidikan, hingga pekerjaan anda terkini.",
               textAlign: TextAlign.center,
-              style: MyFont.poppins(fontSize: 12, color: black),
+              style: AppFonts.poppins(fontSize: 12, color: black),
             ),
           )
         ],

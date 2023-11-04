@@ -1,7 +1,7 @@
 import 'package:cdc/app/routes/app_pages.dart';
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/custom_textfield.dart';
-import 'package:cdc/resource/fonts.dart';
+import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_fonts.dart';
+import 'package:cdc/app/resource/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -41,7 +41,8 @@ class VerifikasiView extends GetView<VerifikasiController> {
                             ),
                             Text(
                               "Aktifasi akun",
-                              style: MyFont.poppins(fontSize: 12, color: black),
+                              style:
+                                  AppFonts.poppins(fontSize: 12, color: black),
                             ),
                           ],
                         )),
@@ -68,12 +69,12 @@ class VerifikasiView extends GetView<VerifikasiController> {
             children: [
               Text(
                 "Verifikasi Alumni",
-                style: MyFont.poppins(
+                style: AppFonts.poppins(
                     fontSize: 24, color: black, fontWeight: FontWeight.bold),
               ),
               Text(
                 "Masukan NIM / Email anda",
-                style: MyFont.poppins(fontSize: 12, color: black),
+                style: AppFonts.poppins(fontSize: 12, color: black),
               ),
               const SizedBox(
                 height: 50,
@@ -111,7 +112,7 @@ class VerifikasiView extends GetView<VerifikasiController> {
                               ),
                             )
                           : Text('Verifikasi',
-                              style: MyFont.poppins(
+                              style: AppFonts.poppins(
                                 fontSize: 14,
                                 color: white,
                               )),
@@ -122,7 +123,7 @@ class VerifikasiView extends GetView<VerifikasiController> {
                 children: [
                   Text(
                     "Sudah memiliki akun? ",
-                    style: MyFont.poppins(fontSize: 12, color: black),
+                    style: AppFonts.poppins(fontSize: 12, color: black),
                   ),
                   InkWell(
                     onTap: () {
@@ -130,7 +131,7 @@ class VerifikasiView extends GetView<VerifikasiController> {
                     },
                     child: Text(
                       "Masuk",
-                      style: MyFont.poppins(
+                      style: AppFonts.poppins(
                           fontSize: 12,
                           color: first,
                           fontWeight: FontWeight.bold),

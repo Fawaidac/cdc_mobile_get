@@ -1,6 +1,6 @@
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/custom_textfield.dart';
-import 'package:cdc/resource/fonts.dart';
+import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_fonts.dart';
+import 'package:cdc/app/resource/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -41,11 +41,11 @@ class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
             ),
             Text(
               "Atur Ulang Sandi",
-              style: MyFont.poppins(fontSize: 24, color: black),
+              style: AppFonts.poppins(fontSize: 24, color: black),
             ),
             Text(
               "Masukan email yang ditautkan di email anda",
-              style: MyFont.poppins(fontSize: 12, color: black),
+              style: AppFonts.poppins(fontSize: 12, color: black),
             ),
             const SizedBox(
               height: 50,
@@ -83,7 +83,7 @@ class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
                             ),
                           )
                         : Text('Verifikasi',
-                            style: MyFont.poppins(
+                            style: AppFonts.poppins(
                               fontSize: 14,
                               color: white,
                             )),

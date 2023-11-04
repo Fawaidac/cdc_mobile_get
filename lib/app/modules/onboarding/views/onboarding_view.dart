@@ -2,8 +2,8 @@ import 'package:cdc/app/modules/onboarding/views/onboarding_first.dart';
 import 'package:cdc/app/modules/onboarding/views/onboarding_second.dart';
 import 'package:cdc/app/modules/onboarding/views/onboarding_thrid.dart';
 import 'package:cdc/app/routes/app_pages.dart';
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/fonts.dart';
+import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -69,7 +69,7 @@ class OnboardingView extends GetView<OnboardingController> {
                             children: [
                               Text(
                                 "Get Started",
-                                style: MyFont.poppins(
+                                style: AppFonts.poppins(
                                   fontSize: 14,
                                   color: white,
                                   fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class OnboardingView extends GetView<OnboardingController> {
                           children: [
                             Text(
                               "Skip",
-                              style: MyFont.poppins(
+                              style: AppFonts.poppins(
                                 fontSize: 14,
                                 color: black,
                                 fontWeight: FontWeight.bold,
@@ -137,7 +137,7 @@ class OnboardingView extends GetView<OnboardingController> {
                           children: [
                             Text(
                               "Next",
-                              style: MyFont.poppins(
+                              style: AppFonts.poppins(
                                 fontSize: 14,
                                 color: white,
                                 fontWeight: FontWeight.bold,

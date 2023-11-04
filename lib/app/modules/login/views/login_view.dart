@@ -1,7 +1,7 @@
 import 'package:cdc/app/routes/app_pages.dart';
-import 'package:cdc/resource/colors.dart';
-import 'package:cdc/resource/custom_textfield.dart';
-import 'package:cdc/resource/fonts.dart';
+import 'package:cdc/app/resource/custom_textfield.dart';
+import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -29,12 +29,12 @@ class LoginView extends GetView<LoginController> {
             children: [
               Text(
                 "Selamat Datang",
-                style: MyFont.poppins(
+                style: AppFonts.poppins(
                     fontSize: 24, color: black, fontWeight: FontWeight.bold),
               ),
               Text(
                 "Masuk ke akun anda",
-                style: MyFont.poppins(fontSize: 12, color: black),
+                style: AppFonts.poppins(fontSize: 12, color: black),
               ),
               const SizedBox(
                 height: 60,
@@ -56,7 +56,7 @@ class LoginView extends GetView<LoginController> {
                       textInputAction: TextInputAction.done,
                       controller: password,
                       obscureText: showpass,
-                      style: MyFont.poppins(fontSize: 13, color: black),
+                      style: AppFonts.poppins(fontSize: 13, color: black),
                       keyboardType: TextInputType.text,
                       onSaved: (val) => password = val as TextEditingController,
                       validator: (value) {
@@ -120,8 +120,8 @@ class LoginView extends GetView<LoginController> {
                         },
                         child: Text(
                           "Lupa Sandi ?",
-                          style:
-                              MyFont.poppins(fontSize: 12, color: primaryColor),
+                          style: AppFonts.poppins(
+                              fontSize: 12, color: primaryColor),
                         ))
                   ],
                 ),
@@ -151,7 +151,7 @@ class LoginView extends GetView<LoginController> {
                               ),
                             )
                           : Text('Masuk',
-                              style: MyFont.poppins(
+                              style: AppFonts.poppins(
                                 fontSize: 14,
                                 color: white,
                               )),
@@ -162,7 +162,7 @@ class LoginView extends GetView<LoginController> {
                 children: [
                   Text(
                     "Belum memiliki akun ? ",
-                    style: MyFont.poppins(fontSize: 12, color: black),
+                    style: AppFonts.poppins(fontSize: 12, color: black),
                   ),
                   InkWell(
                     onTap: () {
@@ -170,7 +170,7 @@ class LoginView extends GetView<LoginController> {
                     },
                     child: Text(
                       "Daftar Sekarang ",
-                      style: MyFont.poppins(
+                      style: AppFonts.poppins(
                           fontSize: 12,
                           color: first,
                           fontWeight: FontWeight.bold),
