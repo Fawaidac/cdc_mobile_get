@@ -13,6 +13,7 @@ dependencies:
   google_fonts: 6.1.0
   smooth_page_indicator: 1.1.0
   firebase_auth: 4.12.1
+  pinput: 3.0.1
   flutter: 
     sdk: flutter
 
