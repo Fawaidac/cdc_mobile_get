@@ -1,12 +1,9 @@
-import 'package:cdc/app/data/models/post_model.dart';
 import 'package:cdc/app/modules/home/controllers/home_controller.dart';
 import 'package:cdc/app/modules/home/views/detail_post_item_view.dart';
-import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';

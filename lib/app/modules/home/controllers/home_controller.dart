@@ -19,14 +19,11 @@ class HomeController extends GetxController {
   void _scrollListener() {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      print('call');
       if (page < totalPage) {
         page = page + 1;
-        print('pageNow : $page');
+
         fetchData();
       }
-    } else {
-      print('dont call');
     }
   }
 
@@ -37,7 +34,8 @@ class HomeController extends GetxController {
   void fetchData() async {
     try {
       final data = await getData(page);
-      print(data);
+
+      // ignore: unnecessary_type_check
       if (data is Map<String, dynamic>) {
         if (data.containsKey('total_page')) {
           totalPage = data['total_page'];
@@ -88,8 +86,6 @@ class HomeController extends GetxController {
   Future<void> handleDeleteComment(String idComment, String idPost) async {
     final response = await deleteComment(idPost, idComment);
     if (response['code'] == 200) {
-      print(idPost);
-      print(idComment);
       postList.clear();
       Get.snackbar("Success", "Berhasil menghapus postingan",
           margin: const EdgeInsets.all(10));
@@ -150,7 +146,7 @@ class HomeController extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
-      print(token);
+
       if (token == null) {
         throw Exception("Token not found");
       }

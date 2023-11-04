@@ -1,6 +1,3 @@
-import 'package:cdc/app/modules/home/bindings/home_binding.dart';
-import 'package:cdc/app/modules/home/controllers/home_controller.dart';
-import 'package:cdc/app/modules/homepage/bindings/homepage_binding.dart';
 import 'package:cdc/app/modules/splash/bindings/splash_binding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +21,7 @@ void main() async {
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
-      initialBinding: HomeBinding(),
+      initialBinding: SplashBinding(),
     ),
   );
 }

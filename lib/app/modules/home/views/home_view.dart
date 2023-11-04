@@ -1,6 +1,6 @@
+import 'package:cdc/app/modules/home/views/news_view.dart';
 import 'package:cdc/app/modules/home/views/post_item_view.dart';
 import 'package:cdc/app/resource/custom_textfield.dart';
-import 'package:cdc/app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,6 +24,7 @@ class HomeView extends GetView<HomeController> {
         const SizedBox(
           height: 10,
         ),
+        NewsView(),
         Padding(
           padding: EdgeInsets.all(8),
           child: CustomTextField(

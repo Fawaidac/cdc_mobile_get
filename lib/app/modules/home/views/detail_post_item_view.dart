@@ -14,6 +14,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
+// ignore: must_be_immutable
 class DetailPostItemView extends GetView<DetailPostController> {
   final String image;
   final String id;
