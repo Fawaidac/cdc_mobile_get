@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NewsController extends GetxController {
+  var isLoading = true.obs;
+
   RxList<Map<String, dynamic>> newsList = <Map<String, dynamic>>[].obs;
 
   @override
@@ -19,7 +21,7 @@ class NewsController extends GetxController {
     newsList.assignAll(data ?? []);
   }
 
-  static Future<List<Map<String, dynamic>>?> getNews() async {
+  Future<List<Map<String, dynamic>>?> getNews() async {
     final Uri url = Uri.parse('${ApiServices.baseUrl}/user/news');
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
@@ -28,6 +30,7 @@ class NewsController extends GetxController {
       throw Exception("Token not found");
     }
     try {
+      isLoading(true);
       final response = await http.get(
         url,
         headers: {
@@ -48,6 +51,8 @@ class NewsController extends GetxController {
     } catch (e) {
       print('Error fetching news: $e');
       return null;
+    } finally {
+      isLoading(false);
     }
   }
 }

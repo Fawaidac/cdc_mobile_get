@@ -27,7 +27,7 @@ class DetailNewsView extends GetView {
         shadowColor: Colors.transparent,
         leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Get.back();
             },
             icon: Icon(
               Icons.keyboard_arrow_left_rounded,

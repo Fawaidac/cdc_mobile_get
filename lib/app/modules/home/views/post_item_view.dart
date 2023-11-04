@@ -23,9 +23,7 @@ class PostItemView extends GetView {
           itemCount: controller.postList.length,
           itemBuilder: (context, index) {
             if (controller.postList.isEmpty) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const SizedBox();
             }
             final post = controller.postList[index];
             if (index < controller.postList.length) {
@@ -117,11 +115,11 @@ class PostItemView extends GetView {
                       Container(
                         margin: const EdgeInsets.only(top: 20, bottom: 10),
                         height: 500,
+                        width: double.infinity,
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(post.image),
                                 fit: BoxFit.cover)),
-                        width: MediaQuery.of(context).size.width,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
