@@ -2,14 +2,26 @@ import 'package:get/get.dart';
 
 import '../modules/aktifasi/bindings/aktifasi_binding.dart';
 import '../modules/aktifasi/views/aktifasi_view.dart';
+import '../modules/alumni/bindings/alumni_binding.dart';
+import '../modules/alumni/views/alumni_view.dart';
+import '../modules/fasilitas/bindings/fasilitas_binding.dart';
+import '../modules/fasilitas/views/fasilitas_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/homepage/bindings/homepage_binding.dart';
+import '../modules/homepage/views/homepage_view.dart';
+import '../modules/ikapj/bindings/ikapj_binding.dart';
+import '../modules/ikapj/views/ikapj_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/otp/bindings/otp_binding.dart';
 import '../modules/otp/views/otp_view.dart';
+import '../modules/posting/bindings/posting_binding.dart';
+import '../modules/posting/views/posting_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/recovery_password/bindings/recovery_password_binding.dart';
 import '../modules/recovery_password/views/recovery_password_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -71,6 +83,36 @@ class AppPages {
       name: _Paths.OTP,
       page: () => const OtpView(),
       binding: OtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOMEPAGE,
+      page: () => const HomepageView(),
+      binding: HomepageBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALUMNI,
+      page: () => const AlumniView(),
+      binding: AlumniBinding(),
+    ),
+    GetPage(
+      name: _Paths.POSTING,
+      page: () => const PostingView(),
+      binding: PostingBinding(),
+    ),
+    GetPage(
+      name: _Paths.IKAPJ,
+      page: () => const IkapjView(),
+      binding: IkapjBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.FASILITAS,
+      page: () => const FasilitasView(),
+      binding: FasilitasBinding(),
     ),
   ];
 }

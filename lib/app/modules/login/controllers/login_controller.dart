@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   var showPassword = true.obs;
@@ -27,8 +29,13 @@ class LoginController extends GetxController {
         if (response['code'] == 200) {
           Get.snackbar("Success", "Login berhasil",
               margin: const EdgeInsets.all(10));
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setString('token', response['data']['token']);
 
-          // Get.offNamed(Routes.HOME);
+          DateTime expirationTime = DateTime.now().add(const Duration(days: 7));
+          prefs.setInt(
+              'tokenExpirationTime', expirationTime.millisecondsSinceEpoch);
+          Get.offNamed(Routes.HOMEPAGE);
         } else {
           Get.snackbar("Error", response['message']);
         }

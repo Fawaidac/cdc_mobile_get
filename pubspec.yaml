@@ -2,28 +2,49 @@ name: cdc
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=3.1.2 <4.0.0'
+environment:
+  sdk: ">=3.1.2 <4.0.0"
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   http: 1.1.0
-  shared_preferences: 2.2.2
-  get: 4.6.6
+  shared_preferences: 2.2.1
+  fluttertoast: 8.2.2
   google_fonts: 6.1.0
   smooth_page_indicator: 1.1.0
-  firebase_auth: 4.12.1
+  page_transition: 2.1.0
+  get: 4.6.6
+  dotted_border: 2.1.0
+  image_picker: 1.0.4
+  firebase_core: 2.20.0
   pinput: 3.0.1
-  flutter: 
+  jwt_decode: 0.3.1
+  getwidget: 4.0.0
+  webview_flutter: 4.4.0
+  flutter_svg: 2.0.7
+  card_loading: 0.3.0
+  image_cropper: 5.0.0
+  url_launcher: 6.1.14
+  awesome_dialog: 3.1.0
+  intl: 0.18.1
+  geolocator: 10.1.0
+  permission_handler: 11.0.1
+  readmore: 2.2.0
+  file_picker: 6.0.0
+  firebase_messaging: 14.7.2
+  firebase_auth: 4.12.0
+  flutter_local_notifications: 16.1.0
+  flutter_html: 3.0.0-beta.2
+  flutter_widget_from_html: 0.14.6
+  flutter:
     sdk: flutter
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - images/
   uses-material-design: true
-

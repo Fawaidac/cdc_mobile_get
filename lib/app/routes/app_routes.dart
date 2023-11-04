@@ -12,6 +12,12 @@ abstract class Routes {
   static const REGISTER = _Paths.REGISTER;
   static const AKTIFASI = _Paths.AKTIFASI;
   static const OTP = _Paths.OTP;
+  static const HOMEPAGE = _Paths.HOMEPAGE;
+  static const ALUMNI = _Paths.ALUMNI;
+  static const POSTING = _Paths.POSTING;
+  static const IKAPJ = _Paths.IKAPJ;
+  static const PROFILE = _Paths.PROFILE;
+  static const FASILITAS = _Paths.FASILITAS;
 }
 
 abstract class _Paths {
@@ -25,4 +31,10 @@ abstract class _Paths {
   static const REGISTER = '/register';
   static const AKTIFASI = '/aktifasi';
   static const OTP = '/otp';
+  static const HOMEPAGE = '/homepage';
+  static const ALUMNI = '/alumni';
+  static const POSTING = '/posting';
+  static const IKAPJ = '/ikapj';
+  static const PROFILE = '/profile';
+  static const FASILITAS = '/fasilitas';
 }
