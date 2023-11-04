@@ -1,4 +1,5 @@
 import 'package:cdc/app/modules/home/views/top_follower_view.dart';
+import 'package:cdc/app/modules/home/views/top_salary_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +34,7 @@ class TopAlumniView extends GetView {
                     if (index == 0) {
                       Get.to(() => TopFollowerView());
                     } else {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => Top20Salary(),
-                      //     ));
+                      Get.to(() => TopSalaryView());
                     }
                   },
                   child: Container(
