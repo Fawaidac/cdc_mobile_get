@@ -9,9 +9,8 @@ import 'package:get/get.dart';
 import '../controllers/recovery_password_controller.dart';
 
 class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
-  RecoveryPasswordView({Key? key}) : super(key: key);
+  const RecoveryPasswordView({Key? key}) : super(key: key);
 
-  var email = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +50,7 @@ class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
               height: 50,
             ),
             CustomTextField(
-                controller: email,
+                controller: controller.email,
                 label: "Email",
                 isEnable: true,
                 keyboardType: TextInputType.emailAddress,
@@ -74,7 +73,7 @@ class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
                           borderRadius: BorderRadius.circular(10),
                         )),
                     onPressed: () {
-                      controller.checkRecovery(email.text);
+                      controller.checkRecovery();
                     },
                     child: controller.loading.value == true
                         ? Center(

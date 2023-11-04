@@ -7,15 +7,16 @@ import 'package:http/http.dart' as http;
 
 class RecoveryPasswordController extends GetxController {
   final loading = false.obs;
+  var email = TextEditingController();
 
-  Future<void> checkRecovery(String email) async {
-    if (email.isEmpty) {
+  Future<void> checkRecovery() async {
+    if (email.text.isEmpty) {
       Get.snackbar("Error", "Email harus diisi",
           margin: const EdgeInsets.all(10));
     } else {
       try {
         loading(true);
-        final response = await recovery(email);
+        final response = await recovery(email.text);
         if (response['code'] == 200) {
           Get.snackbar("Success", response['message'],
               margin: const EdgeInsets.all(10));

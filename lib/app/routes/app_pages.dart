@@ -49,7 +49,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.RECOVERY_PASSWORD,
-      page: () => RecoveryPasswordView(),
+      page: () => const RecoveryPasswordView(),
       binding: RecoveryPasswordBinding(),
     ),
     GetPage(
@@ -69,7 +69,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.OTP,
-      page: () =>  OtpView(),
+      page: () => const OtpView(),
       binding: OtpBinding(),
     ),
   ];

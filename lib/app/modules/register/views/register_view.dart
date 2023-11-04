@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/register_controller.dart';
 
+// ignore: must_be_immutable
 class RegisterView extends GetView<RegisterController> {
   static String verify = "";
 
