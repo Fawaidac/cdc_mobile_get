@@ -1,5 +1,7 @@
 import 'package:cdc/app/data/models/post_model.dart';
 import 'package:cdc/app/modules/home/controllers/home_controller.dart';
+import 'package:cdc/app/modules/home/views/detail_post_item_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -14,7 +16,7 @@ class PostItemView extends GetView {
   PostItemView({super.key});
 
   @override
-  final controller = Get.put(HomeController());
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,98 +39,94 @@ class PostItemView extends GetView {
               final timeFormat = DateFormat('HH:mm');
               final formattedDate = dateFormat.format(date);
               final formattedTime = timeFormat.format(date);
-              return Container(
-                margin: const EdgeInsets.only(top: 10),
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: white,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
-                      child: Row(
-                        children: [
-                          CircleAvatar(
-                            radius: 20,
-                            backgroundImage: NetworkImage(post.uploader.foto ==
-                                    ApiServices.baseUrlImage
-                                ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                : post.uploader.foto ?? ""),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                              child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                post.uploader.fullname ?? "",
-                                style: AppFonts.poppins(
-                                    fontSize: 12,
-                                    color: black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                '$formattedDate, $formattedTime',
-                                style: AppFonts.poppins(
-                                    fontSize: 11, color: black),
-                              )
-                            ],
-                          )),
-                          InkWell(
-                            onTap: () {
-                              show(post.position, post.company, post.typeJobs,
-                                  post.description, post.expired);
-                            },
-                            child: Icon(
-                              Icons.info_outline,
-                              color: black,
+              return GestureDetector(
+                onTap: () {
+                  Get.to(() => DetailPostItemView(
+                        description: post.description,
+                        id: post.id,
+                        position: post.position,
+                        company: post.company,
+                        typeJobs: post.typeJobs,
+                        expired: post.expired,
+                        isUser: false,
+                        linkApply: post.linkApply,
+                        verified: post.verified,
+                        name: post.uploader.fullname ?? "",
+                        profile: post.uploader.foto ?? "",
+                        can: post.canComment,
+                        postAt: post.postAt,
+                        commentModel: post.comments,
+                        image: post.image,
+                      ));
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: white,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 20,
+                              backgroundImage: NetworkImage(post
+                                          .uploader.foto ==
+                                      ApiServices.baseUrlImage
+                                  ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
+                                  : post.uploader.foto ?? ""),
                             ),
-                          ),
-                        ],
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  post.uploader.fullname ?? "",
+                                  style: AppFonts.poppins(
+                                      fontSize: 12,
+                                      color: black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  '$formattedDate, $formattedTime',
+                                  style: AppFonts.poppins(
+                                      fontSize: 11, color: black),
+                                )
+                              ],
+                            )),
+                            InkWell(
+                              onTap: () {
+                                show(post.position, post.company, post.typeJobs,
+                                    post.description, post.expired);
+                              },
+                              child: Icon(
+                                Icons.info_outline,
+                                color: black,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 20, bottom: 10),
-                      height: 500,
-                      decoration: BoxDecoration(
-                          // borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                              image: NetworkImage(post.image),
-                              fit: BoxFit.cover)),
-                      width: MediaQuery.of(context).size.width,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => WidgetDetailAllPost(
-                        //         image: post.image,
-                        //         description: post.description,
-                        //         id: post.id,
-                        //         position: post.position,
-                        //         company: post.company,
-                        //         typeJobs: post.typeJobs,
-                        //         expired: post.expired,
-                        //         isUser: false,
-                        //         linkApply: post.linkApply,
-                        //         verified: post.verified,
-                        //         name: post.uploader.fullname ?? "",
-                        //         profile: post.uploader.foto ?? "",
-                        //         can: post.canComment,
-                        //         postAt: post.postAt,
-                        //         commentModel: post.comments,
-                        //       ),
-                        //     ));
-                      },
-                      child: Padding(
+                      Container(
+                        margin: const EdgeInsets.only(top: 20, bottom: 10),
+                        height: 500,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(post.image),
+                                fit: BoxFit.cover)),
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                      Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Align(
                           alignment: Alignment.bottomRight,
@@ -138,27 +136,27 @@ class PostItemView extends GetView {
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                        padding:
-                            const EdgeInsets.only(right: 10, left: 10, top: 10),
-                        child: ReadMoreText(
-                          post.description,
-                          trimLines: 2,
-                          trimMode: TrimMode.Line,
-                          trimCollapsedText: "Baca Selengkapnya",
-                          trimExpandedText: "...Lebih Sedikit",
-                          lessStyle: AppFonts.poppins(
-                              fontSize: 12,
-                              color: black,
-                              fontWeight: FontWeight.bold),
-                          moreStyle: AppFonts.poppins(
-                              fontSize: 12,
-                              color: black,
-                              fontWeight: FontWeight.bold),
-                          style: AppFonts.poppins(fontSize: 12, color: black),
-                        ))
-                  ],
+                      Padding(
+                          padding: const EdgeInsets.only(
+                              right: 10, left: 10, top: 10),
+                          child: ReadMoreText(
+                            post.description,
+                            trimLines: 2,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: "Baca Selengkapnya",
+                            trimExpandedText: "...Lebih Sedikit",
+                            lessStyle: AppFonts.poppins(
+                                fontSize: 12,
+                                color: black,
+                                fontWeight: FontWeight.bold),
+                            moreStyle: AppFonts.poppins(
+                                fontSize: 12,
+                                color: black,
+                                fontWeight: FontWeight.bold),
+                            style: AppFonts.poppins(fontSize: 12, color: black),
+                          ))
+                    ],
+                  ),
                 ),
               );
             } else {

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/post_model.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeController extends GetxController {
   ScrollController scrollController = ScrollController();
   final search = TextEditingController();
-  final postList = <PostAllModel>[].obs;
+  var postList = <PostAllModel>[].obs;
 
   var page = 1;
   var totalPage = 1;
@@ -66,8 +67,42 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    fetchData();
+
     scrollController.dispose();
+  }
+
+  Future<void> sendComment(String id, String message) async {
+    final response = await storeComment(id, message);
+    if (response['code'] == 201) {
+      postList.clear();
+      Get.snackbar("Success", "Berhasil mengomentari postingan",
+          margin: const EdgeInsets.all(10));
+      postList.refresh();
+      fetchData();
+      Get.offAllNamed(Routes.HOMEPAGE);
+    } else {
+      Get.snackbar("Error", response['message'],
+          margin: const EdgeInsets.all(10));
+    }
+  }
+
+  static Future<Map<String, dynamic>> storeComment(
+      String postId, String comment) async {
+    final Map<String, dynamic> requestBody = {
+      "comment": comment,
+      "post_id": postId
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    final response = await http.post(
+        Uri.parse('${ApiServices.baseUrl}/user/post/comment'),
+        body: jsonEncode(requestBody),
+        headers: {
+          "Authorization": "Bearer $token",
+          'Content-Type': 'application/json',
+        });
+    final data = jsonDecode(response.body);
+    return data;
   }
 
   static Future<Map<String, dynamic>> getData(int page) async {
