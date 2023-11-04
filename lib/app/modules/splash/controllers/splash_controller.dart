@@ -5,9 +5,18 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashController extends GetxController {
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     checkLogin();
+  //   });
+  // }
+
   @override
-  void onInit() {
-    super.onInit();
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
     Future.delayed(const Duration(seconds: 3), () {
       checkLogin();
     });

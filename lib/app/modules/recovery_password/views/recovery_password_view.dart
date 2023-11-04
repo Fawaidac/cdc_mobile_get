@@ -9,7 +9,10 @@ import 'package:get/get.dart';
 import '../controllers/recovery_password_controller.dart';
 
 class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
-  const RecoveryPasswordView({Key? key}) : super(key: key);
+  RecoveryPasswordView({Key? key}) : super(key: key);
+
+  @override
+  final controller = Get.put(RecoveryPasswordController());
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,9 @@ import 'package:pinput/pinput.dart';
 import '../controllers/otp_controller.dart';
 
 class OtpView extends GetView<OtpController> {
-  const OtpView({Key? key}) : super(key: key);
+  OtpView({Key? key}) : super(key: key);
+  @override
+  final controller = Get.put(OtpController());
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +108,9 @@ class OtpView extends GetView<OtpController> {
               return Center(
                 child: Text(
                   "Harap tunggu kode dalam 00:${controller.countdown.toString().padLeft(2, '0')}s",
-                  style: AppFonts.poppins(fontSize: 12, color: controller.countdown > 0 ? grey : first),
+                  style: AppFonts.poppins(
+                      fontSize: 12,
+                      color: controller.countdown > 0 ? grey : first),
                 ),
               );
             }),

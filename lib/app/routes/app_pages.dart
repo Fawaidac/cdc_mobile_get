@@ -41,7 +41,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -61,12 +61,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.RECOVERY_PASSWORD,
-      page: () => const RecoveryPasswordView(),
+      page: () => RecoveryPasswordView(),
       binding: RecoveryPasswordBinding(),
     ),
     GetPage(
       name: _Paths.VERIFIKASI,
-      page: () => const VerifikasiView(),
+      page: () => VerifikasiView(),
       binding: VerifikasiBinding(),
     ),
     GetPage(
@@ -76,42 +76,42 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AKTIFASI,
-      page: () => const AktifasiView(),
+      page: () => AktifasiView(),
       binding: AktifasiBinding(),
     ),
     GetPage(
       name: _Paths.OTP,
-      page: () => const OtpView(),
+      page: () => OtpView(),
       binding: OtpBinding(),
     ),
     GetPage(
       name: _Paths.HOMEPAGE,
-      page: () => const HomepageView(),
+      page: () => HomepageView(),
       binding: HomepageBinding(),
     ),
     GetPage(
       name: _Paths.ALUMNI,
-      page: () => const AlumniView(),
+      page: () => AlumniView(),
       binding: AlumniBinding(),
     ),
     GetPage(
       name: _Paths.POSTING,
-      page: () => const PostingView(),
+      page: () => PostingView(),
       binding: PostingBinding(),
     ),
     GetPage(
       name: _Paths.IKAPJ,
-      page: () => const IkapjView(),
+      page: () => IkapjView(),
       binding: IkapjBinding(),
     ),
     GetPage(
       name: _Paths.PROFILE,
-      page: () => const ProfileView(),
+      page: () => ProfileView(),
       binding: ProfileBinding(),
     ),
     GetPage(
       name: _Paths.FASILITAS,
-      page: () => const FasilitasView(),
+      page: () => FasilitasView(),
       binding: FasilitasBinding(),
     ),
   ];

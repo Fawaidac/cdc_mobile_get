@@ -14,6 +14,10 @@ import '../controllers/onboarding_controller.dart';
 class OnboardingView extends GetView<OnboardingController> {
   OnboardingView({Key? key}) : super(key: key);
   final PageController _controller = PageController();
+
+  @override
+  final controller = Get.put(OnboardingController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

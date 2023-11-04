@@ -1,24 +1,47 @@
+import 'package:cdc/app/modules/home/views/post_item_view.dart';
+import 'package:cdc/app/resource/custom_textfield.dart';
+import 'package:cdc/app/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  @override
+  final controller = Get.put(HomeController());
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
+    return ListView(
+      shrinkWrap: true,
+      controller: controller.scrollController,
+      physics: const BouncingScrollPhysics(),
+      children: [
+        const SizedBox(
+          height: 10,
         ),
-      ),
+        Padding(
+          padding: EdgeInsets.all(8),
+          child: CustomTextField(
+              controller: controller.search,
+              label: "Cari postingan berdasarkan posisi...",
+              keyboardType: TextInputType.text,
+              inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
+              isLength: 255,
+              isEnable: true,
+              isWhite: true,
+              onTap: () {},
+              onChange: (value) {
+                controller.onChangeSearch(value);
+              },
+              icon: Icons.search),
+        ),
+        PostItemView(),
+      ],
     );
   }
 }

@@ -10,7 +10,10 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/homepage_controller.dart';
 
 class HomepageView extends GetView<HomepageController> {
-  const HomepageView({Key? key}) : super(key: key);
+  HomepageView({Key? key}) : super(key: key);
+  @override
+  final controller = Get.put(HomepageController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

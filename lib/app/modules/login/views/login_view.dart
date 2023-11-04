@@ -17,6 +17,8 @@ class LoginView extends GetView<LoginController> {
   TextEditingController nik = TextEditingController();
   TextEditingController password = TextEditingController();
   bool showpass = true;
+  @override
+  final controller = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {

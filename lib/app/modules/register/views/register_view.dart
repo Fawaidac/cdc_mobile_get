@@ -29,6 +29,9 @@ class RegisterView extends GetView<RegisterController> {
   bool connpass = true;
 
   @override
+  final controller = Get.put(RegisterController());
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(

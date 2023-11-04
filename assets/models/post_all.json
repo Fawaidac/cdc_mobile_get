@@ -1,0 +1,98 @@
+{
+  "data": {
+    "total_page": 1,
+    "total_item": 2,
+    "0": {
+      "id": "56470e07-094a-4abb-95cf-5042cf61150d",
+      "user_id": "47ba06e3-f0b4-4d9c-b09e-dc0e83c63137",
+      "link_apply": "link",
+      "image": "http://localhost:8000/users/post/image",
+      "description": "description",
+      "company": "poltek",
+      "position": "honor",
+      "expired": "2023-11-04 18:08:44",
+      "post_at": "2023-10-28 18:08:43",
+      "can_comment": 1,
+      "verified": "verified",
+      "comments": [
+        {
+          "id": "314060d9-67f4-4285-a08b-fd30ca77a512",
+          "comment": " kapan kapan kak",
+          "post_id": "56470e07-094a-4abb-95cf-5042cf61150d",
+          "user_id": "a9ef6cc2-4336-4876-aaeb-20f7b68a867e",
+          "created_at": "2023-10-28 18:11:10",
+          "updated_at": "2023-10-28 18:11:10",
+          "user": {
+            "id": "a9ef6cc2-4336-4876-aaeb-20f7b68a867e",
+            "fullname": "second user",
+            "email": "second@gmail.com",
+            "nik": "***",
+            "no_telp": "***",
+            "foto": "http://localhost:8000/users/foto.png",
+            "ttl": null,
+            "alamat": "jawa timur , banyuwangi",
+            "about": "second abour",
+            "gender": "male",
+            "level": "user",
+            "linkedin": "linkedin.com/zam",
+            "facebook": null,
+            "instagram": null,
+            "twiter": null,
+            "account_status": 0,
+            "latitude": null,
+            "longtitude": null
+          }
+        }
+      ],
+      "type_jobs": "Paruh Waktu",
+      "uploader": {
+        "id": "47ba06e3-f0b4-4d9c-b09e-dc0e83c63137",
+        "fullname": "zam",
+        "email": "thrid@gmail.com",
+        "nik": "3509212",
+        "no_telp": "081",
+        "foto": "http://localhost:8000/users/foto.png",
+        "ttl": "2023-11-04",
+        "alamat": "thrid",
+        "about": "thrid  about",
+        "gender": "female",
+        "level": "user",
+        "linkedin": "linkedin.com/zam",
+        "facebook": "facebook",
+        "instagram": "instagram",
+        "twiter": "twitter",
+        "account_status": 0,
+        "latitude": "null",
+        "longtitude": null
+      }
+    },
+    "1": {
+      "id": "7480d467-baf7-420a-8449-0693727ed662",
+      "user_id": null,
+      "link_apply": "https://docs.google.com/document/d/1aqyk47eqAEGzotyH5IUeYt4DFjBpOeY12Uz90tOQfzo/edit",
+      "image": "http://localhost:8000/users/post/1698518674.png",
+      "description": "ya",
+      "company": "Polije",
+      "position": "teknisi",
+      "expired": "2023-10-29 01:46:00",
+      "post_at": "2023-10-28 18:08:43",
+      "can_comment": 0,
+      "verified": "verified",
+      "comments": [],
+      "type_jobs": "Wiraswasta",
+      "uploader": {
+        "id": "c39db2f5-de12-4dd0-83c0-9676d90bb723",
+        "name": "admin-1",
+        "npwp": "12312k123123",
+        "alamat": "banyuwangi",
+        "email": "admin@gmail.com",
+        "role": "admin",
+        "created_at": "2023-10-28T18:08:44.000000Z",
+        "updated_at": "2023-10-28T18:08:44.000000Z"
+      }
+    }
+  },
+  "message": "Sukses Fetch Data",
+  "code": 200,
+  "status": true
+}

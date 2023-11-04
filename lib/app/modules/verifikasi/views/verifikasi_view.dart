@@ -10,7 +10,11 @@ import 'package:get/get.dart';
 import '../controllers/verifikasi_controller.dart';
 
 class VerifikasiView extends GetView<VerifikasiController> {
-  const VerifikasiView({Key? key}) : super(key: key);
+  VerifikasiView({Key? key}) : super(key: key);
+
+  @override
+  final controller = Get.put(VerifikasiController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -24,7 +24,6 @@ class HomepageController extends GetxController {
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
   void changeIndex(index) {
-    print(index);
     currentIndex.value = index;
   }
 
@@ -33,7 +32,7 @@ class HomepageController extends GetxController {
   }
 
   List<Widget> screen = <Widget>[
-    const HomeView(),
+    HomeView(),
     const AlumniView(),
     const PostingView(),
     const IkapjView(),
@@ -144,7 +143,6 @@ class HomepageController extends GetxController {
         searchResult.clear();
       }
     } catch (e) {
-      // Tangani kesalahan jika terjadi
       print("Error searching users: $e");
     }
   }
