@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:cdc/app/data/models/notification_model.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationsController extends GetxController {
-  RxList notifications = <dynamic>[].obs;
+  RxList<NotificationsModel> notifications = <NotificationsModel>[].obs;
 
   Future<void> fetchNotifications() async {
     final prefs = await SharedPreferences.getInstance();
@@ -21,7 +22,12 @@ class NotificationsController extends GetxController {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
-        notifications.value = jsonResponse['notifications'];
+        final List<dynamic> notificationsList =
+            jsonResponse['data']['notifications'];
+
+        notifications.clear();
+        notifications.addAll(
+            notificationsList.map((data) => NotificationsModel.fromJson(data)));
       } else {
         notifications.value = [];
         print(
