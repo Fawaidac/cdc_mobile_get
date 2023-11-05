@@ -22,51 +22,48 @@ class HomepageView extends GetView<HomepageController> {
           shadowColor: Colors.transparent,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          title: SizedBox(
-            height: 48,
-            child: Obx(() => TextFormField(
-                  onTap: () {
-                    controller.setActive(false);
-                  },
-                  textInputAction: TextInputAction.done,
-                  controller: controller.searchController,
-                  onChanged: (value) {
-                    controller.searchUser(value);
-                  },
-                  style: AppFonts.poppins(fontSize: 12, color: black),
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    prefixIcon: InkWell(
-                      onTap: () {
-                        controller.setActive(true);
-                      },
-                      child: Icon(
-                        controller.active.value ? Icons.search : Icons.close,
-                        color: primaryColor,
-                      ),
+          title: Obx(() => TextFormField(
+                onTap: () {
+                  controller.setActive(false);
+                },
+                textInputAction: TextInputAction.done,
+                controller: controller.searchController,
+                onChanged: (value) {
+                  controller.searchUser(value);
+                },
+                style: AppFonts.poppins(fontSize: 12, color: black),
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  prefixIcon: InkWell(
+                    onTap: () {
+                      controller.setActive(true);
+                    },
+                    child: Icon(
+                      controller.active.value ? Icons.search : Icons.close,
+                      color: primaryColor,
                     ),
-                    hintText: "Search",
-                    isDense: true,
-                    hintStyle: GoogleFonts.poppins(fontSize: 13, color: grey),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: primaryColor,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: primaryColor,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    filled: true,
-                    fillColor: Colors.transparent,
                   ),
-                )),
-          ),
+                  hintText: "Search...",
+                  isDense: true,
+                  hintStyle: GoogleFonts.poppins(fontSize: 12, color: grey),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: primaryColor,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: primaryColor,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: Colors.transparent,
+                ),
+              )),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
