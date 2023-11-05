@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class TopAlumniController extends GetxController {
   RxList<Map<String, dynamic>> topFollowerList = <Map<String, dynamic>>[].obs;
-  List<UserProfile> topSalaryUsers = <UserProfile>[];
+  RxList<UserProfile> topSalaryUsers = <UserProfile>[].obs;
 
   var isLoadingFoll = true.obs;
   var isLoadingSal = true.obs;
@@ -16,17 +16,15 @@ class TopAlumniController extends GetxController {
   Future<void> assignTopFollowerData() async {
     final data = await fetchTopFollower();
     topFollowerList.assignAll(data ?? []);
-    update();
   }
 
   Future<void> assignTopSallaryData() async {
     final data = await fetchTopSalary();
     if (data.isNotEmpty) {
-      topSalaryUsers = data;
+      topSalaryUsers.assignAll(data);
     } else {
       print('error');
     }
-    update();
   }
 
   Future<List<Map<String, dynamic>>?> fetchTopFollower() async {
@@ -93,7 +91,7 @@ class TopAlumniController extends GetxController {
 
         if (jsonResponse['status'] == true) {
           final List<dynamic> dataList = jsonResponse['data'];
-          print(dataList);
+
           if (dataList.isNotEmpty) {
             List<UserProfile> userProfiles = [];
             for (var userData in dataList) {
@@ -124,12 +122,5 @@ class TopAlumniController extends GetxController {
     } finally {
       isLoadingSal(false);
     }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    assignTopSallaryData();
-    assignTopFollowerData();
   }
 }

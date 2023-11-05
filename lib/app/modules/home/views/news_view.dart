@@ -17,6 +17,7 @@ class NewsView extends GetView<NewsController> {
   final controller = Get.put(NewsController());
   @override
   Widget build(BuildContext context) {
+    controller.fetchNewsData();
     var size = MediaQuery.of(context).size;
 
     return Obx(() => controller.newsList.isEmpty

@@ -1,10 +1,12 @@
 import 'package:cdc/app/modules/home/views/top_follower_view.dart';
 import 'package:cdc/app/modules/home/views/top_salary_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TopAlumniView extends GetView {
   const TopAlumniView({Key? key}) : super(key: key);
@@ -13,12 +15,23 @@ class TopAlumniView extends GetView {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
-          child: Text(
-            "Teratas",
-            style: AppFonts.poppins(
-                fontSize: 16, color: black, fontWeight: FontWeight.bold),
+        GestureDetector(
+          onTap: () async {
+            SharedPreferences preferences =
+                await SharedPreferences.getInstance();
+            preferences.remove('token');
+            preferences.remove('tokenExpirationTime');
+            // await ApiServices.logout();
+            // ignore: use_build_context_synchronously
+            Get.offAllNamed(Routes.LOGIN);
+          },
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
+            child: Text(
+              "Teratas",
+              style: AppFonts.poppins(
+                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         Container(
@@ -33,15 +46,15 @@ class TopAlumniView extends GetView {
                   onTap: () {
                     if (index == 0) {
                       Get.to(() => TopFollowerView());
-                    } else {
+                    } else if (index == 1) {
                       Get.to(() => TopSalaryView());
                     }
                   },
                   child: Container(
                     height: 100,
                     width: 270,
-                    padding: EdgeInsets.all(15),
-                    margin: EdgeInsets.only(right: 15),
+                    padding: const EdgeInsets.all(15),
+                    margin: const EdgeInsets.only(right: 15),
                     decoration: BoxDecoration(
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(10),

@@ -53,20 +53,20 @@ class HomepageView extends GetView<HomepageController> {
                   hintStyle: GoogleFonts.poppins(fontSize: 12, color: grey),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: primaryColor,
+                      color: Colors.transparent,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: primaryColor,
+                      color: Colors.transparent,
                       width: 1,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   filled: true,
-                  fillColor: Colors.transparent,
+                  fillColor: Color(0xffC4C4C4).withOpacity(0.2),
                 ),
               )),
           actions: [

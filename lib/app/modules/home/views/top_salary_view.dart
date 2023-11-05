@@ -8,10 +8,13 @@ import 'package:get/get.dart';
 
 class TopSalaryView extends GetView<TopAlumniController> {
   TopSalaryView({Key? key}) : super(key: key);
+
   @override
   final controller = Get.put(TopAlumniController());
+
   @override
   Widget build(BuildContext context) {
+    controller.assignTopSallaryData();
     return Scaffold(
         backgroundColor: white.withOpacity(0.98),
         appBar: AppBar(
@@ -37,6 +40,7 @@ class TopSalaryView extends GetView<TopAlumniController> {
                   )
                 : ListView.builder(
                     itemCount: controller.topSalaryUsers.length,
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       UserProfile userProfile =
                           controller.topSalaryUsers[index];

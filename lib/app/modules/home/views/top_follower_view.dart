@@ -13,6 +13,7 @@ class TopFollowerView extends GetView<TopAlumniController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.assignTopFollowerData();
     return Scaffold(
         backgroundColor: white.withOpacity(0.98),
         appBar: AppBar(
