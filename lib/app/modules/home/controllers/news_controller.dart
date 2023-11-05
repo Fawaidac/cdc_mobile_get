@@ -10,7 +10,6 @@ class NewsController extends GetxController {
 
   RxList<Map<String, dynamic>> newsList = <Map<String, dynamic>>[].obs;
 
-
   Future<void> fetchNewsData() async {
     final data = await getNews();
     newsList.assignAll(data ?? []);

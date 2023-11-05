@@ -14,6 +14,8 @@ import '../modules/ikapj/bindings/ikapj_binding.dart';
 import '../modules/ikapj/views/ikapj_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
+import '../modules/notifications/bindings/notifications_binding.dart';
+import '../modules/notifications/views/notifications_view.dart';
 import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/otp/bindings/otp_binding.dart';
@@ -113,6 +115,11 @@ class AppPages {
       name: _Paths.FASILITAS,
       page: () => FasilitasView(),
       binding: FasilitasBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS,
+      page: () => NotificationsView(),
+      binding: NotificationsBinding(),
     ),
   ];
 }

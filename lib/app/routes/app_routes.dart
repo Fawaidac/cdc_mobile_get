@@ -18,6 +18,7 @@ abstract class Routes {
   static const IKAPJ = _Paths.IKAPJ;
   static const PROFILE = _Paths.PROFILE;
   static const FASILITAS = _Paths.FASILITAS;
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const IKAPJ = '/ikapj';
   static const PROFILE = '/profile';
   static const FASILITAS = '/fasilitas';
+  static const NOTIFICATIONS = '/notifications';
 }

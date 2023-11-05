@@ -74,12 +74,17 @@ class HomepageView extends GetView<HomepageController> {
               padding: const EdgeInsets.only(right: 10),
               child: Row(
                 children: [
-                  SizedBox(
-                    child: Image.asset(
-                      "images/bell.png",
-                      height: 20,
-                      alignment: Alignment.center,
-                      color: primaryColor,
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.NOTIFICATIONS);
+                    },
+                    child: SizedBox(
+                      child: Image.asset(
+                        "images/bell.png",
+                        height: 20,
+                        alignment: Alignment.center,
+                        color: primaryColor,
+                      ),
                     ),
                   ),
                   const SizedBox(
