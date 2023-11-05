@@ -1,4 +1,9 @@
+import 'package:cdc/app/modules/alumni/views/alumni_view.dart';
+import 'package:cdc/app/modules/home/views/home_view.dart';
 import 'package:cdc/app/modules/homepage/views/users_item_view.dart';
+import 'package:cdc/app/modules/ikapj/views/ikapj_view.dart';
+import 'package:cdc/app/modules/posting/views/posting_view.dart';
+import 'package:cdc/app/modules/profile/views/profile_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -12,7 +17,7 @@ import '../controllers/homepage_controller.dart';
 class HomepageView extends GetView<HomepageController> {
   HomepageView({Key? key}) : super(key: key);
   @override
-  final controller = Get.put(HomepageController());
+  final controller = Get.put(HomepageController(), permanent: false);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +103,16 @@ class HomepageView extends GetView<HomepageController> {
           ],
         ),
         body: Obx(() => controller.active.value
-            ? controller.screen[controller.currentIndex.value]
+            ? IndexedStack(
+                index: controller.currentIndex.value,
+                children: [
+                  HomeView(),
+                  AlumniView(),
+                  const PostingView(),
+                  const IkapjView(),
+                  const ProfileView(),
+                ],
+              )
             : ListView.builder(
                 itemCount: controller.searchResult.length,
                 itemBuilder: (context, index) {

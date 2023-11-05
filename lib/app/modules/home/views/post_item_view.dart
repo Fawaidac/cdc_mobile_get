@@ -17,6 +17,7 @@ class PostItemView extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    controller.fetchData();
     return Obx(() => ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,

@@ -2,7 +2,6 @@ import 'package:cdc/app/modules/fasilitas/views/whatsapp_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
