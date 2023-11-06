@@ -303,6 +303,7 @@ class PostingView extends GetView<PostingController> {
                   ),
                 ),
               )),
+          
           CustomTextFieldForm(
               isEnable: true,
               controller: controller.tautan,
