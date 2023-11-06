@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:cdc/app/data/models/followers_model.dart';
 import 'package:cdc/app/data/models/user_model.dart';
-import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

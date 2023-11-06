@@ -79,7 +79,7 @@ class PostingView extends GetView<PostingController> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: FileImage(imageValue!),
+                              image: FileImage(imageValue),
                               fit: BoxFit.cover,
                             ),
                           ),

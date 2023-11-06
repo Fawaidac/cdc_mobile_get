@@ -17,103 +17,120 @@ class NewsView extends GetView<NewsController> {
   final controller = Get.put(NewsController());
   @override
   Widget build(BuildContext context) {
-    controller.fetchNewsData();
+    // controller.fetchNewsData();
     var size = MediaQuery.of(context).size;
 
-    return Obx(() => controller.newsList.isEmpty
-        ? SizedBox()
-        : Column(
-            children: [
-              SizedBox(
-                height: 175,
-                child: controller.isLoading.value == true
-                    ? CardLoading(
+    return FutureBuilder(
+      future: controller.fetchNewsData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 15),
+            child: CardLoading(
+              height: 175,
+              width: size.width - 20,
+              borderRadius: BorderRadius.circular(10),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          if (controller.newsList.isEmpty) {
+            return const SizedBox();
+          }
+          return buildNewsListView(context);
+        }
+      },
+    );
+  }
+
+  Widget buildNewsListView(BuildContext _) {
+    var size = MediaQuery.of(_).size;
+
+    return Column(
+      children: [
+        SizedBox(
+          height: 175,
+          child: ListView.builder(
+            controller: pageController,
+            scrollDirection: Axis.horizontal,
+            itemCount: controller.newsList.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Get.to(() =>
+                      DetailNewsView(newsItem: controller.newsList[index]));
+                },
+                child: Container(
+                  width: size.width - 20,
+                  height: 175,
+                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                controller.newsList[index]['image']),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Container(
                         height: 175,
-                        width: size.width - 20,
-                        borderRadius: BorderRadius.circular(10),
-                      )
-                    : ListView.builder(
-                        controller: pageController,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.newsList.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Get.to(() => DetailNewsView(
-                                  newsItem: controller.newsList[index]));
-                            },
-                            child: Container(
-                              width: size.width - 20,
-                              height: 175,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                        image: NetworkImage(controller
-                                            .newsList[index]['image']),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 175,
-                                    padding: const EdgeInsets.all(20),
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Colors.transparent,
-                                          white.withOpacity(0.5),
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          controller.newsList[index]['title'],
-                                          style: AppFonts.poppins(
-                                            fontSize: 18,
-                                            color: black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                        padding: const EdgeInsets.all(20),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.transparent,
+                              white.withOpacity(0.5),
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              controller.newsList[index]['title'],
+                              style: AppFonts.poppins(
+                                fontSize: 18,
+                                color: black,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          );
-                        },
+                          ],
+                        ),
                       ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                alignment: const Alignment(0, 0.60),
-                child: SmoothPageIndicator(
-                  controller: pageController,
-                  count: controller.newsList.length,
-                  effect: SlideEffect(
-                    dotWidth: 8,
-                    dotHeight: 8,
-                    activeDotColor: primaryColor,
-                    dotColor: Color(0xffD1E8F7),
+                    ],
                   ),
                 ),
-              ),
-            ],
-          ));
+              );
+            },
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          alignment: const Alignment(0, 0.60),
+          child: SmoothPageIndicator(
+            controller: pageController,
+            count: controller.newsList.length,
+            effect: SlideEffect(
+              dotWidth: 8,
+              dotHeight: 8,
+              activeDotColor: primaryColor,
+              dotColor: Color(0xffD1E8F7),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -31,7 +31,7 @@ class HomeController extends GetxController {
     searchData(value);
   }
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       final data = await getData(page);
 

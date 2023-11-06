@@ -1,3 +1,4 @@
+import 'package:card_loading/card_loading.dart';
 import 'package:cdc/app/modules/home/controllers/home_controller.dart';
 import 'package:cdc/app/modules/home/views/detail_post_item_view.dart';
 import 'package:cdc/app/services/api_services.dart';
@@ -8,24 +9,38 @@ import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class PostItemView extends GetView {
   PostItemView({super.key});
-
   @override
   final controller = Get.find<HomeController>();
-
   @override
   Widget build(BuildContext context) {
-    controller.fetchData();
+    // controller.fetchData();
+    return FutureBuilder(
+      future: controller.fetchData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return loadPost(context);
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          if (controller.postList.isEmpty) {
+            return const SizedBox();
+          }
+          return buildPostListView();
+        }
+      },
+    );
+  }
+
+  Widget buildPostListView() {
     return Obx(() => ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: controller.postList.length,
           itemBuilder: (context, index) {
-            if (controller.postList.isEmpty) {
-              return const SizedBox();
-            }
             final post = controller.postList[index];
             if (index < controller.postList.length) {
               String dateTime = controller.postList[index].postAt;
@@ -113,15 +128,16 @@ class PostItemView extends GetView {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.only(top: 20, bottom: 10),
-                        height: 500,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(post.image),
-                                fit: BoxFit.cover)),
-                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 20, bottom: 10),
+                          child: FadeInImage.memoryNetwork(
+                            placeholder:
+                                kTransparentImage, 
+                            image: post.image, 
+                            fit: BoxFit.cover,
+                            height: 500,
+                            width: double.infinity,
+                          )),
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Align(
@@ -162,6 +178,98 @@ class PostItemView extends GetView {
             }
           },
         ));
+  }
+
+  Widget loadPost(BuildContext context) {
+    return ListView.builder(
+      itemCount: 3,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.only(top: 10),
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: white,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18),
+                child: Row(
+                  children: [
+                    CardLoading(
+                      height: 50,
+                      width: 50,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Expanded(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CardLoading(
+                          height: 8,
+                          width: 100,
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        CardLoading(
+                          height: 8,
+                          width: 150,
+                        ),
+                      ],
+                    )),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(top: 20, bottom: 10),
+                child: CardLoading(
+                  height: 500,
+                  width: double.infinity,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Align(
+                    alignment: Alignment.bottomRight,
+                    child: CardLoading(
+                      height: 30,
+                      width: 30,
+                      borderRadius: BorderRadius.circular(100),
+                    )),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(right: 10, left: 10, top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CardLoading(
+                      height: 8,
+                      width: double.infinity,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    CardLoading(
+                      height: 8,
+                      width: double.infinity,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   void show(String position, String company, String typeJobs,

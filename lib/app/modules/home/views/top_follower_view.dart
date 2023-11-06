@@ -71,7 +71,7 @@ class TopFollowerView extends GetView<TopAlumniController> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               Column(
