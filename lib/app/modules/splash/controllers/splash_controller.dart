@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:cdc/app/routes/app_pages.dart';
-import 'package:cdc/app/utils/app_themes.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

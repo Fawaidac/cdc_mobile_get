@@ -1,6 +1,6 @@
 import 'package:cdc/app/data/models/user_model.dart';
-import 'package:cdc/app/modules/alumni/controllers/alumni_all_controller.dart';
 import 'package:cdc/app/modules/alumni/controllers/alumni_controller.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -27,7 +27,7 @@ class AlumniAllView extends GetView<AlumniController> {
                     onTap: controller.toggleSortOrder,
                     child: Container(
                       padding: const EdgeInsets.all(8),
-                      margin: EdgeInsets.only(right: 10, left: 10),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
                       decoration: BoxDecoration(
                         border: Border.all(width: 1, color: primaryColor),
                         borderRadius: BorderRadius.circular(10),
@@ -79,6 +79,7 @@ class AlumniAllView extends GetView<AlumniController> {
                                     prodi: controller.selectedProdi!.value,
                                     angkatan: controller.angkatan!.value);
 
+                                // ignore: unnecessary_type_check
                                 if (data is Map<String, dynamic>) {
                                   if (data.containsKey('total_page')) {
                                     controller.totalPage = data['total_page'];
@@ -114,7 +115,7 @@ class AlumniAllView extends GetView<AlumniController> {
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),
-                      margin: EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 10),
                       decoration: BoxDecoration(
                           border: Border.all(width: 1, color: primaryColor),
                           borderRadius: BorderRadius.circular(10),
@@ -144,6 +145,7 @@ class AlumniAllView extends GetView<AlumniController> {
                                     prodi: controller.selectedProdi!.value,
                                     angkatan: controller.angkatan!.value);
 
+                                // ignore: unnecessary_type_check
                                 if (data is Map<String, dynamic>) {
                                   if (data.containsKey('total_page')) {
                                     controller.totalPage = data['total_page'];
@@ -176,7 +178,7 @@ class AlumniAllView extends GetView<AlumniController> {
             SizedBox(
               height: MediaQuery.of(context).size.height - 200,
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: controller.alumniList.length,
                 controller: controller.scrollController,
@@ -189,16 +191,11 @@ class AlumniAllView extends GetView<AlumniController> {
                       .toList();
                   return InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => DetailUser(
-                      //         id: data.user.id ?? "",
-                      //       ),
-                      //     ));
+                      Get.toNamed(Routes.DETAIL_ALUMNI,
+                          arguments: data.user.id);
                     },
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                       child: Row(
                         children: [
                           Container(
@@ -272,7 +269,6 @@ class AlumniAllView extends GetView<AlumniController> {
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Container(
-                                          // alignment: Alignment.bottomRight,
                                           margin:
                                               const EdgeInsets.only(top: 10),
                                           padding: const EdgeInsets.symmetric(
@@ -280,7 +276,7 @@ class AlumniAllView extends GetView<AlumniController> {
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(8),
-                                            color: Color(0xffFAC301),
+                                            color: const Color(0xffFAC301),
                                           ),
                                           child: Text(
                                             "Kunjungi",

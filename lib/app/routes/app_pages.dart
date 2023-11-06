@@ -4,6 +4,8 @@ import '../modules/aktifasi/bindings/aktifasi_binding.dart';
 import '../modules/aktifasi/views/aktifasi_view.dart';
 import '../modules/alumni/bindings/alumni_binding.dart';
 import '../modules/alumni/views/alumni_view.dart';
+import '../modules/detailAlumni/bindings/detail_alumni_binding.dart';
+import '../modules/detailAlumni/views/detail_alumni_view.dart';
 import '../modules/fasilitas/bindings/fasilitas_binding.dart';
 import '../modules/fasilitas/views/fasilitas_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.NOTIFICATIONS,
       page: () => NotificationsView(),
       binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_ALUMNI,
+      page: () => DetailAlumniView(),
+      binding: DetailAlumniBinding(),
     ),
   ];
 }

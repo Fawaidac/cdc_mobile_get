@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/user_model.dart';
-import 'package:cdc/app/modules/fasilitas/views/fasilitas_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
@@ -79,6 +78,7 @@ class AlumniController extends GetxController {
         currentPage,
       );
 
+      // ignore: unnecessary_type_check
       if (data is Map<String, dynamic>) {
         if (data.containsKey('total_page')) {
           totalPage = data['total_page'];

@@ -1,4 +1,3 @@
-import 'package:cdc/app/data/models/user_model.dart';
 import 'package:cdc/app/modules/alumni/views/alumni_all_view.dart';
 
 import 'package:flutter/material.dart';
