@@ -4,8 +4,8 @@ import '../modules/aktifasi/bindings/aktifasi_binding.dart';
 import '../modules/aktifasi/views/aktifasi_view.dart';
 import '../modules/alumni/bindings/alumni_binding.dart';
 import '../modules/alumni/views/alumni_view.dart';
-import '../modules/detailAlumni/bindings/detail_alumni_binding.dart';
-import '../modules/detailAlumni/views/detail_alumni_view.dart';
+import '../modules/detail_alumni/bindings/detail_alumni_binding.dart';
+import '../modules/detail_alumni/views/detail_alumni_view.dart';
 import '../modules/fasilitas/bindings/fasilitas_binding.dart';
 import '../modules/fasilitas/views/fasilitas_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -32,6 +32,8 @@ import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/tab_followers/bindings/tab_followers_binding.dart';
+import '../modules/tab_followers/views/tab_followers_view.dart';
 import '../modules/verifikasi/bindings/verifikasi_binding.dart';
 import '../modules/verifikasi/views/verifikasi_view.dart';
 
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.DETAIL_ALUMNI,
       page: () => DetailAlumniView(),
       binding: DetailAlumniBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAB_FOLLOWERS,
+      page: () => TabFollowersView(),
+      binding: TabFollowersBinding(),
     ),
   ];
 }

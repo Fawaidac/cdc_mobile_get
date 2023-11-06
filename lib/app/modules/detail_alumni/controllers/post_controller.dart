@@ -31,7 +31,6 @@ class PostController extends GetxController {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       print('call');
-      print(id);
       if (currentPage < totalPage) {
         currentPage = currentPage + 1;
         fetchData(id);

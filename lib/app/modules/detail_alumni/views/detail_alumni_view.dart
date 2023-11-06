@@ -1,7 +1,9 @@
 import 'package:card_loading/card_loading.dart';
-import 'package:cdc/app/modules/detailAlumni/views/education_view.dart';
-import 'package:cdc/app/modules/detailAlumni/views/job_view.dart';
-import 'package:cdc/app/modules/detailAlumni/views/post_view.dart';
+import 'package:cdc/app/modules/detail_alumni/views/education_view.dart';
+import 'package:cdc/app/modules/detail_alumni/views/job_view.dart';
+import 'package:cdc/app/modules/detail_alumni/views/post_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
+import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -65,13 +67,13 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                     children: [
                       Row(
                         children: [
-                          GestureDetector(
-                            onTap: () async {},
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  "https://th.bing.com/th/id/OIP.VH39b0tEUhcx63P0laPnKgHaFu?w=230&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7"),
-                              radius: 40,
-                            ),
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(controller
+                                        .userDetail?.user.foto ==
+                                    ApiServices.baseUrlImage
+                                ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
+                                : '${controller.userDetail?.user.foto}'),
+                            radius: 40,
                           ),
                           const SizedBox(
                             width: 10,
@@ -166,6 +168,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                             GestureDetector(
                               onTap: () {
                                 controller.handleFollownUnfollow(idUser);
+                                controller.handleUser(idUser);
                               },
                               child: Container(
                                 width: 100,
@@ -239,13 +242,9 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => FollowersUser(
-                                  //         id: userDetail?.user.id ?? "",
-                                  //       ),
-                                  //     ));
+                                  Get.toNamed(Routes.TAB_FOLLOWERS,
+                                      arguments:
+                                          controller.userDetail?.user.id ?? "");
                                 },
                                 child: SizedBox(
                                   height: 80,
@@ -281,13 +280,9 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => FollowersUser(
-                                  //         id: userDetail?.user.id ?? "",
-                                  //       ),
-                                  //     ));
+                                  Get.toNamed(Routes.TAB_FOLLOWERS,
+                                      arguments:
+                                          controller.userDetail?.user.id ?? "");
                                 },
                                 child: SizedBox(
                                   height: 80,

@@ -1,4 +1,4 @@
-import 'package:cdc/app/modules/detailAlumni/controllers/post_controller.dart';
+import 'package:cdc/app/modules/detail_alumni/controllers/post_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

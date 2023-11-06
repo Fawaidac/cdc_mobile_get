@@ -1,38 +1,36 @@
-import 'package:cdc/app/modules/detailAlumni/controllers/education_controller.dart';
+import 'package:cdc/app/modules/detail_alumni/controllers/job_controller.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class EducationView extends GetView<EducationController> {
+class JobView extends GetView<JobController> {
   final String idUser;
 
-  EducationView({required this.idUser, Key? key}) : super(key: key);
+  JobView({required this.idUser, Key? key}) : super(key: key);
 
   @override
-  final controller = Get.put(EducationController());
+  final controller = Get.put(JobController());
 
   @override
   Widget build(BuildContext context) {
     controller.fetchData(idUser);
 
     return Obx(() {
-      final educations = controller.educations;
+      final jobs = controller.jobs;
 
       return ListView.builder(
-        itemCount: educations.length,
+        itemCount: jobs.length,
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          final education = educations[index];
-
+          final data = jobs[index];
           return Container(
             padding: const EdgeInsets.all(15),
             margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             height: 125,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
-              color: Color(0xff242760).withOpacity(0.03),
+              color: const Color(0xff242760).withOpacity(0.03),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +41,7 @@ class EducationView extends GetView<EducationController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${education.perguruan}",
+                        "${data.jabatan}",
                         style: AppFonts.poppins(
                           fontSize: 16,
                           color: black,
@@ -51,7 +49,7 @@ class EducationView extends GetView<EducationController> {
                         ),
                       ),
                       Text(
-                        "${education.strata}, ${education.jurusan}",
+                        "${data.perusahaan}, ${data.jenisPekerjaan}",
                         style: AppFonts.poppins(
                           fontSize: 14,
                           color: black,
@@ -62,7 +60,7 @@ class EducationView extends GetView<EducationController> {
                         height: 2,
                       ),
                       Text(
-                        "${education.prodi}, ${education.tahunMasuk}-${education.tahunLulus}",
+                        "${data.tahunMasuk} - ${data.tahunKeluar != null ? data.tahunKeluar! : 'Sekarang'}",
                         style: AppFonts.poppins(
                           fontSize: 12,
                           color: first,
@@ -70,7 +68,7 @@ class EducationView extends GetView<EducationController> {
                         ),
                       ),
                       Text(
-                        "No. Ijazah: ${education.noIjasah != null ? education.noIjasah! : '-'}",
+                        "Rp. ${data.gaji}",
                         style: AppFonts.poppins(
                           fontSize: 12,
                           color: grey,
