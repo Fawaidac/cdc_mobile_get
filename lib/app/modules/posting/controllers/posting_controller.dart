@@ -14,12 +14,12 @@ import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostingController extends GetxController {
-  File? image;
+  Rx<File?> image = Rx<File?>(null);
   late TextEditingController keterangan;
   late TextEditingController posisi;
   late TextEditingController perusahaan;
   late TextEditingController tautan;
-  var selectedDate = DateTime.now();
+  Rx<DateTime> selectedDate = DateTime.now().obs;
 
   String? selectedType;
   List<String> typeOptions = [
@@ -58,23 +58,23 @@ class PostingController extends GetxController {
     final picker = ImagePicker();
     final imageFile = await picker.pickImage(source: ImageSource.gallery);
 
-    image = File(imageFile!.path);
+    image.value = File(imageFile!.path);
   }
 
   void selectDate(BuildContext _) async {
     final DateTime? pickedDate = await showDatePicker(
       context: _,
-      initialDate: selectedDate,
+      initialDate: selectedDate.value,
       firstDate: DateTime(2018),
       lastDate: DateTime(2100),
     );
-    if (pickedDate != null && pickedDate != selectedDate) {
-      selectedDate = pickedDate;
+    if (pickedDate != null && pickedDate != selectedDate.value) {
+      selectedDate.value = pickedDate;
     }
   }
 
   void check() {
-    if (image == null) {
+    if (image.value == null) {
       Get.snackbar("Error", "Gambar tidak boleh kosong",
           margin: const EdgeInsets.all(10));
     } else {
@@ -83,9 +83,9 @@ class PostingController extends GetxController {
   }
 
   void submitPost() async {
-    String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate!);
+    String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate.value);
     final response = await post(
-        image: image!,
+        image: image.value!,
         linkApply: tautan.text,
         company: perusahaan.text,
         description: keterangan.text,
@@ -190,6 +190,10 @@ class PostingController extends GetxController {
     } else if (response['message'] ==
         "The image must not be greater than 1048 kilobytes.") {
       Get.snackbar("Error", "Gambar tidak boleh melebihi 1048 Kb",
+          margin: const EdgeInsets.all(10));
+    } else if (response['message'] ==
+        'The image must be a file of type: jpeg, png, jpg.') {
+      Get.snackbar("Error", "Gambar harus dalam format jpeg, png atau jpg",
           margin: const EdgeInsets.all(10));
     } else {
       print(response['message']);
