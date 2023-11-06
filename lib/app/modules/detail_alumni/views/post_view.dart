@@ -33,8 +33,7 @@ class PostView extends GetView<PostController> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    image: NetworkImage(
-                        post['image']), // Update the key to 'image'
+                    image: NetworkImage(post['image']),
                     fit: BoxFit.cover,
                   ),
                 ),

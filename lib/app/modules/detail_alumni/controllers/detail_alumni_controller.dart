@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cdc/app/data/models/followers_model.dart';
 import 'package:cdc/app/data/models/user_model.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class DetailAlumniController extends GetxController
   var idUser = "";
 
   late TabController tabController;
-  UserDetail? userDetail;
+  Rx<UserDetail> userDetail = UserDetail().obs;
   RxInt followerCount = 0.obs;
   RxInt followedCount = 0.obs;
   RxInt postCount = 0.obs;
@@ -34,14 +35,14 @@ class DetailAlumniController extends GetxController
 
   void handleUser(String id) {
     fetchDetailUser(id).then((user) {
-      userDetail = user;
+      userDetail.value = user;
     }).catchError((error) {
       print('Failed to fetch user followers: $error');
     });
   }
 
   void handleFollownUnfollow(String idUser) async {
-    if (userDetail?.user.isFollow == true) {
+    if (userDetail.value.user!.isFollow == true) {
       handleUnfollow(idUser);
     } else {
       handleFollow(idUser);
@@ -55,6 +56,7 @@ class DetailAlumniController extends GetxController
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
         handleUser(idUser);
+        update();
       } else {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
@@ -72,6 +74,7 @@ class DetailAlumniController extends GetxController
             margin: const EdgeInsets.all(10));
 
         handleUser(idUser);
+        update();
       } else {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));

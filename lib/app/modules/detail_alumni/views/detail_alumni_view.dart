@@ -69,10 +69,10 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                         children: [
                           CircleAvatar(
                             backgroundImage: NetworkImage(controller
-                                        .userDetail?.user.foto ==
+                                        .userDetail.value.user?.foto ==
                                     ApiServices.baseUrlImage
                                 ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                : '${controller.userDetail?.user.foto}'),
+                                : '${controller.userDetail.value.user?.foto}'),
                             radius: 40,
                           ),
                           const SizedBox(
@@ -92,7 +92,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Text(
-                                      ' ${controller.userDetail?.user.fullname ?? " "}',
+                                      ' ${controller.userDetail.value.user?.fullname ?? " "}',
                                       style: AppFonts.poppins(
                                         fontSize: 16,
                                         color: black,
@@ -108,7 +108,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Text(
-                                      ' ${controller.userDetail?.user.alamat ?? " "}',
+                                      ' ${controller.userDetail.value.user?.alamat ?? " "}',
                                       style: AppFonts.poppins(
                                         fontSize: 12,
                                         color: black,
@@ -121,11 +121,11 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           IconButton(
                               onPressed: () {
                                 showDetailUser(
-                                    '${controller.userDetail?.user.fullname}',
-                                    '${controller.userDetail?.user.tempatTanggalLahir}',
-                                    '${controller.userDetail?.user.email}',
-                                    '${controller.userDetail?.user.nik}',
-                                    '${controller.userDetail?.user.noTelp}');
+                                    '${controller.userDetail.value.user?.fullname}',
+                                    '${controller.userDetail.value.user?.tempatTanggalLahir}',
+                                    '${controller.userDetail.value.user?.email}',
+                                    '${controller.userDetail.value.user?.nik}',
+                                    '${controller.userDetail.value.user?.noTelp}');
                               },
                               icon: Icon(
                                 Icons.info_outline,
@@ -153,7 +153,9 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Text(
-                                        controller.userDetail?.user.about ?? "",
+                                        controller
+                                                .userDetail.value.user?.about ??
+                                            "",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: AppFonts.poppins(
@@ -175,26 +177,28 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  border:
-                                      controller.userDetail?.user.isFollow ==
-                                              true
-                                          ? Border.all(
-                                              width: 1, color: primaryColor)
-                                          : null,
-                                  color: controller.userDetail?.user.isFollow ==
+                                  border: controller.userDetail.value.user
+                                              ?.isFollow ==
+                                          true
+                                      ? Border.all(
+                                          width: 1, color: primaryColor)
+                                      : null,
+                                  color: controller.userDetail.value.user
+                                              ?.isFollow ==
                                           true
                                       ? white
                                       : primaryColor,
                                 ),
                                 child: Text(
-                                  controller.userDetail?.user.isFollow == true
+                                  controller.userDetail.value.user?.isFollow ==
+                                          true
                                       ? "Dikuti"
                                       : "Ikuti",
                                   textAlign: TextAlign.center,
                                   style: AppFonts.poppins(
                                       fontSize: 12,
-                                      color: controller
-                                                  .userDetail?.user.isFollow ==
+                                      color: controller.userDetail.value.user
+                                                  ?.isFollow ==
                                               true
                                           ? primaryColor
                                           : white),
@@ -243,8 +247,9 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(Routes.TAB_FOLLOWERS,
-                                      arguments:
-                                          controller.userDetail?.user.id ?? "");
+                                      arguments: controller
+                                              .userDetail.value.user?.id ??
+                                          "");
                                 },
                                 child: SizedBox(
                                   height: 80,
@@ -281,8 +286,9 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(Routes.TAB_FOLLOWERS,
-                                      arguments:
-                                          controller.userDetail?.user.id ?? "");
+                                      arguments: controller
+                                              .userDetail.value.user?.id ??
+                                          "");
                                 },
                                 child: SizedBox(
                                   height: 80,
@@ -329,7 +335,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String linkedin =
-                                  controller.userDetail?.user.linkedin ?? "";
+                                  controller.userDetail.value.user?.linkedin ??
+                                      "";
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url =
                                     "http://www.linkedin.com/in/$linkedin";
@@ -349,7 +356,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String ig =
-                                  controller.userDetail?.user.instagram ?? "";
+                                  controller.userDetail.value.user?.instagram ??
+                                      "";
                               if (ig != null && ig.isNotEmpty) {
                                 String url = "https://www.instagram.com/$ig/";
                                 if (await canLaunch(url)) {
@@ -368,7 +376,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String linkedin =
-                                  controller.userDetail?.user.twitter ?? "";
+                                  controller.userDetail.value.user?.twitter ??
+                                      "";
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url = "https://twitter.com/$linkedin";
                                 if (await canLaunch(url)) {
@@ -387,7 +396,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String linkedin =
-                                  controller.userDetail?.user.facebook ?? "";
+                                  controller.userDetail.value.user?.facebook ??
+                                      "";
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url =
                                     "https://www.facebook.com/$linkedin";

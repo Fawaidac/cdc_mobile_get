@@ -33,20 +33,16 @@ class FollowersController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      // final data = json.decode(response.body);
       final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      final List<dynamic> followersData =
+          jsonResponse['data']['user']['followers'];
 
-      // final int totalFollowers = data['data']['total_followers'];
-      // final User user = User.fromJson(data['data']['user']);
-      // List<Follower> followers = [];
-      // if (data['data']['user']['followers'] != null) {
-      //   data['data']['user']['followers'].forEach((followerData) {
-      //     followers.add(Follower.fromJson(followerData));
-      //   });
-      // }
-      final userFollowers =
-          UserFollowersInfo.fromJson(jsonResponse['data']['user']['followers']);
-      return userFollowers.followers ?? <Follower>[];
+      // Parse the list of followers
+      final List<Follower> followers = followersData.map((followerJson) {
+        return Follower.fromJson(followerJson);
+      }).toList();
+
+      return followers;
     } else {
       throw Exception('Failed to fetch followers');
     }

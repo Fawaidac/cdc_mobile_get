@@ -1,3 +1,5 @@
+import 'package:cdc/app/modules/tab_followers/controllers/followed_controller.dart';
+import 'package:cdc/app/modules/tab_followers/controllers/followers_controller.dart';
 import 'package:cdc/app/modules/tab_followers/views/followed_view.dart';
 import 'package:cdc/app/modules/tab_followers/views/followers_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
@@ -17,9 +19,12 @@ class TabFollowersView extends GetView<TabFollowersController> {
   @override
   Widget build(BuildContext context) {
     String userId = Get.arguments;
+    Get.find<FollowersController>().fetchDataFollowers(userId);
+    Get.find<FollowedController>().fetchDataFollowed(userId);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        backgroundColor: white,
         appBar: AppBar(
           backgroundColor: white,
           shadowColor: Colors.transparent,
@@ -31,7 +36,7 @@ class TabFollowersView extends GetView<TabFollowersController> {
               )),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Container(

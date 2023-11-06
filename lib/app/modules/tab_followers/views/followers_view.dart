@@ -17,9 +17,10 @@ class FollowersView extends GetView<FollowersController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.fetchDataFollowers(idUser);
+    // controller.fetchDataFollowers(idUser);
     return Obx(() => ListView.builder(
           itemCount: controller.followersList.length,
+          shrinkWrap: true,
           itemBuilder: (context, index) {
             final follower = controller.followersList[index];
             return ListTile(

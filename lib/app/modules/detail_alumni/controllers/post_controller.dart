@@ -7,10 +7,10 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostController extends GetxController {
-  int currentPage = 1;
-  int totalPage = 1;
+  RxInt currentPage = 1.obs;
+  RxInt totalPage = 1.obs;
 
-  RxList postList = [].obs;
+  RxList postList = <dynamic>[].obs;
 
   final ScrollController scrollController = ScrollController();
 
@@ -31,11 +31,9 @@ class PostController extends GetxController {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
       print('call');
-      if (currentPage < totalPage) {
-        currentPage = currentPage + 1;
+      if (currentPage.value < totalPage.value) {
+        currentPage.value = currentPage.value + 1;
         fetchData(id);
-        postList.refresh();
-        update();
       }
     } else {
       print('dont call');
@@ -44,7 +42,7 @@ class PostController extends GetxController {
 
   Future<void> fetchData(String user) async {
     String url =
-        '${ApiServices.baseUrl}/user/post/detail/$user?page=$currentPage';
+        '${ApiServices.baseUrl}/user/post/detail/$user?page=${currentPage.value}';
     print(url);
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
@@ -56,14 +54,13 @@ class PostController extends GetxController {
     );
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      print(data);
+
       final dataPost = data['data']['posts'] as List;
       final datatotalPage = data['data']['pagination']['total_page'];
 
-      postList.addAll(dataPost);
-      totalPage = datatotalPage;
+      postList = postList + dataPost;
+      totalPage.value = datatotalPage;
       postList.refresh();
-      update();
     } else {
       print('error');
     }

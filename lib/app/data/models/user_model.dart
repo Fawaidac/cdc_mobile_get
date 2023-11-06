@@ -73,12 +73,12 @@ class User {
 }
 
 class UserDetail {
-  User user;
+  User? user;
   List<EducationsModel>? educations;
   List<JobsModel>? jobs;
 
   UserDetail({
-    required this.user,
+    this.user,
     this.educations,
     this.jobs,
   });
