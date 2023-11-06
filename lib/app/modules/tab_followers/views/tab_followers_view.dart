@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/tab_followers/views/followed_view.dart';
 import 'package:cdc/app/modules/tab_followers/views/followers_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -66,7 +67,11 @@ class TabFollowersView extends GetView<TabFollowersController> {
                   )),
                   SizedBox(
                     child: Column(
-                      children: [],
+                      children: [
+                        FollowedView(
+                          idUser: userId,
+                        ),
+                      ],
                     ),
                   ),
                 ]),
