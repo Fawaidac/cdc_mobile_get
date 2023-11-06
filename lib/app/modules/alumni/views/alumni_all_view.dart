@@ -5,6 +5,7 @@ import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -47,7 +48,7 @@ class AlumniAllView extends GetView<AlumniController> {
                   flex: 2,
                   child: InkWell(
                     onTap: () {
-                      // _showProdiBottomSheet(context);
+                      showProdiBottomSheet();
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),
@@ -111,7 +112,7 @@ class AlumniAllView extends GetView<AlumniController> {
                   flex: 1,
                   child: InkWell(
                     onTap: () {
-                      // _showAngkatanBottomSheet(context);
+                      showAngkatanBottomSheet(context);
                     },
                     child: Container(
                       padding: const EdgeInsets.all(8),
@@ -303,5 +304,141 @@ class AlumniAllView extends GetView<AlumniController> {
         ),
       ),
     );
+  }
+
+  showProdiBottomSheet() {
+    controller.fetchDataProdi();
+    Get.bottomSheet(Container(
+      color: white,
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Container(
+            height: 5,
+            width: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10), color: primaryColor),
+          ),
+          Obx(() => Expanded(
+                  child: ListView.builder(
+                itemCount: controller.prodiList.length,
+                itemBuilder: (context, index) {
+                  final prodi = controller.prodiList[index];
+                  return ListTile(
+                    title: Text(
+                      prodi['nama_prodi'],
+                      style: AppFonts.poppins(fontSize: 12, color: black),
+                    ),
+                    onTap: () async {
+                      Get.back();
+
+                      controller.selectedProdi!.value = prodi['nama_prodi'];
+
+                      controller.showCloseIcon.value = true;
+
+                      controller.alumniList.clear();
+                      final data = await controller.fetchAlumniAll(
+                          controller.currentPage,
+                          prodi: controller.selectedProdi!.value,
+                          angkatan: controller.angkatan!.value);
+
+                      // ignore: unnecessary_type_check
+                      if (data is Map<String, dynamic>) {
+                        if (data.containsKey('total_page')) {
+                          controller.totalPage = data['total_page'];
+                        }
+                        final List<Alumni> alumni = data.keys
+                            .where((key) => int.tryParse(key) != null)
+                            .map((key) {
+                          return Alumni.fromJson(data[key]);
+                        }).toList();
+
+                        controller.alumniList.addAll(alumni);
+                      } else {
+                        print("Response data is not in the expected format.");
+                      }
+                    },
+                  );
+                },
+              )))
+        ],
+      ),
+    ));
+  }
+
+  showAngkatanBottomSheet(BuildContext _) {
+    Get.bottomSheet(Container(
+        color: white,
+        padding: EdgeInsets.fromLTRB(
+            20, 20, 20, MediaQuery.of(_).viewInsets.bottom + 20),
+        child: Obx(
+          () => Wrap(
+            children: [
+              Text(
+                "Masukan tahun angkatan :",
+                style: AppFonts.poppins(
+                    fontSize: 12, color: black, fontWeight: FontWeight.normal),
+              ),
+              TextField(
+                controller: controller.tahun,
+                style: AppFonts.poppins(
+                  fontSize: 14,
+                  color: black,
+                ),
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(4)
+                ],
+                decoration: InputDecoration(
+                  hintText: "Angkatan",
+                  hintStyle: AppFonts.poppins(fontSize: 12, color: softgrey),
+                  isDense: false,
+                  border: UnderlineInputBorder(
+                      borderSide: BorderSide(color: primaryColor)),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                      onPressed: () async {
+                        Get.back();
+                        int angkatanValue = int.parse(controller.tahun.text);
+                        controller.angkatan!.value = angkatanValue;
+                        controller.showCloseIconAngkatan.value = true;
+
+                        controller.alumniList.clear();
+                        final data = await controller.fetchAlumniAll(
+                            controller.currentPage,
+                            angkatan: controller.angkatan!.value);
+
+                        if (data is Map<String, dynamic>) {
+                          if (data.containsKey('total_page')) {
+                            controller.totalPage = data['total_page'];
+                          }
+                          final List<Alumni> alumni = data.keys
+                              .where((key) => int.tryParse(key) != null)
+                              .map((key) {
+                            return Alumni.fromJson(data[key]);
+                          }).toList();
+
+                          controller.alumniList.addAll(alumni);
+                        } else {
+                          print("Response data is not in the expected format.");
+                        }
+                      },
+                      child: Text(
+                        "Cari",
+                        style: AppFonts.poppins(
+                            fontSize: 12,
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold),
+                      ))
+                ],
+              )
+            ],
+          ),
+        )));
   }
 }

@@ -14,7 +14,8 @@ class AlumniController extends GetxController {
   ScrollController scrollController = ScrollController();
 
   RxList alumniList = <Alumni>[].obs;
-  RxList filterAlumniList = <Alumni>[].obs;
+
+  RxList<Map<String, dynamic>> prodiList = <Map<String, dynamic>>[].obs;
 
   var currentPage = 1;
   var totalPage = 1;
@@ -29,6 +30,7 @@ class AlumniController extends GetxController {
   RxBool showCloseIconAngkatan = false.obs;
 
   late TextEditingController search;
+  late TextEditingController tahun;
 
   @override
   void onInit() {
@@ -36,6 +38,7 @@ class AlumniController extends GetxController {
     super.onInit();
     scrollController.addListener(_scrollListener);
     search = TextEditingController();
+    tahun = TextEditingController();
   }
 
   @override
@@ -44,6 +47,12 @@ class AlumniController extends GetxController {
     super.onClose();
     scrollController.dispose();
     search.dispose();
+    tahun.dispose();
+  }
+
+  Future<void> fetchDataProdi() async {
+    final result = await getProdi();
+    prodiList.addAll(result);
   }
 
   void toggleSortOrder() {
@@ -98,6 +107,19 @@ class AlumniController extends GetxController {
       print("Error fetching data: $e");
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getProdi() async {
+    final response = await http.get(Uri.parse('${ApiServices.baseUrl}/prodi'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      final List<Map<String, dynamic>> prodiList =
+          List<Map<String, dynamic>>.from(jsonResponse['data']);
+      return prodiList;
+    } else {
+      throw Exception('Failed to fetch prodi');
     }
   }
 
