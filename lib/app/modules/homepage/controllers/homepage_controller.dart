@@ -34,9 +34,9 @@ class HomepageController extends GetxController {
   List<Widget> screen = <Widget>[
     HomeView(),
     AlumniView(),
-    const PostingView(),
-    const IkapjView(),
-    const ProfileView(),
+    PostingView(),
+    IkapjView(),
+    ProfileView(),
   ];
 
   List navButtons = [

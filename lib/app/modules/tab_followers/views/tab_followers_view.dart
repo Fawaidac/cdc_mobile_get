@@ -55,7 +55,7 @@ class TabFollowersView extends GetView<TabFollowersController> {
               ),
               Expanded(
                   child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: TabBarView(children: [
                   SizedBox(
                       child: Column(

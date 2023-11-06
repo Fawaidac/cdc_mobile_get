@@ -113,9 +113,9 @@ class HomepageView extends GetView<HomepageController> {
                 children: [
                   HomeView(),
                   AlumniView(),
-                  const PostingView(),
-                  const IkapjView(),
-                  const ProfileView(),
+                  PostingView(),
+                  IkapjView(),
+                  ProfileView(),
                 ],
               )
             : ListView.builder(

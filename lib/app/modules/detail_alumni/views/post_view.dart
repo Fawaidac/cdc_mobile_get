@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PostView extends GetView<PostController> {
   var idUser;
   PostView({this.idUser, Key? key}) : super(key: key);
@@ -39,6 +40,7 @@ class PostView extends GetView<PostController> {
                 ),
               );
             }
+            return const SizedBox();
           },
           itemCount: controller.postList.length,
         ));
