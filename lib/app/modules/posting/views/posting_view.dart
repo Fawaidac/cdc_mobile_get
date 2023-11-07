@@ -285,7 +285,7 @@ class PostingView extends GetView<PostingController> {
                     children: [
                       Expanded(
                         child: Text(
-                          DateFormat('dd MMMM yyyy', 'id')
+                          DateFormat('dd MMMM yyyy')
                               .format(controller.selectedDate.value),
                           style: AppFonts.poppins(fontSize: 13, color: black),
                         ),
@@ -303,7 +303,6 @@ class PostingView extends GetView<PostingController> {
                   ),
                 ),
               )),
-          
           CustomTextFieldForm(
               isEnable: true,
               controller: controller.tautan,

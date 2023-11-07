@@ -2,6 +2,7 @@ import 'package:cdc/app/modules/splash/bindings/splash_binding.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 
@@ -22,6 +23,7 @@ void main() async {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       initialBinding: SplashBinding(),
+      builder: EasyLoading.init(),
     ),
   );
 }

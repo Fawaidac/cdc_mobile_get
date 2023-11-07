@@ -19,12 +19,6 @@ class QuisionerController extends GetxController {
     'Kesesuaian pekerjaan anda saat ini dengan pendidikan anda',
   ]);
 
-  // void setCheckboxValue(int index, bool value) {
-  //   if (quisionerData.isNotEmpty && index < quisionerData.length) {
-  //     quisionerData[index]['value'] = value;
-  //   }
-  // }
-
   void fetchQuisionerData() async {
     try {
       final response = await quisionerCheck();

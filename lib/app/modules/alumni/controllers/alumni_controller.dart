@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/user_model.dart';
+import 'package:cdc/app/modules/login/views/login_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
@@ -127,7 +128,6 @@ class AlumniController extends GetxController {
       {int? angkatan, String? prodi}) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-
     String url = '${ApiServices.baseUrl}/users?page=$page';
     if (angkatan != null) {
       url += '&angkatan=$angkatan';
@@ -188,6 +188,46 @@ class AlumniController extends GetxController {
         ),
       );
       print('Account is not verified');
+    } else if (jsonResponse['message'] ==
+        'your token is not valid , please login again') {
+      Get.dialog(AlertDialog(
+        title: Text(
+          "Error !",
+          textAlign: TextAlign.center,
+          style: AppFonts.poppins(
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+        content: Text(
+          "Ops , sesi anda telah habis , silahkan login ulang",
+          textAlign: TextAlign.center,
+          style: AppFonts.poppins(fontSize: 12, color: black),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.offAll(() => LoginView());
+            },
+            child: Text(
+              "OK",
+              style: AppFonts.poppins(
+                  fontSize: 16,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: Text("Cancel",
+                style: AppFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ));
     } else {
       print(
           'Failed to load data ${response.statusCode}'); // Menampilkan pesan kesalahan ke konsol
