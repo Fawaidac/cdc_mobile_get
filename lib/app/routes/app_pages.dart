@@ -26,6 +26,8 @@ import '../modules/posting/bindings/posting_binding.dart';
 import '../modules/posting/views/posting_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/quisioner/bindings/quisioner_binding.dart';
+import '../modules/quisioner/views/quisioner_view.dart';
 import '../modules/recovery_password/bindings/recovery_password_binding.dart';
 import '../modules/recovery_password/views/recovery_password_view.dart';
 import '../modules/register/bindings/register_binding.dart';
@@ -134,6 +136,11 @@ class AppPages {
       name: _Paths.TAB_FOLLOWERS,
       page: () => TabFollowersView(),
       binding: TabFollowersBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUISIONER,
+      page: () => QuisionerView(),
+      binding: QuisionerBinding(),
     ),
   ];
 }

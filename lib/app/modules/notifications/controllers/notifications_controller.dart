@@ -38,4 +38,5 @@ class NotificationsController extends GetxController {
       print('Terjadi kesalahan: $e');
     }
   }
+
 }

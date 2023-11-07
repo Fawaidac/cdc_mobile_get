@@ -12,96 +12,111 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class FasilitasController extends GetxController {
   var questionnaireCheck = Rx<QuestionnaireCheck?>(null);
-  Future<void> fetchQuisionerCheck() async {
-    try {
-      final fetchedData = await quisionerCheck();
+  int totalSections = 9;
+  double calculateProgress() {
+    int totalSections = 9;
+    int completedSections = 0;
 
-      if (fetchedData['code'] == 200) {
-        QuestionnaireCheck check =
-            QuestionnaireCheck.fromJson(fetchedData['data']);
-        questionnaireCheck.value = check;
-        update();
-        questionnaireCheck.refresh();
-      } else if (fetchedData['message'] ==
-          "your token is not valid , please login again") {
-        Get.dialog(
-          AlertDialog(
-            title: Text(
-              "Error",
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
-            ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 10),
-            content: Text(
-              "Sesi anda telah habis , silahkan login ulang",
-              style: AppFonts.poppins(fontSize: 12, color: black),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Get.offAll(() => LoginView());
-                },
-                child: Text(
-                  "OK",
-                  style: AppFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text("Cancel",
-                    style: AppFonts.poppins(
-                        fontSize: 16,
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ],
-          ),
-        );
-      }
-    } catch (e) {
-      print('Error fetching quisioner check: $e');
+    if (questionnaireCheck.value?.identitasSection != null) {
+      completedSections++;
     }
+    if (questionnaireCheck.value?.mainSection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.furtheStudySection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.competentLevelSection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.studyMethodSection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.jobsStreetSection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.howFindJobsSection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.companyAppliedSection != null) {
+      completedSections++;
+    }
+    if (questionnaireCheck.value?.jobSuitabilitySection != null) {
+      completedSections++;
+    }
+    double progress = completedSections / totalSections;
+
+    return progress;
   }
 
-  int calculateCompletedSections() {
-    if (questionnaireCheck.value == null) {
-      return 0;
-    }
-    return questionnaireCheck.value!.identitasSection +
-        questionnaireCheck.value!.mainSection +
-        questionnaireCheck.value!.furtheStudySection +
-        questionnaireCheck.value!.competentLevelSection +
-        questionnaireCheck.value!.studyMethodSection +
-        questionnaireCheck.value!.jobsStreetSection +
-        questionnaireCheck.value!.howFindJobsSection +
-        questionnaireCheck.value!.companyAppliedSection +
-        questionnaireCheck.value!.jobSuitabilitySection;
-  }
-
-  static Future<Map<String, dynamic>> quisionerCheck() async {
+  Future<QuestionnaireCheck?> quisionerCheck() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
       final response = await http.get(
           Uri.parse('${ApiServices.baseUrl}/user/quisioner/check'),
           headers: {"Authorization": "Bearer $token"});
-      final responseJson = jsonDecode(response.body);
-      return responseJson;
+      final Map<String, dynamic> responseJson = jsonDecode(response.body);
+      if (responseJson['code'] == 200) {
+        QuestionnaireCheck check =
+            QuestionnaireCheck.fromJson(responseJson['data']);
+        questionnaireCheck.value = check;
+        return check;
+      } else if (responseJson['message'] ==
+          "your token is not valid , please login again") {
+        Get.dialog(AlertDialog(
+          title: Text(
+            "Error !",
+            textAlign: TextAlign.center,
+            style: AppFonts.poppins(
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
+          ),
+          contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+          content: Text(
+            "Ops , sesi anda telah habis , silahkan login ulang",
+            textAlign: TextAlign.center,
+            style: AppFonts.poppins(fontSize: 12, color: black),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Get.offAll(() => LoginView());
+              },
+              child: Text(
+                "OK",
+                style: AppFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: Text("Cancel",
+                  style: AppFonts.poppins(
+                      fontSize: 16,
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ));
+      } else {
+        print(responseJson['message']);
+        return null;
+      }
     } catch (e) {
       print('Error fetching quisioner check: $e');
       throw e;
     }
+    return null;
   }
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    fetchQuisionerCheck();
+    quisionerCheck();
   }
 }
