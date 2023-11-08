@@ -1,0 +1,2058 @@
+[
+  {
+    "kode_kab_kota": "010100 ",
+    "kabupaten_kota": "Kab. Kepulauan Seribu"
+  },
+  {
+    "kode_kab_kota": "016000 ",
+    "kabupaten_kota": "Kota Jakarta Pusat"
+  },
+  {
+    "kode_kab_kota": "016100 ",
+    "kabupaten_kota": "Kota Jakarta Utara"
+  },
+  {
+    "kode_kab_kota": "016200 ",
+    "kabupaten_kota": "Kota Jakarta Barat"
+  },
+  {
+    "kode_kab_kota": "016300 ",
+    "kabupaten_kota": "Kota Jakarta Selatan"
+  },
+  {
+    "kode_kab_kota": "016400 ",
+    "kabupaten_kota": "Kota Jakarta Timur"
+  },
+  {
+    "kode_kab_kota": "020500 ",
+    "kabupaten_kota": "Kab. Bogor"
+  },
+  {
+    "kode_kab_kota": "020800 ",
+    "kabupaten_kota": "Kab. Bandung"
+  },
+  {
+    "kode_kab_kota": "021000 ",
+    "kabupaten_kota": "Kab. Sumedang"
+  },
+  {
+    "kode_kab_kota": "021100 ",
+    "kabupaten_kota": "Kab. Garut"
+  },
+  {
+    "kode_kab_kota": "021500 ",
+    "kabupaten_kota": "Kab. Kuningan"
+  },
+  {
+    "kode_kab_kota": "021700 ",
+    "kabupaten_kota": "Kab. Cirebon"
+  },
+  {
+    "kode_kab_kota": "022100 ",
+    "kabupaten_kota": "Kab. Karawang"
+  },
+  {
+    "kode_kab_kota": "022200 ",
+    "kabupaten_kota": "Kab. Bekasi"
+  },
+  {
+    "kode_kab_kota": "022300 ",
+    "kabupaten_kota": "Kab. Bandung Barat"
+  },
+  {
+    "kode_kab_kota": "022500 ",
+    "kabupaten_kota": "KAB. PANGANDARAN"
+  },
+  {
+    "kode_kab_kota": "026000 ",
+    "kabupaten_kota": "Kota Bandung"
+  },
+  {
+    "kode_kab_kota": "030300 ",
+    "kabupaten_kota": "Kab. Purbalingga"
+  },
+  {
+    "kode_kab_kota": "030600 ",
+    "kabupaten_kota": "Kab. Purworejo"
+  },
+  {
+    "kode_kab_kota": "030700 ",
+    "kabupaten_kota": "Kab. Wonosobo"
+  },
+  {
+    "kode_kab_kota": "030900 ",
+    "kabupaten_kota": "Kab. Boyolali"
+  },
+  {
+    "kode_kab_kota": "031000 ",
+    "kabupaten_kota": "Kab. Klaten"
+  },
+  {
+    "kode_kab_kota": "031400 ",
+    "kabupaten_kota": "Kab. Sragen"
+  },
+  {
+    "kode_kab_kota": "031500 ",
+    "kabupaten_kota": "Kab. Grobogan"
+  },
+  {
+    "kode_kab_kota": "031600 ",
+    "kabupaten_kota": "Kab. Blora"
+  },
+  {
+    "kode_kab_kota": "032600 ",
+    "kabupaten_kota": "Kab. Pekalongan"
+  },
+  {
+    "kode_kab_kota": "032700 ",
+    "kabupaten_kota": "Kab. Pemalang"
+  },
+  {
+    "kode_kab_kota": "050300 ",
+    "kabupaten_kota": "Kab. Mojokerto"
+  },
+  {
+    "kode_kab_kota": "050400 ",
+    "kabupaten_kota": "Kab. Jombang"
+  },
+  {
+    "kode_kab_kota": "051200 ",
+    "kabupaten_kota": "Kab. Pacitan"
+  },
+  {
+    "kode_kab_kota": "051300 ",
+    "kabupaten_kota": "Kab. Kediri"
+  },
+  {
+    "kode_kab_kota": "051500 ",
+    "kabupaten_kota": "Kab. Blitar"
+  },
+  {
+    "kode_kab_kota": "051600 ",
+    "kabupaten_kota": "Kab. Tulungagung"
+  },
+  {
+    "kode_kab_kota": "052000 ",
+    "kabupaten_kota": "Kab. Probolinggo"
+  },
+  {
+    "kode_kab_kota": "052300 ",
+    "kabupaten_kota": "Kab. Situbondo"
+  },
+  {
+    "kode_kab_kota": "052400 ",
+    "kabupaten_kota": "Kab. Jember"
+  },
+  {
+    "kode_kab_kota": "052500 ",
+    "kabupaten_kota": "Kab. Banyuwangi"
+  },
+  {
+    "kode_kab_kota": "052600 ",
+    "kabupaten_kota": "Kab. Pamekasan"
+  },
+  {
+    "kode_kab_kota": "052900 ",
+    "kabupaten_kota": "Kab. Bangkalan"
+  },
+  {
+    "kode_kab_kota": "060200 ",
+    "kabupaten_kota": "Kab. Pidie"
+  },
+  {
+    "kode_kab_kota": "060600 ",
+    "kabupaten_kota": "Kab. Aceh Barat"
+  },
+  {
+    "kode_kab_kota": "060700 ",
+    "kabupaten_kota": "Kab. Aceh Selatan"
+  },
+  {
+    "kode_kab_kota": "061100 ",
+    "kabupaten_kota": "Kab. Simeulue"
+  },
+  {
+    "kode_kab_kota": "061200 ",
+    "kabupaten_kota": "Kab. Bireuen"
+  },
+  {
+    "kode_kab_kota": "061600 ",
+    "kabupaten_kota": "Kab. Aceh Jaya"
+  },
+  {
+    "kode_kab_kota": "061700 ",
+    "kabupaten_kota": "Kab. Aceh Barat Daya"
+  },
+  {
+    "kode_kab_kota": "066300 ",
+    "kabupaten_kota": "Kota Langsa"
+  },
+  {
+    "kode_kab_kota": "066400 ",
+    "kabupaten_kota": "Kota Subulussalam"
+  },
+  {
+    "kode_kab_kota": "070100 ",
+    "kabupaten_kota": "Kab. Deli Serdang"
+  },
+  {
+    "kode_kab_kota": "070300 ",
+    "kabupaten_kota": "Kab. Karo"
+  },
+  {
+    "kode_kab_kota": "070400 ",
+    "kabupaten_kota": "Kab. Simalungun"
+  },
+  {
+    "kode_kab_kota": "070500 ",
+    "kabupaten_kota": "Kab. Dairi"
+  },
+  {
+    "kode_kab_kota": "071000 ",
+    "kabupaten_kota": "Kab. Tapanuli Selatan"
+  },
+  {
+    "kode_kab_kota": "071600 ",
+    "kabupaten_kota": "Kab. Toba Samosir"
+  },
+  {
+    "kode_kab_kota": "071700 ",
+    "kabupaten_kota": "Kab. Nias Selatan"
+  },
+  {
+    "kode_kab_kota": "071900 ",
+    "kabupaten_kota": "Kab. Humbang Hasudutan"
+  },
+  {
+    "kode_kab_kota": "072000 ",
+    "kabupaten_kota": "Kab. Samosir"
+  },
+  {
+    "kode_kab_kota": "072100 ",
+    "kabupaten_kota": "Kab. Serdang Bedagai"
+  },
+  {
+    "kode_kab_kota": "072500 ",
+    "kabupaten_kota": "Kab. Labuhan Batu Utara"
+  },
+  {
+    "kode_kab_kota": "072600 ",
+    "kabupaten_kota": "Kab. Labuhan Batu Selatan"
+  },
+  {
+    "kode_kab_kota": "072700 ",
+    "kabupaten_kota": "Kab. Nias Barat"
+  },
+  {
+    "kode_kab_kota": "076400 ",
+    "kabupaten_kota": "Kota Tanjung Balai"
+  },
+  {
+    "kode_kab_kota": "076500 ",
+    "kabupaten_kota": "Kota Sibolga"
+  },
+  {
+    "kode_kab_kota": "076600 ",
+    "kabupaten_kota": "Kota Padang Sidimpuan"
+  },
+  {
+    "kode_kab_kota": "076700 ",
+    "kabupaten_kota": "Kota Gunungsitoli"
+  },
+  {
+    "kode_kab_kota": "080100 ",
+    "kabupaten_kota": "Kab. Agam"
+  },
+  {
+    "kode_kab_kota": "080200 ",
+    "kabupaten_kota": "Kab. Pasaman"
+  },
+  {
+    "kode_kab_kota": "080300 ",
+    "kabupaten_kota": "Kab. Lima Puluh Koto"
+  },
+  {
+    "kode_kab_kota": "080400 ",
+    "kabupaten_kota": "Kab. Solok"
+  },
+  {
+    "kode_kab_kota": "080500 ",
+    "kabupaten_kota": "Kab. Padang Pariaman"
+  },
+  {
+    "kode_kab_kota": "080600 ",
+    "kabupaten_kota": "Kab. Pesisir Selatan"
+  },
+  {
+    "kode_kab_kota": "081000 ",
+    "kabupaten_kota": "Kab. Kepulauan Mentawai"
+  },
+  {
+    "kode_kab_kota": "081100 ",
+    "kabupaten_kota": "Kab. Solok Selatan"
+  },
+  {
+    "kode_kab_kota": "081200 ",
+    "kabupaten_kota": "Kab. Dharmasraya"
+  },
+  {
+    "kode_kab_kota": "081300 ",
+    "kabupaten_kota": "Kab. Pasaman Barat"
+  },
+  {
+    "kode_kab_kota": "086000 ",
+    "kabupaten_kota": "Kota Bukittinggi"
+  },
+  {
+    "kode_kab_kota": "086100 ",
+    "kabupaten_kota": "Kota Padang"
+  },
+  {
+    "kode_kab_kota": "090500 ",
+    "kabupaten_kota": "Kab. Indragiri Hilir"
+  },
+  {
+    "kode_kab_kota": "090800 ",
+    "kabupaten_kota": "Kab. Pelalawan"
+  },
+  {
+    "kode_kab_kota": "090900 ",
+    "kabupaten_kota": "Kab. Rokan Hulu"
+  },
+  {
+    "kode_kab_kota": "091400 ",
+    "kabupaten_kota": "Kab. Kuantan Singingi"
+  },
+  {
+    "kode_kab_kota": "091500 ",
+    "kabupaten_kota": "Kab. Kepulauan Meranti"
+  },
+  {
+    "kode_kab_kota": "096000 ",
+    "kabupaten_kota": "Kota Pekanbaru"
+  },
+  {
+    "kode_kab_kota": "096200 ",
+    "kabupaten_kota": "Kota Dumai"
+  },
+  {
+    "kode_kab_kota": "100100 ",
+    "kabupaten_kota": "Kab. Batang Hari"
+  },
+  {
+    "kode_kab_kota": "100200 ",
+    "kabupaten_kota": "Kab. Bungo"
+  },
+  {
+    "kode_kab_kota": "100300 ",
+    "kabupaten_kota": "Kab. Sarolangun"
+  },
+  {
+    "kode_kab_kota": "100600 ",
+    "kabupaten_kota": "Kab. Tebo"
+  },
+  {
+    "kode_kab_kota": "100700 ",
+    "kabupaten_kota": "Kab. Muaro Jambi"
+  },
+  {
+    "kode_kab_kota": "110200 ",
+    "kabupaten_kota": "Kab. Ogan Komering Ilir"
+  },
+  {
+    "kode_kab_kota": "110300 ",
+    "kabupaten_kota": "Kab. Ogan Komering Ulu"
+  },
+  {
+    "kode_kab_kota": "110500 ",
+    "kabupaten_kota": "Kab. Lahat"
+  },
+  {
+    "kode_kab_kota": "110600 ",
+    "kabupaten_kota": "Kab. Musi Rawas"
+  },
+  {
+    "kode_kab_kota": "110700 ",
+    "kabupaten_kota": "Kab. Banyuasin"
+  },
+  {
+    "kode_kab_kota": "110800 ",
+    "kabupaten_kota": "Kab. Ogan Komering Ulu Timur"
+  },
+  {
+    "kode_kab_kota": "111200 ",
+    "kabupaten_kota": "Kab. Penukal Abab Lematang Ilir"
+  },
+  {
+    "kode_kab_kota": "111300 ",
+    "kabupaten_kota": "Kab. Musi Rawas Utara"
+  },
+  {
+    "kode_kab_kota": "116000 ",
+    "kabupaten_kota": "Kota Palembang"
+  },
+  {
+    "kode_kab_kota": "116100 ",
+    "kabupaten_kota": "Kota Prabumulih"
+  },
+  {
+    "kode_kab_kota": "116200 ",
+    "kabupaten_kota": "Kota Lubuk Linggau"
+  },
+  {
+    "kode_kab_kota": "116300 ",
+    "kabupaten_kota": "Kota Pagar Alam"
+  },
+  {
+    "kode_kab_kota": "120300 ",
+    "kabupaten_kota": "Kab. Lampung Utara"
+  },
+  {
+    "kode_kab_kota": "120400 ",
+    "kabupaten_kota": "Kab. Lampung Barat"
+  },
+  {
+    "kode_kab_kota": "120500 ",
+    "kabupaten_kota": "Kab. Tulang Bawang"
+  },
+  {
+    "kode_kab_kota": "120600 ",
+    "kabupaten_kota": "Kab. Tanggamus"
+  },
+  {
+    "kode_kab_kota": "120800 ",
+    "kabupaten_kota": "Kab. Way Kanan"
+  },
+  {
+    "kode_kab_kota": "120900 ",
+    "kabupaten_kota": "Kab. Pesawaran"
+  },
+  {
+    "kode_kab_kota": "130200 ",
+    "kabupaten_kota": "Kab. Mempawah"
+  },
+  {
+    "kode_kab_kota": "130300 ",
+    "kabupaten_kota": "Kab. Sanggau"
+  },
+  {
+    "kode_kab_kota": "130400 ",
+    "kabupaten_kota": "Kab. Sintang"
+  },
+  {
+    "kode_kab_kota": "130600 ",
+    "kabupaten_kota": "Kab. Ketapang"
+  },
+  {
+    "kode_kab_kota": "130800 ",
+    "kabupaten_kota": "Kab. Bengkayang"
+  },
+  {
+    "kode_kab_kota": "130900 ",
+    "kabupaten_kota": "Kab. Landak"
+  },
+  {
+    "kode_kab_kota": "131000 ",
+    "kabupaten_kota": "Kab. Sekadau"
+  },
+  {
+    "kode_kab_kota": "131100 ",
+    "kabupaten_kota": "Kab. Melawi"
+  },
+  {
+    "kode_kab_kota": "140200 ",
+    "kabupaten_kota": "Kab. Barito Selatan"
+  },
+  {
+    "kode_kab_kota": "140300 ",
+    "kabupaten_kota": "Kab. Barito Utara"
+  },
+  {
+    "kode_kab_kota": "150600 ",
+    "kabupaten_kota": "Kab. Hulu Sungai Tengah"
+  },
+  {
+    "kode_kab_kota": "150700 ",
+    "kabupaten_kota": "Kab. Hulu Sungai Utara"
+  },
+  {
+    "kode_kab_kota": "151100 ",
+    "kabupaten_kota": "Kab. Tanah Bumbu"
+  },
+  {
+    "kode_kab_kota": "156000 ",
+    "kabupaten_kota": "Kota Banjarmasin"
+  },
+  {
+    "kode_kab_kota": "156100 ",
+    "kabupaten_kota": "Kota Banjarbaru"
+  },
+  {
+    "kode_kab_kota": "160100 ",
+    "kabupaten_kota": "Kab. Paser"
+  },
+  {
+    "kode_kab_kota": "161200 ",
+    "kabupaten_kota": "KAB. MAHAKAM ULU"
+  },
+  {
+    "kode_kab_kota": "166000 ",
+    "kabupaten_kota": "Kota Samarinda"
+  },
+  {
+    "kode_kab_kota": "166100 ",
+    "kabupaten_kota": "Kota Balikpapan"
+  },
+  {
+    "kode_kab_kota": "166300 ",
+    "kabupaten_kota": "Kota Bontang"
+  },
+  {
+    "kode_kab_kota": "170100 ",
+    "kabupaten_kota": "Kab. Bolaang Mongondaw"
+  },
+  {
+    "kode_kab_kota": "170400 ",
+    "kabupaten_kota": "Kab. Kepulauan Talaud"
+  },
+  {
+    "kode_kab_kota": "170500 ",
+    "kabupaten_kota": "Kab. Minahasa Selatan"
+  },
+  {
+    "kode_kab_kota": "170600 ",
+    "kabupaten_kota": "Kab. Minahasa Utara"
+  },
+  {
+    "kode_kab_kota": "170800 ",
+    "kabupaten_kota": "Kab. Bolaang Mongondow Utara"
+  },
+  {
+    "kode_kab_kota": "170900 ",
+    "kabupaten_kota": "Kab. Kepulauan Sitaro"
+  },
+  {
+    "kode_kab_kota": "171000 ",
+    "kabupaten_kota": "Kab. Minahasa Tenggara"
+  },
+  {
+    "kode_kab_kota": "171100 ",
+    "kabupaten_kota": "Kab. Bolaang Mongondaw Timur"
+  },
+  {
+    "kode_kab_kota": "171200 ",
+    "kabupaten_kota": "Kab. Bolaang Mongondaw Selatan"
+  },
+  {
+    "kode_kab_kota": "176000 ",
+    "kabupaten_kota": "Kota Manado"
+  },
+  {
+    "kode_kab_kota": "176100 ",
+    "kabupaten_kota": "Kota Bitung"
+  },
+  {
+    "kode_kab_kota": "176200 ",
+    "kabupaten_kota": "Kota Tomohon"
+  },
+  {
+    "kode_kab_kota": "176300 ",
+    "kabupaten_kota": "Kota Kotamobagu"
+  },
+  {
+    "kode_kab_kota": "180100 ",
+    "kabupaten_kota": "Kab. Banggai Kepulauan"
+  },
+  {
+    "kode_kab_kota": "180200 ",
+    "kabupaten_kota": "Kab. Donggala"
+  },
+  {
+    "kode_kab_kota": "180300 ",
+    "kabupaten_kota": "Kab. Poso"
+  },
+  {
+    "kode_kab_kota": "180400 ",
+    "kabupaten_kota": "Kab. Banggai"
+  },
+  {
+    "kode_kab_kota": "180800 ",
+    "kabupaten_kota": "Kab. Parigi Moutong"
+  },
+  {
+    "kode_kab_kota": "190800 ",
+    "kabupaten_kota": "Kab. Wajo"
+  },
+  {
+    "kode_kab_kota": "190900 ",
+    "kabupaten_kota": "Kab. Soppeng"
+  },
+  {
+    "kode_kab_kota": "191000 ",
+    "kabupaten_kota": "Kab. Bantaeng"
+  },
+  {
+    "kode_kab_kota": "191100 ",
+    "kabupaten_kota": "Kab. Bulukumba"
+  },
+  {
+    "kode_kab_kota": "200200 ",
+    "kabupaten_kota": "Kab. Muna"
+  },
+  {
+    "kode_kab_kota": "200300 ",
+    "kabupaten_kota": "Kab. Buton"
+  },
+  {
+    "kode_kab_kota": "200600 ",
+    "kabupaten_kota": "Kab. Wakatobi"
+  },
+  {
+    "kode_kab_kota": "200700 ",
+    "kabupaten_kota": "Kab. Bombana"
+  },
+  {
+    "kode_kab_kota": "200800 ",
+    "kabupaten_kota": "Kab. Kolaka Utara"
+  },
+  {
+    "kode_kab_kota": "200900 ",
+    "kabupaten_kota": "Kab. Konawe Utara"
+  },
+  {
+    "kode_kab_kota": "201400 ",
+    "kabupaten_kota": "Kab. Buton Selatan"
+  },
+  {
+    "kode_kab_kota": "201600 ",
+    "kabupaten_kota": "Kab. Buton Tengah"
+  },
+  {
+    "kode_kab_kota": "206000 ",
+    "kabupaten_kota": "Kota Kendari"
+  },
+  {
+    "kode_kab_kota": "206100 ",
+    "kabupaten_kota": "Kota Baubau"
+  },
+  {
+    "kode_kab_kota": "210100 ",
+    "kabupaten_kota": "Kab. Maluku Tengah"
+  },
+  {
+    "kode_kab_kota": "210700 ",
+    "kabupaten_kota": "Kab. Kepulauan Aru"
+  },
+  {
+    "kode_kab_kota": "210800 ",
+    "kabupaten_kota": "Kab. Maluku Barat Daya"
+  },
+  {
+    "kode_kab_kota": "210900 ",
+    "kabupaten_kota": "Kab. Buru Selatan"
+  },
+  {
+    "kode_kab_kota": "216000 ",
+    "kabupaten_kota": "Kota Ambon"
+  },
+  {
+    "kode_kab_kota": "216100 ",
+    "kabupaten_kota": "Kota Tual"
+  },
+  {
+    "kode_kab_kota": "220100 ",
+    "kabupaten_kota": "Kab. Buleleng"
+  },
+  {
+    "kode_kab_kota": "220200 ",
+    "kabupaten_kota": "Kab. Jembrana"
+  },
+  {
+    "kode_kab_kota": "220300 ",
+    "kabupaten_kota": "Kab. Tabanan"
+  },
+  {
+    "kode_kab_kota": "226000 ",
+    "kabupaten_kota": "Kota Denpasar"
+  },
+  {
+    "kode_kab_kota": "230100 ",
+    "kabupaten_kota": "Kab. Lombok Barat"
+  },
+  {
+    "kode_kab_kota": "230200 ",
+    "kabupaten_kota": "Kab. Lombok Tengah"
+  },
+  {
+    "kode_kab_kota": "230300 ",
+    "kabupaten_kota": "Kab. Lombok Timur"
+  },
+  {
+    "kode_kab_kota": "240300 ",
+    "kabupaten_kota": "Kab. Timor Tengah Selatan"
+  },
+  {
+    "kode_kab_kota": "240600 ",
+    "kabupaten_kota": "Kab. Alor"
+  },
+  {
+    "kode_kab_kota": "240700 ",
+    "kabupaten_kota": "Kab. Flores Timur"
+  },
+  {
+    "kode_kab_kota": "240800 ",
+    "kabupaten_kota": "Kab. Sikka"
+  },
+  {
+    "kode_kab_kota": "240900 ",
+    "kabupaten_kota": "Kab. Ende"
+  },
+  {
+    "kode_kab_kota": "241300 ",
+    "kabupaten_kota": "Kab. Sumba Barat"
+  },
+  {
+    "kode_kab_kota": "241400 ",
+    "kabupaten_kota": "Kab. Lembata"
+  },
+  {
+    "kode_kab_kota": "241500 ",
+    "kabupaten_kota": "Kab. Rote-Ndao"
+  },
+  {
+    "kode_kab_kota": "241600 ",
+    "kabupaten_kota": "Kab. Manggarai Barat"
+  },
+  {
+    "kode_kab_kota": "241700 ",
+    "kabupaten_kota": "Kab. Nagakeo"
+  },
+  {
+    "kode_kab_kota": "241800 ",
+    "kabupaten_kota": "Kab. Sumba Tengah"
+  },
+  {
+    "kode_kab_kota": "241900 ",
+    "kabupaten_kota": "Kab. Sumba Barat Daya"
+  },
+  {
+    "kode_kab_kota": "250900 ",
+    "kabupaten_kota": "Kab. Nabire"
+  },
+  {
+    "kode_kab_kota": "251300 ",
+    "kabupaten_kota": "Kab. Boven Digoel"
+  },
+  {
+    "kode_kab_kota": "251400 ",
+    "kabupaten_kota": "Kab. Mappi"
+  },
+  {
+    "kode_kab_kota": "251500 ",
+    "kabupaten_kota": "Kab. Asmat"
+  },
+  {
+    "kode_kab_kota": "251600 ",
+    "kabupaten_kota": "Kab. Yahukimo"
+  },
+  {
+    "kode_kab_kota": "251800 ",
+    "kabupaten_kota": "Kab. Tolikara"
+  },
+  {
+    "kode_kab_kota": "253000 ",
+    "kabupaten_kota": "Kab. Lanny Jaya"
+  },
+  {
+    "kode_kab_kota": "253200 ",
+    "kabupaten_kota": "Kab. Yalimo"
+  },
+  {
+    "kode_kab_kota": "253300 ",
+    "kabupaten_kota": "kab. Puncak"
+  },
+  {
+    "kode_kab_kota": "260200 ",
+    "kabupaten_kota": "Kab. Rejang Lebong"
+  },
+  {
+    "kode_kab_kota": "260300 ",
+    "kabupaten_kota": "Kab. Bengkulu Selatan"
+  },
+  {
+    "kode_kab_kota": "260900 ",
+    "kabupaten_kota": "Kab. Bengkulu Tengah"
+  },
+  {
+    "kode_kab_kota": "266000 ",
+    "kabupaten_kota": "Kota Bengkulu"
+  },
+  {
+    "kode_kab_kota": "270100 ",
+    "kabupaten_kota": "KAB. PULAU TALIABU"
+  },
+  {
+    "kode_kab_kota": "270200 ",
+    "kabupaten_kota": "Kab. Halmahera Tengah"
+  },
+  {
+    "kode_kab_kota": "270600 ",
+    "kabupaten_kota": "Kab. Halmahera Timur"
+  },
+  {
+    "kode_kab_kota": "270700 ",
+    "kabupaten_kota": "Kab. Kepulauan Sula"
+  },
+  {
+    "kode_kab_kota": "270800 ",
+    "kabupaten_kota": "Kab. Kepulauan Morotai"
+  },
+  {
+    "kode_kab_kota": "276000 ",
+    "kabupaten_kota": "Kota Ternate"
+  },
+  {
+    "kode_kab_kota": "276100 ",
+    "kabupaten_kota": "Kota Tidore Kepulauan"
+  },
+  {
+    "kode_kab_kota": "280100 ",
+    "kabupaten_kota": "Kab. Pandeglang"
+  },
+  {
+    "kode_kab_kota": "280200 ",
+    "kabupaten_kota": "Kab. Lebak"
+  },
+  {
+    "kode_kab_kota": "280300 ",
+    "kabupaten_kota": "Kab. Tangerang"
+  },
+  {
+    "kode_kab_kota": "280400 ",
+    "kabupaten_kota": "Kab. Serang"
+  },
+  {
+    "kode_kab_kota": "286000 ",
+    "kabupaten_kota": "Kota Cilegon"
+  },
+  {
+    "kode_kab_kota": "286100 ",
+    "kabupaten_kota": "Kota Tangerang"
+  },
+  {
+    "kode_kab_kota": "290500 ",
+    "kabupaten_kota": "Kab. Bangka Selatan"
+  },
+  {
+    "kode_kab_kota": "290600 ",
+    "kabupaten_kota": "Kab. Belitung Timur"
+  },
+  {
+    "kode_kab_kota": "296000 ",
+    "kabupaten_kota": "Kota Pangkalpinang"
+  },
+  {
+    "kode_kab_kota": "300100 ",
+    "kabupaten_kota": "Kab. Boalemo"
+  },
+  {
+    "kode_kab_kota": "300200 ",
+    "kabupaten_kota": "Kab. Gorontalo"
+  },
+  {
+    "kode_kab_kota": "320600 ",
+    "kabupaten_kota": "Kab. Sorong Selatan"
+  },
+  {
+    "kode_kab_kota": "320900 ",
+    "kabupaten_kota": "Kab. Tambrauw"
+  },
+  {
+    "kode_kab_kota": "321000 ",
+    "kabupaten_kota": "Kab. Maybrat"
+  },
+  {
+    "kode_kab_kota": "321100 ",
+    "kabupaten_kota": "Kab. Pegunungan Arfak"
+  },
+  {
+    "kode_kab_kota": "321200 ",
+    "kabupaten_kota": "Kab. Manokwari Selatan"
+  },
+  {
+    "kode_kab_kota": "346000 ",
+    "kabupaten_kota": "Kota Tarakan"
+  },
+  {
+    "kode_kab_kota": "020600 ",
+    "kabupaten_kota": "Kab. Sukabumi"
+  },
+  {
+    "kode_kab_kota": "020700 ",
+    "kabupaten_kota": "Kab. Cianjur"
+  },
+  {
+    "kode_kab_kota": "021200 ",
+    "kabupaten_kota": "Kab. Tasikmalaya"
+  },
+  {
+    "kode_kab_kota": "021400 ",
+    "kabupaten_kota": "Kab. Ciamis"
+  },
+  {
+    "kode_kab_kota": "021600 ",
+    "kabupaten_kota": "Kab. Majalengka"
+  },
+  {
+    "kode_kab_kota": "021800 ",
+    "kabupaten_kota": "Kab. Indramayu"
+  },
+  {
+    "kode_kab_kota": "021900 ",
+    "kabupaten_kota": "Kab. Subang"
+  },
+  {
+    "kode_kab_kota": "022000 ",
+    "kabupaten_kota": "Kab. Purwakarta"
+  },
+  {
+    "kode_kab_kota": "026100 ",
+    "kabupaten_kota": "Kota Bogor"
+  },
+  {
+    "kode_kab_kota": "026200 ",
+    "kabupaten_kota": "Kota Sukabumi"
+  },
+  {
+    "kode_kab_kota": "026300 ",
+    "kabupaten_kota": "Kota Cirebon"
+  },
+  {
+    "kode_kab_kota": "026500 ",
+    "kabupaten_kota": "Kota Bekasi"
+  },
+  {
+    "kode_kab_kota": "026600 ",
+    "kabupaten_kota": "Kota Depok"
+  },
+  {
+    "kode_kab_kota": "026700 ",
+    "kabupaten_kota": "Kota Cimahi"
+  },
+  {
+    "kode_kab_kota": "026800 ",
+    "kabupaten_kota": "Kota Tasikmalaya"
+  },
+  {
+    "kode_kab_kota": "026900 ",
+    "kabupaten_kota": "Kota Banjar"
+  },
+  {
+    "kode_kab_kota": "030100 ",
+    "kabupaten_kota": "Kab. Cilacap"
+  },
+  {
+    "kode_kab_kota": "030200 ",
+    "kabupaten_kota": "Kab. Banyumas"
+  },
+  {
+    "kode_kab_kota": "030400 ",
+    "kabupaten_kota": "Kab. Banjarnegara"
+  },
+  {
+    "kode_kab_kota": "030500 ",
+    "kabupaten_kota": "Kab. Kebumen"
+  },
+  {
+    "kode_kab_kota": "030800 ",
+    "kabupaten_kota": "Kab. Magelang"
+  },
+  {
+    "kode_kab_kota": "031100 ",
+    "kabupaten_kota": "Kab. Sukoharjo"
+  },
+  {
+    "kode_kab_kota": "031200 ",
+    "kabupaten_kota": "Kab. Wonogiri"
+  },
+  {
+    "kode_kab_kota": "031300 ",
+    "kabupaten_kota": "Kab. Karanganyar"
+  },
+  {
+    "kode_kab_kota": "031700 ",
+    "kabupaten_kota": "Kab. Rembang"
+  },
+  {
+    "kode_kab_kota": "031800 ",
+    "kabupaten_kota": "Kab. Pati"
+  },
+  {
+    "kode_kab_kota": "031900 ",
+    "kabupaten_kota": "Kab. Kudus"
+  },
+  {
+    "kode_kab_kota": "032000 ",
+    "kabupaten_kota": "Kab. Jepara"
+  },
+  {
+    "kode_kab_kota": "032100 ",
+    "kabupaten_kota": "Kab. Demak"
+  },
+  {
+    "kode_kab_kota": "032200 ",
+    "kabupaten_kota": "Kab. Semarang"
+  },
+  {
+    "kode_kab_kota": "032300 ",
+    "kabupaten_kota": "Kab. Temanggung"
+  },
+  {
+    "kode_kab_kota": "032400 ",
+    "kabupaten_kota": "Kab. Kendal"
+  },
+  {
+    "kode_kab_kota": "032500 ",
+    "kabupaten_kota": "Kab. Batang"
+  },
+  {
+    "kode_kab_kota": "032800 ",
+    "kabupaten_kota": "Kab. Tegal"
+  },
+  {
+    "kode_kab_kota": "032900 ",
+    "kabupaten_kota": "Kab. Brebes"
+  },
+  {
+    "kode_kab_kota": "036000 ",
+    "kabupaten_kota": "Kota Magelang"
+  },
+  {
+    "kode_kab_kota": "036100 ",
+    "kabupaten_kota": "Kota Surakarta"
+  },
+  {
+    "kode_kab_kota": "036200 ",
+    "kabupaten_kota": "Kota Salatiga"
+  },
+  {
+    "kode_kab_kota": "036300 ",
+    "kabupaten_kota": "Kota Semarang"
+  },
+  {
+    "kode_kab_kota": "036400 ",
+    "kabupaten_kota": "Kota Pekalongan"
+  },
+  {
+    "kode_kab_kota": "036500 ",
+    "kabupaten_kota": "Kota Tegal"
+  },
+  {
+    "kode_kab_kota": "040100 ",
+    "kabupaten_kota": "Kab. Bantul"
+  },
+  {
+    "kode_kab_kota": "040200 ",
+    "kabupaten_kota": "Kab. Sleman"
+  },
+  {
+    "kode_kab_kota": "040300 ",
+    "kabupaten_kota": "Kab. Gunung Kidul"
+  },
+  {
+    "kode_kab_kota": "040400 ",
+    "kabupaten_kota": "Kab. Kulon Progo"
+  },
+  {
+    "kode_kab_kota": "046000 ",
+    "kabupaten_kota": "Kota Yogyakarta"
+  },
+  {
+    "kode_kab_kota": "050100 ",
+    "kabupaten_kota": "Kab. Gresik"
+  },
+  {
+    "kode_kab_kota": "050200 ",
+    "kabupaten_kota": "Kab. Sidoarjo"
+  },
+  {
+    "kode_kab_kota": "050500 ",
+    "kabupaten_kota": "Kab. Bojonegoro"
+  },
+  {
+    "kode_kab_kota": "050600 ",
+    "kabupaten_kota": "Kab. Tuban"
+  },
+  {
+    "kode_kab_kota": "050700 ",
+    "kabupaten_kota": "Kab. Lamongan"
+  },
+  {
+    "kode_kab_kota": "050800 ",
+    "kabupaten_kota": "Kab. Madiun"
+  },
+  {
+    "kode_kab_kota": "050900 ",
+    "kabupaten_kota": "Kab. Ngawi"
+  },
+  {
+    "kode_kab_kota": "051000 ",
+    "kabupaten_kota": "Kab. Magetan"
+  },
+  {
+    "kode_kab_kota": "051100 ",
+    "kabupaten_kota": "Kab. Ponorogo"
+  },
+  {
+    "kode_kab_kota": "051400 ",
+    "kabupaten_kota": "Kab. Nganjuk"
+  },
+  {
+    "kode_kab_kota": "051700 ",
+    "kabupaten_kota": "Kab. Trenggalek"
+  },
+  {
+    "kode_kab_kota": "051800 ",
+    "kabupaten_kota": "Kab. Malang"
+  },
+  {
+    "kode_kab_kota": "051900 ",
+    "kabupaten_kota": "Kab. Pasuruan"
+  },
+  {
+    "kode_kab_kota": "052100 ",
+    "kabupaten_kota": "Kab. Lumajang"
+  },
+  {
+    "kode_kab_kota": "052200 ",
+    "kabupaten_kota": "Kab. Bondowoso"
+  },
+  {
+    "kode_kab_kota": "052700 ",
+    "kabupaten_kota": "Kab. Sampang"
+  },
+  {
+    "kode_kab_kota": "052800 ",
+    "kabupaten_kota": "Kab. Sumenep"
+  },
+  {
+    "kode_kab_kota": "056000 ",
+    "kabupaten_kota": "Kota Surabaya"
+  },
+  {
+    "kode_kab_kota": "056100 ",
+    "kabupaten_kota": "Kota Malang"
+  },
+  {
+    "kode_kab_kota": "056200 ",
+    "kabupaten_kota": "Kota Madiun"
+  },
+  {
+    "kode_kab_kota": "056300 ",
+    "kabupaten_kota": "Kota Kediri"
+  },
+  {
+    "kode_kab_kota": "056400 ",
+    "kabupaten_kota": "Kota Mojokerto"
+  },
+  {
+    "kode_kab_kota": "056500 ",
+    "kabupaten_kota": "Kota Blitar"
+  },
+  {
+    "kode_kab_kota": "056600 ",
+    "kabupaten_kota": "Kota Pasuruan"
+  },
+  {
+    "kode_kab_kota": "056700 ",
+    "kabupaten_kota": "Kota Probolinggo"
+  },
+  {
+    "kode_kab_kota": "056800 ",
+    "kabupaten_kota": "Kota Batu"
+  },
+  {
+    "kode_kab_kota": "060100 ",
+    "kabupaten_kota": "Kab. Aceh Besar"
+  },
+  {
+    "kode_kab_kota": "060300 ",
+    "kabupaten_kota": "Kab. Aceh Utara"
+  },
+  {
+    "kode_kab_kota": "060400 ",
+    "kabupaten_kota": "Kab. Aceh Timur"
+  },
+  {
+    "kode_kab_kota": "060500 ",
+    "kabupaten_kota": "Kab. Aceh Tengah"
+  },
+  {
+    "kode_kab_kota": "060800 ",
+    "kabupaten_kota": "Kab. Aceh Tenggara"
+  },
+  {
+    "kode_kab_kota": "061300 ",
+    "kabupaten_kota": "Kab. Aceh Singkil"
+  },
+  {
+    "kode_kab_kota": "061400 ",
+    "kabupaten_kota": "Kab. Aceh Tamiang"
+  },
+  {
+    "kode_kab_kota": "061500 ",
+    "kabupaten_kota": "Kab. Nagan Raya"
+  },
+  {
+    "kode_kab_kota": "061800 ",
+    "kabupaten_kota": "Kab. Gayo Lues"
+  },
+  {
+    "kode_kab_kota": "061900 ",
+    "kabupaten_kota": "Kab. Bener Meriah"
+  },
+  {
+    "kode_kab_kota": "062000 ",
+    "kabupaten_kota": "Kab. Pidie Jaya"
+  },
+  {
+    "kode_kab_kota": "066000 ",
+    "kabupaten_kota": "Kota Sabang"
+  },
+  {
+    "kode_kab_kota": "066100 ",
+    "kabupaten_kota": "Kota Banda Aceh"
+  },
+  {
+    "kode_kab_kota": "066200 ",
+    "kabupaten_kota": "Kota Lhokseumawe"
+  },
+  {
+    "kode_kab_kota": "070200 ",
+    "kabupaten_kota": "Kab. Langkat"
+  },
+  {
+    "kode_kab_kota": "070600 ",
+    "kabupaten_kota": "Kab. Asahan"
+  },
+  {
+    "kode_kab_kota": "070700 ",
+    "kabupaten_kota": "Kab. Labuhan Batu"
+  },
+  {
+    "kode_kab_kota": "070800 ",
+    "kabupaten_kota": "Kab. Tapanuli Utara"
+  },
+  {
+    "kode_kab_kota": "070900 ",
+    "kabupaten_kota": "Kab. Tapanuli Tengah"
+  },
+  {
+    "kode_kab_kota": "071100 ",
+    "kabupaten_kota": "Kab. Nias"
+  },
+  {
+    "kode_kab_kota": "071500 ",
+    "kabupaten_kota": "Kab. Mandailing Natal"
+  },
+  {
+    "kode_kab_kota": "071800 ",
+    "kabupaten_kota": "Kab. Pakpak Bharat"
+  },
+  {
+    "kode_kab_kota": "072200 ",
+    "kabupaten_kota": "Kab. Batubara"
+  },
+  {
+    "kode_kab_kota": "072300 ",
+    "kabupaten_kota": "Kab. Padang Lawas utara"
+  },
+  {
+    "kode_kab_kota": "072400 ",
+    "kabupaten_kota": "Kab. Padang Lawas"
+  },
+  {
+    "kode_kab_kota": "072800 ",
+    "kabupaten_kota": "Kab. Nias Utara"
+  },
+  {
+    "kode_kab_kota": "076000 ",
+    "kabupaten_kota": "Kota Medan"
+  },
+  {
+    "kode_kab_kota": "076100 ",
+    "kabupaten_kota": "Kota Binjai"
+  },
+  {
+    "kode_kab_kota": "076200 ",
+    "kabupaten_kota": "Kota Tebing Tinggi"
+  },
+  {
+    "kode_kab_kota": "076300 ",
+    "kabupaten_kota": "Kota Pematangsiantar"
+  },
+  {
+    "kode_kab_kota": "080700 ",
+    "kabupaten_kota": "Kab. Tanah Datar"
+  },
+  {
+    "kode_kab_kota": "080800 ",
+    "kabupaten_kota": "Kab. Sijunjung"
+  },
+  {
+    "kode_kab_kota": "086200 ",
+    "kabupaten_kota": "Kota Padang Panjang"
+  },
+  {
+    "kode_kab_kota": "086300 ",
+    "kabupaten_kota": "Kota Sawah Lunto"
+  },
+  {
+    "kode_kab_kota": "086400 ",
+    "kabupaten_kota": "Kota Solok"
+  },
+  {
+    "kode_kab_kota": "086500 ",
+    "kabupaten_kota": "Kota Payakumbuh"
+  },
+  {
+    "kode_kab_kota": "086600 ",
+    "kabupaten_kota": "Kota Pariaman"
+  },
+  {
+    "kode_kab_kota": "090100 ",
+    "kabupaten_kota": "Kab. Kampar"
+  },
+  {
+    "kode_kab_kota": "090200 ",
+    "kabupaten_kota": "Kab. Bengkalis"
+  },
+  {
+    "kode_kab_kota": "090400 ",
+    "kabupaten_kota": "Kab. Indragiri Hulu"
+  },
+  {
+    "kode_kab_kota": "091000 ",
+    "kabupaten_kota": "Kab. Rokan Hilir"
+  },
+  {
+    "kode_kab_kota": "091100 ",
+    "kabupaten_kota": "Kab. Siak"
+  },
+  {
+    "kode_kab_kota": "100400 ",
+    "kabupaten_kota": "Kab. Tanjung Jabung Barat"
+  },
+  {
+    "kode_kab_kota": "100500 ",
+    "kabupaten_kota": "Kab. Kerinci"
+  },
+  {
+    "kode_kab_kota": "100800 ",
+    "kabupaten_kota": "Kab. Tanjung Jabung Timur"
+  },
+  {
+    "kode_kab_kota": "100900 ",
+    "kabupaten_kota": "Kab. Merangin"
+  },
+  {
+    "kode_kab_kota": "106000 ",
+    "kabupaten_kota": "Kota Jambi"
+  },
+  {
+    "kode_kab_kota": "106100 ",
+    "kabupaten_kota": "Kota Sungai Penuh"
+  },
+  {
+    "kode_kab_kota": "110100 ",
+    "kabupaten_kota": "Kab. Musi Banyuasin"
+  },
+  {
+    "kode_kab_kota": "110400 ",
+    "kabupaten_kota": "Kab. Muara Enim"
+  },
+  {
+    "kode_kab_kota": "110900 ",
+    "kabupaten_kota": "Kab. Ogan Komering Ulu Selatan"
+  },
+  {
+    "kode_kab_kota": "111000 ",
+    "kabupaten_kota": "Kab. Ogan Ilir"
+  },
+  {
+    "kode_kab_kota": "111100 ",
+    "kabupaten_kota": "Kab. Empat Lawang"
+  },
+  {
+    "kode_kab_kota": "120100 ",
+    "kabupaten_kota": "Kab. Lampung Selatan"
+  },
+  {
+    "kode_kab_kota": "120200 ",
+    "kabupaten_kota": "Kab. Lampung Tengah"
+  },
+  {
+    "kode_kab_kota": "120700 ",
+    "kabupaten_kota": "Kab. Lampung Timur"
+  },
+  {
+    "kode_kab_kota": "121000 ",
+    "kabupaten_kota": "Kab. Pringsewu"
+  },
+  {
+    "kode_kab_kota": "121100 ",
+    "kabupaten_kota": "Kab. Mesuji"
+  },
+  {
+    "kode_kab_kota": "121200 ",
+    "kabupaten_kota": "Kab. Tulang Bawang Barat"
+  },
+  {
+    "kode_kab_kota": "121300 ",
+    "kabupaten_kota": "KAB. PESISIR BARAT"
+  },
+  {
+    "kode_kab_kota": "126000 ",
+    "kabupaten_kota": "Kota Bandar Lampung"
+  },
+  {
+    "kode_kab_kota": "126100 ",
+    "kabupaten_kota": "Kota Metro"
+  },
+  {
+    "kode_kab_kota": "130100 ",
+    "kabupaten_kota": "Kab. Sambas"
+  },
+  {
+    "kode_kab_kota": "130500 ",
+    "kabupaten_kota": "Kab. Kapuas Hulu"
+  },
+  {
+    "kode_kab_kota": "131200 ",
+    "kabupaten_kota": "Kab. Kayong Utara"
+  },
+  {
+    "kode_kab_kota": "131300 ",
+    "kabupaten_kota": "Kab. Kuburaya"
+  },
+  {
+    "kode_kab_kota": "136000 ",
+    "kabupaten_kota": "Kota Pontianak"
+  },
+  {
+    "kode_kab_kota": "136100 ",
+    "kabupaten_kota": "Kota Singkawang"
+  },
+  {
+    "kode_kab_kota": "140100 ",
+    "kabupaten_kota": "Kab. Kapuas"
+  },
+  {
+    "kode_kab_kota": "140400 ",
+    "kabupaten_kota": "Kab. Kotawaringin Timur"
+  },
+  {
+    "kode_kab_kota": "140500 ",
+    "kabupaten_kota": "Kab. Kotawaringin Barat"
+  },
+  {
+    "kode_kab_kota": "140600 ",
+    "kabupaten_kota": "Kab. Katingan"
+  },
+  {
+    "kode_kab_kota": "140700 ",
+    "kabupaten_kota": "Kab. Seruyan"
+  },
+  {
+    "kode_kab_kota": "140800 ",
+    "kabupaten_kota": "Kab. Sukamara"
+  },
+  {
+    "kode_kab_kota": "140900 ",
+    "kabupaten_kota": "Kab. Lamandau"
+  },
+  {
+    "kode_kab_kota": "141000 ",
+    "kabupaten_kota": "Kab. Gunung Mas"
+  },
+  {
+    "kode_kab_kota": "141100 ",
+    "kabupaten_kota": "Kab. Pulang Pisau"
+  },
+  {
+    "kode_kab_kota": "141200 ",
+    "kabupaten_kota": "Kab. Murung Raya"
+  },
+  {
+    "kode_kab_kota": "141300 ",
+    "kabupaten_kota": "Kab. Barito Timur"
+  },
+  {
+    "kode_kab_kota": "146000 ",
+    "kabupaten_kota": "Kota Palangka Raya"
+  },
+  {
+    "kode_kab_kota": "150100 ",
+    "kabupaten_kota": "Kab. Banjar"
+  },
+  {
+    "kode_kab_kota": "150200 ",
+    "kabupaten_kota": "Kab. Tanah Laut"
+  },
+  {
+    "kode_kab_kota": "150300 ",
+    "kabupaten_kota": "Kab. Barito Kuala"
+  },
+  {
+    "kode_kab_kota": "150400 ",
+    "kabupaten_kota": "Kab. Tapin"
+  },
+  {
+    "kode_kab_kota": "150500 ",
+    "kabupaten_kota": "Kab. Hulu Sungai Selatan"
+  },
+  {
+    "kode_kab_kota": "150800 ",
+    "kabupaten_kota": "Kab. Tabalong"
+  },
+  {
+    "kode_kab_kota": "150900 ",
+    "kabupaten_kota": "Kab. Kota Baru"
+  },
+  {
+    "kode_kab_kota": "151000 ",
+    "kabupaten_kota": "Kab. Balangan"
+  },
+  {
+    "kode_kab_kota": "160200 ",
+    "kabupaten_kota": "Kab. Kutai Kartanegara"
+  },
+  {
+    "kode_kab_kota": "160300 ",
+    "kabupaten_kota": "Kab. Berau"
+  },
+  {
+    "kode_kab_kota": "160900 ",
+    "kabupaten_kota": "Kab. Kutai Barat"
+  },
+  {
+    "kode_kab_kota": "161000 ",
+    "kabupaten_kota": "Kab. Kutai Timur"
+  },
+  {
+    "kode_kab_kota": "161100 ",
+    "kabupaten_kota": "Kab. Penajam Paser Utara"
+  },
+  {
+    "kode_kab_kota": "170200 ",
+    "kabupaten_kota": "Kab. Minahasa"
+  },
+  {
+    "kode_kab_kota": "170300 ",
+    "kabupaten_kota": "Kab. Kep. Sangihe"
+  },
+  {
+    "kode_kab_kota": "180500 ",
+    "kabupaten_kota": "Kab. Buol"
+  },
+  {
+    "kode_kab_kota": "180600 ",
+    "kabupaten_kota": "Kab. Tolitoli"
+  },
+  {
+    "kode_kab_kota": "180700 ",
+    "kabupaten_kota": "Kab. Morowali"
+  },
+  {
+    "kode_kab_kota": "180900 ",
+    "kabupaten_kota": "Kab. Tojo Una-Una"
+  },
+  {
+    "kode_kab_kota": "181000 ",
+    "kabupaten_kota": "Kab. Sigi"
+  },
+  {
+    "kode_kab_kota": "181100 ",
+    "kabupaten_kota": "KAB. BANGGAI LAUT"
+  },
+  {
+    "kode_kab_kota": "181200 ",
+    "kabupaten_kota": "Kab. Morowali Utara"
+  },
+  {
+    "kode_kab_kota": "186000 ",
+    "kabupaten_kota": "Kota Palu"
+  },
+  {
+    "kode_kab_kota": "190100 ",
+    "kabupaten_kota": "Kab. Maros"
+  },
+  {
+    "kode_kab_kota": "190200 ",
+    "kabupaten_kota": "Kab. Pangkajene Kepulauan"
+  },
+  {
+    "kode_kab_kota": "190300 ",
+    "kabupaten_kota": "Kab. Gowa"
+  },
+  {
+    "kode_kab_kota": "190400 ",
+    "kabupaten_kota": "Kab. Takalar"
+  },
+  {
+    "kode_kab_kota": "190500 ",
+    "kabupaten_kota": "Kab. Jeneponto"
+  },
+  {
+    "kode_kab_kota": "190600 ",
+    "kabupaten_kota": "Kab. Barru"
+  },
+  {
+    "kode_kab_kota": "190700 ",
+    "kabupaten_kota": "Kab. Bone"
+  },
+  {
+    "kode_kab_kota": "191200 ",
+    "kabupaten_kota": "Kab. Sinjai"
+  },
+  {
+    "kode_kab_kota": "191300 ",
+    "kabupaten_kota": "Kab. Kepulauan Selayar"
+  },
+  {
+    "kode_kab_kota": "191400 ",
+    "kabupaten_kota": "Kab. Pinrang"
+  },
+  {
+    "kode_kab_kota": "191500 ",
+    "kabupaten_kota": "Kab. Sidenreng Rappang"
+  },
+  {
+    "kode_kab_kota": "191600 ",
+    "kabupaten_kota": "Kab. Enrekang"
+  },
+  {
+    "kode_kab_kota": "191700 ",
+    "kabupaten_kota": "Kab. Luwu"
+  },
+  {
+    "kode_kab_kota": "191800 ",
+    "kabupaten_kota": "Kab. Tana Toraja"
+  },
+  {
+    "kode_kab_kota": "192400 ",
+    "kabupaten_kota": "Kab. Luwu Utara"
+  },
+  {
+    "kode_kab_kota": "192600 ",
+    "kabupaten_kota": "Kab. Luwu Timur"
+  },
+  {
+    "kode_kab_kota": "192700 ",
+    "kabupaten_kota": "Kab. Toraja Utara"
+  },
+  {
+    "kode_kab_kota": "196000 ",
+    "kabupaten_kota": "Kota Makassar"
+  },
+  {
+    "kode_kab_kota": "196100 ",
+    "kabupaten_kota": "Kota Parepare"
+  },
+  {
+    "kode_kab_kota": "196200 ",
+    "kabupaten_kota": "Kota Palopo"
+  },
+  {
+    "kode_kab_kota": "200100 ",
+    "kabupaten_kota": "Kab. Konawe"
+  },
+  {
+    "kode_kab_kota": "200400 ",
+    "kabupaten_kota": "Kab. Kolaka"
+  },
+  {
+    "kode_kab_kota": "200500 ",
+    "kabupaten_kota": "Kab. Konawe Selatan"
+  },
+  {
+    "kode_kab_kota": "201000 ",
+    "kabupaten_kota": "Kab. Buton Utara"
+  },
+  {
+    "kode_kab_kota": "201100 ",
+    "kabupaten_kota": "KAB. KOLAKA TIMUR"
+  },
+  {
+    "kode_kab_kota": "201200 ",
+    "kabupaten_kota": "Kab. Konawe Kepulauan"
+  },
+  {
+    "kode_kab_kota": "201300 ",
+    "kabupaten_kota": "Kab. Muna Barat"
+  },
+  {
+    "kode_kab_kota": "210200 ",
+    "kabupaten_kota": "Kab. Maluku Tenggara"
+  },
+  {
+    "kode_kab_kota": "210300 ",
+    "kabupaten_kota": "Kab. Buru"
+  },
+  {
+    "kode_kab_kota": "210400 ",
+    "kabupaten_kota": "Kab. Maluku Tenggara Barat"
+  },
+  {
+    "kode_kab_kota": "210500 ",
+    "kabupaten_kota": "Kab. Seram Bagian Barat"
+  },
+  {
+    "kode_kab_kota": "210600 ",
+    "kabupaten_kota": "Kab. Seram Bagian Timur"
+  },
+  {
+    "kode_kab_kota": "220400 ",
+    "kabupaten_kota": "Kab. Badung"
+  },
+  {
+    "kode_kab_kota": "220500 ",
+    "kabupaten_kota": "Kab. Gianyar"
+  },
+  {
+    "kode_kab_kota": "220600 ",
+    "kabupaten_kota": "Kab. Klungkung"
+  },
+  {
+    "kode_kab_kota": "220700 ",
+    "kabupaten_kota": "Kab. Bangli"
+  },
+  {
+    "kode_kab_kota": "220800 ",
+    "kabupaten_kota": "Kab. Karang Asem"
+  },
+  {
+    "kode_kab_kota": "230400 ",
+    "kabupaten_kota": "Kab. Sumbawa"
+  },
+  {
+    "kode_kab_kota": "230500 ",
+    "kabupaten_kota": "Kab. Dompu"
+  },
+  {
+    "kode_kab_kota": "230600 ",
+    "kabupaten_kota": "Kab. Bima"
+  },
+  {
+    "kode_kab_kota": "230700 ",
+    "kabupaten_kota": "Kab. Sumbawa Barat"
+  },
+  {
+    "kode_kab_kota": "230800 ",
+    "kabupaten_kota": "Kab. Lombok Utara"
+  },
+  {
+    "kode_kab_kota": "236000 ",
+    "kabupaten_kota": "Kota Mataram"
+  },
+  {
+    "kode_kab_kota": "236100 ",
+    "kabupaten_kota": "Kota Bima"
+  },
+  {
+    "kode_kab_kota": "240100 ",
+    "kabupaten_kota": "Kab. Kupang"
+  },
+  {
+    "kode_kab_kota": "240400 ",
+    "kabupaten_kota": "Kab. Timor Tengah Utara"
+  },
+  {
+    "kode_kab_kota": "240500 ",
+    "kabupaten_kota": "Kab. Belu"
+  },
+  {
+    "kode_kab_kota": "241000 ",
+    "kabupaten_kota": "Kab. Ngada"
+  },
+  {
+    "kode_kab_kota": "241100 ",
+    "kabupaten_kota": "Kab. Manggarai"
+  },
+  {
+    "kode_kab_kota": "241200 ",
+    "kabupaten_kota": "Kab. Sumba Timur"
+  },
+  {
+    "kode_kab_kota": "242000 ",
+    "kabupaten_kota": "Kab. Manggarai Timur"
+  },
+  {
+    "kode_kab_kota": "242100 ",
+    "kabupaten_kota": "Kab. Sabu Raijua"
+  },
+  {
+    "kode_kab_kota": "242200 ",
+    "kabupaten_kota": "KAB. MALAKA"
+  },
+  {
+    "kode_kab_kota": "246000 ",
+    "kabupaten_kota": "Kota Kupang"
+  },
+  {
+    "kode_kab_kota": "250100 ",
+    "kabupaten_kota": "Kab. Jayapura"
+  },
+  {
+    "kode_kab_kota": "250200 ",
+    "kabupaten_kota": "Kab. Biak Numfor"
+  },
+  {
+    "kode_kab_kota": "250300 ",
+    "kabupaten_kota": "Kab. Kepulauan Yapen"
+  },
+  {
+    "kode_kab_kota": "250700 ",
+    "kabupaten_kota": "Kab. Merauke"
+  },
+  {
+    "kode_kab_kota": "250800 ",
+    "kabupaten_kota": "Kab. Jaya Wijaya"
+  },
+  {
+    "kode_kab_kota": "251000 ",
+    "kabupaten_kota": "Kab. Paniai"
+  },
+  {
+    "kode_kab_kota": "251100 ",
+    "kabupaten_kota": "Kab. Puncak Jaya"
+  },
+  {
+    "kode_kab_kota": "251200 ",
+    "kabupaten_kota": "Kab. Mimika"
+  },
+  {
+    "kode_kab_kota": "251700 ",
+    "kabupaten_kota": "Kab. Pegunungan Bintang"
+  },
+  {
+    "kode_kab_kota": "251900 ",
+    "kabupaten_kota": "Kab. Sarmi"
+  },
+  {
+    "kode_kab_kota": "252000 ",
+    "kabupaten_kota": "Kab. Keerom"
+  },
+  {
+    "kode_kab_kota": "252600 ",
+    "kabupaten_kota": "Kab. Waropen"
+  },
+  {
+    "kode_kab_kota": "252700 ",
+    "kabupaten_kota": "Kab. Supiori"
+  },
+  {
+    "kode_kab_kota": "253400 ",
+    "kabupaten_kota": "Kab. Dogiyai"
+  },
+  {
+    "kode_kab_kota": "253500 ",
+    "kabupaten_kota": "Kab. Deiyai"
+  },
+  {
+    "kode_kab_kota": "256000 ",
+    "kabupaten_kota": "Kota Jayapura"
+  },
+  {
+    "kode_kab_kota": "260100 ",
+    "kabupaten_kota": "Kab. Bengkulu Utara"
+  },
+  {
+    "kode_kab_kota": "260400 ",
+    "kabupaten_kota": "Kab. Muko-muko"
+  },
+  {
+    "kode_kab_kota": "260500 ",
+    "kabupaten_kota": "Kab. Kepahiang"
+  },
+  {
+    "kode_kab_kota": "260600 ",
+    "kabupaten_kota": "Kab. Lebong"
+  },
+  {
+    "kode_kab_kota": "260700 ",
+    "kabupaten_kota": "Kab. Kaur"
+  },
+  {
+    "kode_kab_kota": "260800 ",
+    "kabupaten_kota": "Kab. Seluma"
+  },
+  {
+    "kode_kab_kota": "270300 ",
+    "kabupaten_kota": "Kab. Halmahera Barat"
+  },
+  {
+    "kode_kab_kota": "270400 ",
+    "kabupaten_kota": "Kab. halmahera Utara"
+  },
+  {
+    "kode_kab_kota": "270500 ",
+    "kabupaten_kota": "Kab. Halmahera Selatan"
+  },
+  {
+    "kode_kab_kota": "286200 ",
+    "kabupaten_kota": "Kota Serang"
+  },
+  {
+    "kode_kab_kota": "286300 ",
+    "kabupaten_kota": "Kota tangerang Selatan"
+  },
+  {
+    "kode_kab_kota": "290100 ",
+    "kabupaten_kota": "Kab. Bangka"
+  },
+  {
+    "kode_kab_kota": "290200 ",
+    "kabupaten_kota": "Kab. Belitung"
+  },
+  {
+    "kode_kab_kota": "290300 ",
+    "kabupaten_kota": "Kab. Bangka Tengah"
+  },
+  {
+    "kode_kab_kota": "290400 ",
+    "kabupaten_kota": "Kab. Bangka Barat"
+  },
+  {
+    "kode_kab_kota": "300300 ",
+    "kabupaten_kota": "Kab. Pohuwato"
+  },
+  {
+    "kode_kab_kota": "300400 ",
+    "kabupaten_kota": "Kab. Bone Bolango"
+  },
+  {
+    "kode_kab_kota": "300500 ",
+    "kabupaten_kota": "Kab. Gorontalo Utara"
+  },
+  {
+    "kode_kab_kota": "306000 ",
+    "kabupaten_kota": "Kota Gorontalo"
+  },
+  {
+    "kode_kab_kota": "310100 ",
+    "kabupaten_kota": "Kab. Bintan"
+  },
+  {
+    "kode_kab_kota": "310200 ",
+    "kabupaten_kota": "Kab. Karimun"
+  },
+  {
+    "kode_kab_kota": "310300 ",
+    "kabupaten_kota": "Kab. Natuna"
+  },
+  {
+    "kode_kab_kota": "310400 ",
+    "kabupaten_kota": "Kab. Lingga"
+  },
+  {
+    "kode_kab_kota": "310500 ",
+    "kabupaten_kota": "Kab. Kepulauan Anambas"
+  },
+  {
+    "kode_kab_kota": "316000 ",
+    "kabupaten_kota": "Kota Batam"
+  },
+  {
+    "kode_kab_kota": "316100 ",
+    "kabupaten_kota": "Kota Tanjungpinang"
+  },
+  {
+    "kode_kab_kota": "320100 ",
+    "kabupaten_kota": "Kab. Fak-Fak"
+  },
+  {
+    "kode_kab_kota": "320200 ",
+    "kabupaten_kota": "Kab. Kaimana"
+  },
+  {
+    "kode_kab_kota": "320300 ",
+    "kabupaten_kota": "Kab. Teluk Wondama"
+  },
+  {
+    "kode_kab_kota": "320400 ",
+    "kabupaten_kota": "Kab. Teluk Bintuni"
+  },
+  {
+    "kode_kab_kota": "320500 ",
+    "kabupaten_kota": "Kab. Manokwari"
+  },
+  {
+    "kode_kab_kota": "320700 ",
+    "kabupaten_kota": "Kab. Sorong"
+  },
+  {
+    "kode_kab_kota": "320800 ",
+    "kabupaten_kota": "Kab. Raja Ampat"
+  },
+  {
+    "kode_kab_kota": "326000 ",
+    "kabupaten_kota": "Kota Sorong"
+  },
+  {
+    "kode_kab_kota": "330100 ",
+    "kabupaten_kota": "Kab. Mamuju"
+  },
+  {
+    "kode_kab_kota": "330200 ",
+    "kabupaten_kota": "Kab. Mamuju Utara"
+  },
+  {
+    "kode_kab_kota": "330300 ",
+    "kabupaten_kota": "Kab. Polewali Mandar"
+  },
+  {
+    "kode_kab_kota": "330400 ",
+    "kabupaten_kota": "Kab. Mamasa"
+  },
+  {
+    "kode_kab_kota": "330500 ",
+    "kabupaten_kota": "Kab. Majene"
+  },
+  {
+    "kode_kab_kota": "330600 ",
+    "kabupaten_kota": "KAB. MAMUJU TENGAH"
+  },
+  {
+    "kode_kab_kota": "340100 ",
+    "kabupaten_kota": "Kab. Malinau"
+  },
+  {
+    "kode_kab_kota": "340200 ",
+    "kabupaten_kota": "Kab. Bulungan"
+  },
+  {
+    "kode_kab_kota": "340500 ",
+    "kabupaten_kota": "Kab. Nunukan"
+  },
+  {
+    "kode_kab_kota": "253100 ",
+    "kabupaten_kota": "Kab. Membramo Tengah"
+  },
+  {
+    "kode_kab_kota": "252800 ",
+    "kabupaten_kota": "Kab. Memberamo Raya"
+  },
+  {
+    "kode_kab_kota": "252900 ",
+    "kabupaten_kota": "Kab. Nduga"
+  },
+  {
+    "kode_kab_kota": "253600 ",
+    "kabupaten_kota": "Kab. Intan Jaya"
+  },
+  {
+    "kode_kab_kota": "340300 ",
+    "kabupaten_kota": "Kab. Tana Tidung"
+  }
+]

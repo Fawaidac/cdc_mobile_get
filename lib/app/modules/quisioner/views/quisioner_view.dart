@@ -1,4 +1,5 @@
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
+import 'package:cdc/app/modules/quisioner/views/main_section_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +97,7 @@ class QuisionerView extends GetView<QuisionerController> {
         Get.to(() => IdentitasSectionView());
         break;
       case 1:
-        // Get.to(() => MainSection());
+        Get.to(() => MainSectionView());
         break;
       case 2:
         // Get.to(() => StudyMethodSection());
