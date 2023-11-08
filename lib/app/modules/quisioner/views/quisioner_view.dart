@@ -68,6 +68,7 @@ class QuisionerView extends GetView<QuisionerController> {
                               ),
                             ),
                             Obx(() => Checkbox(
+                                  activeColor: primaryColor,
                                   value: controller.quisionerData.isNotEmpty &&
                                           index <
                                               controller.quisionerData.length

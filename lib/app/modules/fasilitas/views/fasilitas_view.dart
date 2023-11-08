@@ -168,7 +168,7 @@ class FasilitasView extends GetView<FasilitasController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Grup WhatsAppFonts",
+                          "Grup WhatsApp",
                           style: AppFonts.poppins(
                               fontSize: 20,
                               color: white,

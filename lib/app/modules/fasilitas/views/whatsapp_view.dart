@@ -64,6 +64,7 @@ class WhatsappView extends GetView<WhatsappController> {
                           onTap: () {},
                           child: Container(
                             decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
                                 gradient: LinearGradient(
                                     colors: [Color(0xff07B29D), white],
                                     begin: Alignment.topCenter,
