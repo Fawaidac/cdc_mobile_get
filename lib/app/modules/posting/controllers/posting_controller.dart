@@ -5,6 +5,7 @@ import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PostingController extends GetxController {
   Rx<File?> image = Rx<File?>(null);
-  late TextEditingController keterangan;
-  late TextEditingController posisi;
-  late TextEditingController perusahaan;
-  late TextEditingController tautan;
+  var keterangan = TextEditingController();
+  var posisi = TextEditingController();
+  var perusahaan = TextEditingController();
+  var tautan = TextEditingController();
   Rx<DateTime> selectedDate = DateTime.now().obs;
 
   String? selectedType;
@@ -38,20 +39,12 @@ class PostingController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    keterangan = TextEditingController();
-    posisi = TextEditingController();
-    perusahaan = TextEditingController();
-    tautan = TextEditingController();
   }
 
   @override
   void onClose() {
     // TODO: implement onClose
     super.onClose();
-    keterangan.dispose();
-    posisi.dispose();
-    perusahaan.dispose();
-    tautan.dispose();
   }
 
   Future getImageGalery() async {
@@ -83,120 +76,128 @@ class PostingController extends GetxController {
   }
 
   void submitPost() async {
-    String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate.value);
-    final response = await post(
-        image: image.value!,
-        linkApply: tautan.text,
-        company: perusahaan.text,
-        description: keterangan.text,
-        expired: formattedDate,
-        typeJob: selectedType.toString(),
-        position: posisi.text);
-    if (response['code'] == 201) {
-      Get.offAllNamed(Routes.HOMEPAGE);
-      Get.snackbar("Success",
-          "Berhasil mengunggah postingan, mohon menunggu verifikasi dari admin",
-          margin: const EdgeInsets.all(10));
-    } else if (response['message'] ==
-        'your token is not valid , please login again') {
-      // ignore: use_build_context_synchronously
-      Get.dialog(
-        AlertDialog(
-          title: Text(
-            "Error !",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(
-                fontSize: 16, color: black, fontWeight: FontWeight.bold),
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-          content: Text(
-            "Sesi anda telah habis, cob alogin ulang",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(fontSize: 12, color: black),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () async {
-                Get.toNamed(Routes.LOGIN);
-                SharedPreferences preferences =
-                    await SharedPreferences.getInstance();
-                preferences.remove('token');
-                preferences.remove('tokenExpirationTime');
-              },
-              child: Text(
-                "OK",
-                style: AppFonts.poppins(
-                    fontSize: 16,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
+    try {
+      EasyLoading.show(status: "Loading...");
+      String formattedDate =
+          DateFormat('yyyy-MM-dd').format(selectedDate.value);
+      final response = await post(
+          image: image.value!,
+          linkApply: tautan.text,
+          company: perusahaan.text,
+          description: keterangan.text,
+          expired: formattedDate,
+          typeJob: selectedType.toString(),
+          position: posisi.text);
+      if (response['code'] == 201) {
+        Get.offAllNamed(Routes.HOMEPAGE);
+        Get.snackbar("Success",
+            "Berhasil mengunggah postingan, mohon menunggu verifikasi dari admin",
+            margin: const EdgeInsets.all(10));
+      } else if (response['message'] ==
+          'your token is not valid , please login again') {
+        // ignore: use_build_context_synchronously
+        Get.dialog(
+          AlertDialog(
+            title: Text(
+              "Error !",
+              textAlign: TextAlign.center,
+              style: AppFonts.poppins(
+                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
             ),
-            TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: Text("Cancel",
+            contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            content: Text(
+              "Sesi anda telah habis, cob alogin ulang",
+              textAlign: TextAlign.center,
+              style: AppFonts.poppins(fontSize: 12, color: black),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () async {
+                  Get.toNamed(Routes.LOGIN);
+                  SharedPreferences preferences =
+                      await SharedPreferences.getInstance();
+                  preferences.remove('token');
+                  preferences.remove('tokenExpirationTime');
+                },
+                child: Text(
+                  "OK",
                   style: AppFonts.poppins(
                       fontSize: 16,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold)),
-            ),
-          ],
-        ),
-      );
-    } else if (response['message'] ==
-        "ops , nampaknya akun kamu belum terverifikasi") {
-      // ignore: use_build_context_synchronously
-      Get.dialog(
-        AlertDialog(
-          title: Text(
-            "Error !",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(
-                fontSize: 16, color: black, fontWeight: FontWeight.bold),
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-          content: Text(
-            "Ops , nampaknya akun kamu belum terverifikasi, Silahkan isi quisioner terlebih dahulu",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(fontSize: 12, color: black),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Get.toNamed(Routes.FASILITAS);
-              },
-              child: Text(
-                "OK",
-                style: AppFonts.poppins(
-                    fontSize: 16,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text("Cancel",
+                    style: AppFonts.poppins(
+                        fontSize: 16,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold)),
+              ),
+            ],
+          ),
+        );
+      } else if (response['message'] ==
+          "ops , nampaknya akun kamu belum terverifikasi") {
+        // ignore: use_build_context_synchronously
+        Get.dialog(
+          AlertDialog(
+            title: Text(
+              "Error !",
+              textAlign: TextAlign.center,
+              style: AppFonts.poppins(
+                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
             ),
-            TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: Text("Cancel",
+            contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+            content: Text(
+              "Ops , nampaknya akun kamu belum terverifikasi, Silahkan isi quisioner terlebih dahulu",
+              textAlign: TextAlign.center,
+              style: AppFonts.poppins(fontSize: 12, color: black),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.toNamed(Routes.FASILITAS);
+                },
+                child: Text(
+                  "OK",
                   style: AppFonts.poppins(
                       fontSize: 16,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold)),
-            ),
-          ],
-        ),
-      );
-    } else if (response['message'] ==
-        "The image must not be greater than 1048 kilobytes.") {
-      Get.snackbar("Error", "Gambar tidak boleh melebihi 1048 Kb",
-          margin: const EdgeInsets.all(10));
-    } else if (response['message'] ==
-        'The image must be a file of type: jpeg, png, jpg.') {
-      Get.snackbar("Error", "Gambar harus dalam format jpeg, png atau jpg",
-          margin: const EdgeInsets.all(10));
-    } else {
-      print(response['message']);
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text("Cancel",
+                    style: AppFonts.poppins(
+                        fontSize: 16,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold)),
+              ),
+            ],
+          ),
+        );
+      } else if (response['message'] ==
+          "The image must not be greater than 1048 kilobytes.") {
+        Get.snackbar("Error", "Gambar tidak boleh melebihi 1048 Kb",
+            margin: const EdgeInsets.all(10));
+      } else if (response['message'] ==
+          'The image must be a file of type: jpeg, png, jpg.') {
+        Get.snackbar("Error", "Gambar harus dalam format jpeg, png atau jpg",
+            margin: const EdgeInsets.all(10));
+      } else {
+        print(response['message']);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 

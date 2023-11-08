@@ -69,10 +69,10 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                         children: [
                           CircleAvatar(
                             backgroundImage: NetworkImage(controller
-                                        .userDetail.value.user?.foto ==
+                                        .userDetail.value?.user?.foto ==
                                     ApiServices.baseUrlImage
                                 ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                : '${controller.userDetail.value.user?.foto}'),
+                                : '${controller.userDetail.value?.user?.foto}'),
                             radius: 40,
                           ),
                           const SizedBox(
@@ -92,7 +92,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Text(
-                                      ' ${controller.userDetail.value.user?.fullname ?? " "}',
+                                      ' ${controller.userDetail.value?.user?.fullname ?? " "}',
                                       style: AppFonts.poppins(
                                         fontSize: 16,
                                         color: black,
@@ -108,7 +108,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Text(
-                                      ' ${controller.userDetail.value.user?.alamat ?? " "}',
+                                      ' ${controller.userDetail.value?.user?.alamat ?? " "}',
                                       style: AppFonts.poppins(
                                         fontSize: 12,
                                         color: black,
@@ -121,11 +121,11 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           IconButton(
                               onPressed: () {
                                 showDetailUser(
-                                    '${controller.userDetail.value.user?.fullname}',
-                                    '${controller.userDetail.value.user?.tempatTanggalLahir}',
-                                    '${controller.userDetail.value.user?.email}',
-                                    '${controller.userDetail.value.user?.nik}',
-                                    '${controller.userDetail.value.user?.noTelp}');
+                                    '${controller.userDetail.value?.user?.fullname}',
+                                    '${controller.userDetail.value?.user?.tempatTanggalLahir}',
+                                    '${controller.userDetail.value?.user?.email}',
+                                    '${controller.userDetail.value?.user?.nik}',
+                                    '${controller.userDetail.value?.user?.noTelp}');
                               },
                               icon: Icon(
                                 Icons.info_outline,
@@ -153,8 +153,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Text(
-                                        controller
-                                                .userDetail.value.user?.about ??
+                                        controller.userDetail.value?.user
+                                                ?.about ??
                                             "",
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
@@ -170,34 +170,36 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                             GestureDetector(
                               onTap: () {
                                 controller.handleFollownUnfollow(idUser);
+                                // controller.userDetail.value = null;
                                 controller.handleUser(idUser);
+                                controller.fetchFollowerCount(idUser);
                               },
                               child: Container(
                                 width: 100,
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  border: controller.userDetail.value.user
+                                  border: controller.userDetail.value?.user
                                               ?.isFollow ==
                                           true
                                       ? Border.all(
                                           width: 1, color: primaryColor)
                                       : null,
-                                  color: controller.userDetail.value.user
+                                  color: controller.userDetail.value?.user
                                               ?.isFollow ==
                                           true
                                       ? white
                                       : primaryColor,
                                 ),
                                 child: Text(
-                                  controller.userDetail.value.user?.isFollow ==
+                                  controller.userDetail.value?.user?.isFollow ==
                                           true
                                       ? "Dikuti"
                                       : "Ikuti",
                                   textAlign: TextAlign.center,
                                   style: AppFonts.poppins(
                                       fontSize: 12,
-                                      color: controller.userDetail.value.user
+                                      color: controller.userDetail.value?.user
                                                   ?.isFollow ==
                                               true
                                           ? primaryColor
@@ -215,43 +217,10 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              SizedBox(
-                                height: 80,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "${controller.postCount}",
-                                      style: AppFonts.poppins(
-                                          fontSize: 20,
-                                          color: black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "Post",
-                                      style: AppFonts.poppins(
-                                          fontSize: 12,
-                                          color: black,
-                                          fontWeight: FontWeight.normal),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 10),
-                                width: 1,
-                                height: MediaQuery.of(context).size.height,
-                                color: black.withOpacity(0.2),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(Routes.TAB_FOLLOWERS,
-                                      arguments: controller
-                                              .userDetail.value.user?.id ??
-                                          "");
-                                },
-                                child: SizedBox(
+                              Expanded(
+                                child: Container(
+                                  color: white,
+                                  width: 80,
                                   height: 80,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -259,14 +228,14 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                         CrossAxisAlignment.center,
                                     children: [
                                       Text(
-                                        "${controller.followedCount}",
+                                        "${controller.postCount}",
                                         style: AppFonts.poppins(
                                             fontSize: 20,
                                             color: black,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        "Mengikuti",
+                                        "Post",
                                         style: AppFonts.poppins(
                                             fontSize: 12,
                                             color: black,
@@ -276,42 +245,90 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                   ),
                                 ),
                               ),
-                              Container(
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                width: 1,
-                                height: MediaQuery.of(context).size.height,
-                                color: black.withOpacity(0.2),
+                              // Container(
+                              //   margin: EdgeInsets.symmetric(vertical: 10),
+                              //   width: 1,
+                              //   height: MediaQuery.of(context).size.height,
+                              //   color: black.withOpacity(0.2),
+                              // ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.TAB_FOLLOWERS,
+                                        arguments: controller
+                                                .userDetail.value?.user?.id ??
+                                            "");
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    color: white,
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${controller.followedCount}",
+                                          style: AppFonts.poppins(
+                                              fontSize: 20,
+                                              color: black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "Mengikuti",
+                                          style: AppFonts.poppins(
+                                              fontSize: 12,
+                                              color: black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.toNamed(Routes.TAB_FOLLOWERS,
-                                      arguments: controller
-                                              .userDetail.value.user?.id ??
-                                          "");
-                                },
-                                child: SizedBox(
-                                  height: 80,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "${controller.followerCount}",
-                                        style: AppFonts.poppins(
-                                            fontSize: 20,
-                                            color: black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        "Pengikut",
-                                        style: AppFonts.poppins(
-                                            fontSize: 12,
-                                            color: black,
-                                            fontWeight: FontWeight.normal),
-                                      )
-                                    ],
+                              // Container(
+                              //   margin:
+                              //       const EdgeInsets.symmetric(vertical: 10),
+                              //   width: 1,
+                              //   height: MediaQuery.of(context).size.height,
+                              //   color: black.withOpacity(0.2),
+                              // ),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.TAB_FOLLOWERS,
+                                        arguments: controller
+                                                .userDetail.value?.user?.id ??
+                                            "");
+                                  },
+                                  child: Container(
+                                    width: 80,
+                                    color: white,
+                                    height: 80,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "${controller.followerCount}",
+                                          style: AppFonts.poppins(
+                                              fontSize: 20,
+                                              color: black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          "Pengikut",
+                                          style: AppFonts.poppins(
+                                              fontSize: 12,
+                                              color: black,
+                                              fontWeight: FontWeight.normal),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               )
@@ -335,7 +352,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String linkedin =
-                                  controller.userDetail.value.user?.linkedin ??
+                                  controller.userDetail.value?.user?.linkedin ??
                                       "";
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url =
@@ -351,9 +368,9 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           ),
                           InkWell(
                             onTap: () async {
-                              String ig =
-                                  controller.userDetail.value.user?.instagram ??
-                                      "";
+                              String ig = controller
+                                      .userDetail.value?.user?.instagram ??
+                                  "";
                               if (ig != null && ig.isNotEmpty) {
                                 String url = "https://www.instagram.com/$ig/";
                                 controller.launchURL(url);
@@ -368,7 +385,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String linkedin =
-                                  controller.userDetail.value.user?.twitter ??
+                                  controller.userDetail.value?.user?.twitter ??
                                       "";
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url = "https://twitter.com/$linkedin";
@@ -384,7 +401,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           InkWell(
                             onTap: () async {
                               String fb =
-                                  controller.userDetail.value.user?.facebook ??
+                                  controller.userDetail.value?.user?.facebook ??
                                       "";
                               if (fb != null && fb.isNotEmpty) {
                                 String url = "https://www.facebook.com/$fb";

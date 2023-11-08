@@ -14,7 +14,7 @@ class DetailAlumniController extends GetxController
   var idUser = "";
 
   late TabController tabController;
-  Rx<UserDetail> userDetail = UserDetail().obs;
+  Rx<UserDetail?> userDetail = UserDetail().obs;
   RxInt followerCount = 0.obs;
   RxInt followedCount = 0.obs;
   RxInt postCount = 0.obs;
@@ -34,6 +34,8 @@ class DetailAlumniController extends GetxController
   }
 
   void handleUser(String id) {
+    // userDetail.value = null;
+
     fetchDetailUser(id).then((user) {
       userDetail.value = user;
     }).catchError((error) {
@@ -42,7 +44,7 @@ class DetailAlumniController extends GetxController
   }
 
   void handleFollownUnfollow(String idUser) async {
-    if (userDetail.value.user!.isFollow == true) {
+    if (userDetail.value!.user!.isFollow == true) {
       handleUnfollow(idUser);
     } else {
       handleFollow(idUser);
@@ -56,6 +58,8 @@ class DetailAlumniController extends GetxController
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
         handleUser(idUser);
+        fetchFollowerCount(idUser);
+
         update();
       } else {
         Get.snackbar("Success", response['message'],
@@ -74,6 +78,7 @@ class DetailAlumniController extends GetxController
             margin: const EdgeInsets.all(10));
 
         handleUser(idUser);
+        fetchFollowerCount(idUser);
         update();
       } else {
         Get.snackbar("Success", response['message'],
