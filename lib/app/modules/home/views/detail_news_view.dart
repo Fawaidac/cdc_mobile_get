@@ -64,13 +64,14 @@ class DetailNewsView extends GetView {
               padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
               child: Text(
                 '$formattedDate, $formattedTime',
-                style: AppFonts.poppins(fontSize: 12, color: grey),
+                style: AppFonts.poppins(fontSize: 14, color: grey),
               ),
             ),
             Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Html(
                   data: newsItem['description'],
+                  style: {"body": Style(fontSize: FontSize(16))},
                 )),
           ],
         ),

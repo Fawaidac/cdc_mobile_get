@@ -22,6 +22,7 @@ abstract class Routes {
   static const DETAIL_ALUMNI = _Paths.DETAIL_ALUMNI;
   static const TAB_FOLLOWERS = _Paths.TAB_FOLLOWERS;
   static const QUISIONER = _Paths.QUISIONER;
+  static const TAB_FOLLOWERS_USER = _Paths.TAB_FOLLOWERS_USER;
 }
 
 abstract class _Paths {
@@ -45,4 +46,5 @@ abstract class _Paths {
   static const DETAIL_ALUMNI = '/detail-alumni';
   static const TAB_FOLLOWERS = '/tab-followers';
   static const QUISIONER = '/quisioner';
+  static const TAB_FOLLOWERS_USER = '/tab-followers-user';
 }

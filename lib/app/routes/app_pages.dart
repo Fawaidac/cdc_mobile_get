@@ -36,6 +36,8 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/tab_followers/bindings/tab_followers_binding.dart';
 import '../modules/tab_followers/views/tab_followers_view.dart';
+import '../modules/tab_followers_user/bindings/tab_followers_user_binding.dart';
+import '../modules/tab_followers_user/views/tab_followers_user_view.dart';
 import '../modules/verifikasi/bindings/verifikasi_binding.dart';
 import '../modules/verifikasi/views/verifikasi_view.dart';
 
@@ -141,6 +143,11 @@ class AppPages {
       name: _Paths.QUISIONER,
       page: () => QuisionerView(),
       binding: QuisionerBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAB_FOLLOWERS_USER,
+      page: () => const TabFollowersUserView(),
+      binding: TabFollowersUserBinding(),
     ),
   ];
 }

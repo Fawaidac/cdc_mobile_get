@@ -2,6 +2,7 @@ import 'package:card_loading/card_loading.dart';
 import 'package:cdc/app/modules/profile/views/education_user_view.dart';
 import 'package:cdc/app/modules/profile/views/job_user_view.dart';
 import 'package:cdc/app/modules/profile/views/post_user_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -169,11 +170,7 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => Followers(),
-                                  //     ));
+                                  Get.toNamed(Routes.TAB_FOLLOWERS_USER);
                                 },
                                 child: SizedBox(
                                   height: 80,
@@ -208,11 +205,7 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => Followers(),
-                                  //     ));
+                                  Get.toNamed(Routes.TAB_FOLLOWERS_USER);
                                 },
                                 child: Container(
                                   color: white,
