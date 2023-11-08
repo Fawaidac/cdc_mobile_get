@@ -52,7 +52,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
           return <Widget>[
             Obx(
               () => SliverAppBar(
-                expandedHeight: 380,
+                expandedHeight: 400,
                 pinned: true,
                 backgroundColor: white,
                 automaticallyImplyLeading: false,
@@ -327,7 +327,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                             fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -340,11 +340,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url =
                                     "http://www.linkedin.com/in/$linkedin";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw "Could not launch $url";
-                                }
+                                controller.launchURL(url);
                               }
                             },
                             child: Image.asset(
@@ -360,11 +356,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                       "";
                               if (ig != null && ig.isNotEmpty) {
                                 String url = "https://www.instagram.com/$ig/";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw "Could not launch $url";
-                                }
+                                controller.launchURL(url);
                               }
                             },
                             child: Image.asset(
@@ -380,11 +372,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                       "";
                               if (linkedin != null && linkedin.isNotEmpty) {
                                 String url = "https://twitter.com/$linkedin";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw "Could not launch $url";
-                                }
+                                controller.launchURL(url);
                               }
                             },
                             child: Image.asset(
@@ -395,17 +383,12 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                           ),
                           InkWell(
                             onTap: () async {
-                              String linkedin =
+                              String fb =
                                   controller.userDetail.value.user?.facebook ??
                                       "";
-                              if (linkedin != null && linkedin.isNotEmpty) {
-                                String url =
-                                    "https://www.facebook.com/$linkedin";
-                                if (await canLaunch(url)) {
-                                  await launch(url);
-                                } else {
-                                  throw "Could not launch $url";
-                                }
+                              if (fb != null && fb.isNotEmpty) {
+                                String url = "https://www.facebook.com/$fb";
+                                controller.launchURL(url);
                               }
                             },
                             child: Image.asset(

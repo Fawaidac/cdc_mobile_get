@@ -22,9 +22,7 @@ class HomeView extends GetView<HomeController> {
     return RefreshIndicator(
       onRefresh: () async {
         Get.find<NewsController>().newsList.clear();
-        controller.postList.clear();
         await Get.find<NewsController>().fetchNewsData();
-        await Get.find<PostItemController>().fetchData();
       },
       child: ListView(
         shrinkWrap: false,
@@ -35,7 +33,7 @@ class HomeView extends GetView<HomeController> {
             height: 10,
           ),
           NewsView(),
-          TopAlumniView(),
+          const TopAlumniView(),
           Padding(
             padding: const EdgeInsets.all(8),
             child: CustomTextField(

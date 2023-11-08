@@ -1,3 +1,4 @@
+import 'package:card_loading/card_loading.dart';
 import 'package:cdc/app/data/models/user_model.dart';
 import 'package:cdc/app/modules/alumni/controllers/alumni_controller.dart';
 import 'package:cdc/app/routes/app_pages.dart';
@@ -15,12 +16,12 @@ class AlumniAllView extends GetView<AlumniController> {
   final controller = Get.put(AlumniController());
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            Row(
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Obx(
+            () => Row(
               children: [
                 Expanded(
                   flex: 1,
@@ -77,8 +78,8 @@ class AlumniAllView extends GetView<AlumniController> {
                                 controller.alumniList.clear();
                                 final data = await controller.fetchAlumniAll(
                                     controller.currentPage,
-                                    prodi: controller.selectedProdi!.value,
-                                    angkatan: controller.angkatan!.value);
+                                    prodi: controller.selectedProdi,
+                                    angkatan: controller.angkatan);
 
                                 // ignore: unnecessary_type_check
                                 if (data is Map<String, dynamic>) {
@@ -143,8 +144,8 @@ class AlumniAllView extends GetView<AlumniController> {
                                 controller.alumniList.clear();
                                 final data = await controller.fetchAlumniAll(
                                     controller.currentPage,
-                                    prodi: controller.selectedProdi!.value,
-                                    angkatan: controller.angkatan!.value);
+                                    prodi: controller.selectedProdi,
+                                    angkatan: controller.angkatan);
 
                                 // ignore: unnecessary_type_check
                                 if (data is Map<String, dynamic>) {
@@ -176,133 +177,229 @@ class AlumniAllView extends GetView<AlumniController> {
                 ),
               ],
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height - 200,
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: controller.alumniList.length,
-                controller: controller.scrollController,
-                itemBuilder: (context, index) {
-                  final data = controller.alumniList[index];
-                  final educations = data.educations;
-                  final filteredEducations = educations
-                      .where((education) =>
-                          education.perguruan == 'Politeknik Negeri Jember')
-                      .toList();
-                  return InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.DETAIL_ALUMNI,
-                          arguments: data.user.id);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-                      child: Row(
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          FutureBuilder(
+            future: controller.fetchDataAlumni(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return loadAlumni();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                if (controller.alumniList.isEmpty) {
+                  return const SizedBox();
+                }
+                return buildAlumniListView(context);
+              }
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildAlumniListView(BuildContext context) {
+    return Obx(() => SizedBox(
+          height: MediaQuery.of(context).size.height - 200,
+          child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: controller.alumniList.length,
+            controller: controller.scrollController,
+            itemBuilder: (context, index) {
+              final data = controller.alumniList[index];
+              final educations = data.educations;
+              final filteredEducations = educations
+                  .where((education) =>
+                      education.perguruan == 'Politeknik Negeri Jember')
+                  .toList();
+              return InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.DETAIL_ALUMNI, arguments: data.user.id);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                            color: grey.withOpacity(0.2),
+                            image: DecorationImage(
+                                image: NetworkImage(data.user.foto ==
+                                        ApiServices.baseUrlImage
+                                    ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
+                                    : data.user.foto ?? ""),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(10)),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                                color: grey.withOpacity(0.2),
-                                image: DecorationImage(
-                                    image: NetworkImage(data.user.foto ==
-                                            ApiServices.baseUrlImage
-                                        ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                        : data.user.foto ?? ""),
-                                    fit: BoxFit.cover),
-                                borderRadius: BorderRadius.circular(10)),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              data.user.fullname ?? "",
+                              style: AppFonts.poppins(
+                                  fontSize: 14,
+                                  color: black,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Expanded(
+                          for (var education in filteredEducations)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0),
                               child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5.0),
-                                child: Text(
-                                  data.user.fullname ?? "",
-                                  style: AppFonts.poppins(
-                                      fontSize: 14,
-                                      color: black,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              for (var education in filteredEducations)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 5.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Jurusan : ${education.jurusan}',
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Jurusan : ${education.jurusan}',
+                                    style: AppFonts.poppins(
+                                        fontSize: 12,
+                                        color: black,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  Text(
+                                    'Program studi : ${education.prodi}',
+                                    style: AppFonts.poppins(
+                                        fontSize: 12, color: black),
+                                  ),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    width: double.infinity,
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 4),
+                                    decoration: BoxDecoration(
+                                        color: primaryColor,
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Text(
+                                      '${education.tahunMasuk}',
+                                      textAlign: TextAlign.center,
+                                      style: AppFonts.poppins(
+                                          fontSize: 12, color: white),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5, horizontal: 15),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: const Color(0xffFAC301),
+                                      ),
+                                      child: Text(
+                                        "Kunjungi",
                                         style: AppFonts.poppins(
                                             fontSize: 12,
-                                            color: black,
-                                            fontWeight: FontWeight.normal),
-                                      ),
-                                      Text(
-                                        'Program studi : ${education.prodi}',
-                                        style: AppFonts.poppins(
-                                            fontSize: 12, color: black),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Container(
-                                        width: double.infinity,
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 4),
-                                        decoration: BoxDecoration(
                                             color: primaryColor,
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        child: Text(
-                                          '${education.tahunMasuk}',
-                                          textAlign: TextAlign.center,
-                                          style: AppFonts.poppins(
-                                              fontSize: 12, color: white),
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(top: 10),
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 15),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: const Color(0xffFAC301),
-                                          ),
-                                          child: Text(
-                                            "Kunjungi",
-                                            style: AppFonts.poppins(
-                                                fontSize: 12,
-                                                color: primaryColor,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                            ],
-                          ))
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                         ],
-                      ),
-                    ),
-                  );
-                },
+                      ))
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ));
+  }
+
+  Widget loadAlumni() {
+    return ListView.builder(
+      itemCount: 10,
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+          child: Row(
+            children: [
+              CardLoading(
+                height: 100,
+                width: 100,
+                borderRadius: BorderRadius.circular(10),
               ),
-            ),
-          ],
-        ),
-      ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: CardLoading(
+                        height: 15,
+                        width: 100,
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CardLoading(
+                          height: 10,
+                          width: 150,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        CardLoading(
+                          height: 10,
+                          width: 150,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        CardLoading(
+                          height: 20,
+                          width: double.infinity,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Align(
+                            alignment: Alignment.bottomRight,
+                            child: CardLoading(
+                              height: 25,
+                              width: 70,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ))
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -330,17 +427,26 @@ class AlumniAllView extends GetView<AlumniController> {
                       style: AppFonts.poppins(fontSize: 12, color: black),
                     ),
                     onTap: () async {
+                      // print(controller.selectedProdi!.value);
                       Get.back();
+                      RxString prodiRx = RxString("${prodi['nama_prodi']}");
 
-                      controller.selectedProdi!.value = prodi['nama_prodi'];
+                      controller.selectedProdi = prodiRx.value;
+                      print(controller.selectedProdi);
+                      // if (controller.selectedProdi != null) {
+                      //   controller.selectedProdi!.value = prodi['nama_prodi'];
+                      //   print(controller.selectedProdi!.value);
+                      // } else {
+                      //   print('prodi null');
+                      // }
 
                       controller.showCloseIcon.value = true;
 
                       controller.alumniList.clear();
                       final data = await controller.fetchAlumniAll(
-                          controller.currentPage,
-                          prodi: controller.selectedProdi!.value,
-                          angkatan: controller.angkatan!.value);
+                        controller.currentPage,
+                        prodi: controller.selectedProdi,
+                      );
 
                       // ignore: unnecessary_type_check
                       if (data is Map<String, dynamic>) {
@@ -368,77 +474,76 @@ class AlumniAllView extends GetView<AlumniController> {
 
   showAngkatanBottomSheet(BuildContext _) {
     Get.bottomSheet(Container(
-        color: white,
-        padding: EdgeInsets.fromLTRB(
-            20, 20, 20, MediaQuery.of(_).viewInsets.bottom + 20),
-        child: Obx(
-          () => Wrap(
-            children: [
-              Text(
-                "Masukan tahun angkatan :",
-                style: AppFonts.poppins(
-                    fontSize: 12, color: black, fontWeight: FontWeight.normal),
-              ),
-              TextField(
-                controller: controller.tahun,
-                style: AppFonts.poppins(
-                  fontSize: 14,
-                  color: black,
-                ),
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  LengthLimitingTextInputFormatter(4)
-                ],
-                decoration: InputDecoration(
-                  hintText: "Angkatan",
-                  hintStyle: AppFonts.poppins(fontSize: 12, color: softgrey),
-                  isDense: false,
-                  border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: primaryColor)),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () async {
-                        Get.back();
-                        int angkatanValue = int.parse(controller.tahun.text);
-                        controller.angkatan!.value = angkatanValue;
-                        controller.showCloseIconAngkatan.value = true;
-
-                        controller.alumniList.clear();
-                        final data = await controller.fetchAlumniAll(
-                            controller.currentPage,
-                            angkatan: controller.angkatan!.value);
-
-                        if (data is Map<String, dynamic>) {
-                          if (data.containsKey('total_page')) {
-                            controller.totalPage = data['total_page'];
-                          }
-                          final List<Alumni> alumni = data.keys
-                              .where((key) => int.tryParse(key) != null)
-                              .map((key) {
-                            return Alumni.fromJson(data[key]);
-                          }).toList();
-
-                          controller.alumniList.addAll(alumni);
-                        } else {
-                          print("Response data is not in the expected format.");
-                        }
-                      },
-                      child: Text(
-                        "Cari",
-                        style: AppFonts.poppins(
-                            fontSize: 12,
-                            color: primaryColor,
-                            fontWeight: FontWeight.bold),
-                      ))
-                ],
-              )
-            ],
+      color: white,
+      padding: EdgeInsets.fromLTRB(
+          20, 20, 20, MediaQuery.of(_).viewInsets.bottom + 20),
+      child: Wrap(
+        children: [
+          Text(
+            "Masukan tahun angkatan :",
+            style: AppFonts.poppins(
+                fontSize: 12, color: black, fontWeight: FontWeight.normal),
           ),
-        )));
+          TextField(
+            controller: controller.tahun,
+            style: AppFonts.poppins(
+              fontSize: 14,
+              color: black,
+            ),
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(4)
+            ],
+            decoration: InputDecoration(
+              hintText: "Angkatan",
+              hintStyle: AppFonts.poppins(fontSize: 12, color: softgrey),
+              isDense: false,
+              border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: primaryColor)),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                  onPressed: () async {
+                    Get.back();
+                    int angkatanValue = int.parse(controller.tahun.text);
+                    controller.angkatan = angkatanValue;
+                    controller.showCloseIconAngkatan.value = true;
+
+                    controller.alumniList.clear();
+                    final data = await controller.fetchAlumniAll(
+                        controller.currentPage,
+                        angkatan: controller.angkatan);
+
+                    if (data is Map<String, dynamic>) {
+                      if (data.containsKey('total_page')) {
+                        controller.totalPage = data['total_page'];
+                      }
+                      final List<Alumni> alumni = data.keys
+                          .where((key) => int.tryParse(key) != null)
+                          .map((key) {
+                        return Alumni.fromJson(data[key]);
+                      }).toList();
+
+                      controller.alumniList.addAll(alumni);
+                    } else {
+                      print("Response data is not in the expected format.");
+                    }
+                  },
+                  child: Text(
+                    "Cari",
+                    style: AppFonts.poppins(
+                        fontSize: 12,
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold),
+                  ))
+            ],
+          )
+        ],
+      ),
+    ));
   }
 }

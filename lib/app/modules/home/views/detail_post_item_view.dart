@@ -293,20 +293,23 @@ class DetailPostItemView extends GetView<DetailPostController> {
                       ],
                     ),
                   ),
-                  Visibility(
-                    visible: isUser == false,
-                    child: CustomTextField(
-                        controller: controller.comment,
-                        label: "Tulis Komentar...",
-                        keyboardType: TextInputType.text,
-                        inputFormatters:
-                            FilteringTextInputFormatter.singleLineFormatter,
-                        isLength: 255,
-                        isEnable: true,
-                        isWhite: true,
-                        onTap: () =>
-                            homeC.sendComment(id, controller.comment.text),
-                        icon: Icons.send),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Visibility(
+                      visible: isUser == false,
+                      child: CustomTextField(
+                          controller: controller.comment,
+                          label: "Tulis Komentar...",
+                          keyboardType: TextInputType.text,
+                          inputFormatters:
+                              FilteringTextInputFormatter.singleLineFormatter,
+                          isLength: 255,
+                          isEnable: true,
+                          isWhite: false,
+                          onTap: () =>
+                              homeC.sendComment(id, controller.comment.text),
+                          icon: Icons.send),
+                    ),
                   ),
                   SizedBox(
                       child: Obx(

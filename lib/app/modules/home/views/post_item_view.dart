@@ -11,6 +11,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostItemView extends GetView<PostItemController> {
   PostItemView({super.key});
@@ -116,8 +117,13 @@ class PostItemView extends GetView<PostItemController> {
                           )),
                           InkWell(
                             onTap: () {
-                              show(post.position, post.company, post.typeJobs,
-                                  post.description, post.expired);
+                              show(
+                                  post.position,
+                                  post.company,
+                                  post.typeJobs,
+                                  post.description,
+                                  post.expired,
+                                  post.linkApply);
                             },
                             child: Icon(
                               Icons.info_outline,
@@ -266,7 +272,7 @@ class PostItemView extends GetView<PostItemController> {
   }
 
   void show(String position, String company, String typeJobs,
-      String description, String expired) {
+      String description, String expired, String link) {
     Get.dialog(AlertDialog(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -314,17 +320,32 @@ class PostItemView extends GetView<PostItemController> {
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.send_rounded,
-                      color: black,
+                InkWell(
+                  onTap: () async {
+                    if (link.isNotEmpty) {
+                      controller.launchURL(link);
+                    } else {
+                      print(null);
+                    }
+                  },
+                  child: Container(
+                    color: white,
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'images/link.png',
+                          height: 15,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          "Kunjungi",
+                          style: AppFonts.poppins(fontSize: 12, color: black),
+                        )
+                      ],
                     ),
-                    Text(
-                      "Kunjungi",
-                      style: AppFonts.poppins(fontSize: 12, color: black),
-                    )
-                  ],
+                  ),
                 )
               ],
             ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailAlumniController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -233,6 +234,14 @@ class DetailAlumniController extends GetxController
       return PostDetail.fromJson(data['data']);
     } else {
       throw Exception('Failed to load data : ${data['message']}');
+    }
+  }
+
+  Future<void> launchURL(String url) async {
+    final Uri _url = Uri.parse(url);
+    if (!await launchUrl(_url)) {
+      Get.snackbar("Error", "Tidak bisa mengunjungi situs",
+          margin: const EdgeInsets.all(10));
     }
   }
 }

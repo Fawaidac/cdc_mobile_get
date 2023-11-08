@@ -13,7 +13,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeController extends GetxController {
   ScrollController scrollController = ScrollController();
   final search = TextEditingController();
-  var postList = <PostAllModel>[].obs;
+  // var postList = <PostAllModel>[].obs;
+  RxList<PostAllModel> postList = <PostAllModel>[].obs;
 
   var page = 1;
   var totalPage = 1;
@@ -23,7 +24,7 @@ class HomeController extends GetxController {
         scrollController.position.maxScrollExtent) {
       if (page < totalPage) {
         page = page + 1;
-        
+
         Get.find<PostItemController>().fetchData();
       }
     }
@@ -33,35 +34,10 @@ class HomeController extends GetxController {
     searchData(value);
   }
 
-  Future<void> fetchData() async {
-    try {
-      final data = await getData(page);
-
-      // ignore: unnecessary_type_check
-      if (data is Map<String, dynamic>) {
-        if (data.containsKey('total_page')) {
-          totalPage = data['total_page'];
-          print('total Page : $totalPage');
-        }
-        final List<PostAllModel> newPosts =
-            data.keys.where((key) => int.tryParse(key) != null).map((key) {
-          return PostAllModel.fromJson(data[key]);
-        }).toList();
-
-        postList.addAll(newPosts);
-      } else {
-        print("Response data is not in the expected format.");
-      }
-    } catch (e) {
-      print("Error fetching data: $e");
-    }
-  }
-
   @override
   void onInit() {
     super.onInit();
     scrollController.addListener(_scrollListener);
-    // fetchData();
   }
 
   @override
@@ -77,7 +53,8 @@ class HomeController extends GetxController {
       Get.snackbar("Success", "Berhasil mengomentari postingan",
           margin: const EdgeInsets.all(10));
       postList.refresh();
-      fetchData();
+
+      Get.find<PostItemController>().fetchData();
       Get.offAllNamed(Routes.HOMEPAGE);
     } else {
       Get.snackbar("Error", response['message'],
@@ -92,7 +69,7 @@ class HomeController extends GetxController {
       Get.snackbar("Success", "Berhasil menghapus postingan",
           margin: const EdgeInsets.all(10));
       postList.refresh();
-      fetchData();
+      Get.find<PostItemController>().fetchData();
       Get.offAllNamed(Routes.HOMEPAGE);
     } else {
       Get.snackbar("Error", response['message'],

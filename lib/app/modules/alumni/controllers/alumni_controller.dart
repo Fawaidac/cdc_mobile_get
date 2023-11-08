@@ -14,17 +14,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AlumniController extends GetxController {
   ScrollController scrollController = ScrollController();
 
-  RxList alumniList = <Alumni>[].obs;
+  RxList<Alumni> alumniList = <Alumni>[].obs;
 
   RxList<Map<String, dynamic>> prodiList = <Map<String, dynamic>>[].obs;
 
   var currentPage = 1;
   var totalPage = 1;
 
-  RxInt? angkatan;
-  RxString? selectedProdi;
+  int? angkatan;
+  String? selectedProdi;
 
-  RxBool isLoading = false.obs;
+  // RxBool isLoading = false.obs;
   // RxBool hasMore = true.obs;
   RxBool isAscending = true.obs;
   RxBool showCloseIcon = false.obs;
@@ -81,7 +81,6 @@ class AlumniController extends GetxController {
 
   Future<void> fetchDataAlumni() async {
     try {
-      isLoading(true);
       alumniList.clear();
       // Tambahkan pernyataan ini
       final data = await fetchAlumniAll(
@@ -100,14 +99,12 @@ class AlumniController extends GetxController {
           return Alumni.fromJson(data[key]);
         }).toList();
 
-        alumniList.addAll(alumni);
+        alumniList.assignAll(alumni);
       } else {
         print("Response data is not in the expected format.");
       }
     } catch (e) {
       print("Error fetching data: $e");
-    } finally {
-      isLoading(false);
     }
   }
 
