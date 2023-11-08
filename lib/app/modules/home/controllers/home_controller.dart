@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/post_model.dart';
+import 'package:cdc/app/modules/detail_alumni/controllers/post_controller.dart';
+import 'package:cdc/app/modules/home/controllers/post_item_controller.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +23,8 @@ class HomeController extends GetxController {
         scrollController.position.maxScrollExtent) {
       if (page < totalPage) {
         page = page + 1;
-
-        fetchData();
+        
+        Get.find<PostItemController>().fetchData();
       }
     }
   }
@@ -59,6 +61,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     scrollController.addListener(_scrollListener);
+    // fetchData();
   }
 
   @override
@@ -141,7 +144,7 @@ class HomeController extends GetxController {
     return data;
   }
 
-  static Future<Map<String, dynamic>> getData(int page) async {
+  Future<Map<String, dynamic>> getData(int page) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');

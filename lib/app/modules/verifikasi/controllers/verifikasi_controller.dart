@@ -33,8 +33,8 @@ class VerifikasiController extends GetxController {
           final String alamat = data['alamat_domisili'];
           final String prodi = data['program_studi'];
 
-          Get.offNamed(Routes.REGISTER, parameters: {
-            "nama": nama,
+          Get.offNamed(Routes.REGISTER, arguments: {
+            "fullname": nama,
             "email": email,
             "nim": nim,
             "alamat": alamat,

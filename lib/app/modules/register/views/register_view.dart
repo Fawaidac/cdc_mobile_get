@@ -14,17 +14,8 @@ import '../controllers/register_controller.dart';
 class RegisterView extends GetView<RegisterController> {
   static String verify = "";
 
-  RegisterView(
-      {String? nama,
-      String? email,
-      String? nim,
-      String? alamat,
-      String? prodi,
-      Key? key})
-      : super(key: key) {
-    controller.initializeValues(
-        nama: nama!, email: email!, nim: nim!, alamat: alamat!, prodi: prodi!);
-  }
+  RegisterView({Key? key}) : super(key: key);
+
   bool showpass = true;
   bool connpass = true;
 
@@ -65,6 +56,7 @@ class RegisterView extends GetView<RegisterController> {
                   label: "Nomer Induk Kependudukan",
                   keyboardType: TextInputType.name,
                   isEnable: true,
+                  isLength: 16,
                   inputFormatters:
                       FilteringTextInputFormatter.singleLineFormatter,
                   icon: Icons.badge),
@@ -117,6 +109,7 @@ class RegisterView extends GetView<RegisterController> {
                       width: 30,
                       child: TextField(
                         controller: controller.countryCode,
+                        enabled: false,
                         style: AppFonts.poppins(fontSize: 12, color: black),
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(

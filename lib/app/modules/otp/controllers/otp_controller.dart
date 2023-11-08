@@ -11,14 +11,14 @@ import 'package:http/http.dart' as http;
 class OtpController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   var code = "";
-  var fullname = "";
-  var email = "";
-  var pw = "";
-  var phone = "";
-  var alamat = "";
-  var nik = "";
-  var nim = "";
-  var prodi = "";
+  String fullname = "";
+  String email = "";
+  String pw = "";
+  String phone = "";
+  String alamat = "";
+  String nik = "";
+  String nim = "";
+  String prodi = "";
 
   RxInt countdown = 30.obs;
   RxBool canResend = false.obs;
@@ -53,7 +53,7 @@ class OtpController extends GetxController {
     });
   }
 
-  Future<void> verifikasiOtp() async {
+  Future<void> verifikasiOtp(String code) async {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: RegisterView.verify, smsCode: code);
@@ -123,6 +123,7 @@ class OtpController extends GetxController {
   void sendOtpAgain() async {
     try {
       await auth.verifyPhoneNumber(
+        phoneNumber: "+62$phone",
         verificationCompleted: (PhoneAuthCredential authCredential) async {},
         verificationFailed: (FirebaseAuthException e) {},
         codeSent: (verificationId, forceResendingToken) {
@@ -133,6 +134,8 @@ class OtpController extends GetxController {
       );
     } catch (e) {
       print(e);
+      Get.snackbar("Error", "Terjadi kesalahan saat mengirim ulang kode: $e",
+          margin: const EdgeInsets.all(10));
     }
   }
 }

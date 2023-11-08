@@ -5,6 +5,7 @@ import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,19 +35,16 @@ class RegisterController extends GetxController {
     showConfirmPassword.value = !showConfirmPassword.value;
   }
 
-  void initializeValues({
-    required String nama,
-    required String email,
-    required String nim,
-    required String alamat,
-    required String prodi,
-  }) {
-    fullname.text = nama;
-    nik.text = nim;
-    this.email.text = email;
-    this.nim.text = nim;
-    this.alamat.text = alamat;
-    this.prodi.text = prodi;
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    var args = Get.arguments;
+    fullname.text = args['fullname'];
+    email.text = args['email'];
+    nim.text = args['nim'];
+    alamat.text = args['alamat'];
+    prodi.text = args['prodi'];
     countryCode.text = "+62";
   }
 
@@ -93,16 +91,17 @@ class RegisterController extends GetxController {
           margin: const EdgeInsets.all(10));
     } else {
       try {
-        loading(true);
+        EasyLoading.show(status: "Loading...");
         final response = await checkEmail(email.text);
         if (response['code'] == 200) {
+          registerWithNumber();
         } else {
           Get.snackbar("Error", response['message']);
         }
       } catch (e) {
         print(e);
       } finally {
-        loading(false);
+        EasyLoading.dismiss();
       }
     }
   }
@@ -118,8 +117,13 @@ class RegisterController extends GetxController {
   Future<void> registerWithNumber() async {
     try {
       await auth.verifyPhoneNumber(
+          phoneNumber: countryCode.text + phone,
           verificationCompleted: (PhoneAuthCredential authCredential) async {},
-          verificationFailed: (FirebaseAuthException e) {},
+          verificationFailed: (FirebaseAuthException e) {
+            Get.snackbar(
+                "Verification Error", "Verification failed: ${e.message}",
+                margin: const EdgeInsets.all(10));
+          },
           codeSent: (verificationId, forceResendingToken) {
             RegisterView.verify = verificationId;
             Get.toNamed(Routes.OTP, arguments: {

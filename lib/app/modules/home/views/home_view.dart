@@ -1,3 +1,5 @@
+import 'package:cdc/app/modules/home/controllers/news_controller.dart';
+import 'package:cdc/app/modules/home/controllers/post_item_controller.dart';
 import 'package:cdc/app/modules/home/views/news_view.dart';
 import 'package:cdc/app/modules/home/views/post_item_view.dart';
 import 'package:cdc/app/modules/home/views/top_alumni_view.dart';
@@ -17,34 +19,43 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      shrinkWrap: true,
-      controller: controller.scrollController,
-      physics: const BouncingScrollPhysics(),
-      children: [
-        const SizedBox(
-          height: 10,
-        ),
-        NewsView(),
-        TopAlumniView(),
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: CustomTextField(
-              controller: controller.search,
-              label: "Cari postingan berdasarkan posisi...",
-              keyboardType: TextInputType.text,
-              inputFormatters: FilteringTextInputFormatter.singleLineFormatter,
-              isLength: 255,
-              isEnable: true,
-              isWhite: true,
-              onTap: () {},
-              onChange: (value) {
-                controller.onChangeSearch(value);
-              },
-              icon: Icons.search),
-        ),
-        PostItemView(),
-      ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        Get.find<NewsController>().newsList.clear();
+        controller.postList.clear();
+        await Get.find<NewsController>().fetchNewsData();
+        await Get.find<PostItemController>().fetchData();
+      },
+      child: ListView(
+        shrinkWrap: false,
+        controller: controller.scrollController,
+        physics: const BouncingScrollPhysics(),
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+          NewsView(),
+          TopAlumniView(),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: CustomTextField(
+                controller: controller.search,
+                label: "Cari postingan berdasarkan posisi...",
+                keyboardType: TextInputType.text,
+                inputFormatters:
+                    FilteringTextInputFormatter.singleLineFormatter,
+                isLength: 255,
+                isEnable: true,
+                isWhite: true,
+                onTap: () {},
+                onChange: (value) {
+                  controller.onChangeSearch(value);
+                },
+                icon: Icons.search),
+          ),
+          PostItemView(),
+        ],
+      ),
     );
   }
 }

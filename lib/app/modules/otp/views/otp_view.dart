@@ -9,7 +9,7 @@ class OtpView extends GetView<OtpController> {
   OtpView({Key? key}) : super(key: key);
   @override
   final controller = Get.put(OtpController());
-
+  String code = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,9 +50,9 @@ class OtpView extends GetView<OtpController> {
             ),
             Pinput(
               length: 6,
-              showCursor: true,
+              showCursor: false,
               onChanged: (value) {
-                controller.code = value;
+                code = value;
               },
             ),
             Container(
@@ -72,7 +72,7 @@ class OtpView extends GetView<OtpController> {
                   ),
                 ),
                 onPressed: () {
-                  controller.verifikasiOtp();
+                  controller.verifikasiOtp(code);
                 },
                 child: Text(
                   'Verifikasi',
