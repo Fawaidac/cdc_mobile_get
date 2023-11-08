@@ -7,10 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 class PostItemController extends GetxController {
   Future<void> fetchData() async {
     try {
-      Get.find<HomeController>().postList.clear();
       final data = await Get.find<HomeController>()
           .getData(Get.find<HomeController>().page);
-      print('object');
       // ignore: unnecessary_type_check
       if (data is Map<String, dynamic>) {
         if (data.containsKey('total_page')) {
@@ -20,8 +18,12 @@ class PostItemController extends GetxController {
             data.keys.where((key) => int.tryParse(key) != null).map((key) {
           return PostAllModel.fromJson(data[key]);
         }).toList();
-
-        Get.find<HomeController>().postList.assignAll(newPosts);
+        if (Get.find<HomeController>().page >
+            Get.find<HomeController>().lastLoadedPage) {
+          Get.find<HomeController>().postList.addAll(newPosts);
+          Get.find<HomeController>().lastLoadedPage =
+              Get.find<HomeController>().page;
+        }
       } else {
         print("Response data is not in the expected format.");
       }

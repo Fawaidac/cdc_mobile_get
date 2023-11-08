@@ -18,7 +18,7 @@ class EducationView extends GetView<EducationController> {
 
     return Obx(() {
       final educations = controller.educations;
-
+      
       return ListView.builder(
         itemCount: educations.length,
         shrinkWrap: true,

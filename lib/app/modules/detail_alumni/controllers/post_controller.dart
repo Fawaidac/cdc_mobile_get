@@ -57,7 +57,7 @@ class PostController extends GetxController {
 
       final dataPost = data['data']['posts'] as List;
       final datatotalPage = data['data']['pagination']['total_page'];
-
+      
       postList = postList + dataPost;
       totalPage.value = datatotalPage;
       postList.refresh();

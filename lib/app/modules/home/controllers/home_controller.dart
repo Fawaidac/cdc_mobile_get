@@ -16,8 +16,10 @@ class HomeController extends GetxController {
   // var postList = <PostAllModel>[].obs;
   RxList<PostAllModel> postList = <PostAllModel>[].obs;
 
-  var page = 1;
-  var totalPage = 1;
+  int page = 1;
+  int totalPage = 1;
+  int lastLoadedPage = 0;
+
 
   void _scrollListener() {
     if (scrollController.position.pixels ==

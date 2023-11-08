@@ -1,4 +1,4 @@
-
+import 'package:cdc/app/data/models/comment_model.dart';
 import 'package:cdc/app/data/models/educations_model.dart';
 import 'package:cdc/app/data/models/followers_model.dart';
 import 'package:cdc/app/data/models/jobs_model.dart';
@@ -205,6 +205,60 @@ class Alumni {
       followers: followersData,
       educations: educationsData,
       jobs: jobsData,
+    );
+  }
+}
+
+class PostUser {
+  final String id;
+  final String userId;
+  final String linkApply;
+  final String image;
+  final String description;
+  final String company;
+  final String position;
+  final String expired;
+  final String postAt;
+  final int canComment;
+  final String verified;
+  final String typeJobs;
+  final List<CommentModel> comments;
+
+  PostUser({
+    required this.id,
+    required this.userId,
+    required this.linkApply,
+    required this.image,
+    required this.description,
+    required this.company,
+    required this.position,
+    required this.expired,
+    required this.postAt,
+    required this.canComment,
+    required this.verified,
+    required this.comments,
+    required this.typeJobs,
+  });
+
+  factory PostUser.fromJson(Map<String, dynamic> json) {
+    final List<CommentModel> comments = (json['comments'] as List)
+        .map((commentJson) => CommentModel.fromJson(commentJson))
+        .toList();
+
+    return PostUser(
+      id: json['id'],
+      userId: json['user_id'],
+      linkApply: json['link_apply'],
+      image: json['image'],
+      description: json['description'],
+      company: json['company'],
+      position: json['position'],
+      expired: json['expired'],
+      postAt: json['post_at'],
+      canComment: json['can_comment'],
+      verified: json['verified'],
+      comments: comments,
+      typeJobs: json['type_jobs'],
     );
   }
 }
