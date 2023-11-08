@@ -10,9 +10,6 @@ class PostUserView extends GetView<PostUserController> {
   final controller = Get.put(PostUserController());
   @override
   Widget build(BuildContext context) {
-    controller.scrollController.addListener(() {
-      controller.scrollListener();
-    });
     return FutureBuilder(
       future: controller.fetchData(),
       builder: (context, snapshot) {

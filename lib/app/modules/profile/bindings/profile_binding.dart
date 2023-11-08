@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import 'package:cdc/app/modules/profile/controllers/edit_education_user_controller.dart';
 import 'package:cdc/app/modules/profile/controllers/education_user_controller.dart';
 import 'package:cdc/app/modules/profile/controllers/job_user_controller.dart';
 import 'package:cdc/app/modules/profile/controllers/post_user_controller.dart';
@@ -9,6 +10,9 @@ import '../controllers/profile_controller.dart';
 class ProfileBinding extends Bindings {
   @override
   void dependencies() {
+    Get.lazyPut<EditEducationUserController>(
+      () => EditEducationUserController(),
+    );
     Get.lazyPut<EducationUserController>(
       () => EducationUserController(),
     );

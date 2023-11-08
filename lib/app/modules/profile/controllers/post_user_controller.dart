@@ -18,6 +18,15 @@ class PostUserController extends GetxController {
   final ScrollController scrollController = ScrollController();
 
   @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    scrollController.addListener(() {
+      scrollListener();
+    });
+  }
+
+  @override
   void onClose() {
     // TODO: implement onClose
     super.onClose();

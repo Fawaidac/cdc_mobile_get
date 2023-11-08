@@ -73,6 +73,13 @@ class ProfileController extends GetxController
     tabController.dispose();
   }
 
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   super.dispose();
+  //   tabController.dispose();
+  // }
+
   static Future<User?> userInfo() async {
     try {
       final prefs = await SharedPreferences.getInstance();

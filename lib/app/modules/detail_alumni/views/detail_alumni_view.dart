@@ -245,12 +245,12 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                   ),
                                 ),
                               ),
-                              // Container(
-                              //   margin: EdgeInsets.symmetric(vertical: 10),
-                              //   width: 1,
-                              //   height: MediaQuery.of(context).size.height,
-                              //   color: black.withOpacity(0.2),
-                              // ),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 10),
+                                width: 1,
+                                height: MediaQuery.of(context).size.height,
+                                color: black.withOpacity(0.2),
+                              ),
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
@@ -288,13 +288,13 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                   ),
                                 ),
                               ),
-                              // Container(
-                              //   margin:
-                              //       const EdgeInsets.symmetric(vertical: 10),
-                              //   width: 1,
-                              //   height: MediaQuery.of(context).size.height,
-                              //   color: black.withOpacity(0.2),
-                              // ),
+                              Container(
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 10),
+                                width: 1,
+                                height: MediaQuery.of(context).size.height,
+                                color: black.withOpacity(0.2),
+                              ),
                               Expanded(
                                 child: GestureDetector(
                                   onTap: () {
