@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:cdc/app/modules/register/controllers/register_controller.dart';
 import 'package:cdc/app/modules/register/views/register_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,8 +36,7 @@ class OtpController extends GetxController {
     alamat = args['alamat'];
     nik = args['nik'];
     nim = args['nim'];
-    prodi = args['prodi'];
-
+    prodi = args['kode_prodi'];
     startCountdown();
   }
 
@@ -55,13 +56,18 @@ class OtpController extends GetxController {
 
   Future<void> verifikasiOtp(String code) async {
     try {
+      EasyLoading.show(status: "Loading...");
+      // print(object)
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: RegisterView.verify, smsCode: code);
+          verificationId: Get.find<RegisterController>().verifyId,
+          smsCode: code);
       await auth.signInWithCredential(credential);
 
       await handleRegister(email, nik, fullname, pw, phone, alamat, nim, prodi);
     } catch (e) {
       Get.snackbar("Error", 'Kode Otp Salah', margin: const EdgeInsets.all(10));
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 
@@ -108,7 +114,7 @@ class OtpController extends GetxController {
       'no_telp': telp,
       'alamat': alamat,
       'nim': alamat,
-      'prodi': kode,
+      'kode_prodi': kode,
     };
     final res = await http.post(
         Uri.parse('${ApiServices.baseUrl}/auth/user/register'),
@@ -127,7 +133,7 @@ class OtpController extends GetxController {
         verificationCompleted: (PhoneAuthCredential authCredential) async {},
         verificationFailed: (FirebaseAuthException e) {},
         codeSent: (verificationId, forceResendingToken) {
-          RegisterView.verify = verificationId;
+          Get.find<RegisterController>().verifyId = verificationId;
           startCountdown();
         },
         codeAutoRetrievalTimeout: (verificationId) {},

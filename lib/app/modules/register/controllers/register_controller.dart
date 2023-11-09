@@ -23,6 +23,7 @@ class RegisterController extends GetxController {
   var countryCode = TextEditingController();
   var phone = "";
 
+  String verifyId = "";
   var showPassword = true.obs;
   var showConfirmPassword = true.obs;
   var loading = false.obs;
@@ -35,6 +36,11 @@ class RegisterController extends GetxController {
     showConfirmPassword.value = !showConfirmPassword.value;
   }
 
+  RxString selectedProdi = RxString("");
+  RxString selectedId = RxString("");
+
+  RxList<Map<String, dynamic>> prodiList = RxList([]);
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -46,6 +52,29 @@ class RegisterController extends GetxController {
     alamat.text = args['alamat'];
     prodi.text = args['prodi'];
     countryCode.text = "+62";
+  }
+
+  Future<void> fetchData() async {
+    try {
+      final data = await getProdi();
+
+      prodiList.assignAll(data);
+    } catch (error) {
+      print('Error: $error');
+    }
+  }
+
+  static Future<List<Map<String, dynamic>>> getProdi() async {
+    final response = await http.get(Uri.parse('${ApiServices.baseUrl}/prodi'));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      final List<Map<String, dynamic>> prodiList =
+          List<Map<String, dynamic>>.from(jsonResponse['data']);
+      return prodiList;
+    } else {
+      throw Exception('Failed to fetch prodi');
+    }
   }
 
   Future<void> checkRegister() async {
@@ -115,7 +144,10 @@ class RegisterController extends GetxController {
   }
 
   Future<void> registerWithNumber() async {
+    String kodeProdi = selectedId.value;
+
     try {
+      EasyLoading.show(status: "Loading...");
       await auth.verifyPhoneNumber(
           phoneNumber: countryCode.text + phone,
           verificationCompleted: (PhoneAuthCredential authCredential) async {},
@@ -125,7 +157,7 @@ class RegisterController extends GetxController {
                 margin: const EdgeInsets.all(10));
           },
           codeSent: (verificationId, forceResendingToken) {
-            RegisterView.verify = verificationId;
+            verifyId = verificationId;
             Get.toNamed(Routes.OTP, arguments: {
               'fullname': fullname.text,
               'email': email.text,
@@ -134,12 +166,14 @@ class RegisterController extends GetxController {
               'alamat': alamat.text,
               'nik': nik.text,
               'nim': nim.text,
-              'prodi': prodi.text,
+              'kode_prodi': kodeProdi,
             });
           },
           codeAutoRetrievalTimeout: (verificationId) {});
     } catch (e) {
       print(e);
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 }

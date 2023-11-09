@@ -21,7 +21,7 @@ class IdentitasSectionController extends GetxController {
   late TextEditingController nik;
   late TextEditingController npwp;
 
-  RxList<Map<String, dynamic>> prodiList = RxList([]);
+  RxList<Map<String, dynamic>> prodiList = RxList([]);  
   RxString selectedProdi = RxString("");
   RxString selectedId = RxString("");
 

@@ -138,6 +138,7 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
                         )),
                   ],
                 )),
+            
             Container(
               margin: const EdgeInsets.only(bottom: 10),
               padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),

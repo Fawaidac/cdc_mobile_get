@@ -97,11 +97,7 @@ class ProfileView extends GetView<ProfileController> {
                           Spacer(),
                           IconButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //       builder: (context) => Setting(),
-                                //     ));
+                                Get.toNamed(Routes.SETTING);
                               },
                               icon: Icon(
                                 Icons.settings_outlined,
