@@ -50,7 +50,6 @@ class PostUserController extends GetxController {
     try {
       // postList.clear();
       final data = await fetchDataPostUser(currentPage);
-      print('datauser : $data');
 
       if (data != null) {
         totalPage = data['pagination']['total_page'];

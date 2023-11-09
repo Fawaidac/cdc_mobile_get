@@ -214,4 +214,37 @@ class ProfileController extends GetxController
       throw e;
     }
   }
+
+  Future<void> updateVisibility(String key, bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final requestData = {
+      "type": [
+        {"key": key}
+      ],
+      "value": value ? 1 : 0
+    };
+
+    try {
+      final response = await http.put(
+        Uri.parse("${ApiServices.baseUrl}/user/visibility/update"),
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(requestData),
+      );
+
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        await getUser(); // Perbarui data pengguna setelah perubahan visibility
+        update();
+      } else {
+        final data = jsonDecode(response.body);
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 }

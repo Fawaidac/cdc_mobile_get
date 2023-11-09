@@ -1,4 +1,5 @@
 import 'package:card_loading/card_loading.dart';
+import 'package:cdc/app/modules/edit_profile/controllers/edit_profile_controller.dart';
 import 'package:cdc/app/modules/profile/views/education_user_view.dart';
 import 'package:cdc/app/modules/profile/views/job_user_view.dart';
 import 'package:cdc/app/modules/profile/views/post_user_view.dart';

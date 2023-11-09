@@ -28,11 +28,11 @@ class EditProfileController extends GetxController {
   var fb = TextEditingController();
   var x = TextEditingController();
 
-  String? selectedGender;
-  List<String> genderOptions = [
-    'Laki Laki',
+  RxString selectedGender = RxString('Laki-Laki');
+  RxList<String> genderOptions = RxList<String>([
+    'Laki-Laki',
     'Perempuan',
-  ];
+  ]);
 
   RxBool isCheckedTelp = false.obs;
   RxBool isCheckedTtl = false.obs;
@@ -56,43 +56,53 @@ class EditProfileController extends GetxController {
     }
   }
 
+  Future<void> getUser() async {
+    final auth = await conP.userInfo();
+    if (auth != null) {
+      user.value = auth;
+      print("userprofile");
+    }
+  }
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    user = Get.arguments;
-    if (user != null) {
-      fullname.text = user.value.fullname ?? "";
-      user.value.gender == 'male' ? selectedGender == 'Laki Laki' : 'Perempuan';
-      telp.text = user.value.noTelp ?? "";
-      ttl.text = user.value.tempatTanggalLahir ?? "";
-      email.text = user.value.email ?? "";
-      nik.text = user.value.nik ?? "";
-      alamat.text = user.value.alamat ?? "";
-      about.text = user.value.about ?? "";
-      linkedin.text = user.value.linkedin ?? "";
-      ig.text = user.value.instagram ?? "";
-      fb.text = user.value.facebook ?? "";
-      x.text = user.value.twitter ?? "";
-      user.value.noTelp != null && user.value.noTelp != "***"
-          ? isCheckedTelp.value = true
-          : false;
-      user.value.tempatTanggalLahir != null &&
-              user.value.tempatTanggalLahir != "***"
-          ? isCheckedTtl.value = true
-          : false;
-      user.value.email != null && user.value.email != "***"
-          ? isCheckedEmail.value = true
-          : false;
-      user.value.alamat != null && user.value.alamat != "***"
-          ? isCheckedAlamat.value = true
-          : false;
-      user.value.nik != null && user.value.nik != "***"
-          ? isCheckedNik.value = true
-          : false;
-    }
+    // user = Get.arguments;
+    getUser();
+    // if (user != null) {
+    fullname.text = conP.user.value.fullname ?? "";
+    selectedGender.value = conP.user.value.gender ?? "";
+    telp.text = conP.user.value.noTelp ?? "";
+    ttl.text = conP.user.value.tempatTanggalLahir ?? "";
+    email.text = conP.user.value.email ?? "";
+    nik.text = conP.user.value.nik ?? "";
+    alamat.text = conP.user.value.alamat ?? "";
+    about.text = conP.user.value.about ?? "";
+    linkedin.text = conP.user.value.linkedin ?? "";
+    ig.text = conP.user.value.instagram ?? "";
+    fb.text = conP.user.value.facebook ?? "";
+    x.text = conP.user.value.twitter ?? "";
+    conP.user.value.noTelp != null && conP.user.value.noTelp != "***"
+        ? isCheckedTelp.value = true
+        : false;
+    conP.user.value.tempatTanggalLahir != null &&
+            conP.user.value.tempatTanggalLahir != "***"
+        ? isCheckedTtl.value = true
+        : false;
+    conP.user.value.email != null && conP.user.value.email != "***"
+        ? isCheckedEmail.value = true
+        : false;
+    conP.user.value.alamat != null && conP.user.value.alamat != "***"
+        ? isCheckedAlamat.value = true
+        : false;
+    conP.user.value.nik != null && conP.user.value.nik != "***"
+        ? isCheckedNik.value = true
+        : false;
+    // }
   }
 
+  RxBool visibilityUpdated = false.obs;
   static Future<String?> updateImageProfile(File imagePath) async {
     try {
       EasyLoading.show(status: "Loading...");
@@ -139,5 +149,93 @@ class EditProfileController extends GetxController {
     } finally {
       EasyLoading.dismiss();
     }
+  }
+
+  Future<void> updateVisibility(String key, bool value) async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      await conP.updateVisibility(key, value);
+      await conP.getUser();
+      telp.text = conP.user.value.noTelp ?? "";
+      ttl.text = conP.user.value.tempatTanggalLahir ?? "";
+      email.text = conP.user.value.email ?? "";
+      nik.text = conP.user.value.nik ?? "";
+      alamat.text = conP.user.value.alamat ?? "";
+    } catch (e) {
+      print('Error updating visibility: $e');
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleUpdateProfile() async {
+    String? genderValue;
+    selectedGender.value == "Laki-Laki"
+        ? genderValue = 'male'
+        : genderValue = 'female';
+
+    try {
+      EasyLoading.show(status: "Loading...");
+      final response = await updateUsers(
+          fullname.text,
+          ttl.text,
+          about.text,
+          linkedin.text,
+          ig.text,
+          x.text,
+          fb.text,
+          telp.text,
+          genderValue,
+          alamat.text,
+          nik.text);
+      if (response['code'] == 200) {
+        Get.back();
+        await conP.getUser();
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  static Future<Map<String, dynamic>> updateUsers(
+    String fullname,
+    String ttl,
+    String about,
+    String linkedIn,
+    String instagram,
+    String x,
+    String facebook,
+    String no_telp,
+    String gender,
+    String alamat,
+    String nik,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    final res =
+        await http.put(Uri.parse('${ApiServices.baseUrl}/user/profile'), body: {
+      "fullname": fullname,
+      "ttl": ttl,
+      "about": about,
+      "linkedin": linkedIn, // link
+      "instagram": instagram, // link
+      "x": x, // link
+      "facebook": facebook, // link
+      "no_telp": no_telp,
+      "gender": gender,
+      "alamat": alamat,
+      "nik": nik,
+    }, headers: {
+      "Authorization": "Bearer $token"
+    });
+    final data = jsonDecode(res.body);
+    return data;
   }
 }
