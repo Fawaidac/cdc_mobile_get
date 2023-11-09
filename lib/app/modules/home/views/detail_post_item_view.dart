@@ -245,19 +245,33 @@ class DetailPostItemView extends GetView<DetailPostController> {
                                 ),
                               ],
                             ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.send,
-                                  color: black,
-                                  size: 20,
+                            InkWell(
+                              onTap: () {
+                                if (linkApply.isNotEmpty) {
+                                  controller.launchURL(linkApply);
+                                } else {
+                                  print(null);
+                                }
+                              },
+                              child: Container(
+                                color: white,
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'images/link.png',
+                                      height: 15,
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(
+                                      "Kunjungi",
+                                      style: AppFonts.poppins(
+                                          fontSize: 12, color: black),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "Kunjungi",
-                                  style: AppFonts.poppins(
-                                      fontSize: 12, color: black),
-                                )
-                              ],
+                              ),
                             )
                           ],
                         ),

@@ -52,7 +52,7 @@ class OtpView extends GetView<OtpController> {
               length: 6,
               showCursor: false,
               onChanged: (value) {
-                code = value;
+                controller.code = value;
               },
             ),
             Container(

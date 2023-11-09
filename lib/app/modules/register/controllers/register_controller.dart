@@ -127,14 +127,14 @@ class RegisterController extends GetxController {
           codeSent: (verificationId, forceResendingToken) {
             RegisterView.verify = verificationId;
             Get.toNamed(Routes.OTP, arguments: {
-              'fullname': fullname,
-              'email': email,
-              'pw': password,
-              'phone': phone,
-              'alamat': alamat,
-              'nik': nik,
-              'nim': nim,
-              'prodi': prodi,
+              'fullname': fullname.text,
+              'email': email.text,
+              'pw': password.text,
+              'phone': phone.toString(),
+              'alamat': alamat.text,
+              'nik': nik.text,
+              'nim': nim.text,
+              'prodi': prodi.text,
             });
           },
           codeAutoRetrievalTimeout: (verificationId) {});

@@ -34,7 +34,7 @@ class OtpController extends GetxController {
     alamat = args['alamat'];
     nik = args['nik'];
     nim = args['nim'];
-    prodi = args['kode_prodi'];
+    prodi = args['prodi'];
 
     startCountdown();
   }

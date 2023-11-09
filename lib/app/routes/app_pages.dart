@@ -32,6 +32,8 @@ import '../modules/recovery_password/bindings/recovery_password_binding.dart';
 import '../modules/recovery_password/views/recovery_password_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/setting/bindings/setting_binding.dart';
+import '../modules/setting/views/setting_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/tab_followers/bindings/tab_followers_binding.dart';
@@ -148,6 +150,11 @@ class AppPages {
       name: _Paths.TAB_FOLLOWERS_USER,
       page: () => const TabFollowersUserView(),
       binding: TabFollowersUserBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTING,
+      page: () => const SettingView(),
+      binding: SettingBinding(),
     ),
   ];
 }
