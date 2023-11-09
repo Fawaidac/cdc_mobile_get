@@ -6,6 +6,8 @@ import '../modules/alumni/bindings/alumni_binding.dart';
 import '../modules/alumni/views/alumni_view.dart';
 import '../modules/detail_alumni/bindings/detail_alumni_binding.dart';
 import '../modules/detail_alumni/views/detail_alumni_view.dart';
+import '../modules/edit_profile/bindings/edit_profile_binding.dart';
+import '../modules/edit_profile/views/edit_profile_view.dart';
 import '../modules/fasilitas/bindings/fasilitas_binding.dart';
 import '../modules/fasilitas/views/fasilitas_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -155,6 +157,11 @@ class AppPages {
       name: _Paths.SETTING,
       page: () => const SettingView(),
       binding: SettingBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => EditProfileView(),
+      binding: EditProfileBinding(),
     ),
   ];
 }

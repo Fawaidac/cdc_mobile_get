@@ -1,7 +1,7 @@
 class UserProfile {
   final String fullname;
   final String lastPosition;
-  final int highestSalary;
+  final String highestSalary;
   final String company;
 
   UserProfile({

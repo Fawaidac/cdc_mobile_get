@@ -80,7 +80,7 @@ class ProfileController extends GetxController
   //   tabController.dispose();
   // }
 
-  static Future<User?> userInfo() async {
+  Future<User?> userInfo() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');

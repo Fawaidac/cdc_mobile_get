@@ -124,7 +124,6 @@ class ProfileView extends GetView<ProfileController> {
                               style: AppFonts.poppins(
                                 fontSize: 12,
                                 color: black,
-                                // fontWeight: FontWeight.bold,
                               ),
                             )),
                       ),
@@ -244,11 +243,8 @@ class ProfileView extends GetView<ProfileController> {
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                             onPressed: () async {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //       builder: (context) => UpdateProfile(),
-                              //     ));
+                              Get.toNamed(Routes.EDIT_PROFILE,
+                                  arguments: controller.user);
                             },
                             child: Text('Edit Profil',
                                 style: AppFonts.poppins(

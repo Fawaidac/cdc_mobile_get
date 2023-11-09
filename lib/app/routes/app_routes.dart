@@ -24,6 +24,7 @@ abstract class Routes {
   static const QUISIONER = _Paths.QUISIONER;
   static const TAB_FOLLOWERS_USER = _Paths.TAB_FOLLOWERS_USER;
   static const SETTING = _Paths.SETTING;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
 }
 
 abstract class _Paths {
@@ -49,4 +50,5 @@ abstract class _Paths {
   static const QUISIONER = '/quisioner';
   static const TAB_FOLLOWERS_USER = '/tab-followers-user';
   static const SETTING = '/setting';
+  static const EDIT_PROFILE = '/edit-profile';
 }
