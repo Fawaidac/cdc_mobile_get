@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/setting/views/add_education_user_view.dart';
 import 'package:cdc/app/modules/setting/views/add_job_user_view.dart';
 import 'package:cdc/app/modules/setting/views/tentang_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
@@ -48,11 +49,7 @@ class SettingView extends GetView<SettingController> {
             get(context, "Kartu Alumni", Icons.badge_outlined),
             GestureDetector(
                 onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => AddEducation(),
-                  //     ));
+                  Get.to(() => AddEducationUserView());
                 },
                 child: get(context, "Pendidikan", Icons.school_outlined)),
             GestureDetector(

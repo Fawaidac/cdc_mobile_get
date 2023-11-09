@@ -43,6 +43,7 @@ class AddJobUserController extends GetxController {
       isJobsNow = "1";
     }
     try {
+      EasyLoading.show(status: "Loading...");
       final response = await addJobs(
         perusahaan.text,
         jabatan.text,
@@ -65,6 +66,8 @@ class AddJobUserController extends GetxController {
       }
     } catch (e) {
       print(e);
+    } finally {
+      EasyLoading.dismiss();
     }
   }
 
