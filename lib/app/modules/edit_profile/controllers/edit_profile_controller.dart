@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../routes/app_pages.dart';
+
 class EditProfileController extends GetxController {
   final conP = Get.find<ProfileController>();
   Rx<User> user = User().obs;
@@ -27,6 +29,7 @@ class EditProfileController extends GetxController {
   var ig = TextEditingController();
   var fb = TextEditingController();
   var x = TextEditingController();
+  var newEmail = TextEditingController();
 
   RxString selectedGender = RxString('Laki-Laki');
   RxList<String> genderOptions = RxList<String>([
@@ -237,5 +240,46 @@ class EditProfileController extends GetxController {
     });
     final data = jsonDecode(res.body);
     return data;
+  }
+
+  Future<void> updateEmailUser(String email) async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      final response = await http.put(
+        Uri.parse('${ApiServices.baseUrl}/user/profile/email'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({'email': email}),
+      );
+      final jsonResponse = json.decode(response.body);
+
+      if (response.statusCode == 200) {
+        if (jsonResponse['status'] == true) {
+          print(jsonResponse['message']);
+          Get.snackbar("Success", jsonResponse['message'],
+              margin: const EdgeInsets.all(10));
+          Get.offAllNamed(Routes.LOGIN);
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          preferences.remove('token');
+          preferences.remove('tokenExpirationTime');
+        } else {
+          Get.snackbar("Success", jsonResponse['message'],
+              margin: const EdgeInsets.all(10));
+        }
+      } else {
+        Get.snackbar("Success", jsonResponse['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print('Error updating email: $e');
+      throw e;
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 }

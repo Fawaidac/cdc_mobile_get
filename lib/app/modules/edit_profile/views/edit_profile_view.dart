@@ -1,11 +1,13 @@
 import 'package:card_loading/card_loading.dart';
 import 'package:cdc/app/modules/profile/controllers/profile_controller.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../resource/custom_textfield_checkbox.dart';
 import '../../../resource/custom_textfieldform.dart';
@@ -258,7 +260,7 @@ class EditProfileView extends GetView<EditProfileController> {
                         ),
                         CustomTextFieldCheckbox(
                           controller: controller.email,
-                          // onTap: () => openDialog(),
+                          onTap: () => updateEmail(),
                           label: "Email",
                           isEnable: true,
                           isReadOnly: true,
@@ -369,5 +371,51 @@ class EditProfileView extends GetView<EditProfileController> {
             ],
           ),
         ));
+  }
+
+  void updateEmail() {
+    Get.dialog(AlertDialog(
+      backgroundColor: Colors.white, // Change the background color here
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0), // Change the radius here
+      ),
+      title: Text(
+        "Perbarui email anda",
+        style: AppFonts.poppins(fontSize: 14, color: primaryColor),
+      ),
+      content: TextField(
+        controller: controller.newEmail,
+        autofocus: true,
+        style: AppFonts.poppins(fontSize: 12, color: black),
+        decoration: InputDecoration(
+          hintText: "Masukan email baru anda",
+          hintStyle: AppFonts.poppins(fontSize: 12, color: softgrey),
+          isDense: true,
+          filled: true,
+          fillColor: const Color(0xFFFCFDFE),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0xffF0F1F7),
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      actions: [
+        TextButton.icon(
+            onPressed: () async {
+              await controller.updateEmailUser(controller.newEmail.text);
+            },
+            icon: Icon(
+              Icons.done,
+              color: primaryColor,
+            ),
+            label: Text(
+              "Simpan",
+              style: AppFonts.poppins(fontSize: 12, color: primaryColor),
+            ))
+      ],
+    ));
   }
 }
