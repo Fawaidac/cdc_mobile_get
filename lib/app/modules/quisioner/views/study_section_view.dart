@@ -38,6 +38,7 @@ class StudySectionView extends GetView<StudySectionController> {
           ),
         ),
         body: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 20),
           physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

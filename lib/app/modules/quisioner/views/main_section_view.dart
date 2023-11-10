@@ -39,6 +39,7 @@ class MainSectionView extends GetView<MainSectionController> {
           ),
         ),
         body: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 20),
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
