@@ -152,9 +152,15 @@ class RegisterController extends GetxController {
           phoneNumber: countryCode.text + phone,
           verificationCompleted: (PhoneAuthCredential authCredential) async {},
           verificationFailed: (FirebaseAuthException e) {
-            Get.snackbar(
-                "Verification Error", "Verification failed: ${e.message}",
-                margin: const EdgeInsets.all(10));
+            if (e.code == 'invalid-phone-number') {
+              Get.snackbar(
+                  "Verification Error", "Verification failed: ${e.message}",
+                  margin: const EdgeInsets.all(10));
+            } else {
+              Get.snackbar(
+                  "Verification Error", "Verification failed: ${e.message}",
+                  margin: const EdgeInsets.all(10));
+            }
           },
           codeSent: (verificationId, forceResendingToken) {
             verifyId = verificationId;
@@ -170,7 +176,9 @@ class RegisterController extends GetxController {
               'kode_prodi': kodeProdi,
             });
           },
-          codeAutoRetrievalTimeout: (verificationId) {});
+          codeAutoRetrievalTimeout: (verificationId) {
+            verifyId = verificationId;
+          });
     } catch (e) {
       print(e);
     } finally {

@@ -10,11 +10,12 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainSectionController extends GetxController {
-  RxList<Map<String, dynamic>> provinsiList = RxList<Map<String, dynamic>>();
-  RxMap<String, dynamic>? selectedProvinsi;
+  RxList<String> provinsiList = RxList<String>();
+  RxString selectedProvinsi = RxString("");
 
-  RxList<Map<String, dynamic>> regencyList = RxList<Map<String, dynamic>>();
-  RxMap<String, dynamic>? selectedRegency;
+  RxList<String> regencyList = RxList<String>();
+  RxString selectedRegency = RxString("");
+
 
   late TextEditingController jenis;
   late TextEditingController namaPerusahaan;
@@ -114,11 +115,15 @@ class MainSectionController extends GetxController {
           await rootBundle.loadString('assets/models/provinsi.json');
       final List<dynamic> jsonData = json.decode(data);
 
-      provinsiList.assignAll(jsonData.cast<Map<String, dynamic>>());
+      provinsiList.assignAll(jsonData
+          .map((dynamic provinsi) => provinsi['province_name'].toString())
+          .cast<String>()
+          .toList());
+
       if (provinsiList.isNotEmpty) {
-        selectedProvinsi = RxMap<String, dynamic>.from(provinsiList[0]);
+        selectedProvinsi.value = provinsiList[0];
       } else {
-        selectedProvinsi = null;
+        selectedProvinsi.value = "";
       }
     } catch (e) {
       print('Error loading provinsi data: $e');
@@ -131,12 +136,15 @@ class MainSectionController extends GetxController {
           await rootBundle.loadString('assets/models/regency.json');
       final List<dynamic> jsonData = json.decode(data);
 
-      regencyList.assignAll(jsonData.cast<Map<String, dynamic>>());
+     regencyList.assignAll(jsonData
+          .map((dynamic regency) => regency['kabupaten_kota'].toString())
+          .cast<String>()
+          .toList());
 
       if (regencyList.isNotEmpty) {
-        selectedRegency = RxMap<String, dynamic>.from(regencyList[0]);
+        selectedRegency.value = regencyList[0];
       } else {
-        selectedRegency = null;
+        selectedRegency.value = "";
       }
     } catch (e) {
       print('Error loading regency data: $e');

@@ -7,6 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 class PostItemController extends GetxController {
   Future<void> fetchData() async {
     try {
+      Get.find<HomeController>().hasMore = true;
+      print(Get.find<HomeController>().hasMore);
       final data = await Get.find<HomeController>()
           .getData(Get.find<HomeController>().page);
       // ignore: unnecessary_type_check
@@ -18,6 +20,11 @@ class PostItemController extends GetxController {
             data.keys.where((key) => int.tryParse(key) != null).map((key) {
           return PostAllModel.fromJson(data[key]);
         }).toList();
+        if (Get.find<HomeController>().totalPage ==
+            Get.find<HomeController>().page) {
+          Get.find<HomeController>().hasMore = false;
+          print('hasmore false');
+        }
         if (Get.find<HomeController>().page >
             Get.find<HomeController>().lastLoadedPage) {
           Get.find<HomeController>().postList.addAll(newPosts);

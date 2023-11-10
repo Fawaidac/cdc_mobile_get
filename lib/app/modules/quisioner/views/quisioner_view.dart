@@ -67,22 +67,30 @@ class QuisionerView extends GetView<QuisionerController> {
                                     fontSize: 12, color: black),
                               ),
                             ),
-                            Obx(() => Checkbox(
-                                  activeColor: primaryColor,
-                                  value: controller.quisionerData.isNotEmpty &&
+                            Obx(() => Transform.scale(
+                                  scale: 1.1,
+                                  child: Checkbox(
+                                    activeColor: primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    value: controller
+                                                .quisionerData.isNotEmpty &&
+                                            index <
+                                                controller.quisionerData.length
+                                        ? controller.quisionerData[index]
+                                            ['value']
+                                        : false,
+                                    onChanged: (value) {
+                                      if (controller.quisionerData.isNotEmpty &&
                                           index <
-                                              controller.quisionerData.length
-                                      ? controller.quisionerData[index]['value']
-                                      : false,
-                                  onChanged: (value) {
-                                    if (controller.quisionerData.isNotEmpty &&
-                                        index <
-                                            controller.quisionerData.length) {
-                                      controller.quisionerData[index]['value'] =
-                                          value!;
-                                    }
-                                    controller.update();
-                                  },
+                                              controller.quisionerData.length) {
+                                        controller.quisionerData[index]
+                                            ['value'] = value!;
+                                      }
+                                      controller.update();
+                                    },
+                                  ),
                                 ))
                           ],
                         ),

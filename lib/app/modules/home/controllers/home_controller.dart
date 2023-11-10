@@ -13,22 +13,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeController extends GetxController {
   ScrollController scrollController = ScrollController();
   final search = TextEditingController();
-  // var postList = <PostAllModel>[].obs;
   RxList<PostAllModel> postList = <PostAllModel>[].obs;
 
   int page = 1;
   int totalPage = 1;
   int lastLoadedPage = 0;
-
+  bool hasMore = false;
 
   void _scrollListener() {
+    print('check : $hasMore');
     if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
+            scrollController.position.maxScrollExtent 
+        ) {
+      print('call : $hasMore');
+
       if (page < totalPage) {
         page = page + 1;
 
         Get.find<PostItemController>().fetchData();
       }
+    } else {
+      print('dont : $hasMore');
     }
   }
 

@@ -408,24 +408,22 @@ class MainSectionView extends GetView<MainSectionController> {
                       SizedBox(
                           height: 50,
                           child: Obx(
-                            () => DropdownButtonFormField<Map<String, dynamic>>(
-                              value: controller.selectedProvinsi,
+                            () => DropdownButtonFormField<String>(
+                              value: controller.selectedProvinsi.value,
                               isExpanded: true,
                               icon: Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 color: black,
                               ),
-                              onChanged: (Map<String, dynamic>? val) {
-                                if (val != null) {
-                                  controller.selectedProvinsi?.addAll(val);
-                                }
+                              onChanged: (String? val) {
+                                controller.selectedProvinsi.value = val!;
                               },
                               items: controller.provinsiList
-                                  .map((Map<String, dynamic> provinsi) {
-                                return DropdownMenuItem<Map<String, dynamic>>(
+                                  .map((String provinsi) {
+                                return DropdownMenuItem<String>(
                                   value: provinsi,
                                   child: Text(
-                                    provinsi['province_name'] ?? "",
+                                    provinsi,
                                     style: AppFonts.poppins(
                                         fontSize: 12, color: black),
                                   ),
@@ -455,100 +453,91 @@ class MainSectionView extends GetView<MainSectionController> {
                               ),
                             ),
                           )),
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-                        width: MediaQuery.of(context).size.width,
-                        color: white,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 5),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        "Dimana lokasi kabupaten/kota tempat anda bekerja?",
-                                        style:
-                                            GoogleFonts.poppins(fontSize: 12),
-                                      ),
-                                    ),
-                                    Text(
-                                      "*",
-                                      style: AppFonts.poppins(
-                                          fontSize: 12, color: red),
-                                    )
-                                  ],
-                                ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Dimana lokasi kabupaten/kota tempat anda bekerja?",
+                                style: GoogleFonts.poppins(fontSize: 12),
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              SizedBox(
-                                  height: 50,
-                                  child: Obx(
-                                    () => DropdownButtonFormField<
-                                        Map<String, dynamic>>(
-                                      value: controller.selectedRegency,
-                                      isExpanded: true,
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: black,
-                                      ),
-                                      onChanged: (Map<String, dynamic>? val) {
-                                        if (val != null) {
-                                          controller.selectedRegency
-                                              ?.addAll(val);
-                                        }
-                                      },
-                                      items: controller.regencyList
-                                          .map((Map<String, dynamic> regency) {
-                                        return DropdownMenuItem<
-                                            Map<String, dynamic>>(
-                                          value: regency,
-                                          child: Text(
-                                            regency['kabupaten_kota'] ?? "",
-                                            style: AppFonts.poppins(
-                                                fontSize: 12, color: black),
-                                          ),
-                                        );
-                                      }).toList(),
-                                      decoration: InputDecoration(
-                                        hintText: "Pilih",
-                                        isDense: true,
-                                        hintStyle: GoogleFonts.poppins(
-                                            fontSize: 13, color: grey),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: black,
-                                            width: 1,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: black,
-                                            width: 1,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color(0xFFFCFDFE),
-                                      ),
-                                    ),
-                                  )),
-                            ],
-                          ),
+                            ),
+                            Text(
+                              "*",
+                              style: AppFonts.poppins(fontSize: 12, color: red),
+                            )
+                          ],
                         ),
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                          height: 50,
+                          child: Obx(
+                            () => DropdownButtonFormField<String>(
+                              value: controller.selectedRegency.value,
+                              isExpanded: true,
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: black,
+                              ),
+                              onChanged: (String? val) {
+                                controller.selectedRegency.value = val!;
+                              },
+                              items:
+                                  controller.regencyList.map((String regency) {
+                                return DropdownMenuItem<String>(
+                                  value: regency,
+                                  child: Text(
+                                    regency,
+                                    style: AppFonts.poppins(
+                                        fontSize: 12, color: black),
+                                  ),
+                                );
+                              }).toList(),
+                              decoration: InputDecoration(
+                                hintText: "Pilih",
+                                isDense: true,
+                                hintStyle: GoogleFonts.poppins(
+                                    fontSize: 13, color: grey),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: black,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: black,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                filled: true,
+                                fillColor: const Color(0xFFFCFDFE),
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                 ),

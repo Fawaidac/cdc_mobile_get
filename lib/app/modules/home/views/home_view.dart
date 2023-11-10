@@ -27,7 +27,7 @@ class HomeView extends GetView<HomeController> {
       child: ListView(
         shrinkWrap: false,
         controller: controller.scrollController,
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         children: [
           const SizedBox(
             height: 10,
