@@ -237,11 +237,17 @@ class ProfileController extends GetxController
       );
 
       if (response.statusCode == 200) {
+        Get.snackbar("Success", "Berhasil memperbarui visibilitas",
+            margin: const EdgeInsets.all(10));
         final jsonResponse = jsonDecode(response.body);
-        await getUser(); // Perbarui data pengguna setelah perubahan visibility
+        await getUser();
+
+        print(user.value.noTelp);
+
         update();
       } else {
-        final data = jsonDecode(response.body);
+        Get.snackbar("Error", "Terjadi kesalahan",
+            margin: const EdgeInsets.all(10));
       }
     } catch (e) {
       print('Error: $e');

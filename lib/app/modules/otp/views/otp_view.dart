@@ -50,9 +50,9 @@ class OtpView extends GetView<OtpController> {
             ),
             Pinput(
               length: 6,
-              showCursor: false,
+              showCursor: true,
               onChanged: (value) {
-                controller.code = value;
+                controller.otpCode.value = value;
               },
             ),
             Container(

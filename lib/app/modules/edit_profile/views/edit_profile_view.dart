@@ -240,7 +240,7 @@ class EditProfileView extends GetView<EditProfileController> {
                           inputFormatters:
                               FilteringTextInputFormatter.digitsOnly,
                           checkboxValue: controller.isCheckedTelp.value,
-                          onCheckboxChanged: (value) async {
+                          onCheckboxChanged: (value) {
                             controller.isCheckedTelp.value = value!;
                             controller.updateVisibility('no_telp', value);
                           },

@@ -158,7 +158,7 @@ class EditProfileController extends GetxController {
     try {
       EasyLoading.show(status: "Loading...");
       await conP.updateVisibility(key, value);
-      await conP.getUser();
+      // await conP.getUser();
       telp.text = conP.user.value.noTelp ?? "";
       ttl.text = conP.user.value.tempatTanggalLahir ?? "";
       email.text = conP.user.value.email ?? "";

@@ -158,6 +158,7 @@ class RegisterController extends GetxController {
           },
           codeSent: (verificationId, forceResendingToken) {
             verifyId = verificationId;
+            print('verifyId register : $verifyId');
             Get.toNamed(Routes.OTP, arguments: {
               'fullname': fullname.text,
               'email': email.text,

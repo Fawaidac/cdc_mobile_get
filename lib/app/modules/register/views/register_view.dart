@@ -21,8 +21,7 @@ class RegisterView extends GetView<RegisterController> {
 
   @override
   final controller = Get.put(RegisterController());
-  var password = TextEditingController();
-  var confirmPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     controller.fetchData();
@@ -203,7 +202,7 @@ class RegisterView extends GetView<RegisterController> {
                   children: [
                     TextFormField(
                       textInputAction: TextInputAction.done,
-                      controller: password,
+                      controller: controller.password,
                       obscureText: showpass,
                       style: AppFonts.poppins(fontSize: 13, color: black),
                       keyboardType: TextInputType.text,
@@ -266,7 +265,7 @@ class RegisterView extends GetView<RegisterController> {
                   children: [
                     TextFormField(
                       textInputAction: TextInputAction.done,
-                      controller: confirmPassword,
+                      controller: controller.confirmPassword,
                       obscureText: connpass,
                       style: AppFonts.poppins(fontSize: 13, color: black),
                       keyboardType: TextInputType.text,

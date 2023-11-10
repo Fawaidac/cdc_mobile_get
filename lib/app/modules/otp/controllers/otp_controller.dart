@@ -13,6 +13,7 @@ import 'package:http/http.dart' as http;
 class OtpController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   var code = "";
+  RxString otpCode = RxString("");
   String fullname = "";
   String email = "";
   String pw = "";
@@ -57,11 +58,13 @@ class OtpController extends GetxController {
   Future<void> verifikasiOtp(String code) async {
     try {
       EasyLoading.show(status: "Loading...");
-      // print(object)
+      // print('otpCode : $otpCode');
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: Get.find<RegisterController>().verifyId,
-          smsCode: code);
+          smsCode: otpCode.value);
       await auth.signInWithCredential(credential);
+
+      // print(Get.find<RegisterController>().verifyId);
 
       await handleRegister(email, nik, fullname, pw, phone, alamat, nim, prodi);
     } catch (e) {
