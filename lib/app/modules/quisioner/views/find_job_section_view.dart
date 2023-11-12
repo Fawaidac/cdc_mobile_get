@@ -46,7 +46,7 @@ class FindJobSectionView extends GetView<FindJobSectionController> {
                 padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                 child: Text(
                   "Bagaimana anda mencari pekerjaan tersebut? Jawaban bisa lebih dari satu Section",
-                  style: AppFonts.poppins(fontSize: 12, color: black),
+                  style: AppFonts.poppins(fontSize: 14, color: black),
                 ),
               ),
               Container(
