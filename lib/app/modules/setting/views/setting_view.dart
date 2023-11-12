@@ -16,106 +16,137 @@ class SettingView extends GetView<SettingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
       appBar: AppBar(
         backgroundColor: white,
         shadowColor: Colors.transparent,
-        centerTitle: true,
         automaticallyImplyLeading: false,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: primaryColor,
-            size: 30,
+            color: black,
           ),
         ),
         title: Text(
           "Pengaturan",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Akun",
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
+            Container(
+              padding: const EdgeInsets.all(15),
+              color: white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Akun",
+                    style: AppFonts.poppins(fontSize: 12, color: black),
+                  ),
+                  getWidgetSetting(
+                      0, context, "Kartu Alumni", Icons.badge_outlined),
+                  getWidgetSetting(
+                      1, context, "Tambah Pendidikan", Icons.school_outlined),
+                  getWidgetSetting(2, context, "Tambah Pekerjaan",
+                      Icons.work_outline_rounded),
+                  getWidgetSetting(
+                      3, context, "Ubah Kata Sandi", Icons.key_outlined),
+                ],
+              ),
             ),
-            get(context, "Kartu Alumni", Icons.badge_outlined),
-            GestureDetector(
-                onTap: () {
-                  Get.to(() => AddEducationUserView());
-                },
-                child: get(context, "Pendidikan", Icons.school_outlined)),
-            GestureDetector(
-                onTap: () {
-                  Get.to(() => AddJobUserView());
-                },
-                child: get(context, "Pekerjaan", Icons.work_outline)),
-            GestureDetector(
-                onTap: () {
-                  Get.toNamed(Routes.RECOVERY_PASSWORD);
-                },
-                child: get(context, "Ubah Sandi", Icons.lock_outline)),
-            Text(
-              "Aksi",
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
+            Container(
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.only(top: 10),
+              color: white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Aksi",
+                    style: AppFonts.poppins(fontSize: 12, color: black),
+                  ),
+                  getWidgetSetting(
+                      4, context, "Notifikasi", Icons.notifications_outlined,
+                      show: true),
+                  getWidgetSetting(5, context, "Keluar", Icons.logout),
+                ],
+              ),
             ),
-            get(context, "Notifikasi", Icons.notifications_outlined,
-                show: true),
-            GestureDetector(
-                onTap: () async {
-                  SharedPreferences preferences =
-                      await SharedPreferences.getInstance();
-                  preferences.remove('token');
-                  preferences.remove('tokenExpirationTime');
-
-                  Get.offAllNamed(Routes.LOGIN);
-                },
-                child: get(context, "Keluar", Icons.logout)),
-            Text(
-              "Info",
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
+            Container(
+              padding: const EdgeInsets.all(15),
+              margin: const EdgeInsets.only(top: 10),
+              color: white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Info",
+                    style: AppFonts.poppins(fontSize: 12, color: black),
+                  ),
+                  getWidgetSetting(6, context, "Tentang", Icons.help_outline),
+                ],
+              ),
             ),
-            GestureDetector(
-                onTap: () {
-                  Get.to(() => const TentangView());
-                },
-                child: get(context, "Tentang", Icons.help_outline))
+            Padding(
+              padding: const EdgeInsets.only(top: 70, bottom: 70),
+              child: Center(
+                child: Text(
+                  "CDC Versi 1.0.0",
+                  style: AppFonts.poppins(fontSize: 12, color: softgrey),
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Padding get(BuildContext context, String name, IconData iconData,
+  Widget getWidgetSetting(
+      int i, BuildContext context, String name, IconData iconData,
       {bool show = false}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    return GestureDetector(
+      onTap: () async {
+        if (i == 0) {
+        } else if (i == 1) {
+          Get.to(() => AddEducationUserView());
+        } else if (i == 2) {
+          Get.to(() => AddJobUserView());
+        } else if (i == 3) {
+          Get.toNamed(Routes.RECOVERY_PASSWORD);
+        } else if (i == 4) {
+        } else if (i == 5) {
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          preferences.remove('token');
+          preferences.remove('tokenExpirationTime');
+
+          Get.offAllNamed(Routes.LOGIN);
+        } else {
+          Get.to(() => const TentangView());
+        }
+      },
       child: Container(
         color: white,
-        height: 60,
+        height: 50,
         width: MediaQuery.of(context).size.width,
         child: Row(
           children: [
             Icon(
               iconData,
-              color: primaryColor,
-              size: 30,
+              color: black,
+              size: 25,
             ),
             const SizedBox(
               width: 10,
             ),
             Text(
               name,
-              style: AppFonts.poppins(fontSize: 14, color: black),
+              style: AppFonts.poppins(
+                  fontSize: 12, color: black, fontWeight: FontWeight.w500),
             ),
             const Spacer(),
             show
@@ -124,11 +155,14 @@ class SettingView extends GetView<SettingController> {
                     child: Switch(
                       value: true,
                       onChanged: (bool value1) {},
-                      activeColor: primaryColor,
+                      activeColor: black,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                   )
-                : const SizedBox()
+                : Icon(
+                    Icons.keyboard_arrow_right_rounded,
+                    color: black,
+                  )
           ],
         ),
       ),

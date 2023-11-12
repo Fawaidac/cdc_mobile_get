@@ -12,11 +12,11 @@ import '../../../utils/app_fonts.dart';
 class FindJobSectionView extends GetView<FindJobSectionController> {
   FindJobSectionView({Key? key}) : super(key: key);
 
+  @override
   final controller = Get.put(FindJobSectionController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: white.withOpacity(0.98),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: white,
@@ -27,13 +27,13 @@ class FindJobSectionView extends GetView<FindJobSectionController> {
             },
             child: Icon(
               Icons.keyboard_arrow_left_rounded,
-              color: primaryColor,
+              color: black,
             ),
           ),
           title: Text(
             "Kuisioner Mencari Pekerjaan",
             style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -1345,7 +1345,7 @@ class FindJobSectionView extends GetView<FindJobSectionController> {
                         FilteringTextInputFormatter.singleLineFormatter),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -1357,7 +1357,7 @@ class FindJobSectionView extends GetView<FindJobSectionController> {
                           "Selanjutnya",
                           style: AppFonts.poppins(
                               fontSize: 12,
-                              color: primaryColor,
+                              color: black,
                               fontWeight: FontWeight.bold),
                         ))
                   ],

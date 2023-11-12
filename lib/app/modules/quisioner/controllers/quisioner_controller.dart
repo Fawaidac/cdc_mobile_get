@@ -68,10 +68,10 @@ class QuisionerController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    fetchQuisionerData();
-  }
+  // @override
+  // void onInit() {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   fetchQuisionerData();
+  // }
 }

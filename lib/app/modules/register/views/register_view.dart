@@ -200,61 +200,61 @@ class RegisterView extends GetView<RegisterController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextFormField(
-                      textInputAction: TextInputAction.done,
-                      controller: controller.password,
-                      obscureText: showpass,
-                      style: AppFonts.poppins(fontSize: 13, color: black),
-                      keyboardType: TextInputType.text,
-                      onSaved: (val) =>
-                          controller.password = val as TextEditingController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter password';
-                        }
-                        return null;
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.singleLineFormatter
-                      ],
-                      decoration: InputDecoration(
-                        hintText: "Kata Sandi",
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              controller.toggleShowPassword();
-                            },
-                            icon: showpass
-                                ? Icon(
-                                    Icons.visibility_off,
-                                    size: 20,
-                                    color: grey,
-                                  )
-                                : Icon(
-                                    Icons.visibility,
-                                    color: first,
-                                    size: 20,
-                                  )),
-                        isDense: true,
-                        hintStyle:
-                            GoogleFonts.poppins(fontSize: 13, color: grey),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                    Obx(() => TextFormField(
+                          textInputAction: TextInputAction.done,
+                          controller: controller.password,
+                          obscureText: controller.showPassword.value,
+                          style: AppFonts.poppins(fontSize: 13, color: black),
+                          keyboardType: TextInputType.text,
+                          onSaved: (val) => controller.password =
+                              val as TextEditingController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter password';
+                            }
+                            return null;
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.singleLineFormatter
+                          ],
+                          decoration: InputDecoration(
+                            hintText: "Kata Sandi",
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.toggleShowPassword();
+                                },
+                                icon: controller.showPassword.value
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        size: 20,
+                                        color: grey,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: first,
+                                        size: 20,
+                                      )),
+                            isDense: true,
+                            hintStyle:
+                                GoogleFonts.poppins(fontSize: 13, color: grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: const Color(0xffC4C4C4).withOpacity(0.2),
                           ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        filled: true,
-                        fillColor: const Color(0xffC4C4C4).withOpacity(0.2),
-                      ),
-                    )
+                        ))
                   ],
                 ),
               ),
@@ -263,61 +263,61 @@ class RegisterView extends GetView<RegisterController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextFormField(
-                      textInputAction: TextInputAction.done,
-                      controller: controller.confirmPassword,
-                      obscureText: connpass,
-                      style: AppFonts.poppins(fontSize: 13, color: black),
-                      keyboardType: TextInputType.text,
-                      onSaved: (val) => controller.confirmPassword =
-                          val as TextEditingController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter password';
-                        }
-                        return null;
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.singleLineFormatter
-                      ],
-                      decoration: InputDecoration(
-                        hintText: "Konfirmasi Kata Sandi",
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              controller.toggleShowConfirmPassword();
-                            },
-                            icon: connpass
-                                ? Icon(
-                                    Icons.visibility_off,
-                                    size: 20,
-                                    color: grey,
-                                  )
-                                : Icon(
-                                    Icons.visibility,
-                                    color: first,
-                                    size: 20,
-                                  )),
-                        isDense: true,
-                        hintStyle:
-                            GoogleFonts.poppins(fontSize: 13, color: grey),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                    Obx(() => TextFormField(
+                          textInputAction: TextInputAction.done,
+                          controller: controller.confirmPassword,
+                          obscureText: controller.showConfirmPassword.value,
+                          style: AppFonts.poppins(fontSize: 13, color: black),
+                          keyboardType: TextInputType.text,
+                          onSaved: (val) => controller.confirmPassword =
+                              val as TextEditingController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter password';
+                            }
+                            return null;
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.singleLineFormatter
+                          ],
+                          decoration: InputDecoration(
+                            hintText: "Konfirmasi Kata Sandi",
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.toggleShowConfirmPassword();
+                                },
+                                icon: controller.showConfirmPassword.value
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        size: 20,
+                                        color: grey,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: first,
+                                        size: 20,
+                                      )),
+                            isDense: true,
+                            hintStyle:
+                                GoogleFonts.poppins(fontSize: 13, color: grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: const Color(0xffC4C4C4).withOpacity(0.2),
                           ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        filled: true,
-                        fillColor: const Color(0xffC4C4C4).withOpacity(0.2),
-                      ),
-                    )
+                        ))
                   ],
                 ),
               ),
@@ -326,7 +326,7 @@ class RegisterView extends GetView<RegisterController> {
                   height: 48,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [second, first]),
+                      color: primaryColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -368,7 +368,7 @@ class RegisterView extends GetView<RegisterController> {
                       "Masuk ",
                       style: AppFonts.poppins(
                           fontSize: 12,
-                          color: first,
+                          color: primaryColor,
                           fontWeight: FontWeight.bold),
                     ),
                   )

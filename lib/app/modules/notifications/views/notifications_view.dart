@@ -20,20 +20,19 @@ class NotificationsView extends GetView<NotificationsController> {
         automaticallyImplyLeading: false,
         shadowColor: Colors.transparent,
         backgroundColor: white,
-        centerTitle: true,
         leading: InkWell(
           onTap: () {
             Get.back();
           },
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: primaryColor,
+            color: black,
           ),
         ),
         title: Text(
           "Notifikasi",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: RefreshIndicator(

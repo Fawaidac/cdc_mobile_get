@@ -16,7 +16,7 @@ class LoginView extends GetView<LoginController> {
 
   TextEditingController nik = TextEditingController();
   TextEditingController password = TextEditingController();
-  bool showpass = true;
+
   @override
   final controller = Get.put(LoginController());
 
@@ -54,60 +54,61 @@ class LoginView extends GetView<LoginController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    TextFormField(
-                      textInputAction: TextInputAction.done,
-                      controller: password,
-                      obscureText: showpass,
-                      style: AppFonts.poppins(fontSize: 13, color: black),
-                      keyboardType: TextInputType.text,
-                      onSaved: (val) => password = val as TextEditingController,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter password';
-                        }
-                        return null;
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.singleLineFormatter
-                      ],
-                      decoration: InputDecoration(
-                        hintText: "Kata Sandi",
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              controller.toggleShowPassword();
-                            },
-                            icon: showpass
-                                ? Icon(
-                                    Icons.visibility_off,
-                                    size: 20,
-                                    color: grey,
-                                  )
-                                : Icon(
-                                    Icons.visibility,
-                                    color: primaryColor,
-                                    size: 20,
-                                  )),
-                        isDense: true,
-                        hintStyle:
-                            GoogleFonts.poppins(fontSize: 13, color: grey),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
+                    Obx(() => TextFormField(
+                          textInputAction: TextInputAction.done,
+                          controller: password,
+                          obscureText: controller.showPassword.value,
+                          style: AppFonts.poppins(fontSize: 13, color: black),
+                          keyboardType: TextInputType.text,
+                          onSaved: (val) =>
+                              password = val as TextEditingController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter password';
+                            }
+                            return null;
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.singleLineFormatter
+                          ],
+                          decoration: InputDecoration(
+                            hintText: "Kata Sandi",
+                            suffixIcon: IconButton(
+                                onPressed: () {
+                                  controller.toggleShowPassword();
+                                },
+                                icon: controller.showPassword.value
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        size: 20,
+                                        color: grey,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: primaryColor,
+                                        size: 20,
+                                      )),
+                            isDense: true,
+                            hintStyle:
+                                GoogleFonts.poppins(fontSize: 13, color: grey),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Color(0xffC4C4C4).withOpacity(0.2),
                           ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        filled: true,
-                        fillColor: Color(0xffC4C4C4).withOpacity(0.2),
-                      ),
-                    )
+                        ))
                   ],
                 ),
               ),
@@ -134,7 +135,7 @@ class LoginView extends GetView<LoginController> {
                     height: 48,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [second, first]),
+                        color: primaryColor,
                         borderRadius: BorderRadius.circular(15)),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -174,7 +175,7 @@ class LoginView extends GetView<LoginController> {
                       "Daftar Sekarang ",
                       style: AppFonts.poppins(
                           fontSize: 12,
-                          color: first,
+                          color: primaryColor,
                           fontWeight: FontWeight.bold),
                     ),
                   )

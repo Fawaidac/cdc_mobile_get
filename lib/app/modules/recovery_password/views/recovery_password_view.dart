@@ -29,7 +29,6 @@ class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
             color: black,
-            size: 30,
           ),
         ),
       ),
@@ -66,7 +65,7 @@ class RecoveryPasswordView extends GetView<RecoveryPasswordController> {
                   height: 48,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [second, first]),
+                      color: primaryColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

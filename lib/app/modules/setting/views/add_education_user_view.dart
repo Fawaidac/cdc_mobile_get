@@ -27,14 +27,13 @@ class AddEducationUserView extends GetView<AddEducationUserController> {
             },
             child: Icon(
               Icons.keyboard_arrow_left_rounded,
-              color: primaryColor,
+              color: black,
             ),
           ),
-          centerTitle: true,
           title: Text(
             "Tambah Pendidikan",
             style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(

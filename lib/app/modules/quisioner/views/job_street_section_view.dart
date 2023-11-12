@@ -9,12 +9,12 @@ import '../../../utils/app_fonts.dart';
 
 class JobStreetSectionView extends GetView<JobStreetSectionController> {
   JobStreetSectionView({Key? key}) : super(key: key);
+  @override
   final controller = Get.put(JobStreetSectionController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: white.withOpacity(0.98),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: white,
@@ -25,13 +25,13 @@ class JobStreetSectionView extends GetView<JobStreetSectionController> {
             },
             child: Icon(
               Icons.keyboard_arrow_left_rounded,
-              color: primaryColor,
+              color: black,
             ),
           ),
           title: Text(
             "Kuisioner Mulai Mencari Pekerjaan",
             style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -288,7 +288,7 @@ class JobStreetSectionView extends GetView<JobStreetSectionController> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -300,7 +300,7 @@ class JobStreetSectionView extends GetView<JobStreetSectionController> {
                           "Selanjutnya",
                           style: AppFonts.poppins(
                               fontSize: 12,
-                              color: primaryColor,
+                              color: black,
                               fontWeight: FontWeight.bold),
                         ))
                   ],

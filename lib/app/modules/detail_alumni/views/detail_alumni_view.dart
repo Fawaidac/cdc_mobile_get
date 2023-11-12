@@ -9,7 +9,6 @@ import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/detail_alumni_controller.dart';
 
@@ -37,14 +36,13 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
           },
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: primaryColor,
+            color: black,
           ),
         ),
-        centerTitle: true,
         title: Text(
           "Profile",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: NestedScrollView(
@@ -255,9 +253,14 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Get.toNamed(Routes.TAB_FOLLOWERS,
-                                        arguments: controller
-                                                .userDetail.value?.user?.id ??
-                                            "");
+                                        arguments: {
+                                          'id': controller
+                                                  .userDetail.value?.user?.id ??
+                                              "",
+                                          'fullname': controller.userDetail
+                                                  .value?.user?.fullname ??
+                                              "",
+                                        });
                                   },
                                   child: Container(
                                     width: 80,
@@ -299,9 +302,14 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                 child: GestureDetector(
                                   onTap: () {
                                     Get.toNamed(Routes.TAB_FOLLOWERS,
-                                        arguments: controller
-                                                .userDetail.value?.user?.id ??
-                                            "");
+                                        arguments: {
+                                          'id': controller
+                                                  .userDetail.value?.user?.id ??
+                                              "",
+                                          'fullname': controller.userDetail
+                                                  .value?.user?.fullname ??
+                                              "",
+                                        });
                                   },
                                   child: Container(
                                     width: 80,
@@ -421,16 +429,16 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                 )),
                 bottom: TabBar(
                     unselectedLabelColor: grey,
-                    labelColor: first,
+                    labelColor: primaryColor,
                     controller: controller.tabController,
                     labelStyle: AppFonts.poppins(
                         fontSize: 14,
-                        color: black,
+                        color: primaryColor,
                         fontWeight: FontWeight.bold),
                     unselectedLabelStyle: AppFonts.poppins(
                         fontSize: 14, color: grey, fontWeight: FontWeight.w500),
                     isScrollable: false,
-                    indicatorColor: first,
+                    indicatorColor: primaryColor,
                     tabs: const [
                       Tab(text: "Post"),
                       Tab(text: "Pendidikan"),

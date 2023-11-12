@@ -25,7 +25,6 @@ class OtpView extends GetView<OtpController> {
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
             color: black,
-            size: 30,
           ),
         ),
       ),
@@ -60,7 +59,7 @@ class OtpView extends GetView<OtpController> {
               height: 48,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [second, first]),
+                color: primaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: ElevatedButton(
@@ -97,7 +96,9 @@ class OtpView extends GetView<OtpController> {
                     "Kirim Ulang",
                     style: AppFonts.poppins(
                       fontSize: 12,
-                      color: controller.canResend.value ? first : Colors.grey,
+                      color: controller.canResend.value
+                          ? primaryColor
+                          : Colors.grey,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -110,7 +111,7 @@ class OtpView extends GetView<OtpController> {
                   "Harap tunggu kode dalam 00:${controller.countdown.toString().padLeft(2, '0')}s",
                   style: AppFonts.poppins(
                       fontSize: 12,
-                      color: controller.countdown > 0 ? grey : first),
+                      color: controller.countdown > 0 ? grey : primaryColor),
                 ),
               );
             }),

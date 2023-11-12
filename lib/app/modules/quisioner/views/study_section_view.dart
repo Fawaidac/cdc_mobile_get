@@ -13,11 +13,11 @@ import '../../../utils/app_colors.dart';
 class StudySectionView extends GetView<StudySectionController> {
   StudySectionView({Key? key}) : super(key: key);
 
+  @override
   final controller = Get.put(StudySectionController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: white.withOpacity(0.98),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: white,
@@ -28,13 +28,13 @@ class StudySectionView extends GetView<StudySectionController> {
             },
             child: Icon(
               Icons.keyboard_arrow_left_rounded,
-              color: primaryColor,
+              color: black,
             ),
           ),
           title: Text(
             "Kuisioner Studi Lanjut",
             style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -459,7 +459,7 @@ class StudySectionView extends GetView<StudySectionController> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -471,7 +471,7 @@ class StudySectionView extends GetView<StudySectionController> {
                           "Selanjutnya",
                           style: AppFonts.poppins(
                               fontSize: 12,
-                              color: primaryColor,
+                              color: black,
                               fontWeight: FontWeight.bold),
                         ))
                   ],

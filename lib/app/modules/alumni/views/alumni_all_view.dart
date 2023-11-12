@@ -414,7 +414,7 @@ class AlumniAllView extends GetView<AlumniController> {
             height: 5,
             width: 150,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10), color: primaryColor),
+                borderRadius: BorderRadius.circular(10), color: black),
           ),
           Obx(() => Expanded(
                   child: ListView.builder(
@@ -537,7 +537,7 @@ class AlumniAllView extends GetView<AlumniController> {
                     "Cari",
                     style: AppFonts.poppins(
                         fontSize: 12,
-                        color: primaryColor,
+                        color: black,
                         fontWeight: FontWeight.bold),
                   ))
             ],

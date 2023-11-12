@@ -159,7 +159,8 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                               ),
                               Container(
-                                margin: const EdgeInsets.symmetric(vertical: 10),
+                                margin:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 width: 1,
                                 height: MediaQuery.of(context).size.height,
                                 color: black.withOpacity(0.2),

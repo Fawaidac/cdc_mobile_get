@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class UsersItemView extends GetView {
   const UsersItemView(this.user, {super.key});
   final user;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(Routes.DETAIL_ALUMNI, arguments: user['id']);
+      },
       child: Container(
         height: 50,
         margin: const EdgeInsets.symmetric(vertical: 10),

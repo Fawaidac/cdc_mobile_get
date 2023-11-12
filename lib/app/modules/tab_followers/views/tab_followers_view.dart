@@ -18,7 +18,8 @@ class TabFollowersView extends GetView<TabFollowersController> {
 
   @override
   Widget build(BuildContext context) {
-    String userId = Get.arguments;
+    String userId = Get.arguments['id'];
+    String userFullname = Get.arguments['fullname'];
     Get.find<FollowersController>().fetchDataFollowers(userId);
     Get.find<FollowedController>().fetchDataFollowed(userId);
     return DefaultTabController(
@@ -32,8 +33,13 @@ class TabFollowersView extends GetView<TabFollowersController> {
               onPressed: () => Get.back(),
               icon: Icon(
                 Icons.keyboard_arrow_left_rounded,
-                color: primaryColor,
+                color: black,
               )),
+          title: Text(
+            userFullname,
+            style: AppFonts.poppins(
+                fontSize: 14, color: black, fontWeight: FontWeight.w500),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -44,7 +50,7 @@ class TabFollowersView extends GetView<TabFollowersController> {
                 margin: const EdgeInsets.all(0),
                 child: TabBar(
                     unselectedLabelColor: grey,
-                    labelColor: primaryColor,
+                    labelColor: black,
                     labelStyle: AppFonts.poppins(
                         fontSize: 12,
                         color: black,
@@ -52,7 +58,7 @@ class TabFollowersView extends GetView<TabFollowersController> {
                     unselectedLabelStyle: AppFonts.poppins(
                         fontSize: 12, color: grey, fontWeight: FontWeight.w500),
                     isScrollable: false,
-                    indicatorColor: primaryColor,
+                    indicatorColor: black,
                     tabs: const [
                       Tab(text: "Pengikut"),
                       Tab(text: "Diikuti"),

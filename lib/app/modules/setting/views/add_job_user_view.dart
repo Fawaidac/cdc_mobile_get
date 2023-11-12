@@ -8,9 +8,11 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class AddJobUserView extends GetView<AddJobUserController> {
   AddJobUserView({Key? key}) : super(key: key);
 
+  @override
   final controller = Get.put(AddJobUserController());
 
   bool check = false;
@@ -28,14 +30,13 @@ class AddJobUserView extends GetView<AddJobUserController> {
           },
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: primaryColor,
+            color: black,
           ),
         ),
-        centerTitle: true,
         title: Text(
           "Tambah Pekerjaan",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(

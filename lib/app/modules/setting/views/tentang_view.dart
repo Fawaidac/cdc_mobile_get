@@ -13,20 +13,18 @@ class TentangView extends GetView {
       appBar: AppBar(
         backgroundColor: white,
         shadowColor: Colors.transparent,
-        centerTitle: true,
         automaticallyImplyLeading: false,
         leading: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: primaryColor,
-            size: 30,
+            color: black,
           ),
         ),
         title: Text(
-          "Tantang Aplikasi",
+          "Tentang Aplikasi",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
@@ -53,7 +51,7 @@ class TentangView extends GetView {
             height: 20,
           ),
           Text(
-            "Versi Aplikasi: 1.0.0",
+            "CDC Versi 1.0.0",
             style: AppFonts.poppins(fontSize: 12, color: black),
           ),
           Image.asset(

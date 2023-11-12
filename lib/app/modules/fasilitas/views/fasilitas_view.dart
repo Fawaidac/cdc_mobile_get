@@ -26,20 +26,19 @@ class FasilitasView extends GetView<FasilitasController> {
         automaticallyImplyLeading: false,
         shadowColor: Colors.transparent,
         backgroundColor: white,
-        centerTitle: true,
         leading: InkWell(
           onTap: () {
             Get.back();
           },
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: primaryColor,
+            color: black,
           ),
         ),
         title: Text(
           "Fasilitas",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(

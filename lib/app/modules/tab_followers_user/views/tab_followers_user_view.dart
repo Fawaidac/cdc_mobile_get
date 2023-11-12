@@ -27,12 +27,12 @@ class TabFollowersUserView extends GetView<TabFollowersUserController> {
               onPressed: () => Get.back(),
               icon: Icon(
                 Icons.keyboard_arrow_left_rounded,
-                color: primaryColor,
+                color: black,
               )),
-          // centerTitle: true,
           title: Obx(() => Text(
                 controller.name.value,
-                style: AppFonts.poppins(fontSize: 14, color: primaryColor),
+                style: AppFonts.poppins(
+                    fontSize: 14, color: black, fontWeight: FontWeight.w500),
               )),
         ),
         body: Padding(
@@ -44,7 +44,7 @@ class TabFollowersUserView extends GetView<TabFollowersUserController> {
                 margin: const EdgeInsets.all(0),
                 child: TabBar(
                     unselectedLabelColor: grey,
-                    labelColor: primaryColor,
+                    labelColor: black,
                     labelStyle: AppFonts.poppins(
                         fontSize: 12,
                         color: black,
@@ -52,7 +52,7 @@ class TabFollowersUserView extends GetView<TabFollowersUserController> {
                     unselectedLabelStyle: AppFonts.poppins(
                         fontSize: 12, color: grey, fontWeight: FontWeight.w500),
                     isScrollable: false,
-                    indicatorColor: primaryColor,
+                    indicatorColor: black,
                     tabs: const [
                       Tab(text: "Pengikut"),
                       Tab(text: "Diikuti"),

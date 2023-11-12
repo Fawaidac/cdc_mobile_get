@@ -15,7 +15,6 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: white.withOpacity(0.98),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: white,
@@ -26,13 +25,13 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
             },
             child: Icon(
               Icons.keyboard_arrow_left_rounded,
-              color: primaryColor,
+              color: black,
             ),
           ),
           title: Text(
             "Kuisioner Metode Pembelajaran",
             style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         body: SingleChildScrollView(
@@ -609,7 +608,7 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -621,7 +620,7 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                           "Selanjutnya",
                           style: AppFonts.poppins(
                               fontSize: 12,
-                              color: primaryColor,
+                              color: black,
                               fontWeight: FontWeight.bold),
                         ))
                   ],

@@ -1,5 +1,3 @@
-
-
 import 'package:cdc/app/resource/custom_textfield.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -279,7 +277,7 @@ class AktifasiView extends GetView<AktifasiController> {
                   height: 48,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [second, first]),
+                      color: primaryColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -291,18 +289,14 @@ class AktifasiView extends GetView<AktifasiController> {
                     onPressed: () {
                       controller.sendAktifasiAkun();
                     },
-                    child: Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Ajukan',
                             style: AppFonts.poppins(
                               fontSize: 14,
                               color: white,
-                            )),
-                        Icon(
-                          Icons.keyboard_arrow_right,
-                          color: white,
-                        )
+                            ))
                       ],
                     ),
                   )),

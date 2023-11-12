@@ -43,7 +43,7 @@ class OnboardingView extends GetView<OnboardingController> {
               effect: SlideEffect(
                 dotWidth: 8,
                 dotHeight: 8,
-                activeDotColor: first,
+                activeDotColor: primaryColor,
               ),
             ),
           ),
@@ -65,7 +65,7 @@ class OnboardingView extends GetView<OnboardingController> {
                           height: 40,
                           width: 150,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [second, first]),
+                            color: primaryColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Row(
@@ -133,9 +133,8 @@ class OnboardingView extends GetView<OnboardingController> {
                         height: 40,
                         width: 100,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [second, first]),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                            borderRadius: BorderRadius.circular(10),
+                            color: primaryColor),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

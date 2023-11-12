@@ -1,6 +1,8 @@
+import 'package:cdc/app/modules/quisioner/views/company_apply_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/find_job_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/job_street_section_view.dart';
+import 'package:cdc/app/modules/quisioner/views/job_suitability_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/kompetensi_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/main_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/study_method_section_view.dart';
@@ -13,11 +15,22 @@ import 'package:get/get.dart';
 
 import '../controllers/quisioner_controller.dart';
 
-class QuisionerView extends GetView<QuisionerController> {
-  QuisionerView({Key? key}) : super(key: key);
+class QuisionerView extends StatefulWidget {
+  const QuisionerView({super.key});
 
   @override
+  State<QuisionerView> createState() => _QuisionerViewState();
+}
+
+class _QuisionerViewState extends State<QuisionerView> {
   final controller = Get.put(QuisionerController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.fetchQuisionerData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,23 +41,22 @@ class QuisionerView extends GetView<QuisionerController> {
           shadowColor: Colors.transparent,
           leading: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                Get.back();
               },
               icon: Icon(
                 Icons.keyboard_arrow_left_rounded,
-                color: primaryColor,
+                color: black,
               )),
-          centerTitle: true,
           title: Text(
             "Kuisioner",
             style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         body: Padding(
             padding: const EdgeInsets.all(16),
             child: Obx(() => ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: controller.data.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
@@ -69,7 +81,9 @@ class QuisionerView extends GetView<QuisionerController> {
                               child: Text(
                                 item,
                                 style: AppFonts.poppins(
-                                    fontSize: 12, color: black),
+                                    fontSize: 12,
+                                    color: black,
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                             Obx(() => Transform.scale(
@@ -129,10 +143,10 @@ class QuisionerView extends GetView<QuisionerController> {
         Get.to(() => FindJobSectionView());
         break;
       case 7:
-        // Get.to(() => CompanyApply());
+        Get.to(() => CompanyApplySectionView());
         break;
       default:
-        // Get.to(() => JobsuitabilitySection());
+        Get.to(() => JobSuitabilitySectionView());
         break;
     }
   }

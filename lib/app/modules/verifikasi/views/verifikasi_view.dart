@@ -37,7 +37,7 @@ class VerifikasiView extends GetView<VerifikasiController> {
                           children: [
                             Icon(
                               Icons.login,
-                              color: primaryColor,
+                              color: black,
                               size: 20,
                             ),
                             const SizedBox(
@@ -97,7 +97,7 @@ class VerifikasiView extends GetView<VerifikasiController> {
                     height: 48,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [second, first]),
+                        color: primaryColor,
                         borderRadius: BorderRadius.circular(15)),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -137,7 +137,7 @@ class VerifikasiView extends GetView<VerifikasiController> {
                       "Masuk",
                       style: AppFonts.poppins(
                           fontSize: 12,
-                          color: first,
+                          color: primaryColor,
                           fontWeight: FontWeight.bold),
                     ),
                   )
