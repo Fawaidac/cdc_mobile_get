@@ -34,7 +34,6 @@ class TopAlumniController extends GetxController {
     String url = '${ApiServices.baseUrl}/user/ranking/followers';
 
     try {
-      isLoadingFoll(true);
       final response = await http.get(
         Uri.parse(url),
         headers: {"Authorization": "Bearer $token"},
@@ -66,8 +65,6 @@ class TopAlumniController extends GetxController {
       }
     } catch (e) {
       print(e);
-    } finally {
-      isLoadingFoll(false);
     }
 
     return null;
@@ -80,7 +77,6 @@ class TopAlumniController extends GetxController {
     String url = '${ApiServices.baseUrl}/user/ranking/salary';
 
     try {
-      isLoadingSal(true);
       final response = await http.get(
         Uri.parse(url),
         headers: {"Authorization": "Bearer $token"},
@@ -119,8 +115,6 @@ class TopAlumniController extends GetxController {
     } catch (e) {
       print('Error: $e');
       return []; // Return an empty list in case of an error
-    } finally {
-      isLoadingSal(false);
     }
   }
 }

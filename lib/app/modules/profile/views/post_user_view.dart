@@ -33,15 +33,15 @@ class PostUserView extends GetView<PostUserController> {
       physics: BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 1,
-        crossAxisSpacing: 10,
+        crossAxisSpacing: 5,
         crossAxisCount: 3,
-        mainAxisSpacing: 10,
+        mainAxisSpacing: 5,
       ),
       itemCount: 12,
       itemBuilder: (context, index) {
         return CardLoading(
           height: 50,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(8),
         );
       },
     );
@@ -51,9 +51,9 @@ class PostUserView extends GetView<PostUserController> {
     return Obx(() => GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 1,
-            crossAxisSpacing: 10,
+            crossAxisSpacing: 5,
             crossAxisCount: 3,
-            mainAxisSpacing: 10,
+            mainAxisSpacing: 5,
           ),
           shrinkWrap: true,
           controller: controller.scrollController,
@@ -63,7 +63,7 @@ class PostUserView extends GetView<PostUserController> {
 
               return Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
                     image: NetworkImage(post.image),
                     fit: BoxFit.cover,

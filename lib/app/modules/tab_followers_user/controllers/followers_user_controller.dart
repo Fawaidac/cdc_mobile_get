@@ -23,7 +23,7 @@ class FollowersUserController extends GetxController {
 
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-
+    print(token);
     final response = await http.get(
       Uri.parse(url),
       headers: {
@@ -33,8 +33,7 @@ class FollowersUserController extends GetxController {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> jsonResponse = json.decode(response.body);
-      final List<dynamic> followersData =
-          jsonResponse['data']['user']['followers'];
+      final List<dynamic> followersData = jsonResponse['data']['followers'];
 
       final List<Follower> followers = followersData.map((followerJson) {
         return Follower.fromJson(followerJson);

@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class HomepageController extends GetxController {
-  final currentIndex = 0.obs;
+  var currentIndex = 0;
   final active = true.obs;
   final searchController = TextEditingController();
   final searchResult = [].obs;
@@ -23,21 +23,15 @@ class HomepageController extends GetxController {
   late PermissionStatus storageStatus;
   FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
-  void changeIndex(index) {
-    currentIndex.value = index;
+  void changeIndex(int index) {
+    currentIndex = index;
+    update();
   }
 
   void setActive(bool value) {
     active.value = value;
   }
 
-  List<Widget> screen = <Widget>[
-    HomeView(),
-    AlumniView(),
-    PostingView(),
-    IkapjView(),
-    ProfileView(),
-  ];
 
   List navButtons = [
     {

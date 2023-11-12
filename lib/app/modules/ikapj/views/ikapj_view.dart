@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../controllers/ikapj_controller.dart';
+class IkapjView extends StatelessWidget {
+  IkapjView({super.key});
 
-class IkapjView extends GetView<IkapjController> {
-  IkapjView({Key? key}) : super(key: key);
-  @override
-  final controller = Get.put(IkapjController());
+  final _controller = WebViewController()
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          debugPrint("Loading: $progress%");
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onWebResourceError: (WebResourceError error) {},
+        onNavigationRequest: (NavigationRequest request) {
+          return NavigationDecision.navigate;
+        },
+      ),
+    )
+    ..loadRequest(Uri.parse("https://alumni.polije.ac.id/"));
+
   @override
   Widget build(BuildContext context) {
-    final controllerW = controller.controllerWeb;
     return SizedBox(
-      child: WebViewWidget(controller: controllerW),
-    );
+        width: double.infinity,
+        child: WebViewWidget(
+          controller: _controller,
+        ));
   }
 }

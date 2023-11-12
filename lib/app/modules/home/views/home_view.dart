@@ -11,11 +11,41 @@ import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<HomeController> {
-  HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   final controller = Get.put(HomeController());
+  ScrollController scrollController = ScrollController();
+
+  void scrollListener() {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      if (controller.page < controller.totalPage) {
+        controller.page = controller.page + 1;
+
+        Get.find<PostItemController>().fetchData();
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    scrollController.addListener(scrollListener);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    scrollController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +56,7 @@ class HomeView extends GetView<HomeController> {
       },
       child: ListView(
         shrinkWrap: false,
-        controller: controller.scrollController,
-        // physics: const BouncingScrollPhysics(),
+        controller: scrollController,
         children: [
           const SizedBox(
             height: 10,

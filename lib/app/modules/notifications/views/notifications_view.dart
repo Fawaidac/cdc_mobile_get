@@ -1,9 +1,9 @@
-import 'package:cdc/app/utils/app_colors.dart';
-import 'package:cdc/app/utils/app_fonts.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
+import '../../../utils/app_colors.dart';
+import '../../../utils/app_fonts.dart';
 import '../controllers/notifications_controller.dart';
 
 class NotificationsView extends GetView<NotificationsController> {
@@ -12,99 +12,145 @@ class NotificationsView extends GetView<NotificationsController> {
   @override
   final controller = Get.put(NotificationsController());
 
-  Future<void> _refreshData() async {
-    await controller.fetchNotifications();
-  }
-
   @override
   Widget build(BuildContext context) {
-    controller.fetchNotifications();
     return Scaffold(
+      backgroundColor: white,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        shadowColor: Colors.transparent,
         backgroundColor: white,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          shadowColor: Colors.transparent,
-          backgroundColor: white,
-          centerTitle: true,
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: Icon(
-              Icons.keyboard_arrow_left_rounded,
-              color: primaryColor,
-            ),
-          ),
-          title: Text(
-            "Notifikasi",
-            style: AppFonts.poppins(
-                fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+        centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.keyboard_arrow_left_rounded,
+            color: primaryColor,
           ),
         ),
-        body: RefreshIndicator(
-          onRefresh: _refreshData,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            color: white,
-            child: Obx(() => controller.notifications.isEmpty
-                ? Center(
-                    child: Text(
-                      'Belum ada notifikasi',
-                      style: AppFonts.poppins(fontSize: 12, color: black),
-                    ),
-                  )
-                : ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.notifications.length,
-                    itemBuilder: (context, index) {
-                      final data = controller.notifications[index];
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          height: 50,
-                          margin: const EdgeInsets.symmetric(vertical: 10),
-                          padding: const EdgeInsets.all(8),
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.white,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: primaryColor,
-                                child: Center(
-                                    child: Icon(
+        title: Text(
+          "Notifikasi",
+          style: AppFonts.poppins(
+              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          await controller.fetchNotifications();
+        },
+        child: FutureBuilder(
+          future: controller.fetchNotifications(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            } else if (controller.notifications.isEmpty) {
+              return Center(
+                child: Text(
+                  'Belum ada notifikasi',
+                  style: AppFonts.poppins(fontSize: 12, color: black),
+                ),
+              );
+            } else {
+              return Container(
+                height: MediaQuery.of(context).size.height,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                color: Colors.white,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.notifications.length,
+                  itemBuilder: (context, index) {
+                    final data = controller.notifications[index];
+                    return GestureDetector(
+                      onTap: () {
+                        getTypeAction(data.type);
+                      },
+                      child: Container(
+                        height: 50,
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.all(8),
+                        width: MediaQuery.of(context).size.width,
+                        color: Colors.white,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundColor: primaryColor,
+                              child: Center(
+                                child: Icon(
                                   Icons.info_outline,
                                   color: white,
-                                )),
+                                ),
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(data.type ?? "",
-                                      style: AppFonts.poppins(
-                                          fontSize: 14,
-                                          color: black,
-                                          fontWeight: FontWeight.bold)),
-                                  Text(data.message ?? "",
-                                      style: AppFonts.poppins(
-                                          fontSize: 12,
-                                          color: black,
-                                          fontWeight: FontWeight.normal)),
-                                ],
-                              ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(getTypeText(data.type),
+                                    style: AppFonts.poppins(
+                                        fontSize: 14,
+                                        color: black,
+                                        fontWeight: FontWeight.bold)),
+                                Text(data.message ?? "",
+                                    style: AppFonts.poppins(
+                                        fontSize: 12,
+                                        color: black,
+                                        fontWeight: FontWeight.normal)),
+                              ],
+                            ),
+                          ],
                         ),
-                      );
-                    
-                    },
-                  )),
-          ),
-        ));
+                      ),
+                    );
+                  },
+                ),
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+}
+
+String getTypeText(String? type) {
+  switch (type) {
+    case 'news':
+      return 'Berita';
+    case 'quisioner':
+      return 'Kuisioner';
+    case 'post':
+      return 'Postingan';
+    default:
+      return type ?? '';
+  }
+}
+
+void getTypeAction(String? type) {
+  switch (type) {
+    case 'news':
+      Get.back();
+      break;
+    case 'quisioner':
+      Get.toNamed(Routes.QUISIONER);
+      break;
+    case 'post':
+      Get.back();
+      break;
+    default:
+      Get.back();
   }
 }

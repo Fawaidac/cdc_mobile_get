@@ -67,6 +67,7 @@ class DetailPostItemView extends GetView<DetailPostController> {
     final formattedDate = dateFormat.format(date);
     final formattedTime = timeFormat.format(date);
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         backgroundColor: white,
         shadowColor: Colors.transparent,
@@ -85,6 +86,7 @@ class DetailPostItemView extends GetView<DetailPostController> {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

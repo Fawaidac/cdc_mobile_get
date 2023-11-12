@@ -21,7 +21,7 @@ class ProfileController extends GetxController
     final auth = await userInfo();
     if (auth != null) {
       user.value = auth;
-      print("ok");
+      print("profile");
     }
   }
 
