@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/quisioner/views/find_job_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/job_street_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/kompetensi_section_view.dart';
@@ -125,7 +126,7 @@ class QuisionerView extends GetView<QuisionerController> {
         Get.to(() => JobStreetSectionView());
         break;
       case 6:
-        // Get.to(() => FindJobsSection());
+        Get.to(() => FindJobSectionView());
         break;
       case 7:
         // Get.to(() => CompanyApply());
