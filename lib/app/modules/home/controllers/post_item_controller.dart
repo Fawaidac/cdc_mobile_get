@@ -8,7 +8,6 @@ class PostItemController extends GetxController {
   Future<void> fetchData() async {
     try {
       Get.find<HomeController>().hasMore = true;
-      print(Get.find<HomeController>().hasMore);
       final data = await Get.find<HomeController>()
           .getData(Get.find<HomeController>().page);
       // ignore: unnecessary_type_check

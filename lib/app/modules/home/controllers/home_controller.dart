@@ -23,8 +23,7 @@ class HomeController extends GetxController {
   void _scrollListener() {
     print('check : $hasMore');
     if (scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent 
-        ) {
+        scrollController.position.maxScrollExtent) {
       print('call : $hasMore');
 
       if (page < totalPage) {
@@ -72,12 +71,11 @@ class HomeController extends GetxController {
   Future<void> handleDeleteComment(String idComment, String idPost) async {
     final response = await deleteComment(idPost, idComment);
     if (response['code'] == 200) {
-      postList.clear();
       Get.snackbar("Success", "Berhasil menghapus postingan",
           margin: const EdgeInsets.all(10));
       postList.refresh();
       Get.find<PostItemController>().fetchData();
-      Get.offAllNamed(Routes.HOMEPAGE);
+      Get.toNamed(Routes.HOMEPAGE);
     } else {
       Get.snackbar("Error", response['message'],
           margin: const EdgeInsets.all(10));

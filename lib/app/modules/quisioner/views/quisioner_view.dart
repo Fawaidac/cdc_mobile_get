@@ -1,5 +1,8 @@
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
+import 'package:cdc/app/modules/quisioner/views/job_street_section_view.dart';
+import 'package:cdc/app/modules/quisioner/views/kompetensi_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/main_section_view.dart';
+import 'package:cdc/app/modules/quisioner/views/study_method_section_view.dart';
 import 'package:cdc/app/modules/quisioner/views/study_section_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -111,17 +114,15 @@ class QuisionerView extends GetView<QuisionerController> {
         break;
       case 2:
         Get.to(() => StudySectionView());
-
-        // Get.to(() => StudyMethodSection());
         break;
       case 3:
-        // Get.to(() => KompetensiSection());
+        Get.to(() => KompetensiSectionView());
         break;
       case 4:
-        // Get.to(() => StudyMethodSection());
+        Get.to(() => StudyMethodSectionView());
         break;
       case 5:
-        // Get.to(() => JobStreetSection());
+        Get.to(() => JobStreetSectionView());
         break;
       case 6:
         // Get.to(() => FindJobsSection());

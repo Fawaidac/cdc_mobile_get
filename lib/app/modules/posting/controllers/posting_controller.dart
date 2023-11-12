@@ -187,12 +187,16 @@ class PostingController extends GetxController {
           "The image must not be greater than 1048 kilobytes.") {
         Get.snackbar("Error", "Gambar tidak boleh melebihi 1048 Kb",
             margin: const EdgeInsets.all(10));
+      } else if (response['message'] == 'The link apply must be a valid URL.') {
+        Get.snackbar("Error", "Tautan harus menggunakan url yang valid",
+            margin: const EdgeInsets.all(10));
       } else if (response['message'] ==
           'The image must be a file of type: jpeg, png, jpg.') {
         Get.snackbar("Error", "Gambar harus dalam format jpeg, png atau jpg",
             margin: const EdgeInsets.all(10));
       } else {
-        print(response['message']);
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
       }
     } catch (e) {
       print(e);
