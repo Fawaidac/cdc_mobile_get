@@ -2,10 +2,10 @@ name: cdc
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=3.1.2 <4.0.0'
+environment:
+  sdk: ">=3.1.2 <4.0.0"
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   http: 1.1.0
   shared_preferences: 2.2.1
@@ -38,17 +38,16 @@ dependencies:
   flutter_widget_from_html: 0.14.6
   transparent_image: 2.0.1
   flutter_easyloading: 3.0.5
-  flutter: 
+  flutter:
     sdk: flutter
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - images/
     - assets/models/
   uses-material-design: true
-
