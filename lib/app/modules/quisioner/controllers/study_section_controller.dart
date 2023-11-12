@@ -88,7 +88,7 @@ class StudySectionController extends GetxController {
         Get.snackbar("Error", response['message'],
             margin: const EdgeInsets.all(10));
       } else if (response['message'] == 'Quisioner level not found') {
-        Get.snackbar("Error", response['message'],
+        Get.snackbar("Error", "Silahkan isi quisioner identitas terlebih dahulu",
             margin: const EdgeInsets.all(10));
       } else {
         Get.snackbar("Error", response['message'],

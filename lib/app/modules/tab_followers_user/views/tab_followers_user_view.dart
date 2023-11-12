@@ -29,6 +29,11 @@ class TabFollowersUserView extends GetView<TabFollowersUserController> {
                 Icons.keyboard_arrow_left_rounded,
                 color: primaryColor,
               )),
+          // centerTitle: true,
+          title: Obx(() => Text(
+                controller.name.value,
+                style: AppFonts.poppins(fontSize: 14, color: primaryColor),
+              )),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),

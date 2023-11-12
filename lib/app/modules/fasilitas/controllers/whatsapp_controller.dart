@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:cdc/app/services/api_services.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class WhatsappController extends GetxController {
   RxBool isLoading = true.obs;
@@ -45,5 +47,13 @@ class WhatsappController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     fetchGrupWhatsAppData();
+  }
+
+    Future<void> launchURL(String url) async {
+    final Uri _url = Uri.parse(url);
+    if (!await launchUrl(_url)) {
+      Get.snackbar("Error", "Tidak bisa mengunjungi situs",
+          margin: const EdgeInsets.all(10));
+    }
   }
 }

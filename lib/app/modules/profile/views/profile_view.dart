@@ -159,14 +159,16 @@ class ProfileView extends GetView<ProfileController> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.symmetric(vertical: 10),
+                                margin: const EdgeInsets.symmetric(vertical: 10),
                                 width: 1,
                                 height: MediaQuery.of(context).size.height,
                                 color: black.withOpacity(0.2),
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(Routes.TAB_FOLLOWERS_USER);
+                                  Get.toNamed(Routes.TAB_FOLLOWERS_USER,
+                                      arguments: controller.user.value.fullname
+                                          .toString());
                                 },
                                 child: SizedBox(
                                   height: 80,
@@ -201,7 +203,9 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(Routes.TAB_FOLLOWERS_USER);
+                                  Get.toNamed(Routes.TAB_FOLLOWERS_USER,
+                                      arguments: controller.user.value.fullname
+                                          .toString());
                                 },
                                 child: Container(
                                   color: white,
@@ -292,4 +296,3 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 }
-

@@ -61,7 +61,13 @@ class WhatsappView extends GetView<WhatsappController> {
                       itemBuilder: (context, index) {
                         final data = controller.grupWhatsAppList[index];
                         return GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            if (data['url'] != null) {
+                              controller.launchURL(data['url']);
+                            } else {
+                              print(null);
+                            }
+                          },
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
