@@ -58,21 +58,8 @@ class PostItemView extends GetView<PostItemController> {
                 return GestureDetector(
                   onTap: () {
                     Get.to(() => DetailPostItemView(
-                          description: post.description,
                           id: post.id,
-                          position: post.position,
-                          company: post.company,
-                          typeJobs: post.typeJobs,
-                          expired: post.expired,
                           isUser: false,
-                          linkApply: post.linkApply,
-                          verified: post.verified,
-                          name: post.uploader.fullname ?? "",
-                          profile: post.uploader.foto ?? "",
-                          can: post.canComment,
-                          postAt: post.postAt,
-                          commentModel: post.comments,
-                          image: post.image,
                         ));
                   },
                   child: Container(

@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:cdc/app/data/models/comment_model.dart';
-import 'package:cdc/app/data/models/post_model.dart';
 import 'package:cdc/app/data/models/user_model.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +46,6 @@ class PostUserController extends GetxController {
 
   Future<void> fetchData() async {
     try {
-      // postList.clear();
       final data = await fetchDataPostUser(currentPage);
 
       if (data != null) {
@@ -58,8 +55,8 @@ class PostUserController extends GetxController {
             .toList();
 
         if (currentPage > lastLoadedPage) {
-          postList.addAll(postUserList); // Append new data to existing data
-          lastLoadedPage = currentPage; // Update the last loaded page
+          postList.addAll(postUserList);
+          lastLoadedPage = currentPage;
         }
       }
     } catch (e) {

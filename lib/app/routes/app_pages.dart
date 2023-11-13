@@ -42,6 +42,8 @@ import '../modules/tab_followers/bindings/tab_followers_binding.dart';
 import '../modules/tab_followers/views/tab_followers_view.dart';
 import '../modules/tab_followers_user/bindings/tab_followers_user_binding.dart';
 import '../modules/tab_followers_user/views/tab_followers_user_view.dart';
+import '../modules/update_post/bindings/update_post_binding.dart';
+import '../modules/update_post/views/update_post_view.dart';
 import '../modules/verifikasi/bindings/verifikasi_binding.dart';
 import '../modules/verifikasi/views/verifikasi_view.dart';
 
@@ -162,6 +164,11 @@ class AppPages {
       name: _Paths.EDIT_PROFILE,
       page: () => EditProfileView(),
       binding: EditProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_POST,
+      page: () => const UpdatePostView(),
+      binding: UpdatePostBinding(),
     ),
   ];
 }

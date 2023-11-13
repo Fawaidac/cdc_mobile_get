@@ -287,7 +287,7 @@ class ProfileView extends GetView<ProfileController> {
           child: TabBarView(
             controller: controller.tabController,
             children: [
-              PostUserView(),
+              PostUserView( name: controller.user.value.fullname.toString(), image: controller.user.value.foto.toString(),),
               EducationUserView(),
               JobUserView(),
             ],

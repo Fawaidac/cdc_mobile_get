@@ -4,8 +4,14 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../home/views/detail_post_item_view.dart';
+
 class PostUserView extends GetView<PostUserController> {
-  PostUserView({Key? key}) : super(key: key);
+  String name;
+  String image;
+
+  PostUserView({required this.image, required this.name, Key? key})
+      : super(key: key);
   @override
   final controller = Get.put(PostUserController());
   @override
@@ -61,12 +67,20 @@ class PostUserView extends GetView<PostUserController> {
             if (index < controller.postList.length) {
               final post = controller.postList[index];
 
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
-                    image: NetworkImage(post.image),
-                    fit: BoxFit.cover,
+              return InkWell(
+                onTap: () {
+                  Get.to(() => DetailPostItemView(
+                        id: post.id,
+                        isUser: true,
+                      ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      image: NetworkImage(post.image),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               );
