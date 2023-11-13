@@ -1,6 +1,4 @@
 import 'package:card_loading/card_loading.dart';
-import 'package:cdc/app/data/models/comment_model.dart';
-import 'package:cdc/app/data/models/user_model.dart';
 import 'package:cdc/app/modules/home/controllers/detail_post_controller.dart';
 import 'package:cdc/app/modules/home/controllers/home_controller.dart';
 import 'package:cdc/app/resource/custom_textfield.dart';
