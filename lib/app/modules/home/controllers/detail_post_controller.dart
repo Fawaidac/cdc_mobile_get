@@ -81,8 +81,6 @@ class DetailPostController extends GetxController {
       throw Exception("Token not found");
     }
 
-    print(token);
-
     final response = await http.get(
       Uri.parse('${ApiServices.baseUrl}/user/post/detail-post/$postId'),
       headers: {
@@ -92,7 +90,6 @@ class DetailPostController extends GetxController {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      print(data['data']);
 
       if (data['status'] == true) {
         return data['data'];

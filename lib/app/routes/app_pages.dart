@@ -167,7 +167,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.UPDATE_POST,
-      page: () => const UpdatePostView(),
+      page: () => UpdatePostView(),
       binding: UpdatePostBinding(),
     ),
   ];

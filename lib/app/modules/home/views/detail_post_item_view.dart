@@ -248,7 +248,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                                             ? false
                                             : true;
                                         handleUpdateComment(option);
-                                      } else {
+                                      } else if (value == 0) {
                                         Get.toNamed(Routes.UPDATE_POST,
                                             arguments: {
                                               'id': widget.id,
