@@ -243,7 +243,7 @@ class AktifasiView extends GetView<AktifasiController> {
                                       height: 10,
                                     ),
                                     Text(
-                                      "Upload Ijazah (PDF)",
+                                      "Upload Ijazah (PDF) max : 2MB",
                                       style: AppFonts.poppins(
                                           fontSize: 12, color: softgrey),
                                     )
