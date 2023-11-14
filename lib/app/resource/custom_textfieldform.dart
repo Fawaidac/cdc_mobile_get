@@ -51,11 +51,9 @@ class _CustomTextFieldFormState extends State<CustomTextFieldForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    widget.label,
-                    style: GoogleFonts.poppins(fontSize: 12),
-                  ),
+                Text(
+                  widget.label,
+                  style: GoogleFonts.poppins(fontSize: 12),
                 ),
                 if (widget.isRequired == true)
                   Text(

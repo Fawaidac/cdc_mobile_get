@@ -5,7 +5,6 @@ import 'package:cdc/app/modules/home/views/post_item_view.dart';
 import 'package:cdc/app/modules/home/views/top_alumni_view.dart';
 import 'package:cdc/app/resource/custom_textfield.dart';
 import 'package:cdc/app/routes/app_pages.dart';
-import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

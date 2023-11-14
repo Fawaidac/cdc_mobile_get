@@ -48,6 +48,7 @@ class PostUserController extends GetxController {
     try {
       final data = await fetchDataPostUser(currentPage);
 
+      // ignore: unnecessary_null_comparison
       if (data != null) {
         totalPage = data['pagination']['total_page'];
         final List<PostUser> postUserList = (data['posts'] as List)

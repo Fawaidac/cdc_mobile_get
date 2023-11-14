@@ -33,7 +33,6 @@ class ProfileController extends GetxController
       postCount.value = data['total_item'];
     } catch (e) {
       print('Error fetching post count: $e');
-      // Handle errors if needed
     }
   }
 
@@ -44,7 +43,6 @@ class ProfileController extends GetxController
       followerCount.value = apiResponse.totalFollowers;
     } catch (e) {
       print('Error fetching follower count: $e');
-      // Handle errors if needed
     }
   }
 
@@ -55,7 +53,6 @@ class ProfileController extends GetxController
       followedCount.value = apiResponse.totalFollowers;
     } catch (e) {
       print('Error fetching follower count: $e');
-      // Handle errors if needed
     }
   }
 
@@ -225,7 +222,6 @@ class ProfileController extends GetxController
       if (response.statusCode == 200) {
         Get.snackbar("Success", "Berhasil memperbarui visibilitas",
             margin: const EdgeInsets.all(10));
-        final jsonResponse = jsonDecode(response.body);
         await getUser();
 
         print(user.value.noTelp);

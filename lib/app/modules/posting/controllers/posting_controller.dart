@@ -3,8 +3,6 @@ import 'dart:io';
 
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
-import 'package:cdc/app/utils/app_colors.dart';
-import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

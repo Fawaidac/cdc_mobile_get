@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class AddJobUserView extends GetView<AddJobUserController> {
@@ -58,13 +59,54 @@ class AddJobUserView extends GetView<AddJobUserController> {
                 keyboardType: TextInputType.text,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter),
-            CustomTextFieldForm(
-                isEnable: true,
-                controller: controller.gaji,
-                label: "Gaji",
-                isLength: 11,
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Gaji",
+                          style: GoogleFonts.poppins(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    textInputAction: TextInputAction.done,
+                    controller: controller.gaji,
+                    style: AppFonts.poppins(fontSize: 13, color: black),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(11),
+                      NumberTextInputFormatter(),
+                    ],
+                    decoration: InputDecoration(
+                      hintText: "Gaji",
+                      isDense: true,
+                      hintStyle: GoogleFonts.poppins(fontSize: 13),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Color(0xffF0F1F7),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xFFFCFDFE),
+                    ),
+                  )
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Column(
@@ -189,6 +231,27 @@ class AddJobUserView extends GetView<AddJobUserController> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class NumberTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    if (newValue.text.isEmpty) {
+      return TextEditingValue();
+    }
+
+    final formattedValue = NumberFormat.decimalPattern('id').format(
+      int.parse(newValue.text.replaceAll(RegExp('[^0-9]'), '')),
+    );
+
+    return newValue.copyWith(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
     );
   }
 }

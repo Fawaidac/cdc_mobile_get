@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 import '../controllers/otp_controller.dart';
 
+// ignore: must_be_immutable
 class OtpView extends GetView<OtpController> {
   OtpView({Key? key}) : super(key: key);
   @override

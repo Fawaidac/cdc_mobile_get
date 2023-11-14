@@ -91,11 +91,9 @@ class PostingView extends GetView<PostingController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                child: Text(
-                  "Tambah Keterangan",
-                  style: AppFonts.poppins(fontSize: 12, color: black),
-                ),
+              Text(
+                "Tambah Keterangan",
+                style: AppFonts.poppins(fontSize: 12, color: black),
               ),
               Text(
                 "*",
@@ -186,11 +184,9 @@ class PostingView extends GetView<PostingController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Text(
-                        "Jenis Pekerjaan",
-                        style: GoogleFonts.poppins(fontSize: 12),
-                      ),
+                    Text(
+                      "Jenis Pekerjaan",
+                      style: GoogleFonts.poppins(fontSize: 12),
                     ),
                     Text(
                       "*",
@@ -252,11 +248,9 @@ class PostingView extends GetView<PostingController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    "Tanggal Tutup",
-                    style: GoogleFonts.poppins(fontSize: 12),
-                  ),
+                Text(
+                  "Tanggal Tutup",
+                  style: GoogleFonts.poppins(fontSize: 12),
                 ),
                 Text(
                   "*",

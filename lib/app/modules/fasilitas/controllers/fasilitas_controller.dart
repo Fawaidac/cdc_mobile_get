@@ -1,10 +1,8 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/quisioner_check_model.dart';
-import 'package:cdc/app/modules/login/views/login_view.dart';
 import 'package:cdc/app/services/api_services.dart';
-import 'package:cdc/app/utils/app_colors.dart';
-import 'package:cdc/app/utils/app_fonts.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;

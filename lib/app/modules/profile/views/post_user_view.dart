@@ -7,6 +7,7 @@ import 'package:transparent_image/transparent_image.dart';
 
 import '../../home/views/detail_post_item_view.dart';
 
+// ignore: must_be_immutable
 class PostUserView extends GetView<PostUserController> {
   String name;
   String image;

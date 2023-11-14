@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/comment_model.dart';
-import 'package:cdc/app/data/models/user_model.dart';
-import 'package:cdc/app/modules/homepage/controllers/homepage_controller.dart';
 import 'package:cdc/app/modules/profile/controllers/post_user_controller.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
@@ -12,8 +10,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
-
-import '../../../data/models/post_model.dart';
 
 class DetailPostController extends GetxController {
   var comment = TextEditingController();

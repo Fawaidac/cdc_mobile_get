@@ -1,13 +1,10 @@
 import 'package:card_loading/card_loading.dart';
-import 'package:cdc/app/modules/profile/controllers/profile_controller.dart';
-import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../resource/custom_textfield_checkbox.dart';
 import '../../../resource/custom_textfieldform.dart';

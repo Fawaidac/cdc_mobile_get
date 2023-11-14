@@ -15,6 +15,7 @@ import 'package:readmore/readmore.dart';
 
 import '../../../routes/app_pages.dart';
 
+// ignore: must_be_immutable
 class DetailPostItemView extends StatefulWidget {
   String id;
   bool isUser;

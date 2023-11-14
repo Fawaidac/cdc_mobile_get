@@ -1,5 +1,4 @@
 import 'package:card_loading/card_loading.dart';
-import 'package:cdc/app/modules/edit_profile/controllers/edit_profile_controller.dart';
 import 'package:cdc/app/modules/profile/views/education_user_view.dart';
 import 'package:cdc/app/modules/profile/views/job_user_view.dart';
 import 'package:cdc/app/modules/profile/views/post_user_view.dart';
@@ -63,6 +62,7 @@ class ProfileView extends GetView<ProfileController> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Visibility(
+                                    // ignore: unnecessary_null_comparison
                                     visible: controller.user != null,
                                     replacement: CardLoading(
                                       height: 20,
@@ -78,6 +78,7 @@ class ProfileView extends GetView<ProfileController> {
                                       ),
                                     )),
                                 Visibility(
+                                    // ignore: unnecessary_null_comparison
                                     visible: controller.user != null,
                                     replacement: CardLoading(
                                       height: 15,
@@ -112,6 +113,7 @@ class ProfileView extends GetView<ProfileController> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Visibility(
+                            // ignore: unnecessary_null_comparison
                             visible: controller.user != null,
                             replacement: CardLoading(
                               height: 15,
@@ -287,7 +289,10 @@ class ProfileView extends GetView<ProfileController> {
           child: TabBarView(
             controller: controller.tabController,
             children: [
-              PostUserView( name: controller.user.value.fullname.toString(), image: controller.user.value.foto.toString(),),
+              PostUserView(
+                name: controller.user.value.fullname.toString(),
+                image: controller.user.value.foto.toString(),
+              ),
               EducationUserView(),
               JobUserView(),
             ],

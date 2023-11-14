@@ -1,9 +1,6 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/post_model.dart';
-import 'package:cdc/app/modules/detail_alumni/controllers/post_controller.dart';
-import 'package:cdc/app/modules/home/controllers/post_item_controller.dart';
-import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,12 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
   final search = TextEditingController();
-  // RxList<PostAllModel> postList = <PostAllModel>[].obs;
-
-  // int page = 1;
-  // int totalPage = 1;
-  // int lastLoadedPage = 0;
-  // bool hasMore = false;
 
   void onChangeSearch(String value) {
     searchData(value);

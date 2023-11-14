@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/post_model.dart';
-import 'package:cdc/app/modules/home/controllers/home_controller.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

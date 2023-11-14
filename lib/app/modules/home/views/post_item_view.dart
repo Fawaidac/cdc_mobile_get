@@ -1,5 +1,4 @@
 import 'package:card_loading/card_loading.dart';
-import 'package:cdc/app/modules/home/controllers/home_controller.dart';
 import 'package:cdc/app/modules/home/controllers/post_item_controller.dart';
 import 'package:cdc/app/modules/home/views/detail_post_item_view.dart';
 import 'package:cdc/app/services/api_services.dart';

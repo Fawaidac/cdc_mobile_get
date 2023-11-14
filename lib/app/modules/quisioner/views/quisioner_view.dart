@@ -47,20 +47,15 @@ class _QuisionerViewState extends State<QuisionerView> {
     }
 
     if (status.isGranted) {
-      // Izin lokasi telah diberikan, Anda dapat mengambil lokasi di sini.
       Map<String, double> locationData = await getCurrentLocation();
-      if (locationData != null) {
-        double latitude = locationData["latitude"] ?? 0.0;
-        double longitude = locationData["longitude"] ?? 0.0;
-        // Gunakan latitude dan longitude sesuai kebutuhan Anda.
-        print("latitude = ${latitude} longitude =${longitude}");
+      double latitude = locationData["latitude"] ?? 0.0;
+      double longitude = locationData["longitude"] ?? 0.0;
 
-        final res = await controller.updateLocationUser(latitude, longitude);
-        if (res['code'] == 200) {
-          print("oke");
-        } else {
-          print(res['message']);
-        }
+      final res = await controller.updateLocationUser(latitude, longitude);
+      if (res['code'] == 200) {
+        print("oke");
+      } else {
+        print(res['message']);
       }
     }
   }
