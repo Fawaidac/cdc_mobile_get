@@ -125,6 +125,8 @@ class SettingView extends GetView<SettingController> {
           preferences.remove('tokenExpirationTime');
 
           Get.offAllNamed(Routes.LOGIN);
+          Get.snackbar("Success", "Berhasil keluar dari aplikasi",
+              margin: const EdgeInsets.all(10));
         } else {
           Get.to(() => const TentangView());
         }

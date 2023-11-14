@@ -12,122 +12,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
   final search = TextEditingController();
-  RxList<PostAllModel> postList = <PostAllModel>[].obs;
+  // RxList<PostAllModel> postList = <PostAllModel>[].obs;
 
-  int page = 1;
-  int totalPage = 1;
-  int lastLoadedPage = 0;
-  bool hasMore = false;
+  // int page = 1;
+  // int totalPage = 1;
+  // int lastLoadedPage = 0;
+  // bool hasMore = false;
 
   void onChangeSearch(String value) {
     searchData(value);
-  }
-
-  Future<void> sendComment(String id, String message) async {
-    final response = await storeComment(id, message);
-    if (response['code'] == 201) {
-      postList.clear();
-      Get.snackbar("Success", "Berhasil mengomentari postingan",
-          margin: const EdgeInsets.all(10));
-      postList.refresh();
-
-      Get.find<PostItemController>().fetchData();
-      Get.offAllNamed(Routes.HOMEPAGE);
-    } else {
-      Get.snackbar("Error", response['message'],
-          margin: const EdgeInsets.all(10));
-    }
-  }
-
-  Future<void> handleDeleteComment(String idComment, String idPost) async {
-    final response = await deleteComment(idPost, idComment);
-    if (response['code'] == 200) {
-      Get.snackbar("Success", "Berhasil menghapus postingan",
-          margin: const EdgeInsets.all(10));
-      postList.refresh();
-      Get.find<PostItemController>().fetchData();
-      Get.toNamed(Routes.HOMEPAGE);
-    } else {
-      Get.snackbar("Error", response['message'],
-          margin: const EdgeInsets.all(10));
-    }
-  }
-
-  static Future<Map<String, dynamic>> storeComment(
-      String postId, String comment) async {
-    final Map<String, dynamic> requestBody = {
-      "comment": comment,
-      "post_id": postId
-    };
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
-    final response = await http.post(
-        Uri.parse('${ApiServices.baseUrl}/user/post/comment'),
-        body: jsonEncode(requestBody),
-        headers: {
-          "Authorization": "Bearer $token",
-          'Content-Type': 'application/json',
-        });
-    final data = jsonDecode(response.body);
-    return data;
-  }
-
-  static Future<Map<String, dynamic>> deleteComment(
-      String postID, String commentID) async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
-
-    if (token == null) {
-      throw Exception("Token not found");
-    }
-
-    final response = await http.delete(
-      Uri.parse('${ApiServices.baseUrl}/user/post/comment'),
-      headers: {
-        'Authorization': 'Bearer $token',
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode({
-        'post_id': postID,
-        'comment_id': commentID,
-      }),
-    );
-
-    final data = jsonDecode(response.body);
-    return data;
-  }
-
-  Future<Map<String, dynamic>> getData(int page) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final token = prefs.getString('token');
-
-      if (token == null) {
-        throw Exception("Token not found");
-      }
-
-      final response = await http.get(
-        Uri.parse('${ApiServices.baseUrl}/user/post?page=$page'),
-        headers: {
-          "Authorization": "Bearer $token",
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> jsonResponse = json.decode(response.body);
-        final Map<String, dynamic> data = jsonResponse['data'];
-        return data;
-      } else {
-        throw Exception("Failed to fetch data ${response.statusCode}");
-      }
-    } catch (e) {
-      print("Error fetching data: $e");
-      return {
-        "postList": [],
-        "totalPage": 0,
-        "totalItem": 0,
-      };
-    }
   }
 
   static Future<List<PostAllModel>> searchData(String key) async {

@@ -10,6 +10,9 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../routes/app_pages.dart';
+import '../../../utils/app_dialog.dart';
+
 class FasilitasController extends GetxController {
   var questionnaireCheck = Rx<QuestionnaireCheck?>(null);
   int totalSections = 9;
@@ -64,44 +67,24 @@ class FasilitasController extends GetxController {
         return check;
       } else if (responseJson['message'] ==
           "your token is not valid , please login again") {
-        Get.dialog(AlertDialog(
-          title: Text(
-            "Error !",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(
-                fontSize: 16, color: black, fontWeight: FontWeight.bold),
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-          content: Text(
-            "Ops , sesi anda telah habis , silahkan login ulang",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(fontSize: 12, color: black),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Get.offAll(() => LoginView());
-              },
-              child: Text(
-                "OK",
-                style: AppFonts.poppins(
-                    fontSize: 16,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: Text("Cancel",
-                  style: AppFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold)),
-            ),
-          ],
-        ));
+        AppDialog.show(
+          title: "Error !",
+          isTouch: false,
+          desc: "Ops , sesi anda telah habis , silahkan login ulang",
+          onOk: () async {
+            SharedPreferences preferences =
+                await SharedPreferences.getInstance();
+            preferences.remove('token');
+            preferences.remove('tokenExpirationTime');
+
+            Get.offAllNamed(Routes.LOGIN);
+            Get.snackbar("Success", "Berhasil keluar dari aplikasi",
+                margin: const EdgeInsets.all(10));
+          },
+          onCancel: () {
+            Get.back();
+          },
+        );
       } else {
         print(responseJson['message']);
         return null;

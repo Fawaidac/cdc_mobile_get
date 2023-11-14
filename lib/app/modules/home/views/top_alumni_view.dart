@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../utils/app_dialog.dart';
+
 class TopAlumniView extends GetView {
   const TopAlumniView({Key? key}) : super(key: key);
   @override
@@ -17,13 +19,12 @@ class TopAlumniView extends GetView {
       children: [
         GestureDetector(
           onTap: () async {
-            SharedPreferences preferences =
-                await SharedPreferences.getInstance();
-            preferences.remove('token');
-            preferences.remove('tokenExpirationTime');
-            // await ApiServices.logout();
-            // ignore: use_build_context_synchronously
-            Get.offAllNamed(Routes.LOGIN);
+            AppDialog.show(
+              title: "Perhatian",
+              desc: "Jadi begini",
+              onOk: () {},
+              onCancel: () {},
+            );
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),

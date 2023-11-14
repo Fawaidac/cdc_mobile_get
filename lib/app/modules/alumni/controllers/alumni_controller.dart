@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../utils/app_dialog.dart';
+
 class AlumniController extends GetxController {
   ScrollController scrollController = ScrollController();
 
@@ -24,22 +26,17 @@ class AlumniController extends GetxController {
   int? angkatan;
   String? selectedProdi;
 
-  // RxBool isLoading = false.obs;
-  // RxBool hasMore = true.obs;
   RxBool isAscending = true.obs;
   RxBool showCloseIcon = false.obs;
   RxBool showCloseIconAngkatan = false.obs;
 
-  late TextEditingController search;
-  late TextEditingController tahun;
-
+  var search = TextEditingController();
+  var tahun = TextEditingController();
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     scrollController.addListener(_scrollListener);
-    search = TextEditingController();
-    tahun = TextEditingController();
   }
 
   @override
@@ -47,8 +44,6 @@ class AlumniController extends GetxController {
     // TODO: implement onClose
     super.onClose();
     scrollController.dispose();
-    search.dispose();
-    tahun.dispose();
   }
 
   Future<void> fetchDataProdi() async {
@@ -82,7 +77,6 @@ class AlumniController extends GetxController {
   Future<void> fetchDataAlumni() async {
     try {
       alumniList.clear();
-      // Tambahkan pernyataan ini
       final data = await fetchAlumniAll(
         currentPage,
       );
@@ -144,87 +138,37 @@ class AlumniController extends GetxController {
       return data;
     } else if (jsonResponse['message'] ==
         "ops , nampaknya akun kamu belum terverifikasi") {
-      Get.dialog(
-        AlertDialog(
-          title: Text(
-            "Error !",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(
-                fontSize: 16, color: black, fontWeight: FontWeight.bold),
-          ),
-          contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-          content: Text(
+      AppDialog.show(
+        title: "Perhatian !",
+        isTouch: false,
+        desc:
             "Ops , nampaknya akun kamu belum terverifikasi, Silahkan isi quisioner terlebih dahulu",
-            textAlign: TextAlign.center,
-            style: AppFonts.poppins(fontSize: 12, color: black),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Get.toNamed(Routes.FASILITAS);
-              },
-              child: Text(
-                "OK",
-                style: AppFonts.poppins(
-                    fontSize: 16,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              child: Text("Cancel",
-                  style: AppFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.red,
-                      fontWeight: FontWeight.bold)),
-            ),
-          ],
-        ),
+        onOk: () {
+          Get.toNamed(Routes.FASILITAS);
+        },
+        onCancel: () {
+          Get.back();
+        },
       );
-      print('Account is not verified');
     } else if (jsonResponse['message'] ==
         'your token is not valid , please login again') {
-      Get.dialog(AlertDialog(
-        title: Text(
-          "Error !",
-          textAlign: TextAlign.center,
-          style: AppFonts.poppins(
-              fontSize: 16, color: black, fontWeight: FontWeight.bold),
-        ),
-        contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-        content: Text(
-          "Ops , sesi anda telah habis , silahkan login ulang",
-          textAlign: TextAlign.center,
-          style: AppFonts.poppins(fontSize: 12, color: black),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Get.offAll(() => LoginView());
-            },
-            child: Text(
-              "OK",
-              style: AppFonts.poppins(
-                  fontSize: 16,
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          TextButton(
-            onPressed: () {
-              Get.back();
-            },
-            child: Text("Cancel",
-                style: AppFonts.poppins(
-                    fontSize: 16,
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ));
+      AppDialog.show(
+        title: "Error !",
+        isTouch: false,
+        desc: "Ops , sesi anda telah habis , silahkan login ulang",
+        onOk: () async {
+          SharedPreferences preferences = await SharedPreferences.getInstance();
+          preferences.remove('token');
+          preferences.remove('tokenExpirationTime');
+
+          Get.offAllNamed(Routes.LOGIN);
+          Get.snackbar("Success", "Berhasil keluar dari aplikasi",
+              margin: const EdgeInsets.all(10));
+        },
+        onCancel: () {
+          Get.back();
+        },
+      );
     } else {
       print(
           'Failed to load data ${response.statusCode}'); // Menampilkan pesan kesalahan ke konsol

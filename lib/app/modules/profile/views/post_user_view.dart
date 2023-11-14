@@ -3,6 +3,7 @@ import 'package:cdc/app/modules/profile/controllers/post_user_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../../home/views/detail_post_item_view.dart';
 
@@ -36,7 +37,7 @@ class PostUserView extends GetView<PostUserController> {
   Widget loadPost() {
     return GridView.builder(
       shrinkWrap: true,
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 1,
         crossAxisSpacing: 5,
@@ -74,13 +75,14 @@ class PostUserView extends GetView<PostUserController> {
                         isUser: true,
                       ));
                 },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    image: DecorationImage(
-                      image: NetworkImage(post.image),
-                      fit: BoxFit.cover,
-                    ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: post.image,
+                    fit: BoxFit.cover,
+                    height: double.infinity,
+                    width: double.infinity,
                   ),
                 ),
               );

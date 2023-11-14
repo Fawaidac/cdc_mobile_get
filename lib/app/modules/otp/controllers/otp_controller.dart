@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cdc/app/modules/register/controllers/register_controller.dart';
-import 'package:cdc/app/modules/register/views/register_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';

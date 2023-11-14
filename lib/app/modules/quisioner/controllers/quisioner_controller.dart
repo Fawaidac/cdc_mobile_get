@@ -68,10 +68,24 @@ class QuisionerController extends GetxController {
     }
   }
 
-  // @override
-  // void onInit() {
-  //   // TODO: implement onInit
-  //   super.onInit();
-  //   fetchQuisionerData();
-  // }
+  Future<Map<String, dynamic>> updateLocationUser(
+      double lat, double long) async {
+    final Map<String, dynamic> requestBody = {
+      "latitude": lat,
+      "longtitude": long,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
+      Uri.parse('${ApiServices.baseUrl}/user/position'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
 }

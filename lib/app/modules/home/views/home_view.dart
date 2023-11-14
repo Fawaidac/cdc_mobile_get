@@ -4,6 +4,8 @@ import 'package:cdc/app/modules/home/views/news_view.dart';
 import 'package:cdc/app/modules/home/views/post_item_view.dart';
 import 'package:cdc/app/modules/home/views/top_alumni_view.dart';
 import 'package:cdc/app/resource/custom_textfield.dart';
+import 'package:cdc/app/routes/app_pages.dart';
+import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,14 +23,14 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final controller = Get.put(HomeController());
   ScrollController scrollController = ScrollController();
-
+  final controllerP = Get.put(PostItemController());
   void scrollListener() {
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      if (controller.page < controller.totalPage) {
-        controller.page = controller.page + 1;
+      if (controllerP.page < controllerP.totalPage) {
+        controllerP.page = controllerP.page + 1;
 
-        Get.find<PostItemController>().fetchData();
+        controllerP.fetchData();
       }
     }
   }
@@ -38,6 +40,11 @@ class _HomeViewState extends State<HomeView> {
     // TODO: implement initState
     super.initState();
     scrollController.addListener(scrollListener);
+  }
+
+  void update() async {
+    await controllerP.fetchData();
+    Get.toNamed(Routes.HOMEPAGE);
   }
 
   @override
@@ -53,6 +60,10 @@ class _HomeViewState extends State<HomeView> {
       onRefresh: () async {
         Get.find<NewsController>().newsList.clear();
         await Get.find<NewsController>().fetchNewsData();
+        controllerP.postList.refresh();
+        controllerP.update();
+
+        setState(() {});
       },
       child: ListView(
         shrinkWrap: false,
@@ -74,7 +85,9 @@ class _HomeViewState extends State<HomeView> {
                 isLength: 255,
                 isEnable: true,
                 isWhite: true,
-                onTap: () {},
+                onTap: () {
+                
+                },
                 onChange: (value) {
                   controller.onChangeSearch(value);
                 },

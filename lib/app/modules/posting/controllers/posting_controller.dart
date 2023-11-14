@@ -14,6 +14,8 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../utils/app_dialog.dart';
+
 class PostingController extends GetxController {
   Rx<File?> image = Rx<File?>(null);
   var keterangan = TextEditingController();
@@ -95,93 +97,37 @@ class PostingController extends GetxController {
             margin: const EdgeInsets.all(10));
       } else if (response['message'] ==
           'your token is not valid , please login again') {
-        // ignore: use_build_context_synchronously
-        Get.dialog(
-          AlertDialog(
-            title: Text(
-              "Error !",
-              textAlign: TextAlign.center,
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
-            ),
-            contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-            content: Text(
-              "Sesi anda telah habis, cob alogin ulang",
-              textAlign: TextAlign.center,
-              style: AppFonts.poppins(fontSize: 12, color: black),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  Get.toNamed(Routes.LOGIN);
-                  SharedPreferences preferences =
-                      await SharedPreferences.getInstance();
-                  preferences.remove('token');
-                  preferences.remove('tokenExpirationTime');
-                },
-                child: Text(
-                  "OK",
-                  style: AppFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text("Cancel",
-                    style: AppFonts.poppins(
-                        fontSize: 16,
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ],
-          ),
+        AppDialog.show(
+          title: "Error !",
+          isTouch: false,
+          desc: "Ops , sesi anda telah habis , silahkan login ulang",
+          onOk: () async {
+            SharedPreferences preferences =
+                await SharedPreferences.getInstance();
+            preferences.remove('token');
+            preferences.remove('tokenExpirationTime');
+
+            Get.offAllNamed(Routes.LOGIN);
+            Get.snackbar("Success", "Berhasil keluar dari aplikasi",
+                margin: const EdgeInsets.all(10));
+          },
+          onCancel: () {
+            Get.back();
+          },
         );
       } else if (response['message'] ==
           "ops , nampaknya akun kamu belum terverifikasi") {
-        // ignore: use_build_context_synchronously
-        Get.dialog(
-          AlertDialog(
-            title: Text(
-              "Error !",
-              textAlign: TextAlign.center,
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
-            ),
-            contentPadding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
-            content: Text(
+        AppDialog.show(
+          title: "Perhatian !",
+          isTouch: false,
+          desc:
               "Ops , nampaknya akun kamu belum terverifikasi, Silahkan isi quisioner terlebih dahulu",
-              textAlign: TextAlign.center,
-              style: AppFonts.poppins(fontSize: 12, color: black),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Get.toNamed(Routes.FASILITAS);
-                },
-                child: Text(
-                  "OK",
-                  style: AppFonts.poppins(
-                      fontSize: 16,
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.back();
-                },
-                child: Text("Cancel",
-                    style: AppFonts.poppins(
-                        fontSize: 16,
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ],
-          ),
+          onOk: () {
+            Get.toNamed(Routes.FASILITAS);
+          },
+          onCancel: () {
+            Get.back();
+          },
         );
       } else if (response['message'] ==
           "The image must not be greater than 1048 kilobytes.") {

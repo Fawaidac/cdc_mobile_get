@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/educations_model.dart';
-import 'package:cdc/app/modules/detail_alumni/controllers/education_controller.dart';
 import 'package:cdc/app/modules/profile/controllers/education_user_controller.dart';
-import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
