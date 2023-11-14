@@ -57,11 +57,9 @@ class MainSectionView extends GetView<MainSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Jelaskan status anda saat ini?",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Jelaskan status anda saat ini?",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -219,11 +217,13 @@ class MainSectionView extends GetView<MainSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Berapa bulan anda mendapatkan pekerjaan SEBELUM LULUS",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Column(
+                              children: [
+                                Text(
+                                  "Berapa bulan anda mendapatkan pekerjaan SEBELUM LULUS",
+                                  style: GoogleFonts.poppins(fontSize: 12),
+                                ),
+                              ],
                             ),
                             Text(
                               "*",

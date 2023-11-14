@@ -17,6 +17,7 @@ class CustomTextFieldForm extends StatefulWidget {
   bool isRequired;
   bool isPlaceholder;
   int isLength;
+  bool isRequiredExp;
   Function()? onTap;
   CustomTextFieldForm(
       {Key? key,
@@ -28,6 +29,7 @@ class CustomTextFieldForm extends StatefulWidget {
       this.isReadOnly = false,
       this.isRequired = false,
       this.isPlaceholder = false,
+      this.isRequiredExp = false,
       this.isLength = 225,
       required this.inputFormatters,
       this.onTap,
@@ -51,10 +53,18 @@ class _CustomTextFieldFormState extends State<CustomTextFieldForm> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(
-                  widget.label,
-                  style: GoogleFonts.poppins(fontSize: 12),
-                ),
+                if (widget.isRequiredExp == true)
+                  Expanded(
+                    child: Text(
+                      widget.label,
+                      style: GoogleFonts.poppins(fontSize: 12),
+                    ),
+                  ),
+                if (widget.isRequiredExp == false)
+                  Text(
+                    widget.label,
+                    style: GoogleFonts.poppins(fontSize: 12),
+                  ),
                 if (widget.isRequired == true)
                   Text(
                     "*",

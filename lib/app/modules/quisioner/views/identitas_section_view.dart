@@ -67,11 +67,9 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Text(
-                              "Pilih Program Studi",
-                              style: GoogleFonts.poppins(fontSize: 12),
-                            ),
+                          Text(
+                            "Pilih Program Studi",
+                            style: GoogleFonts.poppins(fontSize: 12),
                           ),
                           Text(
                             "*",

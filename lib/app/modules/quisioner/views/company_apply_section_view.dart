@@ -385,6 +385,7 @@ class CompanyApplySectionView extends GetView<CompanyApplySectionController> {
                 child: CustomTextFieldForm(
                     controller: controller.lainnya,
                     hint: "",
+                    isRequiredExp: true,
                     label:
                         "Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir (Selain jawaban diatas), Tuliskan",
                     keyboardType: TextInputType.text,

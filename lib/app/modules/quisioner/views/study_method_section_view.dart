@@ -62,11 +62,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Perkuliahan",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Perkuliahan",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -142,11 +140,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Demonstrasi",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Demonstrasi",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -222,11 +218,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Partisipasi dalam proyek riset",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Partisipasi dalam proyek riset",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -302,11 +296,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Magang",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Magang",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -382,11 +374,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Praktikum",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Praktikum",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -462,11 +452,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Kerja Lapangan",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Kerja Lapangan",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",
@@ -542,11 +530,9 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Expanded(
-                              child: Text(
-                                "Diskusi",
-                                style: GoogleFonts.poppins(fontSize: 12),
-                              ),
+                            Text(
+                              "Diskusi",
+                              style: GoogleFonts.poppins(fontSize: 12),
                             ),
                             Text(
                               "*",

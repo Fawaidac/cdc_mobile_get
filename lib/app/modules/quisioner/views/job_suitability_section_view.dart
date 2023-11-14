@@ -1099,6 +1099,7 @@ class JobSuitabilitySectionView
                 child: CustomTextFieldForm(
                     controller: controller.otherReason10,
                     isRequired: true,
+                    isRequiredExp: true,
                     label:
                         "Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir (Selain jawaban diatas), Tuliskan",
                     keyboardType: TextInputType.text,
