@@ -13,6 +13,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../../data/models/user_model.dart';
 import '../../../routes/app_pages.dart';
 
 // ignore: must_be_immutable
@@ -478,7 +479,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                           itemBuilder: (context, index) {
                             final comment = comments[index];
 
-                            // final User data = comment['user'];
+                            final User data = comment['user'];
                             String dateTime = comment['created_at'];
                             final date = DateTime.parse(dateTime);
                             initializeDateFormatting('id_ID', null);
@@ -493,14 +494,14 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                                   leading: CircleAvatar(
                                     radius: 20,
                                     backgroundColor: primaryColor,
-                                    // backgroundImage: NetworkImage(data.foto ==
-                                    //         ApiServices.baseUrlImage
-                                    //     ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                    //     : ApiServices.baseUrlImage +
-                                    //         (data.foto ?? "")),
+                                    backgroundImage: NetworkImage(data.foto ==
+                                            ApiServices.baseUrlImage
+                                        ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
+                                        : ApiServices.baseUrlImage +
+                                            (data.foto ?? "")),
                                   ),
                                   title: Text(
-                                    "Someone",
+                                    data.fullname ?? "",
                                     style: AppFonts.poppins(
                                         fontSize: 12,
                                         color: black,

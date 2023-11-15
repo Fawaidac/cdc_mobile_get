@@ -97,6 +97,7 @@ class TopAlumniController extends GetxController {
                   lastPosition: userData['last_position'],
                   highestSalary: userData['highest_salary'],
                   company: userData['company'],
+                  image: userData['image'],
                 ),
               );
             }

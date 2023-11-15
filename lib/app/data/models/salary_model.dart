@@ -3,12 +3,14 @@ class UserProfile {
   final String lastPosition;
   final String highestSalary;
   final String company;
+  final String image;
 
   UserProfile({
     required this.fullname,
     required this.lastPosition,
     required this.highestSalary,
     required this.company,
+    required this.image,
   });
 
   factory UserProfile.fromJson(Map<String, dynamic> json) {
@@ -17,6 +19,7 @@ class UserProfile {
       lastPosition: json['last_position'],
       highestSalary: json['highest_salary'],
       company: json['company'],
+      image: json['image'],
     );
   }
 }

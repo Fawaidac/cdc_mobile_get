@@ -81,22 +81,11 @@ class TopSalaryView extends GetView<TopAlumniController> {
                                 height: 50,
                                 width: 50,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: white,
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '#$alumniNumber',
-                                      style: AppFonts.poppins(
-                                        fontSize: 16,
-                                        color: black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: white,
+                                    image: DecorationImage(
+                                        image: NetworkImage(userProfile.image),
+                                        fit: BoxFit.cover)),
                               ),
                               const SizedBox(
                                 width: 8,

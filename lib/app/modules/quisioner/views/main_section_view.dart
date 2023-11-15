@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class MainSectionView extends GetView<MainSectionController> {
   MainSectionView({Key? key}) : super(key: key);
@@ -290,14 +291,58 @@ class MainSectionView extends GetView<MainSectionController> {
                 padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
                 width: MediaQuery.of(context).size.width,
                 color: white,
-                child: CustomTextFieldForm(
-                    controller: controller.pendapatan,
-                    isEnable: true,
-                    isRequired: true,
-                    isLength: 11,
-                    label: "Rata-rata pendapatan perbulan",
-                    keyboardType: TextInputType.number,
-                    inputFormatters: FilteringTextInputFormatter.digitsOnly),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Rata-rata pendapatan perbulan",
+                              style: GoogleFonts.poppins(fontSize: 12),
+                            ),
+                            Text(
+                              "*",
+                              style: AppFonts.poppins(fontSize: 12, color: red),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        textInputAction: TextInputAction.done,
+                        controller: controller.pendapatan,
+                        style: AppFonts.poppins(fontSize: 13, color: black),
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(11),
+                          NumberTextInputFormatter(),
+                        ],
+                        decoration: InputDecoration(
+                          hintText: "Rata-rata pendapatan perbulan",
+                          isDense: true,
+                          hintStyle: GoogleFonts.poppins(fontSize: 13),
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0xffF0F1F7),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFFCFDFE),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(bottom: 10),
@@ -827,5 +872,26 @@ class MainSectionView extends GetView<MainSectionController> {
             ],
           ),
         ));
+  }
+}
+
+class NumberTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    if (newValue.text.isEmpty) {
+      return TextEditingValue();
+    }
+
+    final formattedValue = NumberFormat.decimalPattern('id').format(
+      int.parse(newValue.text.replaceAll(RegExp('[^0-9]'), '')),
+    );
+
+    return newValue.copyWith(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
+    );
   }
 }

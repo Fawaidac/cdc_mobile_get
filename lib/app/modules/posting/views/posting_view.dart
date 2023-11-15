@@ -152,30 +152,93 @@ class PostingView extends GetView<PostingController> {
             height: 10,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                  child: CustomTextFieldForm(
-                      isEnable: true,
-                      controller: controller.posisi,
-                      label: "Nama Posisi",
-                      isRequired: true,
-                      keyboardType: TextInputType.name,
-                      inputFormatters:
-                          FilteringTextInputFormatter.singleLineFormatter)),
-              const SizedBox(
-                width: 10,
+              Text(
+                "Tambah Posisi",
+                style: AppFonts.poppins(fontSize: 12, color: black),
               ),
-              Expanded(
-                  child: CustomTextFieldForm(
-                      isEnable: true,
-                      controller: controller.perusahaan,
-                      label: "Nama Perusahaan",
-                      isRequired: true,
-                      keyboardType: TextInputType.name,
-                      inputFormatters:
-                          FilteringTextInputFormatter.singleLineFormatter)),
+              Text(
+                "*",
+                style: AppFonts.poppins(fontSize: 12, color: red),
+              )
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                TextFormField(
+                  textInputAction: TextInputAction.done,
+                  maxLines: 5,
+                  controller: controller.posisi,
+                  style: AppFonts.poppins(fontSize: 13, color: black),
+                  keyboardType: TextInputType.text,
+                  onSaved: (val) =>
+                      controller.posisi = val as TextEditingController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter password';
+                    }
+                    return null;
+                  },
+                  inputFormatters: [
+                    FilteringTextInputFormatter.singleLineFormatter
+                  ],
+                  decoration: InputDecoration(
+                    hintText: "Posisi",
+                    isDense: true,
+                    hintStyle: GoogleFonts.poppins(fontSize: 13, color: grey),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    filled: true,
+                    fillColor: const Color(0xFFFCFDFE),
+                  ),
+                )
+              ],
+            ),
+          ),
+          // Align(
+          //   alignment: Alignment.centerRight,
+          //   child: ElevatedButton.icon(
+          //     onPressed: () {},
+          //     icon: Icon(
+          //       Icons.add,
+          //       color: white,
+          //       size: 20,
+          //     ),
+          //     label: Text("Tambah"),
+          //     style: ElevatedButton.styleFrom(
+          //       shadowColor: Colors.transparent,
+          //       primary: primaryColor,
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(20.0),
+          //       ),
+          //       textStyle: AppFonts.poppins(
+          //           fontSize: 12, color: white, fontWeight: FontWeight.w500),
+          //     ),
+          //   ),
+          // ),
+          CustomTextFieldForm(
+              isEnable: true,
+              controller: controller.perusahaan,
+              label: "Nama Perusahaan",
+              isRequired: true,
+              keyboardType: TextInputType.name,
+              inputFormatters: FilteringTextInputFormatter.singleLineFormatter),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

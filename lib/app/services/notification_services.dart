@@ -7,13 +7,13 @@ class LocalNotificationsServices {
   static void initialized() {
     final InitializationSettings initializationSettings =
         InitializationSettings(
-            android: AndroidInitializationSettings("@mipmap/logoblack"));
+            android: AndroidInitializationSettings("@mipmap/icon"));
     notificationsPlugin.initialize(initializationSettings);
   }
 
   static void showNotificationForeground(RemoteMessage message) {
     final notificationsDetail = NotificationDetails(
-        android: AndroidNotificationDetails("com.jtinova.cdc", "Cdc-Online",
+        android: AndroidNotificationDetails("com.jtinova.cdc", "Cdc-Polije",
             importance: Importance.max, priority: Priority.high));
     int notificationId = DateTime.now().millisecondsSinceEpoch ~/ 1000;
     notificationsPlugin.show(notificationId, message.notification!.title,
