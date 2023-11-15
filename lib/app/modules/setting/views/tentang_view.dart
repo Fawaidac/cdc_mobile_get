@@ -55,7 +55,7 @@ class TentangView extends GetView {
             style: AppFonts.poppins(fontSize: 12, color: black),
           ),
           Image.asset(
-            "images/logogrey.png",
+            "images/cdcasset/primaryblack.png",
             height: 125,
           ),
           const Spacer(),
