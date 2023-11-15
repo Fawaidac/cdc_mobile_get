@@ -10,7 +10,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class PostItemController extends GetxController {
   RxList<PostAllModel> postList = <PostAllModel>[].obs;
-
+  List<PostAllModel> originalPostList = [];
+  var searchController = TextEditingController();
   int page = 1;
   int totalPage = 1;
   int lastLoadedPage = 0;
@@ -48,6 +49,19 @@ class PostItemController extends GetxController {
     }
   }
 
+  void filterPosts(String query) {
+    if (query.isEmpty) {
+      postList.assignAll(originalPostList);
+      return;
+    }
+
+    postList.clear();
+    postList.addAll(originalPostList
+        .where(
+            (post) => post.position.toLowerCase().contains(query.toLowerCase()))
+        .toList());
+  }
+
   Future<void> fetchData() async {
     try {
       hasMore = true;
@@ -69,6 +83,7 @@ class PostItemController extends GetxController {
           postList.addAll(newPosts);
           lastLoadedPage = page;
         }
+        originalPostList = List.from(postList);
       } else {
         print("Response data is not in the expected format.");
       }

@@ -76,7 +76,7 @@ class _HomeViewState extends State<HomeView> {
           Padding(
             padding: const EdgeInsets.all(8),
             child: CustomTextField(
-                controller: controller.search,
+                controller: controllerP.searchController,
                 label: "Cari postingan berdasarkan posisi...",
                 keyboardType: TextInputType.text,
                 inputFormatters:
@@ -84,11 +84,9 @@ class _HomeViewState extends State<HomeView> {
                 isLength: 255,
                 isEnable: true,
                 isWhite: true,
-                onTap: () {
-                
-                },
+                onTap: () {},
                 onChange: (value) {
-                  controller.onChangeSearch(value);
+                  controllerP.filterPosts(value);
                 },
                 icon: Icons.search),
           ),
