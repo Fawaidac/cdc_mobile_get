@@ -195,6 +195,22 @@ class RegisterView extends GetView<RegisterController> {
                   ],
                 ),
               ),
+              CustomTextField(
+                  controller: controller.tahunMasuk,
+                  label: "Tahun Masuk",
+                  keyboardType: TextInputType.number,
+                  isEnable: true,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                  isLength: 4,
+                  icon: Icons.school),
+              CustomTextField(
+                  controller: controller.tahunLulus,
+                  label: "Tahun Lulus",
+                  keyboardType: TextInputType.number,
+                  isEnable: true,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                  isLength: 4,
+                  icon: Icons.school),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Column(

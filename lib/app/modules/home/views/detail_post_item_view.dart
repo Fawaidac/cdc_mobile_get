@@ -479,7 +479,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                           itemBuilder: (context, index) {
                             final comment = comments[index];
 
-                            final User data = comment['user'];
+                            final User user = User.fromJson(comment['user']);
                             String dateTime = comment['created_at'];
                             final date = DateTime.parse(dateTime);
                             initializeDateFormatting('id_ID', null);
@@ -494,14 +494,14 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                                   leading: CircleAvatar(
                                     radius: 20,
                                     backgroundColor: primaryColor,
-                                    backgroundImage: NetworkImage(data.foto ==
+                                    backgroundImage: NetworkImage(user.foto ==
                                             ApiServices.baseUrlImage
                                         ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
                                         : ApiServices.baseUrlImage +
-                                            (data.foto ?? "")),
+                                            (user.foto ?? "")),
                                   ),
                                   title: Text(
-                                    data.fullname ?? "",
+                                    user.fullname ?? "",
                                     style: AppFonts.poppins(
                                         fontSize: 12,
                                         color: black,

@@ -50,11 +50,15 @@ class CompanyApplySectionController extends GetxController {
     'Ya, tapi saya belum pasti akan bekerja dalam 2 minggu ke depan',
     'Lainnya',
   ];
+  var idQuisioner = "";
+  RxBool isUpdate = false.obs;
 
   void check() {
     if (lainnya.text.isEmpty) {
       Get.snackbar("Error", "Silahkan isi pertanyaan yang diperlukan",
           margin: const EdgeInsets.all(10));
+    } else if (isUpdate.value == true) {
+      handleQuisionerJumlahUpdate();
     } else {
       handleQuisionerJumlah();
     }
@@ -70,6 +74,41 @@ class CompanyApplySectionController extends GetxController {
           selectedActive.toString(),
           lainnya.text);
       if (response['code'] == 201) {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+        Get.to(() => JobSuitabilitySectionView());
+        idQuisioner = response['data']['quis_terjawab']['id'];
+        isUpdate.value = true;
+      } else if (response['message'] ==
+          'gagal mengisi kuisioner Gagal mengisi kuisioner , kamu belum mengisi quisioner sebelumnya') {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      } else if (response['message'] == 'Quisioner level not found') {
+        Get.snackbar(
+            "Error", "Silahkan isi quisioner identitas terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleQuisionerJumlahUpdate() async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      final response = await quisionercompanyApplyUpdate(
+          idQuisioner,
+          selectedBefore.toString(),
+          selectedResponse.toString(),
+          selectedInvite.toString(),
+          selectedActive.toString(),
+          lainnya.text);
+      if (response['code'] == 200) {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
         Get.to(() => JobSuitabilitySectionView());
@@ -92,7 +131,7 @@ class CompanyApplySectionController extends GetxController {
     }
   }
 
-    static Future<Map<String, dynamic>> quisionercompanyApply(
+  static Future<Map<String, dynamic>> quisionercompanyApply(
     String before,
     String responses,
     String invite,
@@ -121,4 +160,34 @@ class CompanyApplySectionController extends GetxController {
     return data;
   }
 
+  static Future<Map<String, dynamic>> quisionercompanyApplyUpdate(
+    String id,
+    String before,
+    String responses,
+    String invite,
+    String active,
+    String other,
+  ) async {
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      "job_applications_before_first_job": before,
+      "job_applications_responses": responses,
+      "interview_invitations": invite,
+      "job_search_recently_active": active,
+      "job_search_recently_active_other": other,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
+      Uri.parse('${ApiServices.baseUrl}/user/quisioner/companyapplied'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
 }

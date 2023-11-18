@@ -15,27 +15,18 @@ class TopAlumniView extends GetView {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GestureDetector(
-          onTap: () async {
-            AppDialog.show(
-              title: "Perhatian",
-              desc: "Jadi begini",
-              onOk: () {},
-              onCancel: () {},
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
-            child: Text(
-              "Teratas",
-              style: AppFonts.poppins(
-                  fontSize: 16, color: black, fontWeight: FontWeight.bold),
-            ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 8, 0, 8),
+          child: Text(
+            "Teratas",
+            style: AppFonts.poppins(
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
         Container(
             margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-            height: 100,
+            padding: const EdgeInsets.all(10),
+            height: 125,
             child: ListView.builder(
               itemCount: 2,
               shrinkWrap: true,
@@ -59,22 +50,33 @@ class TopAlumniView extends GetView {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Container(
+                              padding: const EdgeInsets.all(10),
                               height: 70,
                               width: 70,
                               decoration: BoxDecoration(
                                   color: white.withOpacity(0.5),
                                   borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                child: Image.asset(
+                                  index == 0
+                                      ? "images/personal-growth.png"
+                                      : "images/profit-growth.png",
+                                  color: white,
+                                ),
+                              ),
                             ),
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 10, top: 10, right: 10),
+                                  left: 10,
+                                ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

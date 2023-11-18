@@ -1347,11 +1347,26 @@ class FindJobSectionView extends GetView<FindJobSectionController> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
                         onPressed: () {
-                          controller.check();
+                          Get.back();
+                        },
+                        child: Text(
+                          "Sebelumnya",
+                          style: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          if (controller.isUpdate.value == true) {
+                            controller.handleQuisionerFindJobs();
+                          } else {
+                            controller.check();
+                          }
                         },
                         child: Text(
                           "Selanjutnya",

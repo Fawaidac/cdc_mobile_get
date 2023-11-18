@@ -1,6 +1,14 @@
 import 'dart:convert';
 
+import 'package:cdc/app/modules/quisioner/controllers/company_apply_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/find_job_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/identitas_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/job_street_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/kompetensi_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/main_section_controller.dart';
 import 'package:cdc/app/modules/quisioner/controllers/quisioner_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/study_method_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/controllers/study_section_controller.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
@@ -78,6 +86,14 @@ class JobSuitabilitySectionController extends GetxController {
       Get.snackbar("Error", "Silahkan isi pertanyaan yang diperlukan",
           margin: const EdgeInsets.all(10));
     } else {
+      Get.find<IdentitasSectionController>().isUpdate.value = false;
+      Get.find<MainSectionController>().isUpdate.value = false;
+      Get.find<StudySectionController>().isUpdate.value = false;
+      Get.find<KompetensiSectionController>().isUpdate.value = false;
+      Get.find<StudyMethodSectionController>().isUpdate.value = false;
+      Get.find<JobStreetSectionController>().isUpdate.value = false;
+      Get.find<FindJobSectionController>().isUpdate.value = false;
+      Get.find<CompanyApplySectionController>().isUpdate.value = false;
       handlequisionerJobsUitability();
     }
   }

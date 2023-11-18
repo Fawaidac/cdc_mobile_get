@@ -28,14 +28,13 @@ class EditEducationUserView extends GetView<EditEducationUserController> {
           },
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: first,
+            color: black,
           ),
         ),
-        centerTitle: true,
         title: Text(
           "Update Pendidikan",
           style: AppFonts.poppins(
-              fontSize: 16, color: primaryColor, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -136,13 +135,16 @@ class EditEducationUserView extends GetView<EditEducationUserController> {
                 controller: controller.tahunMasuk,
                 label: "Tahun Masuk",
                 keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                isLength: 4),
             CustomTextFieldForm(
-                isEnable: true,
-                controller: controller.tahunLulus,
-                label: "Tahun Lulus",
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
+              isEnable: true,
+              controller: controller.tahunLulus,
+              label: "Tahun Lulus",
+              keyboardType: TextInputType.number,
+              inputFormatters: FilteringTextInputFormatter.digitsOnly,
+              isLength: 4,
+            ),
             CustomTextFieldForm(
                 isEnable: true,
                 controller: controller.noIjazah,
@@ -155,7 +157,8 @@ class EditEducationUserView extends GetView<EditEducationUserController> {
                 height: 48,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: first, borderRadius: BorderRadius.circular(15)),
+                    color: primaryColor,
+                    borderRadius: BorderRadius.circular(15)),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,

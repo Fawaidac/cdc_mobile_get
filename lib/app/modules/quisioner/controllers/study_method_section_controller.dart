@@ -24,7 +24,8 @@ class StudyMethodSectionController extends GetxController {
     'Kurang',
     'Tidak Sama Sekali',
   ];
-
+  var idQuisioner = "";
+  RxBool isUpdate = false.obs;
   static Future<Map<String, dynamic>> quisionerMethodStudy(
     String perkuliahan,
     String demonstrasi,
@@ -58,6 +59,41 @@ class StudyMethodSectionController extends GetxController {
     return data;
   }
 
+  static Future<Map<String, dynamic>> quisionerMethodStudyUpdate(
+    String id,
+    String perkuliahan,
+    String demonstrasi,
+    String partisipasi,
+    String magang,
+    String praktikum,
+    String kerjaLapang,
+    String diskusi,
+  ) async {
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      "academicStudy": perkuliahan,
+      "demonstrasi": demonstrasi,
+      "research_participation": partisipasi,
+      "intern": magang,
+      "practice": praktikum,
+      "field_work": kerjaLapang,
+      "discucion": diskusi,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
+      Uri.parse('${ApiServices.baseUrl}/user/quisioner/studymethod'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
   void handleQuisionerStudyMethod() async {
     try {
       EasyLoading.show(status: "Loading...");
@@ -70,6 +106,45 @@ class StudyMethodSectionController extends GetxController {
           selectedKerjaLapang.toString(),
           selectedDiskusi.toString());
       if (response['code'] == 201) {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+
+        Get.to(() => JobStreetSectionView());
+        idQuisioner = response['data']['quis_terjawab']['id'];
+        isUpdate.value = true;
+      } else if (response['message'] ==
+          'gagal mengisi kuisioner Gagal mengisi kuisioner , kamu belum mengisi quisioner sebelumnya') {
+        Get.snackbar(
+            "Error", "Silahkan isi quisioner sebelumnya terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else if (response['message'] == 'Quisioner level not found') {
+        Get.snackbar(
+            "Success", "Silahkan isi quisioner identitas terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleQuisionerStudyMethodUpdate() async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      final response = await quisionerMethodStudyUpdate(
+          idQuisioner,
+          selectedPerkuliahan.toString(),
+          selectedDemontrasi.toString(),
+          selectedPartisipasi.toString(),
+          selectedMagang.toString(),
+          selectedPraktikum.toString(),
+          selectedKerjaLapang.toString(),
+          selectedDiskusi.toString());
+      if (response['code'] == 200) {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
 

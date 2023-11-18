@@ -596,11 +596,26 @@ class StudyMethodSectionView extends GetView<StudyMethodSectionController> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
                         onPressed: () {
-                          controller.handleQuisionerStudyMethod();
+                          Get.back();
+                        },
+                        child: Text(
+                          "Sebelumnya",
+                          style: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          if (controller.isUpdate.value == true) {
+                            controller.handleQuisionerStudyMethodUpdate();
+                          } else {
+                            controller.handleQuisionerStudyMethod();
+                          }
                         },
                         child: Text(
                           "Selanjutnya",

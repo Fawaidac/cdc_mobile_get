@@ -21,6 +21,8 @@ class OtpController extends GetxController {
   String nik = "";
   String nim = "";
   String prodi = "";
+  String angkatan = "";
+  String tahunLulus = "";
 
   RxInt countdown = 30.obs;
   RxBool canResend = false.obs;
@@ -37,6 +39,8 @@ class OtpController extends GetxController {
     nik = args['nik'];
     nim = args['nim'];
     prodi = args['kode_prodi'];
+    tahunLulus = args['tahun_lulus'];
+    angkatan = args['angkatan'];
     startCountdown();
   }
 
@@ -65,7 +69,7 @@ class OtpController extends GetxController {
 
       // print(Get.find<RegisterController>().verifyId);
 
-      await handleRegister(email, nik, fullname, pw, phone, alamat, nim, prodi);
+      await handleRegister(email, nik, fullname, pw, phone, alamat, nim, prodi, angkatan, tahunLulus);
     } catch (e) {
       Get.snackbar("Error", 'Kode Otp Salah', margin: const EdgeInsets.all(10));
     } finally {
@@ -82,10 +86,12 @@ class OtpController extends GetxController {
     String alamat,
     String nim,
     String prodi,
+    String tahunLulus,
+    String angkatan,
   ) async {
     try {
       final response = await register(
-          email, nik, fullname, "0$telp", password, alamat, nim, prodi);
+          email, nik, fullname, "0$telp", password, alamat, nim, prodi, angkatan, tahunLulus);
       if (response['code'] == 201) {
         Get.offNamed(Routes.LOGIN);
         Get.snackbar("Success", response['message'],
@@ -107,7 +113,10 @@ class OtpController extends GetxController {
       String password,
       String alamat,
       String nim,
-      String kode) async {
+      String kode,
+      String angkatan,
+      String tahunLulus,
+      ) async {
     final Map<String, dynamic> body = {
       'email': email,
       'nik': nik,
@@ -117,6 +126,8 @@ class OtpController extends GetxController {
       'alamat': alamat,
       'nim': alamat,
       'kode_prodi': kode,
+      'angkatan': angkatan,
+      'tahun_lulus': tahunLulus,
     };
     final res = await http.post(
         Uri.parse('${ApiServices.baseUrl}/auth/user/register'),

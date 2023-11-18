@@ -386,6 +386,7 @@ class CompanyApplySectionView extends GetView<CompanyApplySectionController> {
                     controller: controller.lainnya,
                     hint: "",
                     isRequiredExp: true,
+                    isRequired: true,
                     label:
                         "Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir (Selain jawaban diatas), Tuliskan",
                     keyboardType: TextInputType.text,
@@ -396,8 +397,19 @@ class CompanyApplySectionView extends GetView<CompanyApplySectionController> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: Text(
+                          "Sebelumnya",
+                          style: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        )),
                     TextButton(
                         onPressed: () {
                           controller.check();

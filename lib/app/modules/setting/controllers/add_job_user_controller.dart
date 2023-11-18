@@ -29,8 +29,12 @@ class AddJobUserController extends GetxController {
   ];
   void toogleCheck(bool val) {
     isChecked.value = val;
+    if (isChecked.value) {
+      tahunKeluar.text = "";
+    }
     update();
   }
+
 
   String formatCurrency(String amount) {
     final currencyFormat = NumberFormat.currency(locale: 'id', symbol: 'Rp');

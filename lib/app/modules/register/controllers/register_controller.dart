@@ -20,6 +20,8 @@ class RegisterController extends GetxController {
   var password = TextEditingController();
   var confirmPassword = TextEditingController();
   var countryCode = TextEditingController();
+  var tahunMasuk = TextEditingController();
+  var tahunLulus = TextEditingController();
   var phone = "";
 
   String verifyId = "";
@@ -101,6 +103,12 @@ class RegisterController extends GetxController {
     } else if (prodi.text.isEmpty) {
       Get.snackbar("Error", "Program Studi harus diisi",
           margin: const EdgeInsets.all(10));
+    } else if (tahunMasuk.text.isEmpty) {
+      Get.snackbar("Error", "Tahun masuk harus diisi",
+          margin: const EdgeInsets.all(10));
+    } else if (tahunLulus.text.isEmpty) {
+      Get.snackbar("Error", "Tahun lulus harus diisi",
+          margin: const EdgeInsets.all(10));
     } else if (password.text.isEmpty) {
       Get.snackbar("Error", "Password harus diisi",
           margin: const EdgeInsets.all(10));
@@ -173,6 +181,8 @@ class RegisterController extends GetxController {
               'nik': nik.text,
               'nim': nim.text,
               'kode_prodi': kodeProdi,
+              'angkatan': tahunMasuk.text,
+              'tahun_lulus': tahunLulus.text,
             });
           },
           codeAutoRetrievalTimeout: (verificationId) {

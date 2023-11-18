@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../utils/app_dialog.dart';
+
 class JobUserView extends GetView<JobUserController> {
   JobUserView({Key? key}) : super(key: key);
   @override
@@ -84,48 +86,18 @@ class JobUserView extends GetView<JobUserController> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.dialog(AlertDialog(
-                          title: Text(
-                            "Perhatian !",
-                            textAlign: TextAlign.center,
-                            style: AppFonts.poppins(
-                                fontSize: 16,
-                                color: black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.fromLTRB(15, 15, 15, 0),
-                          content: Text(
-                            "Apakah anda yakin untuk menghapus data ?",
-                            textAlign: TextAlign.center,
-                            style: AppFonts.poppins(fontSize: 12, color: black),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                controller.handleDeleteJobs("${jobs.id}");
-                                Get.back();
-                              },
-                              child: Text(
-                                "OK",
-                                style: AppFonts.poppins(
-                                    fontSize: 16,
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              child: Text("Batal",
-                                  style: AppFonts.poppins(
-                                      fontSize: 16,
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ],
-                        ));
+                        AppDialog.show(
+                          title: "Perhatian !",
+                          isTouch: true,
+                          desc: "Apakah anda yakin untuk menghapus data ?",
+                          onOk: () async {
+                            controller.handleDeleteJobs("${jobs.id}");
+                            Get.back();
+                          },
+                          onCancel: () {
+                            Get.back();
+                          },
+                        );
                       },
                       child: Icon(
                         Icons.delete,

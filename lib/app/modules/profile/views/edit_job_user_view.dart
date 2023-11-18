@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '../../../utils/app_colors.dart';
 
@@ -27,14 +28,13 @@ class EditJobUserView extends GetView<EditJobUserController> {
           },
           child: Icon(
             Icons.keyboard_arrow_left_rounded,
-            color: first,
+            color: black,
           ),
         ),
-        centerTitle: true,
         title: Text(
           "Update Pekerjaan",
           style: AppFonts.poppins(
-              fontSize: 16, color: first, fontWeight: FontWeight.bold),
+              fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
       body: SingleChildScrollView(
@@ -56,12 +56,54 @@ class EditJobUserView extends GetView<EditJobUserController> {
                 keyboardType: TextInputType.text,
                 inputFormatters:
                     FilteringTextInputFormatter.singleLineFormatter),
-            CustomTextFieldForm(
-                isEnable: true,
-                controller: controller.gaji,
-                label: "Gaji",
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Gaji",
+                          style: GoogleFonts.poppins(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    textInputAction: TextInputAction.done,
+                    controller: controller.gaji,
+                    style: AppFonts.poppins(fontSize: 13, color: black),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(11),
+                      NumberTextInputFormatter(),
+                    ],
+                    decoration: InputDecoration(
+                      hintText: "Gaji",
+                      isDense: true,
+                      hintStyle: GoogleFonts.poppins(fontSize: 13),
+                      border: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Color(0xffF0F1F7),
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xFFFCFDFE),
+                    ),
+                  )
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Column(
@@ -130,17 +172,22 @@ class EditJobUserView extends GetView<EditJobUserController> {
               ),
             ),
             CustomTextFieldForm(
-                isEnable: true,
-                controller: controller.tahunMasuk,
-                label: "Tahun Masuk",
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
-            CustomTextFieldForm(
-                isEnable: true,
-                controller: controller.tahunKeluar,
-                label: "Tahun Keluar",
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
+              isEnable: true,
+              controller: controller.tahunMasuk,
+              label: "Tahun Masuk",
+              keyboardType: TextInputType.number,
+              inputFormatters: FilteringTextInputFormatter.digitsOnly,
+              isLength: 4,
+            ),
+            Obx(
+              () => CustomTextFieldForm(
+                  isEnable: controller.isChecked.value == true ? false : true,
+                  controller: controller.tahunKeluar,
+                  label: "Tahun Keluar",
+                  keyboardType: TextInputType.number,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                  isLength: 4),
+            ),
             Row(
               children: [
                 Obx(
@@ -149,6 +196,7 @@ class EditJobUserView extends GetView<EditJobUserController> {
                     value: controller.isChecked.value,
                     onChanged: (value) {
                       controller.isChecked.value = value!;
+                      controller.tahunKeluar.text = "";
                     },
                   ),
                 ),
@@ -184,6 +232,27 @@ class EditJobUserView extends GetView<EditJobUserController> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class NumberTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    if (newValue.text.isEmpty) {
+      return TextEditingValue();
+    }
+
+    final formattedValue = NumberFormat.decimalPattern('id').format(
+      int.parse(newValue.text.replaceAll(RegExp('[^0-9]'), '')),
+    );
+
+    return newValue.copyWith(
+      text: formattedValue,
+      selection: TextSelection.collapsed(offset: formattedValue.length),
     );
   }
 }

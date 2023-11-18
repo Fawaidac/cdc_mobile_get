@@ -23,6 +23,10 @@ class KompetensiSectionController extends GetxController {
   String? selectedTeamWorkNow;
   String? selectedSelfDevLulus;
   String? selectedSelfDevNow;
+
+  var idQuisioner = "";
+  RxBool isUpdate = false.obs;
+
   List<String> tingkatOptions = [
     'Sangat Rendah',
     'Rendah',
@@ -49,6 +53,50 @@ class KompetensiSectionController extends GetxController {
           selectedSelfDevLulus.toString(),
           selectedSelfDevNow.toString());
       if (response['code'] == 201) {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+        Get.to(() => StudyMethodSectionView());
+        idQuisioner = response['data']['quis_terjawab']['id'];
+        isUpdate.value = true;
+      } else if (response['message'] == 'Quisioner level not found') {
+        Get.snackbar(
+            "Error", "Silahkan isi quisioner identitas terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else if (response['message'] ==
+          'gagal mengisi kuisioner Ops , Nampaknya kamu belum mengisi quisioner sebelumnya') {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleQuisionerKompetensiUpdate() async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      final response = await quisionerKompetensiUpdate(
+          idQuisioner,
+          selectedEtikaLulus.toString(),
+          selectedEtikaNow.toString(),
+          selectedKeahlianLulus.toString(),
+          selectedKeahlianNow.toString(),
+          selectedEnglishLulus.toString(),
+          selectedEnglishNow.toString(),
+          selectedItLulus.toString(),
+          selectedItNow.toString(),
+          selectedKomunikasiLulus.toString(),
+          selectedKomunikasiNow.toString(),
+          selectedTeamWorkLulus.toString(),
+          selectedTeamWorkNow.toString(),
+          selectedSelfDevLulus.toString(),
+          selectedSelfDevNow.toString());
+      if (response['code'] == 200) {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
         Get.to(() => StudyMethodSectionView());
@@ -107,6 +155,55 @@ class KompetensiSectionController extends GetxController {
     final token = prefs.getString('token');
 
     final response = await http.post(
+      Uri.parse('${ApiServices.baseUrl}/user/quisioner/competence'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
+  static Future<Map<String, dynamic>> quisionerKompetensiUpdate(
+    String id,
+    String etikLulus,
+    String etikNow,
+    String keahlianLulus,
+    String keahlianNow,
+    String englishLulus,
+    String englishNow,
+    String itLulus,
+    String itNow,
+    String komunikasiLulus,
+    String komunikasiNow,
+    String teamWorkLulus,
+    String teamWorkNow,
+    String selfDevLulus,
+    String selfDevNow,
+  ) async {
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      "etik_lulus": etikLulus,
+      "etika_saatini": etikNow,
+      "keahlian_lulus": keahlianLulus,
+      "keahlian_saatini": keahlianNow,
+      "english_lulus": englishLulus,
+      "english_saatini": englishNow,
+      "teknologi_informasi_lulus": itLulus,
+      "teknologi_informasi_saatini": itNow,
+      "komunikasi_lulus": komunikasiLulus,
+      "komunikasi_saatini": komunikasiNow,
+      "kerjasama_lulus": teamWorkLulus,
+      "kerjasama_saatini": teamWorkNow,
+      "pengembangan_diri_lulus": selfDevLulus,
+      "pengembangan_diri_saatini": selfDevNow,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
       Uri.parse('${ApiServices.baseUrl}/user/quisioner/competence'),
       headers: {
         'Authorization': 'Bearer $token',

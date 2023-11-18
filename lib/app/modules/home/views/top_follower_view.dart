@@ -82,7 +82,8 @@ class TopFollowerView extends GetView<TopAlumniController> {
                                       borderRadius: BorderRadius.circular(10),
                                       color: white,
                                       image: DecorationImage(
-                                          image: NetworkImage(alumni['foto']))),
+                                          image: NetworkImage(alumni['foto']),
+                                          fit: BoxFit.cover)),
                                 ),
                                 const SizedBox(
                                   width: 8,

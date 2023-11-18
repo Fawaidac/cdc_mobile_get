@@ -181,13 +181,15 @@ class AddJobUserView extends GetView<AddJobUserController> {
                 isLength: 4,
                 keyboardType: TextInputType.number,
                 inputFormatters: FilteringTextInputFormatter.digitsOnly),
-            CustomTextFieldForm(
-                isEnable: true,
-                isLength: 4,
-                controller: controller.tahunKeluar,
-                label: "Tahun Keluar",
-                keyboardType: TextInputType.number,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly),
+            Obx(
+              () => CustomTextFieldForm(
+                  isEnable: controller.isChecked.value == true ? false : true,
+                  isLength: 4,
+                  controller: controller.tahunKeluar,
+                  label: "Tahun Keluar",
+                  keyboardType: TextInputType.number,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly),
+            ),
             Row(
               children: [
                 Obx(

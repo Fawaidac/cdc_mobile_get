@@ -226,12 +226,14 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
               width: MediaQuery.of(context).size.width,
               color: white,
               child: CustomTextFieldForm(
-                  controller: controller.npwp,
-                  label: "NPWP / npwp (Nomor Pokok Wajib Pajak)",
-                  keyboardType: TextInputType.number,
-                  isEnable: true,
-                  isRequired: true,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly),
+                controller: controller.npwp,
+                label: "NPWP / npwp (Nomor Pokok Wajib Pajak)",
+                keyboardType: TextInputType.number,
+                isEnable: true,
+                isRequired: true,
+                inputFormatters: FilteringTextInputFormatter.digitsOnly,
+                isLength: 16,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -240,7 +242,11 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        controller.handleQuisionerIdentitas();
+                        if (controller.isUpdate.value == true) {
+                          controller.handleUpdateQuisionerIdentitas();
+                        } else {
+                          controller.handleQuisionerIdentitas();
+                        }
                       },
                       child: Text(
                         "Selanjutnya",
@@ -251,7 +257,7 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
                       ))
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

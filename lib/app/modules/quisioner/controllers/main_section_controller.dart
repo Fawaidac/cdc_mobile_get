@@ -16,10 +16,12 @@ class MainSectionController extends GetxController {
   RxList<String> regencyList = RxList<String>();
   RxString selectedRegency = RxString("");
 
-
   late TextEditingController jenis;
   late TextEditingController namaPerusahaan;
   late TextEditingController pendapatan;
+
+  var idQuisioner = "";
+  RxBool isUpdate = false.obs;
 
   String? selectedStatus;
   String? selectedJobs;
@@ -136,7 +138,7 @@ class MainSectionController extends GetxController {
           await rootBundle.loadString('assets/models/regency.json');
       final List<dynamic> jsonData = json.decode(data);
 
-     regencyList.assignAll(jsonData
+      regencyList.assignAll(jsonData
           .map((dynamic regency) => regency['kabupaten_kota'].toString())
           .cast<String>()
           .toList());
@@ -157,6 +159,7 @@ class MainSectionController extends GetxController {
         ? jenis.text
         : selectedJenisInstansi.toString();
     String statusValue = selectedStatus.toString();
+    String gajiValue = pendapatan.text.replaceAll('.', '');
     try {
       EasyLoading.show(status: "Loading...");
 
@@ -164,7 +167,7 @@ class MainSectionController extends GetxController {
           statusValue,
           less6Value,
           selectedMonth.toString(),
-          pendapatan.text,
+          gajiValue,
           selectedAfter.toString(),
           selectedProvinsi.toString(),
           selectedRegency.toString(),
@@ -173,6 +176,50 @@ class MainSectionController extends GetxController {
           selectedJabatan.toString(),
           selectedTingkatan.toString());
       if (response['code'] == 201) {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+        Get.to(() => StudySectionView());
+        idQuisioner = response['data']['quis_terjawab']['id'];
+        isUpdate.value = true;
+      } else if (response['message'] == 'Quisioner level not found') {
+        Get.snackbar(
+            "Error", "Silahkan isi quisioner sebelumnya terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleQuisionerMainUpdate() async {
+    bool less6Value = selectedJobs == "Ya" ? true : false;
+    String selectedJenisValue = selectedJenisInstansi == 'Lainnya'
+        ? jenis.text
+        : selectedJenisInstansi.toString();
+    String gajiValue = pendapatan.text.replaceAll('.', '');
+    String statusValue = selectedStatus.toString();
+    try {
+      EasyLoading.show(status: "Loading...");
+
+      final response = await quisionerMainUpdate(
+          idQuisioner,
+          statusValue,
+          less6Value,
+          selectedMonth.toString(),
+          gajiValue,
+          selectedAfter.toString(),
+          selectedProvinsi.toString(),
+          selectedRegency.toString(),
+          selectedJenisValue,
+          namaPerusahaan.text,
+          selectedJabatan.toString(),
+          selectedTingkatan.toString());
+      if (response['code'] == 200) {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
         Get.to(() => StudySectionView());
@@ -221,6 +268,49 @@ class MainSectionController extends GetxController {
     final token = prefs.getString('token');
 
     final response = await http.post(
+      Uri.parse('${ApiServices.baseUrl}/user/quisioner/main'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
+  static Future<Map<String, dynamic>> quisionerMainUpdate(
+    String id,
+    String statusValue,
+    bool is_less_6_months,
+    String pre_grad_employment_months,
+    String monthly_income,
+    String post_grad_months,
+    String code_province,
+    String code_regency,
+    String agency_type,
+    String company_name,
+    String job_title,
+    String work_level,
+  ) async {
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      "status": statusValue,
+      "is_less_6_months": is_less_6_months,
+      "pre_grad_employment_months": pre_grad_employment_months,
+      "monthly_income": monthly_income,
+      "post_grad_months": post_grad_months,
+      "code_province": code_province,
+      "code_regency": code_regency,
+      "agency_type": agency_type,
+      "company_name": company_name,
+      "job_title": job_title,
+      "work_level": work_level,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
       Uri.parse('${ApiServices.baseUrl}/user/quisioner/main'),
       headers: {
         'Authorization': 'Bearer $token',

@@ -21,14 +21,20 @@ class IdentitasSectionController extends GetxController {
   late TextEditingController nik;
   late TextEditingController npwp;
 
+  var idQuisioner = "";
+
   RxList<Map<String, dynamic>> prodiList = RxList([]);
   RxString selectedProdi = RxString("");
   RxString selectedId = RxString("");
+
+  RxBool isUpdate = false.obs;
 
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+
+    print('Init update : $isUpdate');
     kdptimsmh = TextEditingController();
     kdptimsmh.text = "Politeknik Negeri Jember";
     nim = TextEditingController();
@@ -96,6 +102,68 @@ class IdentitasSectionController extends GetxController {
           Get.snackbar("Success", response['message'],
               margin: const EdgeInsets.all(10));
           Get.to(() => MainSectionView());
+          print(response['data']['quis_terjawab']);
+          idQuisioner = response['data']['quis_terjawab']['id'];
+          isUpdate.value = true;
+
+          print('idQuisioner : $idQuisioner');
+          print('isUpdate : $isUpdate');
+        } else if (response['message'] ==
+            'your token is not valid , please login again') {
+          AppDialog.show(
+            title: "Error !",
+            isTouch: false,
+            desc: "Ops , sesi anda telah habis , silahkan login ulang",
+            onOk: () async {
+              SharedPreferences preferences =
+                  await SharedPreferences.getInstance();
+              preferences.remove('token');
+              preferences.remove('tokenExpirationTime');
+
+              Get.offAllNamed(Routes.LOGIN);
+              Get.snackbar("Success", "Berhasil keluar dari aplikasi",
+                  margin: const EdgeInsets.all(10));
+            },
+            onCancel: () {
+              Get.back();
+            },
+          );
+        } else {
+          Get.snackbar("Error", response['message'],
+              margin: const EdgeInsets.all(10));
+        }
+      } else {
+        Get.snackbar("Error", "Silahkan pilih program studi anda",
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleUpdateQuisionerIdentitas() async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      int kodeProdi = int.parse(selectedId.value);
+      // ignore: unnecessary_null_comparison
+      if (selectedProdi.value != null) {
+        final response = await quisionerIdentitasUpdate(
+            idQuisioner,
+            kodeProdi,
+            nim.text,
+            nama.text,
+            telp.text,
+            email.text,
+            int.parse(tahunLulus.text),
+            nik.text,
+            npwp.text);
+        if (response['code'] == 200) {
+          Get.snackbar("Success", response['message'],
+              margin: const EdgeInsets.all(10));
+          Get.to(() => MainSectionView());
+          isUpdate.value = true;
         } else if (response['message'] ==
             'your token is not valid , please login again') {
           AppDialog.show(
@@ -153,8 +221,45 @@ class IdentitasSectionController extends GetxController {
     };
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-
+    print(token);
     final response = await http.post(
+      Uri.parse('${ApiServices.baseUrl}/user/quisioner/identity'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
+  static Future<Map<String, dynamic>> quisionerIdentitasUpdate(
+    String id,
+    int kodeProdi,
+    String nim,
+    String namaLengkap,
+    String noTelp,
+    String email,
+    int tahunLulus,
+    String nik,
+    String npwp,
+  ) async {
+    final Map<String, dynamic> requestBody = {
+      "id": id,
+      "kode_prodi": kodeProdi,
+      "nim": nim,
+      "nama_lengkap": namaLengkap,
+      "no_telp": noTelp,
+      "email": email,
+      "tahun_lulus": tahunLulus,
+      "nik": nik,
+      "npwp": npwp,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
       Uri.parse('${ApiServices.baseUrl}/user/quisioner/identity'),
       headers: {
         'Authorization': 'Bearer $token',

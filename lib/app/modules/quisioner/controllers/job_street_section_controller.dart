@@ -33,7 +33,8 @@ class JobStreetSectionController extends GetxController {
     '11',
     '12',
   ];
-
+  var idQuisioner = "";
+  RxBool isUpdate = false.obs;
   static Future<Map<String, dynamic>> quisionerJobsStreet(
     String jobStart,
     String before,
@@ -59,12 +60,73 @@ class JobStreetSectionController extends GetxController {
     return data;
   }
 
+  static Future<Map<String, dynamic>> quisionerJobsStreetUpdate(
+    String id,
+    String jobStart,
+    String before,
+    String after,
+  ) async {
+    final Map<String, dynamic> requestBody = {
+      'id': id,
+      "job_search_start": jobStart,
+      "before_graduation": before,
+      "after_graduation": after,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
+      Uri.parse('${ApiServices.baseUrl}/user/quisioner/jobstreet'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
   void handleQuisionerJobs() async {
     try {
       EasyLoading.show(status: "Loading...");
       final response = await quisionerJobsStreet(selectedJobs.toString(),
           selectedMonth.toString(), selectedWisuda.toString());
       if (response['code'] == 201) {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+        Get.to(() => FindJobSectionView());
+        idQuisioner = response['data']['quis_terjawab']['id'];
+        isUpdate.value = true;
+      } else if (response['message'] ==
+          'gagal mengisi kuisioner Gagal mengisi kuisioner , kamu belum mengisi quisioner sebelumnya') {
+        Get.snackbar(
+            "Error", "Silahkan isi quisioner sebelumnya terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else if (response['message'] == 'Quisioner level not found') {
+        Get.snackbar(
+            "Success", "Silahkan isi quisioner identitas terlebih dahulu",
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      EasyLoading.dismiss();
+    }
+  }
+
+  void handleQuisionerJobsUpdate() async {
+    try {
+      EasyLoading.show(status: "Loading...");
+      final response = await quisionerJobsStreetUpdate(
+          idQuisioner,
+          selectedJobs.toString(),
+          selectedMonth.toString(),
+          selectedWisuda.toString());
+      if (response['code'] == 200) {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
         Get.to(() => FindJobSectionView());

@@ -1,5 +1,6 @@
 import 'package:cdc/app/modules/quisioner/controllers/job_suitability_section_controller.dart';
 import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -1110,11 +1111,33 @@ class JobSuitabilitySectionView
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
                         onPressed: () {
-                          controller.check();
+                          Get.back();
+                        },
+                        child: Text(
+                          "Sebelumnya",
+                          style: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          AppDialog.show(
+                            title: "Perhatian !",
+                            isTouch: false,
+                            desc:
+                                "Apakah anda yakin untuk menyimpan quisioner?",
+                            onOk: () {
+                              controller.check();
+                            },
+                            onCancel: () {
+                              Get.back();
+                            },
+                          );
                         },
                         child: Text(
                           "Selanjutnya",

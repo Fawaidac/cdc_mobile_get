@@ -290,11 +290,26 @@ class JobStreetSectionView extends GetView<JobStreetSectionController> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
                         onPressed: () {
-                          controller.handleQuisionerJobs();
+                          Get.back();
+                        },
+                        child: Text(
+                          "Sebelumnya",
+                          style: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        )),
+                    TextButton(
+                        onPressed: () {
+                          if (controller.isUpdate.value == true) {
+                            controller.handleQuisionerJobsUpdate();
+                          } else {
+                            controller.handleQuisionerJobs();
+                          }
                         },
                         child: Text(
                           "Selanjutnya",

@@ -72,7 +72,7 @@ class AktifasiController extends GetxController {
     final DateTime? pickedDate = await showDatePicker(
       context: _,
       initialDate: selectedDate.value,
-      firstDate: DateTime(2018),
+      firstDate: DateTime(1800),
       lastDate: DateTime(2100),
     );
     if (pickedDate != null && pickedDate != selectedDate.value) {
