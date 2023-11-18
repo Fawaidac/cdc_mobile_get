@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,7 +44,7 @@ class EditJobUserController extends GetxController {
       idJob = job?.id ?? "";
       perusahaan.text = job?.perusahaan ?? "";
       jabatan.text = job?.jabatan ?? "";
-      gaji.text = job?.gaji.toString() ?? "";
+      gaji.text = NumberFormat.decimalPattern('id').format(job?.gaji ?? 0);
       tahunMasuk.text = job?.tahunMasuk.toString() ?? "";
       selectedJenisPekerjaan = job?.jenisPekerjaan.toString() ?? "";
       if (job?.pekerjaanSaatini.toString() == "1") {

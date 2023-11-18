@@ -5,6 +5,7 @@ import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../utils/app_dialog.dart';
 
@@ -63,7 +64,7 @@ class JobUserView extends GetView<JobUserController> {
                             fontWeight: FontWeight.normal),
                       ),
                       Text(
-                        "Rp. ${jobs.gaji}",
+                        "Rp. ${NumberFormat.decimalPattern('id').format(jobs.gaji)}",
                         style: AppFonts.poppins(
                           fontSize: 12,
                           color: grey,
