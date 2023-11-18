@@ -74,6 +74,7 @@ class PostUserView extends GetView<PostUserController> {
                   Get.to(() => DetailPostItemView(
                         id: post.id,
                         isUser: true,
+                        isPostUser: false,
                       ));
                 },
                 child: ClipRRect(

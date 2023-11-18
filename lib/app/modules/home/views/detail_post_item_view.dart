@@ -20,7 +20,14 @@ import '../../../routes/app_pages.dart';
 class DetailPostItemView extends StatefulWidget {
   String id;
   bool isUser;
-  DetailPostItemView({required this.id, required this.isUser, super.key});
+  bool isPostUser;
+  String? idUser;
+  DetailPostItemView(
+      {required this.id,
+      required this.isUser,
+      required this.isPostUser,
+      this.idUser,
+      super.key});
 
   @override
   State<DetailPostItemView> createState() => _DetailPostItemViewState();
@@ -47,6 +54,9 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
   Future<void> sendComment(String id, String message) async {
     final response = await detailPostController.storeComment(id, message);
     if (response['code'] == 201) {
+      setState(() {
+        detailPostController.comment.clear();
+      });
       Get.snackbar("Success", "Berhasil mengomentari postingan",
           margin: const EdgeInsets.all(10));
       setState(() {});
@@ -63,6 +73,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
       Get.snackbar("Success", "Berhasil menghapus postingan",
           margin: const EdgeInsets.all(10));
       setState(() {});
+      Get.back();
     } else {
       Get.snackbar("Error", response['message'],
           margin: const EdgeInsets.all(10));
@@ -78,7 +89,11 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
         shadowColor: Colors.transparent,
         leading: IconButton(
             onPressed: () {
-              Get.back();
+              if (widget.isPostUser == true) {
+                Get.toNamed(Routes.DETAIL_ALUMNI, arguments: widget.idUser);
+              } else {
+                Get.back();
+              }
             },
             icon: Icon(
               Icons.keyboard_arrow_left_rounded,
@@ -91,7 +106,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
         ),
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         padding: const EdgeInsets.only(bottom: 20, top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,11 +130,14 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                         .toList();
                   }
                   String dateTime = post['post_at'];
+                  String dateExp = post['expired'];
                   final date = DateTime.parse(dateTime);
+                  final dateEx = DateTime.parse(dateExp);
                   initializeDateFormatting('id_ID', null);
                   final dateFormat = DateFormat('dd MMMM yyyy', 'id_ID');
                   final timeFormat = DateFormat('HH:mm');
                   final formattedDate = dateFormat.format(date);
+                  final formattedDateEx = dateFormat.format(dateEx);
                   final formattedTime = timeFormat.format(date);
                   return Column(
                     children: [
@@ -380,7 +398,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                                             CrossAxisAlignment.center,
                                         children: [
                                           Text(
-                                            post['expired'],
+                                            formattedDateEx,
                                             style: AppFonts.poppins(
                                                 fontSize: 12, color: black),
                                           )

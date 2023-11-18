@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PostController extends GetxController {
   RxInt currentPage = 1.obs;
   RxInt totalPage = 1.obs;
+  int lastLoadedPage = 0;
 
   RxList postList = <dynamic>[].obs;
 
@@ -43,7 +44,6 @@ class PostController extends GetxController {
   Future<void> fetchData(String user) async {
     String url =
         '${ApiServices.baseUrl}/user/post/detail/$user?page=${currentPage.value}';
-    print(url);
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final response = await http.get(
@@ -57,10 +57,12 @@ class PostController extends GetxController {
 
       final dataPost = data['data']['posts'] as List;
       final datatotalPage = data['data']['pagination']['total_page'];
-      
-      postList = postList + dataPost;
+
+      if (currentPage.value > lastLoadedPage) {
+        postList.addAll(dataPost);
+        lastLoadedPage = currentPage.value;
+      }
       totalPage.value = datatotalPage;
-      postList.refresh();
     } else {
       print('error');
     }

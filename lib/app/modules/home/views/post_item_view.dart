@@ -62,11 +62,14 @@ class _PostItemViewState extends State<PostItemView> {
               final post = controller.postList[index];
 
               String dateTime = controller.postList[index].postAt;
+              String dateExpired = controller.postList[index].expired;
               final date = DateTime.parse(dateTime);
+              final dateEx = DateTime.parse(dateExpired);
               initializeDateFormatting('id_ID', null);
               final dateFormat = DateFormat('dd MMMM yyyy', 'id_ID');
               final timeFormat = DateFormat('HH:mm');
               final formattedDate = dateFormat.format(date);
+              final formattedDateEx = dateFormat.format(dateEx);
               final formattedTime = timeFormat.format(date);
 
               return GestureDetector(
@@ -74,6 +77,7 @@ class _PostItemViewState extends State<PostItemView> {
                   Get.to(() => DetailPostItemView(
                         id: post.id,
                         isUser: false,
+                        isPostUser: false,
                       ));
                 },
                 child: Container(
@@ -128,7 +132,7 @@ class _PostItemViewState extends State<PostItemView> {
                                     post.company,
                                     post.typeJobs,
                                     post.description,
-                                    post.expired,
+                                    formattedDateEx,
                                     post.linkApply);
                               },
                               child: Icon(
