@@ -13,7 +13,7 @@ import 'package:path/path.dart' as path;
 class AktifasiController extends GetxController {
   Rx<File?> pdf = Rx<File?>(null);
   String? selectedJenisKelamin;
-  Rx<DateTime> selectedDate = DateTime.now().obs;
+  Rx<DateTime?> selectedDate = Rx<DateTime?>(null);
 
   late TextEditingController nama;
   late TextEditingController email;
@@ -71,7 +71,7 @@ class AktifasiController extends GetxController {
   void selectDate(BuildContext _) async {
     final DateTime? pickedDate = await showDatePicker(
       context: _,
-      initialDate: selectedDate.value,
+      initialDate: selectedDate.value ?? DateTime.now(),
       firstDate: DateTime(1800),
       lastDate: DateTime(2100),
     );
@@ -96,7 +96,7 @@ class AktifasiController extends GetxController {
   }
 
   Future<void> sendAktifasiAkun() async {
-    String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate.value);
+    String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate.value!);
     if (pdf.value == null) {
       Get.snackbar("Error", "Silahkan upload ijazah anda dengan format pdf",
           margin: const EdgeInsets.all(10));

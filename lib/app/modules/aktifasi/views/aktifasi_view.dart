@@ -100,10 +100,15 @@ class AktifasiView extends GetView<AktifasiController> {
                         children: [
                           Expanded(
                             child: Text(
-                              DateFormat('dd MMMM yyyy')
-                                  .format(controller.selectedDate.value),
-                              style:
-                                  AppFonts.poppins(fontSize: 13, color: black),
+                              controller.selectedDate.value == null
+                                  ? "Tanggal Lahir"
+                                  : DateFormat('dd MMMM yyyy')
+                                      .format(controller.selectedDate.value!),
+                              style: AppFonts.poppins(
+                                  fontSize: 13,
+                                  color: controller.selectedDate.value == null
+                                      ? grey
+                                      : black),
                             ),
                           ),
                           Icon(
