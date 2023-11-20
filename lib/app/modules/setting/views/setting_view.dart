@@ -70,9 +70,9 @@ class SettingView extends GetView<SettingController> {
                     "Aksi",
                     style: AppFonts.poppins(fontSize: 12, color: black),
                   ),
-                  getWidgetSetting(
-                      4, context, "Notifikasi", Icons.notifications_outlined,
-                      show: true),
+                  // getWidgetSetting(
+                  //     4, context, "Notifikasi", Icons.notifications_outlined,
+                  //     show: true),
                   getWidgetSetting(5, context, "Keluar", Icons.logout),
                 ],
               ),

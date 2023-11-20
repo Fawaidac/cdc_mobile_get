@@ -29,7 +29,7 @@ class ProfileView extends GetView<ProfileController> {
           return <Widget>[
             Obx(
               () => SliverAppBar(
-                expandedHeight: 370,
+                expandedHeight: 360,
                 pinned: true,
                 backgroundColor: white,
                 automaticallyImplyLeading: false,
@@ -45,7 +45,7 @@ class ProfileView extends GetView<ProfileController> {
                       Row(
                         children: [
                           CircleAvatar(
-                            radius: 40,
+                            radius: 35,
                             backgroundImage: NetworkImage(controller
                                         .user.value.foto ==
                                     ApiServices.baseUrlImage
@@ -122,7 +122,7 @@ class ProfileView extends GetView<ProfileController> {
                             ),
                             child: Text(
                               controller.user.value.about.toString(),
-                              maxLines: 3,
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppFonts.poppins(
                                 fontSize: 12,

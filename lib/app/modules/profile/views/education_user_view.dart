@@ -24,7 +24,6 @@ class EducationUserView extends GetView<EducationUserController> {
             return Container(
               padding: const EdgeInsets.all(15),
               margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-              height: 125,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   color: const Color(0xff242760).withOpacity(0.03)),

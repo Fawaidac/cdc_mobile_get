@@ -71,7 +71,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                     ApiServices.baseUrlImage
                                 ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
                                 : '${controller.userDetail.value?.user?.foto}'),
-                            radius: 40,
+                            radius: 35,
                           ),
                           const SizedBox(
                             width: 10,
@@ -123,7 +123,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                     '${controller.userDetail.value?.user?.tempatTanggalLahir}',
                                     '${controller.userDetail.value?.user?.email}',
                                     '${controller.userDetail.value?.user?.nik}',
-                                    '${controller.userDetail.value?.user?.noTelp}');
+                                    '${controller.userDetail.value?.user?.noTelp}',
+                                    '${controller.userDetail.value?.user?.about}');
                               },
                               icon: Icon(
                                 Icons.info_outline,
@@ -159,7 +160,6 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                                         style: AppFonts.poppins(
                                           fontSize: 12,
                                           color: black,
-                                          // fontWeight: FontWeight.bold,
                                         ),
                                       )),
                                 ],
@@ -168,15 +168,15 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
                             GestureDetector(
                               onTap: () {
                                 controller.handleFollownUnfollow(idUser);
-                                // controller.userDetail.value = null;
                                 controller.handleUser(idUser);
                                 controller.fetchFollowerCount(idUser);
                               },
                               child: Container(
                                 width: 100,
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(8),
+                                margin: const EdgeInsets.only(left: 8),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(8),
                                   border: controller.userDetail.value?.user
                                               ?.isFollow ==
                                           true
@@ -469,8 +469,8 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
     );
   }
 
-  void showDetailUser(
-      String nama, String ttl, String email, String nik, String telp) {
+  void showDetailUser(String nama, String ttl, String email, String nik,
+      String telp, String about) {
     Get.dialog(AlertDialog(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -548,6 +548,19 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
               padding: const EdgeInsets.only(top: 3.0),
               child: Text(
                 telp,
+                style: AppFonts.poppins(fontSize: 12, color: black),
+              ),
+            ),
+            Divider(),
+            Text(
+              "Tentang",
+              style: AppFonts.poppins(
+                  fontSize: 12, color: black, fontWeight: FontWeight.bold),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 3.0),
+              child: Text(
+                about,
                 style: AppFonts.poppins(fontSize: 12, color: black),
               ),
             ),

@@ -41,7 +41,7 @@ class TentangView extends GetView {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Aplikasi CDC Career Development Center adalah solusi yang dirancang oleh Teaching Factory Jurusan Teknologi Informasi Politeknik Negeri Jember untuk membantu mahasiswa dan alumni kami dalam menjalani perjalanan karir mereka. Aplikasi ini menyediakan akses ke berbagai informasi dan layanan yang diperlukan untuk mencapai kesuksesan dalam dunia kerja.",
+                  "Aplikasi CDC Carrer Development & Counseling adalah solusi yang dirancang oleh Teaching Factory Jurusan Teknologi Informasi Politeknik Negeri Jember untuk membantu mahasiswa dan alumni kami dalam menjalani perjalanan karir mereka. Aplikasi ini menyediakan akses ke berbagai informasi dan layanan yang diperlukan untuk mencapai kesuksesan dalam dunia kerja.",
                   style: AppFonts.poppins(fontSize: 12, color: white),
                 ),
               ],

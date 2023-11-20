@@ -106,7 +106,7 @@ class KartuAlumniView extends GetView {
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      color: Colors.amber[600],
+                      color: Colors.amber[700],
                       child: Center(
                         child: Text(
                           "KARTU ALUMNI",
@@ -126,7 +126,7 @@ class KartuAlumniView extends GetView {
                                 bottomLeft: Radius.circular(10),
                                 bottomRight: Radius.circular(10))),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 16),
+                          padding: const EdgeInsets.only(left: 30),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -192,7 +192,10 @@ class KartuAlumniView extends GetView {
                                 ),
                                 Text("Smart Innovative Professional",
                                     style: GoogleFonts.tangerine(
-                                        color: white, fontSize: 25))
+                                        color: white, fontSize: 25)),
+                                Divider(
+                                  color: white,
+                                ),
                               ],
                             ),
                           )),
@@ -206,9 +209,30 @@ class KartuAlumniView extends GetView {
                               child: ClipRRect(
                                 child: Image.asset(
                                   "images/polije.png",
-                                  height: 170,
+                                  height: 180,
                                 ),
                               ),
+                            ),
+                          )),
+                      Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            margin: const EdgeInsets.all(10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Image.asset(
+                                  "images/logopuith.png",
+                                  height: 30,
+                                ),
+                                Image.asset(
+                                  "images/Untitled.png",
+                                  height: 60,
+                                ),
+                              ],
                             ),
                           ))
                     ],

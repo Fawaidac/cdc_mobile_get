@@ -515,8 +515,7 @@ class _DetailPostItemViewState extends State<DetailPostItemView> {
                                     backgroundImage: NetworkImage(user.foto ==
                                             ApiServices.baseUrlImage
                                         ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                        : ApiServices.baseUrlImage +
-                                            (user.foto ?? "")),
+                                        : user.foto ?? ""),
                                   ),
                                   title: Text(
                                     user.fullname ?? "",

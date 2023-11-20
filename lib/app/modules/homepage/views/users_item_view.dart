@@ -16,7 +16,6 @@ class UsersItemView extends GetView {
         Get.toNamed(Routes.DETAIL_ALUMNI, arguments: user['id']);
       },
       child: Container(
-        height: 50,
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width,
