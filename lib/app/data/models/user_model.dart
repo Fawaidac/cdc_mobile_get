@@ -14,6 +14,7 @@ class User {
   String? foto;
   String? alamat;
   String? about;
+  String? nim;
   String? gender;
   String? level;
   String? linkedin;
@@ -35,6 +36,7 @@ class User {
     this.foto,
     this.alamat,
     this.about,
+    this.nim,
     this.gender,
     this.level,
     this.linkedin,
@@ -58,6 +60,7 @@ class User {
       foto: json['foto'],
       alamat: json['alamat'],
       about: json['about'],
+      nim: json['nim'],
       gender: json['gender'],
       level: json['level'],
       linkedin: json['linkedin'],

@@ -73,7 +73,7 @@ class ProfileController extends GetxController
       }
 
       final response =
-          await http.get(Uri.parse('${ApiServices.baseUrl}/user/'), headers: {
+          await http.get(Uri.parse('${ApiServices.baseUrl}/user'), headers: {
         "Authorization": "Bearer $token",
       });
 

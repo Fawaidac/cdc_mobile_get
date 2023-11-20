@@ -24,7 +24,7 @@ class FollowersController extends GetxController {
 
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
-
+    print(token);
     final response = await http.get(
       Uri.parse(url),
       headers: {

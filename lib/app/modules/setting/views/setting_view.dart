@@ -1,5 +1,6 @@
 import 'package:cdc/app/modules/setting/views/add_education_user_view.dart';
 import 'package:cdc/app/modules/setting/views/add_job_user_view.dart';
+import 'package:cdc/app/modules/setting/views/kartu_alumni_view.dart';
 import 'package:cdc/app/modules/setting/views/tentang_view.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
@@ -112,6 +113,7 @@ class SettingView extends GetView<SettingController> {
     return GestureDetector(
       onTap: () async {
         if (i == 0) {
+          Get.to(() => KartuAlumniView());
         } else if (i == 1) {
           Get.to(() => AddEducationUserView());
         } else if (i == 2) {
