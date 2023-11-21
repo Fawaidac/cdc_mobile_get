@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EducationUserController extends GetxController {
+
   RxList<EducationsModel> educationList = <EducationsModel>[].obs;
 
   Future<void> fetchAndAssignEducation() async {

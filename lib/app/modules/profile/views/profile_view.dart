@@ -23,7 +23,6 @@ class ProfileView extends GetView<ProfileController> {
     controller.fetchFollowerCount();
     controller.fetchFollowedCount();
     return Scaffold(
-      backgroundColor: white,
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return <Widget>[

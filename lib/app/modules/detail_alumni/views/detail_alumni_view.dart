@@ -25,7 +25,6 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
     controller.fetchFollowerCount(idUser);
 
     return Scaffold(
-      backgroundColor: white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: white,

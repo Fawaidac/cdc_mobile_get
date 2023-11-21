@@ -49,7 +49,7 @@ class PostUserView extends GetView<PostUserController> {
       itemBuilder: (context, index) {
         return CardLoading(
           height: 50,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(5),
         );
       },
     );
@@ -78,7 +78,7 @@ class PostUserView extends GetView<PostUserController> {
                       ));
                 },
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(5),
                   child: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
                     image: post.image,

@@ -121,7 +121,7 @@ class _PostViewState extends State<PostView> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
                       image: NetworkImage(post['image']),
                       fit: BoxFit.cover,
@@ -151,7 +151,7 @@ class _PostViewState extends State<PostView> {
       itemBuilder: (context, index) {
         return CardLoading(
           height: 50,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(5),
         );
       },
     );
