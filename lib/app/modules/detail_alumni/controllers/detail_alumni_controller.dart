@@ -89,15 +89,40 @@ class DetailAlumniController extends GetxController
     }
   }
 
+  Future<void> countPost(String id) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+      final response = await http.get(
+          Uri.parse('${ApiServices.baseUrl}/user/post/count/$id'),
+          headers: {"Authorization": "Bearer $token"});
+
+      final responseData = json.decode(response.body);
+      if (response.statusCode == 200) {
+        if (responseData.containsKey('data')) {
+          int count = responseData['data'] as int;
+
+          postCount.value = count;
+
+          print('Post count updated: $count');
+        } else {
+          print('Unexpected response structure: $responseData');
+        }
+      } else {
+        print('HTTP request failed with status: ${responseData['message']}');
+      }
+    } catch (e) {
+      print('Error counting posts: $e');
+    }
+  }
+
   Future<void> fetchFollowerCount(String id) async {
     try {
       final apiResponse = await fetchUserFollowers(id);
       final apiResponse2 = await fetchUserFollowed(id);
-      final apiResponse3 = await fetchDataPostById(id);
-
+      await countPost(id);
       followerCount.value = apiResponse.totalFollowers;
       followedCount.value = apiResponse2.totalFollowers;
-      postCount.value = apiResponse3.totalItem;
     } catch (e) {
       print('Error fetching follower count: $e');
     }

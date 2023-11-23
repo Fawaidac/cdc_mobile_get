@@ -14,6 +14,7 @@ class KartuAlumniController extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
+      print(token);
       final response = await http
           .get(Uri.parse('${ApiServices.baseUrl}/user/card'), headers: {
         "Authorization": "Bearer $token",

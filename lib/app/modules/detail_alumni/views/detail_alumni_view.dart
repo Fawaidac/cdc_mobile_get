@@ -23,6 +23,7 @@ class DetailAlumniView extends GetView<DetailAlumniController> {
     String idUser = Get.arguments;
     controller.handleUser(idUser);
     controller.fetchFollowerCount(idUser);
+    controller.countPost(idUser);
 
     return Scaffold(
       appBar: AppBar(
