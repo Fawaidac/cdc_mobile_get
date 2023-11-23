@@ -27,6 +27,8 @@ class _EducationUserViewState extends State<EducationUserView> {
 
   @override
   Widget build(BuildContext context) {
+    controller.update();
+
     return Obx(
       () => ListView.builder(
         shrinkWrap: true,

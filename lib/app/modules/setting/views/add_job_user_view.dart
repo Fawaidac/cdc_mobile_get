@@ -16,7 +16,6 @@ class AddJobUserView extends GetView<AddJobUserController> {
   @override
   final controller = Get.put(AddJobUserController());
 
-  bool check = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

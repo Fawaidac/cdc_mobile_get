@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/setting/controllers/kartu_alumni_controller.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -5,10 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class KartuAlumniView extends GetView {
-  const KartuAlumniView({Key? key}) : super(key: key);
+class KartuAlumniView extends GetView<KartuAlumniController> {
+  KartuAlumniView({Key? key}) : super(key: key);
+
+  @override
+  final controller = Get.put(KartuAlumniController());
+
   @override
   Widget build(BuildContext context) {
+    controller.getDataAlumni();
     return Scaffold(
         backgroundColor: white,
         appBar: AppBar(
@@ -34,132 +40,157 @@ class KartuAlumniView extends GetView {
           padding: const EdgeInsets.all(10),
           child: Column(
             children: [
-              Container(
-                height: 200,
-                margin: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: white,
-                  boxShadow: const <BoxShadow>[
-                    BoxShadow(
-                        color: Colors.black54,
-                        blurRadius: 1,
-                        offset: Offset(0.1, 0.95))
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                          color: white),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Image.asset(
-                                "images/polije.png",
-                                height: 50,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "POLITEKNIK NEGERI JEMBER",
-                                      style: AppFonts.montserrat(
-                                          fontSize: 14,
-                                          color: black,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "Jl. Mastrip 164 Jember 68101",
-                                      style: AppFonts.montserrat(
-                                          fontSize: 12,
-                                          color: black,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text(
-                                      "www.polije.ac.id",
-                                      style: AppFonts.montserrat(
-                                          fontSize: 12, color: black),
-                                    ),
-                                  ],
+              Obx(() {
+                final data = controller.alumniData;
+                final educations = data['educations'];
+                final fullname = data['fullname'] ?? 'No Name';
+                final nim = (data['nim'] ?? 'No Nim').toUpperCase();
+                final jurusan = educations['jurusan'] ?? 'No Jurusan';
+                final prodi = educations['prodi'] ?? 'No Prodi';
+                final angkatan = educations['tahun_masuk'] ?? 'No Angkatan';
+                final strata = educations['strata'] ?? 'No Strata';
+                return Container(
+                  height: 200,
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: white,
+                    boxShadow: const <BoxShadow>[
+                      BoxShadow(
+                          color: Colors.black54,
+                          blurRadius: 1,
+                          offset: Offset(0.1, 0.95))
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                            color: white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  "images/polije.png",
+                                  height: 50,
                                 ),
-                              )
-                            ],
-                          ),
-                          Image.asset(
-                            "images/sip.png",
-                            height: 50,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      color: Colors.amber[700],
-                      child: Center(
-                        child: Text(
-                          "KARTU ALUMNI",
-                          style: AppFonts.montserrat(
-                              fontSize: 14,
-                              color: white,
-                              fontWeight: FontWeight.bold),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "POLITEKNIK NEGERI JEMBER",
+                                        style: AppFonts.montserrat(
+                                            fontSize: 14,
+                                            color: black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        "Jl. Mastrip 164 Jember 68101",
+                                        style: AppFonts.montserrat(
+                                            fontSize: 12,
+                                            color: black,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Text(
+                                        "www.polije.ac.id",
+                                        style: AppFonts.montserrat(
+                                            fontSize: 12, color: black),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            Image.asset(
+                              "images/sip.png",
+                              height: 50,
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                            color: Color(0xff0177ff),
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Achmad Fawa'id",
-                                style: AppFonts.montserrat(
-                                    fontSize: 14,
-                                    color: white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "E41210280",
-                                style: AppFonts.montserrat(
-                                    fontSize: 14,
-                                    color: white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "D4-Teknik Informatika",
-                                style: AppFonts.montserrat(
-                                    fontSize: 14,
-                                    color: white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                      Container(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        color: Colors.amber[700],
+                        child: Center(
+                          child: Text(
+                            "KARTU ALUMNI",
+                            style: AppFonts.montserrat(
+                                fontSize: 14,
+                                color: white,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              ),
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                              color: Color(0xff0177ff),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10))),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 30),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "$fullname",
+                                  style: AppFonts.montserrat(
+                                      fontSize: 14,
+                                      color: white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "$nim",
+                                  style: AppFonts.montserrat(
+                                      fontSize: 14,
+                                      color: white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "$jurusan",
+                                  style: AppFonts.montserrat(
+                                      fontSize: 14,
+                                      color: white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "$strata - $prodi",
+                                  style: AppFonts.montserrat(
+                                      fontSize: 14,
+                                      color: white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "$angkatan",
+                                  style: AppFonts.montserrat(
+                                      fontSize: 14,
+                                      color: white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
               Container(
                   margin: const EdgeInsets.only(top: 15),
                   height: 200,

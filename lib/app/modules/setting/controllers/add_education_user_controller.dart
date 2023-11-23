@@ -48,6 +48,7 @@ class AddEducationUserController extends GetxController {
     }
   }
 
+  final educationsC = Get.put(EducationUserController());
   Future<void> addEducation() async {
     String selectedPerguruanValue = selectedPerguruan.value == 'Lainnya'
         ? perguruantinggi.text
@@ -76,8 +77,8 @@ class AddEducationUserController extends GetxController {
 
       if (data['code'] == 201) {
         Get.back();
-        Get.find<EducationUserController>().educationList.clear();
-        Get.find<EducationUserController>().fetchAndAssignEducation();
+        educationsC.educationList.clear();
+        educationsC.fetchAndAssignEducation();
         Get.snackbar("Success", "Berhasil menambah pendidikan",
             margin: const EdgeInsets.all(10));
       } else {

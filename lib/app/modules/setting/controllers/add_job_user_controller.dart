@@ -35,11 +35,12 @@ class AddJobUserController extends GetxController {
     update();
   }
 
-
   String formatCurrency(String amount) {
     final currencyFormat = NumberFormat.currency(locale: 'id', symbol: 'Rp');
     return currencyFormat.format(double.parse(amount));
   }
+
+  final jobsC = Get.put(JobUserController());
 
   void handleAddJob() async {
     String? tahunKeluarValue;
@@ -65,8 +66,8 @@ class AddJobUserController extends GetxController {
       );
       if (response['code'] == 201) {
         Get.back();
-        Get.find<JobUserController>().jobList.clear();
-        Get.find<JobUserController>().fetchAndAssignJob();
+        jobsC.jobList.clear();
+        jobsC.fetchAndAssignJob();
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
       } else {

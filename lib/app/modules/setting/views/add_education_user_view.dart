@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AddEducationUserView extends GetView<AddEducationUserController> {
   AddEducationUserView({Key? key}) : super(key: key);
 
+  @override
   final controller = Get.put(AddEducationUserController());
   @override
   Widget build(BuildContext context) {

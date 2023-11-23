@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/setting/controllers/kartu_alumni_controller.dart';
 import 'package:cdc/app/modules/setting/views/add_education_user_view.dart';
 import 'package:cdc/app/modules/setting/views/add_job_user_view.dart';
 import 'package:cdc/app/modules/setting/views/kartu_alumni_view.dart';
@@ -16,6 +17,7 @@ class SettingView extends GetView<SettingController> {
   const SettingView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.find<KartuAlumniController>().getDataAlumni();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,
@@ -70,9 +72,6 @@ class SettingView extends GetView<SettingController> {
                     "Aksi",
                     style: AppFonts.poppins(fontSize: 12, color: black),
                   ),
-                  // getWidgetSetting(
-                  //     4, context, "Notifikasi", Icons.notifications_outlined,
-                  //     show: true),
                   getWidgetSetting(5, context, "Keluar", Icons.logout),
                 ],
               ),

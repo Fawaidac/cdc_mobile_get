@@ -29,6 +29,7 @@ class _JobUserViewState extends State<JobUserView> {
 
   @override
   Widget build(BuildContext context) {
+    controller.update();
     return Obx(
       () => ListView.builder(
         itemCount: controller.jobList.length,
