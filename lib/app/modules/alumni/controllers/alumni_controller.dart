@@ -32,19 +32,19 @@ class AlumniController extends GetxController {
 
   var search = TextEditingController();
   var tahun = TextEditingController();
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    scrollController.addListener(_scrollListener);
-  }
+  // @override
+  // void onInit() {
+  //   // TODO: implement onInit
+  //   super.onInit();
+  //   scrollController.addListener(_scrollListener);
+  // }
 
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-    scrollController.dispose();
-  }
+  // @override
+  // void onClose() {
+  //   // TODO: implement onClose
+  //   super.onClose();
+  //   scrollController.dispose();
+  // }
 
   Future<void> fetchDataProdi() async {
     final result = await getProdi();
@@ -61,18 +61,18 @@ class AlumniController extends GetxController {
     }
   }
 
-  void _scrollListener() {
-    if (scrollController.position.pixels ==
-        scrollController.position.maxScrollExtent) {
-      if (currentPage < totalPage) {
-        currentPage = currentPage + 1;
-        fetchDataAlumni();
-        print(currentPage);
-      }
-    } else {
-      print('dont call');
-    }
-  }
+  // void _scrollListener() {
+  //   if (scrollController.position.pixels ==
+  //       scrollController.position.maxScrollExtent) {
+  //     if (currentPage < totalPage) {
+  //       currentPage = currentPage + 1;
+  //       fetchDataAlumni();
+  //       print(currentPage);
+  //     }
+  //   } else {
+  //     print('dont call');
+  //   }
+  // }
 
   Future<void> fetchDataAlumni() async {
     try {

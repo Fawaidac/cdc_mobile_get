@@ -103,13 +103,14 @@ class HomepageController extends GetxController {
       "label": "Profile"
     },
   ];
+
   // RxString currentRoute = "".obs;
-  @override
-  void onInit() {
-    super.onInit();
-    requestPermissions();
-    storeFcmToken();
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  //   requestPermissions();
+  //   storeFcmToken();
+  // }
 
   Future<void> requestPermissions() async {
     // Request notification permission

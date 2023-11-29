@@ -33,6 +33,9 @@ class RegisterView extends GetView<RegisterController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 50,
+              ),
               Text(
                 "Daftar Akun",
                 style: AppFonts.poppins(
@@ -387,7 +390,10 @@ class RegisterView extends GetView<RegisterController> {
                           color: primaryColor,
                           fontWeight: FontWeight.bold),
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
                 ],
               ),
             ],
