@@ -42,8 +42,7 @@ class PostingView extends GetView<PostingController> {
                 strokeCap: StrokeCap.round,
                 color: black,
                 child: Obx(() {
-                  final imageValue =
-                      controller.image.value; // Get the value once
+                  final imageValue = controller.image.value;
                   return imageValue == null
                       ? Container(
                           height: 200,

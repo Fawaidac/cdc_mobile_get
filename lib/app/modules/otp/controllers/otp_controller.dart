@@ -48,7 +48,7 @@ class OtpController extends GetxController {
     countdown.value = 30;
     canResend.value = false;
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       countdown.value--;
       if (countdown.value > 0) {
         startCountdown();
@@ -61,15 +61,13 @@ class OtpController extends GetxController {
   Future<void> verifikasiOtp(String code) async {
     try {
       EasyLoading.show(status: "Loading...");
-      // print('otpCode : $otpCode');
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: Get.find<RegisterController>().verifyId,
           smsCode: otpCode.value);
       await auth.signInWithCredential(credential);
 
-      // print(Get.find<RegisterController>().verifyId);
-
-      await handleRegister(email, nik, fullname, pw, phone, alamat, nim, prodi, angkatan, tahunLulus);
+      await handleRegister(email, nik, fullname, pw, phone, alamat, nim, prodi,
+          angkatan, tahunLulus);
     } catch (e) {
       Get.snackbar("Error", 'Kode Otp Salah', margin: const EdgeInsets.all(10));
     } finally {
@@ -90,8 +88,8 @@ class OtpController extends GetxController {
     String angkatan,
   ) async {
     try {
-      final response = await register(
-          email, nik, fullname, "0$telp", password, alamat, nim, prodi, angkatan, tahunLulus);
+      final response = await register(email, nik, fullname, "0$telp", password,
+          alamat, nim, prodi, angkatan, tahunLulus);
       if (response['code'] == 201) {
         Get.offNamed(Routes.LOGIN);
         Get.snackbar("Success", response['message'],
@@ -106,17 +104,17 @@ class OtpController extends GetxController {
   }
 
   static Future<Map<String, dynamic>> register(
-      String email,
-      String nik,
-      String fullname,
-      String telp,
-      String password,
-      String alamat,
-      String nim,
-      String kode,
-      String angkatan,
-      String tahunLulus,
-      ) async {
+    String email,
+    String nik,
+    String fullname,
+    String telp,
+    String password,
+    String alamat,
+    String nim,
+    String kode,
+    String angkatan,
+    String tahunLulus,
+  ) async {
     final Map<String, dynamic> body = {
       'email': email,
       'nik': nik,

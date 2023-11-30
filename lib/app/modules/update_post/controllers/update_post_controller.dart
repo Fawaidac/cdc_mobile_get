@@ -8,10 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../utils/app_colors.dart';
 import '../../../utils/app_dialog.dart';
-import '../../../utils/app_fonts.dart';
-import '../../login/views/login_view.dart';
 
 class UpdatePostController extends GetxController {
   var posisi = TextEditingController();
@@ -42,7 +39,6 @@ class UpdatePostController extends GetxController {
     );
 
     if (pickedDate != null) {
-      // Set only the date part without the time
       selectedDate.value =
           DateTime(pickedDate.year, pickedDate.month, pickedDate.day);
     }
