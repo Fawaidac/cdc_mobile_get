@@ -74,7 +74,7 @@ class NotificationsView extends GetView<NotificationsController> {
                         getTypeAction(data.type);
                       },
                       child: Container(
-                        height: 50,
+                        // height: 50,
                         margin: const EdgeInsets.symmetric(vertical: 10),
                         padding: const EdgeInsets.all(8),
                         width: MediaQuery.of(context).size.width,
@@ -83,7 +83,7 @@ class NotificationsView extends GetView<NotificationsController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CircleAvatar(
-                              radius: 30,
+                              radius: 20,
                               backgroundColor: primaryColor,
                               child: Center(
                                 child: Icon(
@@ -95,20 +95,22 @@ class NotificationsView extends GetView<NotificationsController> {
                             const SizedBox(
                               width: 8,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(getTypeText(data.type),
-                                    style: AppFonts.poppins(
-                                        fontSize: 14,
-                                        color: black,
-                                        fontWeight: FontWeight.bold)),
-                                Text(data.message ?? "",
-                                    style: AppFonts.poppins(
-                                        fontSize: 12,
-                                        color: black,
-                                        fontWeight: FontWeight.normal)),
-                              ],
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(getTypeText(data.type),
+                                      style: AppFonts.poppins(
+                                          fontSize: 14,
+                                          color: black,
+                                          fontWeight: FontWeight.bold)),
+                                  Text(data.message ?? "",
+                                      style: AppFonts.poppins(
+                                          fontSize: 12,
+                                          color: black,
+                                          fontWeight: FontWeight.normal)),
+                                ],
+                              ),
                             ),
                           ],
                         ),

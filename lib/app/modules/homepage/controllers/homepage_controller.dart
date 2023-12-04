@@ -142,18 +142,18 @@ class HomepageController extends GetxController {
     print(' fcmTOken : $fcmToken');
     final res = await sendFcmToken(fcmToken!);
     if (res['code'] == 200) {
-      print('ok');
+      print('ok berhasil update fcm');
     } else {
       print(res['message']);
     }
   }
 
-  static Future<Map<String, dynamic>> sendFcmToken(String token) async {
+  static Future<Map<String, dynamic>> sendFcmToken(String fcmtoken) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final res = await http
         .put(Uri.parse('${ApiServices.baseUrl}/user/fcmtoken'), body: {
-      'token': token,
+      'token': fcmtoken,
     }, headers: {
       "Authorization": "Bearer $token",
     });

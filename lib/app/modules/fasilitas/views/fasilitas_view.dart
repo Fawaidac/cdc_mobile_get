@@ -118,14 +118,22 @@ class FasilitasView extends GetView<FasilitasController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Lengkapi kuisioner anda agar akun anda terverifikasi",
-                        style: AppFonts.poppins(fontSize: 12, color: softgrey),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          "Lengkapi kuisioner anda agar akun anda terverifikasi",
+                          style:
+                              AppFonts.poppins(fontSize: 12, color: softgrey),
+                        ),
                       ),
-                      Text(
-                        progressText,
-                        textAlign: TextAlign.end,
-                        style: AppFonts.poppins(fontSize: 12, color: softgrey),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          progressText,
+                          textAlign: TextAlign.end,
+                          style:
+                              AppFonts.poppins(fontSize: 12, color: softgrey),
+                        ),
                       ),
                     ],
                   ),

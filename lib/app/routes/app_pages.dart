@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/aktifasi/bindings/aktifasi_binding.dart';
 import '../modules/aktifasi/views/aktifasi_view.dart';
+import '../modules/all_berita/bindings/all_berita_binding.dart';
+import '../modules/all_berita/views/all_berita_view.dart';
 import '../modules/alumni/bindings/alumni_binding.dart';
 import '../modules/alumni/views/alumni_view.dart';
 import '../modules/detail_alumni/bindings/detail_alumni_binding.dart';
@@ -169,6 +171,11 @@ class AppPages {
       name: _Paths.UPDATE_POST,
       page: () => UpdatePostView(),
       binding: UpdatePostBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALL_BERITA,
+      page: () => const AllBeritaView(),
+      binding: AllBeritaBinding(),
     ),
   ];
 }

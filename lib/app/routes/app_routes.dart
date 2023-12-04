@@ -26,6 +26,7 @@ abstract class Routes {
   static const SETTING = _Paths.SETTING;
   static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
   static const UPDATE_POST = _Paths.UPDATE_POST;
+  static const ALL_BERITA = _Paths.ALL_BERITA;
 }
 
 abstract class _Paths {
@@ -53,4 +54,5 @@ abstract class _Paths {
   static const SETTING = '/setting';
   static const EDIT_PROFILE = '/edit-profile';
   static const UPDATE_POST = '/update-post';
+  static const ALL_BERITA = '/all-berita';
 }
