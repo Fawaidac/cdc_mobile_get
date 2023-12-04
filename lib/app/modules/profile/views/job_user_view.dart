@@ -138,7 +138,10 @@ class _JobUserViewState extends State<JobUserView> {
                                     color: white,
                                     fontWeight: FontWeight.w500),
                               ),
-                              child: Text("Edit"),
+                              child: Text(
+                                "Edit",
+                                style: TextStyle(color: white),
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -172,7 +175,10 @@ class _JobUserViewState extends State<JobUserView> {
                                     color: white,
                                     fontWeight: FontWeight.w500),
                               ),
-                              child: Text("Hapus"),
+                              child: Text(
+                                "Hapus",
+                                style: TextStyle(color: white),
+                              ),
                             ),
                           ),
                         ],

@@ -174,7 +174,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ALL_BERITA,
-      page: () => const AllBeritaView(),
+      page: () => AllBeritaView(),
       binding: AllBeritaBinding(),
     ),
   ];

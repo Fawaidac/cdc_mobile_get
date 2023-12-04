@@ -138,7 +138,10 @@ class _EducationUserViewState extends State<EducationUserView> {
                                     color: white,
                                     fontWeight: FontWeight.w500),
                               ),
-                              child: Text("Edit"),
+                              child: Text(
+                                "Edit",
+                                style: TextStyle(color: white),
+                              ),
                             ),
                           ),
                           const SizedBox(
@@ -173,7 +176,10 @@ class _EducationUserViewState extends State<EducationUserView> {
                                     color: white,
                                     fontWeight: FontWeight.w500),
                               ),
-                              child: Text("Hapus"),
+                              child: Text(
+                                "Hapus",
+                                style: TextStyle(color: white),
+                              ),
                             ),
                           ),
                         ],

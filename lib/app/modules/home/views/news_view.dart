@@ -1,5 +1,6 @@
 import 'package:cdc/app/modules/home/controllers/news_controller.dart';
 import 'package:cdc/app/modules/home/views/detail_news_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
@@ -93,18 +94,34 @@ class NewsView extends GetView<NewsController> {
                             end: Alignment.bottomCenter,
                           ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
-                              controller.newsList[index]['title'],
-                              style: AppFonts.poppins(
-                                fontSize: 18,
-                                color: black,
-                                fontWeight: FontWeight.bold,
+                            Expanded(
+                              child: Text(
+                                controller.newsList[index]['title'],
+                                style: AppFonts.poppins(
+                                  fontSize: 18,
+                                  color: black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
+                            if (index == controller.newsList.length - 1)
+                              InkWell(
+                                onTap: () {
+                                  Get.toNamed(Routes.ALL_BERITA);
+                                },
+                                child: Text(
+                                  'Lihat Semua',
+                                  style: AppFonts.poppins(
+                                    fontSize: 12,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ),

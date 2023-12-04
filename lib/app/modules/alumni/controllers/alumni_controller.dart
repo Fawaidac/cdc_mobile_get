@@ -85,8 +85,6 @@ class AlumniController extends GetxController {
       if (data is Map<String, dynamic>) {
         if (data.containsKey('total_page')) {
           totalPage = data['total_page'];
-          print("Total Page: $totalPage");
-          print("Page : $currentPage");
         }
         final List<Alumni> alumni =
             data.keys.where((key) => int.tryParse(key) != null).map((key) {
