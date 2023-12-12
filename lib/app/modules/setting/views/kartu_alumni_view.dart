@@ -38,165 +38,24 @@ class KartuAlumniView extends GetView<KartuAlumniController> {
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Obx(() {
-                final data = controller.alumniData;
-                final educations = data['educations'];
-                final fullname = data['fullname'] ?? 'No Name';
-                final nim = (data['nim'] ?? 'No Nim').toUpperCase();
-                final jurusan = educations['jurusan'] ?? 'No Jurusan';
-                final prodi = educations['prodi'] ?? 'No Prodi';
-                final angkatan = educations['tahun_masuk'] ?? 'No Angkatan';
-                final strata = educations['strata'] ?? 'No Strata';
-                return Container(
-                  height: 200,
+          child: Obx(() {
+            final data = controller.alumniData;
+            final educations = data['educations'];
+            final fullname = data['fullname'] ?? 'No Name';
+            final nim = (data['nim'] ?? 'No Nim').toUpperCase();
+            final jurusan = educations['jurusan'] ?? 'No Jurusan';
+            final prodi = educations['prodi'] ?? 'No Prodi';
+            final angkatan = educations['tahun_masuk'] ?? 'No Angkatan';
+            final strata = educations['strata'] ?? 'No Strata';
+            return Column(
+              children: [
+                Container(
+                  height: 210,
                   margin: const EdgeInsets.only(top: 10),
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: white,
-                    boxShadow: const <BoxShadow>[
-                      BoxShadow(
-                          color: Colors.black54,
-                          blurRadius: 1,
-                          offset: Offset(0.1, 0.95))
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                            color: white),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset(
-                                  "images/polije.png",
-                                  height: 50,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "POLITEKNIK NEGERI JEMBER",
-                                        style: AppFonts.montserrat(
-                                            fontSize: 14,
-                                            color: black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        "Jl. Mastrip 164 Jember 68101",
-                                        style: AppFonts.montserrat(
-                                            fontSize: 12,
-                                            color: black,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                      Text(
-                                        "www.polije.ac.id",
-                                        style: AppFonts.montserrat(
-                                            fontSize: 12, color: black),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            Image.asset(
-                              "images/sip.png",
-                              height: 50,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        color: Colors.amber[700],
-                        child: Center(
-                          child: Text(
-                            "KARTU ALUMNI",
-                            style: AppFonts.montserrat(
-                                fontSize: 14,
-                                color: white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                              color: Color(0xff0177ff),
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10))),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "$fullname",
-                                  style: AppFonts.montserrat(
-                                      fontSize: 14,
-                                      color: white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "$nim",
-                                  style: AppFonts.montserrat(
-                                      fontSize: 14,
-                                      color: white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "$jurusan",
-                                  style: AppFonts.montserrat(
-                                      fontSize: 14,
-                                      color: white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "$strata - $prodi",
-                                  style: AppFonts.montserrat(
-                                      fontSize: 14,
-                                      color: white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "$angkatan",
-                                  style: AppFonts.montserrat(
-                                      fontSize: 14,
-                                      color: white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              }),
-              Container(
-                  margin: const EdgeInsets.only(top: 15),
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xff0177ff),
+                    color: Color(0xff262626),
                     boxShadow: const <BoxShadow>[
                       BoxShadow(
                           color: Colors.black54,
@@ -211,37 +70,42 @@ class KartuAlumniView extends GetView<KartuAlumniController> {
                           right: 0,
                           left: 0,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 20, 10, 10),
-                            child: Column(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "Kartu Alumni Politeknik Negeri Jember",
-                                  style: AppFonts.montserrat(
-                                      fontSize: 14,
-                                      color: white,
-                                      fontWeight: FontWeight.bold),
+                                Column(
+                                  children: [
+                                    Image.asset(
+                                      "images/ikapj.png",
+                                      height: 50,
+                                    ),
+                                    Text(
+                                      "IKAPJ",
+                                      style: AppFonts.montserrat(
+                                          fontSize: 14,
+                                          color: Color(0xfff8b430)),
+                                    )
+                                  ],
                                 ),
-                                Text("Smart Innovative Professional",
-                                    style: GoogleFonts.tangerine(
-                                        color: white, fontSize: 25)),
-                                Divider(
-                                  color: white,
-                                ),
+                                Image.asset(
+                                  "images/bjapn.png",
+                                  height: 80,
+                                )
                               ],
                             ),
                           )),
                       Positioned(
-                          bottom: 0,
-                          right: -50,
-                          child: Transform(
-                            transform: Matrix4.rotationZ(0.3),
-                            child: Opacity(
-                              opacity: 0.1,
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  "images/polije.png",
-                                  height: 180,
-                                ),
+                          bottom: -20,
+                          top: 60,
+                          left: -50,
+                          child: Opacity(
+                            opacity: 0.5,
+                            child: ClipRRect(
+                              child: Image.asset(
+                                "images/ikapj.png",
+                                height: 170,
                               ),
                             ),
                           )),
@@ -252,24 +116,94 @@ class KartuAlumniView extends GetView<KartuAlumniController> {
                           child: Container(
                             margin: const EdgeInsets.all(10),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Image.asset(
-                                  "images/logopuith.png",
-                                  height: 30,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "NAMA MU",
+                                      style: AppFonts.montserrat(
+                                          fontSize: 20,
+                                          color: white,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    Text(
+                                      "2015-0000-0003",
+                                      style: AppFonts.montserrat(
+                                          fontSize: 18, color: white),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.language_outlined,
+                                          size: 15,
+                                          color: white,
+                                        ),
+                                        Text(
+                                          "alumni.polije.ac.id",
+                                          style: AppFonts.montserrat(
+                                              fontSize: 12, color: white),
+                                        )
+                                      ],
+                                    )
+                                  ],
                                 ),
-                                Image.asset(
-                                  "images/Untitled.png",
-                                  height: 60,
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                Column(
+                                  children: [
+                                    Image.asset(
+                                      "images/qrcode.jpeg",
+                                      height: 60,
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Image.asset(
+                                      "images/bni.png",
+                                      width: 60,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ))
                     ],
-                  ))
-            ],
-          ),
+                  ),
+                ),
+                Container(
+                    margin: const EdgeInsets.fromLTRB(0, 50, 0, 15),
+                    height: 48,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          )),
+                      onPressed: () {
+                        controller.launchURL(
+                            "https://ikapj.or.id/product/kartu-anggota-ikapj/");
+                      },
+                      child: Text('Pesan Sekarang',
+                          style: AppFonts.poppins(
+                            fontSize: 14,
+                            color: white,
+                          )),
+                    )),
+              ],
+            );
+          }),
         ));
   }
 }

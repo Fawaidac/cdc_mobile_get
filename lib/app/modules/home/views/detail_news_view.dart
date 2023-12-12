@@ -61,9 +61,18 @@ class DetailNewsView extends GetView {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
-              child: Text(
-                '$formattedDate, $formattedTime',
-                style: AppFonts.poppins(fontSize: 14, color: grey),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '$formattedDate, $formattedTime',
+                    style: AppFonts.poppins(fontSize: 14, color: grey),
+                  ),
+                  Text(
+                    newsItem['interval'],
+                    style: AppFonts.poppins(fontSize: 14, color: grey),
+                  )
+                ],
               ),
             ),
             Padding(

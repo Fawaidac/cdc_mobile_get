@@ -69,7 +69,7 @@ class ProfileView extends GetView<ProfileController> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Text(
-                                      controller.user.value.fullname.toString(),
+                                      controller.user.value.fullname ?? "",
                                       style: AppFonts.poppins(
                                         fontSize: 16,
                                         color: black,
@@ -86,7 +86,7 @@ class ProfileView extends GetView<ProfileController> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Text(
-                                      controller.user.value.alamat.toString(),
+                                      controller.user.value.alamat ?? "",
                                       style: AppFonts.poppins(
                                         fontSize: 12,
                                         color: black,
@@ -120,7 +120,7 @@ class ProfileView extends GetView<ProfileController> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
-                              controller.user.value.about.toString(),
+                              controller.user.value.about ?? "",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: AppFonts.poppins(
