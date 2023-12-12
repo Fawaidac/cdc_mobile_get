@@ -37,129 +37,103 @@ class WhatsappView extends GetView<WhatsappController> {
                 fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8),
-          child: RefreshIndicator(
+        body: RefreshIndicator(
             onRefresh: _refreshData,
             edgeOffset: 0,
             color: primaryColor,
-            child: Obx(() {
-              return Column(
-                children: [
-                  if (controller.isLoading.value) widgetIsLoading(),
-                  if (controller.grupWhatsAppList.isNotEmpty)
-                    GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.grupWhatsAppList.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.8,
-                        crossAxisSpacing: 10,
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemBuilder: (context, index) {
-                        final data = controller.grupWhatsAppList[index];
-                        return GestureDetector(
-                          onTap: () {
-                            if (data['url'] != null) {
-                              controller.launchURL(data['url']);
-                            } else {
-                              print(null);
-                            }
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                gradient: LinearGradient(
-                                    colors: [Color(0xff07B29D), white],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter)),
-                            child: Column(
-                              children: [
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                CircleAvatar(
-                                  radius: 50,
-                                  backgroundColor: white,
-                                  child: CircleAvatar(
-                                    radius: 48,
-                                    backgroundImage:
-                                        NetworkImage(data['image']),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                      top: 15, right: 5, left: 5),
-                                  width: double.infinity,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 8),
-                                  decoration: BoxDecoration(
-                                      color: Color(0xff007E6F),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        data['name'],
-                                        style: AppFonts.poppins(
-                                            fontSize: 12,
-                                            color: white,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Spacer(),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 8),
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 8, horizontal: 15),
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xff007E6F),
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10))),
-                                  child: Center(
-                                    child: Text(
-                                      "Gabung",
-                                      style: AppFonts.poppins(
-                                          fontSize: 12,
-                                          color: white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
+            child: Obx(
+              () => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.grupWhatsAppList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.8,
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10,
+                  ),
+                  itemBuilder: (context, index) {
+                    final data = controller.grupWhatsAppList[index];
+                    return GestureDetector(
+                      onTap: () {
+                        if (data['url'] != null) {
+                          controller.launchURL(data['url']);
+                        } else {
+                          print(null);
+                        }
                       },
-                    ),
-                ],
-              );
-            }),
-          ),
-        ));
-  }
-
-  GridView widgetIsLoading() {
-    return GridView.builder(
-      itemCount: 10,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 0.8,
-        crossAxisSpacing: 10,
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-      ),
-      itemBuilder: (context, index) {
-        return const CardLoading(
-          height: 150,
-          width: 100,
-        );
-      },
-    );
+                      child: Container(
+                        decoration: BoxDecoration(
+                            // borderRadius: BorderRadius.circular(8),
+                            gradient: LinearGradient(
+                                colors: [Color(0xff07B29D), white],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter)),
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            ClipOval(
+                              child: CircleAvatar(
+                                radius: 50,
+                                backgroundColor: white,
+                                child: CircleAvatar(
+                                  radius: 48,
+                                  backgroundImage: NetworkImage(data['image']),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(
+                                  top: 15, right: 5, left: 5),
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              decoration: BoxDecoration(
+                                  color: Color(0xff007E6F),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    data['name'],
+                                    style: AppFonts.poppins(
+                                        fontSize: 12,
+                                        color: white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            Container(
+                              margin: const EdgeInsets.only(top: 8),
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 15),
+                              decoration: const BoxDecoration(
+                                  color: Color(0xff007E6F),
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10))),
+                              child: Center(
+                                child: Text(
+                                  "Gabung",
+                                  style: AppFonts.poppins(
+                                      fontSize: 12,
+                                      color: white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            )));
   }
 }

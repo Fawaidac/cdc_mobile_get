@@ -214,7 +214,7 @@ class MainSectionController extends GetxController {
           gajiValue,
           selectedAfter.toString(),
           idProvinsi.toString(),
-          selectedRegency.toString(),
+          idRegency.toString(),
           selectedJenisValue,
           namaPerusahaan.text,
           selectedJabatan.toString(),

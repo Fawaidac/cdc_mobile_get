@@ -351,15 +351,22 @@ class MainSectionView extends GetView<MainSectionController> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 5),
-                        child: Column(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            Expanded(
+                              child: Text(
+                                "Berapa bulan anda mendapatkan pekerjaan SETELAH LULUS",
+                                style: GoogleFonts.poppins(fontSize: 12),
+                              ),
+                            ),
                             Text(
-                              "Berapa bulan anda mendapatkan pekerjaan SETELAH LULUS",
-                              style: GoogleFonts.poppins(fontSize: 12),
+                              "*",
+                              style: AppFonts.poppins(fontSize: 12, color: red),
                             )
                           ],
                         ),

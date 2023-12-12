@@ -35,12 +35,13 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Expanded(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
                 onPressed: () => Get.back(),
                 style: ElevatedButton.styleFrom(
                   shadowColor: Colors.transparent,
-                  primary: Colors.yellow,
+                  primary: Colors.amber,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
