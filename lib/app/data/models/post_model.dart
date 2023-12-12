@@ -15,7 +15,7 @@ class PostAllModel {
   final String verified;
   final List<CommentModel> comments;
   final String typeJobs;
-  final User uploader;
+  final Uploader uploader;
 
   PostAllModel({
     required this.id,
@@ -53,7 +53,21 @@ class PostAllModel {
       verified: json['verified'],
       comments: comments,
       typeJobs: json['type_jobs'],
-      uploader: User.fromJson(json['uploader']),
+      uploader: Uploader.fromJson(json['uploader']),
     );
+  }
+}
+
+class Uploader {
+  final String foto;
+  final String fullname;
+
+  Uploader({
+    required this.foto,
+    required this.fullname,
+  });
+
+  factory Uploader.fromJson(Map<String, dynamic> json) {
+    return Uploader(foto: json['foto'], fullname: json['fullname']);
   }
 }

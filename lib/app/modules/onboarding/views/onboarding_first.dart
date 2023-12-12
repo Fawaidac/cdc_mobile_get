@@ -19,7 +19,7 @@ class OnBoardingFirst extends StatelessWidget {
             height: 50,
           ),
           Text(
-            "Carrer Development Center",
+            "Carrer Development & Counseling",
             style: AppFonts.poppins(
                 fontSize: 14, color: black, fontWeight: FontWeight.bold),
           ),
@@ -29,7 +29,7 @@ class OnBoardingFirst extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Text(
-              "CDC (Carrer Development Center) merupakan aplikasi untuk mengkoneksikan alumni dari Politeknik Negeri Jember",
+              "CDC (Carrer Development & Counseling) merupakan aplikasi untuk mengkoneksikan alumni dari Politeknik Negeri Jember",
               textAlign: TextAlign.center,
               style: AppFonts.poppins(fontSize: 12, color: black),
             ),

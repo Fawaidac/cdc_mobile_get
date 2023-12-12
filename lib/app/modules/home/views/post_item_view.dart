@@ -101,7 +101,7 @@ class _PostItemViewState extends State<PostItemView> {
                                           .uploader.foto ==
                                       ApiServices.baseUrlImage
                                   ? "https://th.bing.com/th/id/OIP.dcLFW3GT9AKU4wXacZ_iYAHaGe?pid=ImgDet&rs=1"
-                                  : post.uploader.foto ?? ""),
+                                  : post.uploader.foto),
                             ),
                             const SizedBox(
                               width: 10,
@@ -112,7 +112,7 @@ class _PostItemViewState extends State<PostItemView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  post.uploader.fullname ?? "",
+                                  post.uploader.fullname,
                                   style: AppFonts.poppins(
                                       fontSize: 12,
                                       color: black,

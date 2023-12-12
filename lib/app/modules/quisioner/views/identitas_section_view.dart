@@ -1,6 +1,7 @@
 import 'package:cdc/app/modules/quisioner/controllers/identitas_section_controller.dart';
 import 'package:cdc/app/resource/custom_textfieldform.dart';
 import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,251 +15,299 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
   @override
   final controller = Get.put(IdentitasSectionController());
 
+  void _showExitConfirmationDialog(BuildContext context) {
+    Get.defaultDialog(
+      title: "Perhatian !",
+      barrierDismissible: false,
+      backgroundColor: white,
+      titleStyle: AppFonts.poppins(
+          fontSize: 20, color: black, fontWeight: FontWeight.bold),
+      radius: 10,
+      titlePadding: const EdgeInsets.only(top: 15),
+      contentPadding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+      content: Column(
+        children: [
+          Text(
+            "Silahkan selesaikan semua sesi quisioner",
+            textAlign: TextAlign.center,
+            style: AppFonts.poppins(
+                fontSize: 12, color: black, fontWeight: FontWeight.w500),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
+            child: Expanded(
+              child: ElevatedButton(
+                onPressed: () => Get.back(),
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.transparent,
+                  primary: Colors.yellow,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  textStyle: AppFonts.poppins(
+                      fontSize: 12, color: white, fontWeight: FontWeight.w500),
+                ),
+                child: Text("Tutup"),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     controller.fetchData();
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: white,
-        shadowColor: Colors.transparent,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Icon(
-            Icons.keyboard_arrow_left_rounded,
-            color: black,
+    return WillPopScope(
+      onWillPop: () async {
+        _showExitConfirmationDialog(context);
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: white,
+          shadowColor: Colors.transparent,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Icon(
+              Icons.keyboard_arrow_left_rounded,
+              color: black,
+            ),
+          ),
+          title: Text(
+            "Identitas Diri",
+            style: AppFonts.poppins(
+                fontSize: 16, color: black, fontWeight: FontWeight.bold),
           ),
         ),
-        title: Text(
-          "Identitas Diri",
-          style: AppFonts.poppins(
-              fontSize: 16, color: black, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 20),
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.kdptimsmh,
-                  label: "Kode Perguruan Tinggi/kdptimsmh",
-                  keyboardType: TextInputType.text,
-                  isRequired: true,
-                  inputFormatters:
-                      FilteringTextInputFormatter.singleLineFormatter),
-            ),
-            Container(
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 20),
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
                 width: MediaQuery.of(context).size.width,
                 color: white,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5, top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Pilih Program Studi",
-                            style: GoogleFonts.poppins(fontSize: 12),
-                          ),
-                          Text(
-                            "*",
-                            style: AppFonts.poppins(fontSize: 12, color: red),
-                          )
-                        ],
+                child: CustomTextFieldForm(
+                    controller: controller.kdptimsmh,
+                    label: "Kode Perguruan Tinggi/kdptimsmh",
+                    keyboardType: TextInputType.text,
+                    isRequired: true,
+                    inputFormatters:
+                        FilteringTextInputFormatter.singleLineFormatter),
+              ),
+              Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                  width: MediaQuery.of(context).size.width,
+                  color: white,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5, top: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Pilih Program Studi",
+                              style: GoogleFonts.poppins(fontSize: 12),
+                            ),
+                            Text(
+                              "*",
+                              style: AppFonts.poppins(fontSize: 12, color: red),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                        height: 50,
-                        child: Obx(
-                          () => DropdownButtonFormField<String>(
-                            isExpanded: true,
-                            value: controller.selectedProdi.value.isEmpty
-                                ? null
-                                : controller.selectedProdi.value,
-                            icon: const Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: Colors.black,
-                            ),
-                            onChanged: (newValue) {
-                              controller.selectedProdi.value = newValue!;
-                              controller.selectedId.value = controller.prodiList
-                                  .firstWhere((prodi) =>
-                                      prodi['nama_prodi'] == newValue)['id']
-                                  .toString();
-                            },
-                            items: controller.prodiList.map((prodi) {
-                              return DropdownMenuItem<String>(
-                                value: prodi['nama_prodi'],
-                                child: Text(
-                                  prodi['nama_prodi'],
-                                  style: AppFonts.poppins(
-                                      fontSize: 12, color: Colors.black),
-                                ),
-                              );
-                            }).toList(),
-                            decoration: InputDecoration(
-                              hintText: "Pilih Program Studi",
-                              isDense: true,
-                              hintStyle: GoogleFonts.poppins(
-                                  fontSize: 13, color: Colors.grey),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                          height: 50,
+                          child: Obx(
+                            () => DropdownButtonFormField<String>(
+                              isExpanded: true,
+                              value: controller.selectedProdi.value.isEmpty
+                                  ? null
+                                  : controller.selectedProdi.value,
+                              icon: const Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color: Colors.black,
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                  width: 1,
+                              onChanged: (newValue) {
+                                controller.selectedProdi.value = newValue!;
+                                controller.selectedId.value = controller
+                                    .prodiList
+                                    .firstWhere((prodi) =>
+                                        prodi['nama_prodi'] == newValue)['id']
+                                    .toString();
+                              },
+                              items: controller.prodiList.map((prodi) {
+                                return DropdownMenuItem<String>(
+                                  value: prodi['nama_prodi'],
+                                  child: Text(
+                                    prodi['nama_prodi'],
+                                    style: AppFonts.poppins(
+                                        fontSize: 12, color: Colors.black),
+                                  ),
+                                );
+                              }).toList(),
+                              decoration: InputDecoration(
+                                hintText: "Pilih Program Studi",
+                                isDense: true,
+                                hintStyle: GoogleFonts.poppins(
+                                    fontSize: 13, color: Colors.grey),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                borderRadius: BorderRadius.circular(10),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                    color: Colors.black,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                filled: true,
+                                fillColor: const Color(0xFFFCFDFE),
                               ),
-                              filled: true,
-                              fillColor: const Color(0xFFFCFDFE),
                             ),
-                          ),
-                        )),
-                  ],
-                )),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.nim,
-                  isRequired: true,
-                  label: "NIM / nimhsmsmh  (Gunakan Huruf Besar)",
-                  keyboardType: TextInputType.text,
-                  isEnable: true,
-                  inputFormatters:
-                      FilteringTextInputFormatter.singleLineFormatter),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.nama,
-                  isRequired: true,
-                  label: "Nama Lengkap / nmmhsmsmh",
-                  keyboardType: TextInputType.text,
-                  isEnable: true,
-                  inputFormatters:
-                      FilteringTextInputFormatter.singleLineFormatter),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.telp,
-                  isRequired: true,
-                  isLength: 15,
-                  label: "Nomor Telepon/HP (Whatsapp) / telpomsmh",
+                          )),
+                    ],
+                  )),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                    controller: controller.nim,
+                    isRequired: true,
+                    label: "NIM / nimhsmsmh  (Gunakan Huruf Besar)",
+                    keyboardType: TextInputType.text,
+                    isEnable: true,
+                    inputFormatters:
+                        FilteringTextInputFormatter.singleLineFormatter),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                    controller: controller.nama,
+                    isRequired: true,
+                    label: "Nama Lengkap / nmmhsmsmh",
+                    keyboardType: TextInputType.text,
+                    isEnable: true,
+                    inputFormatters:
+                        FilteringTextInputFormatter.singleLineFormatter),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                    controller: controller.telp,
+                    isRequired: true,
+                    isLength: 15,
+                    label: "Nomor Telepon/HP (Whatsapp) / telpomsmh",
+                    keyboardType: TextInputType.number,
+                    isEnable: true,
+                    inputFormatters: FilteringTextInputFormatter.digitsOnly),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                    controller: controller.email,
+                    isRequired: true,
+                    label: "Alamat Email / emailmsmh",
+                    keyboardType: TextInputType.emailAddress,
+                    isEnable: true,
+                    inputFormatters:
+                        FilteringTextInputFormatter.singleLineFormatter),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                    controller: controller.tahunLulus,
+                    isRequired: true,
+                    isLength: 4,
+                    label: "Tahun Lulus",
+                    keyboardType: TextInputType.number,
+                    isEnable: true,
+                    inputFormatters: FilteringTextInputFormatter.digitsOnly),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                    controller: controller.nik,
+                    isLength: 16,
+                    isRequired: true,
+                    label: "NIK / nik (Nomor Induk Kependudukan/No KTP)",
+                    keyboardType: TextInputType.number,
+                    isEnable: true,
+                    inputFormatters: FilteringTextInputFormatter.digitsOnly),
+              ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
+                width: MediaQuery.of(context).size.width,
+                color: white,
+                child: CustomTextFieldForm(
+                  controller: controller.npwp,
+                  label: "NPWP / npwp (Nomor Pokok Wajib Pajak)",
                   keyboardType: TextInputType.number,
                   isEnable: true,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.email,
                   isRequired: true,
-                  label: "Alamat Email / emailmsmh",
-                  keyboardType: TextInputType.emailAddress,
-                  isEnable: true,
-                  inputFormatters:
-                      FilteringTextInputFormatter.singleLineFormatter),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.tahunLulus,
-                  isRequired: true,
-                  isLength: 4,
-                  label: "Tahun Lulus",
-                  keyboardType: TextInputType.number,
-                  isEnable: true,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                  controller: controller.nik,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
                   isLength: 16,
-                  isRequired: true,
-                  label: "NIK / nik (Nomor Induk Kependudukan/No KTP)",
-                  keyboardType: TextInputType.number,
-                  isEnable: true,
-                  inputFormatters: FilteringTextInputFormatter.digitsOnly),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 15),
-              width: MediaQuery.of(context).size.width,
-              color: white,
-              child: CustomTextFieldForm(
-                controller: controller.npwp,
-                label: "NPWP / npwp (Nomor Pokok Wajib Pajak)",
-                keyboardType: TextInputType.number,
-                isEnable: true,
-                isRequired: true,
-                inputFormatters: FilteringTextInputFormatter.digitsOnly,
-                isLength: 16,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        if (controller.isUpdate.value == true) {
-                          controller.handleUpdateQuisionerIdentitas();
-                        } else {
-                          controller.handleQuisionerIdentitas();
-                        }
-                      },
-                      child: Text(
-                        "Selanjutnya",
-                        style: AppFonts.poppins(
-                            fontSize: 12,
-                            color: black,
-                            fontWeight: FontWeight.bold),
-                      ))
-                ],
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                        onPressed: () {
+                          if (controller.isUpdate.value == true) {
+                            controller.handleUpdateQuisionerIdentitas();
+                          } else {
+                            controller.handleQuisionerIdentitas();
+                          }
+                        },
+                        child: Text(
+                          "Selanjutnya",
+                          style: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        ))
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -16,8 +16,8 @@ class MainSectionView extends GetView<MainSectionController> {
   final controller = Get.put(MainSectionController());
   @override
   Widget build(BuildContext context) {
-    controller.loadProvinsiData();
-    controller.loadRegencyData();
+    controller.fetchDataProv();
+    controller.fetchDataReg();
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -358,7 +358,7 @@ class MainSectionView extends GetView<MainSectionController> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Berapa bulan anda mendapatkan pekerjaan SETELAH LULUS", 
+                              "Berapa bulan anda mendapatkan pekerjaan SETELAH LULUS",
                               style: GoogleFonts.poppins(fontSize: 12),
                             )
                           ],
@@ -451,22 +451,35 @@ class MainSectionView extends GetView<MainSectionController> {
                       SizedBox(
                           height: 50,
                           child: Obx(
-                            () => DropdownButtonFormField<String>(
-                              value: controller.selectedProvinsi.value,
+                            () => DropdownButtonFormField<Map<String, dynamic>>(
+                              value: controller.dataProvinceList.isNotEmpty
+                                  ? controller.dataProvinceList.firstWhere(
+                                      (provinsi) =>
+                                          provinsi['nama_provinsi'] ==
+                                          controller.selectedProvinsi.value,
+                                      orElse: () =>
+                                          controller.dataProvinceList.first)
+                                  : null,
                               isExpanded: true,
                               icon: Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 color: black,
                               ),
-                              onChanged: (String? val) {
-                                controller.selectedProvinsi.value = val!;
+                              onChanged: (Map<String, dynamic>? val) {
+                                if (val != null) {
+                                  controller.namaProvinsi.value =
+                                      val['nama_provinsi'];
+                                  controller.idProvinsi.value =
+                                      val['id'].toString();
+                                }
                               },
-                              items: controller.provinsiList
-                                  .map((String provinsi) {
-                                return DropdownMenuItem<String>(
+                              items: controller.dataProvinceList
+                                  .map<DropdownMenuItem<Map<String, dynamic>>>(
+                                      (Map<String, dynamic> provinsi) {
+                                return DropdownMenuItem<Map<String, dynamic>>(
                                   value: provinsi,
                                   child: Text(
-                                    provinsi,
+                                    provinsi['nama_provinsi'],
                                     style: AppFonts.poppins(
                                         fontSize: 12, color: black),
                                   ),
@@ -536,22 +549,35 @@ class MainSectionView extends GetView<MainSectionController> {
                       SizedBox(
                           height: 50,
                           child: Obx(
-                            () => DropdownButtonFormField<String>(
-                              value: controller.selectedRegency.value,
+                            () => DropdownButtonFormField<Map<String, dynamic>>(
+                              value: controller.dataRegencyList.isNotEmpty
+                                  ? controller.dataRegencyList.firstWhere(
+                                      (provinsi) =>
+                                          provinsi['nama_kabupaten'] ==
+                                          controller.selectedProvinsi.value,
+                                      orElse: () =>
+                                          controller.dataRegencyList.first)
+                                  : null,
                               isExpanded: true,
                               icon: Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 color: black,
                               ),
-                              onChanged: (String? val) {
-                                controller.selectedRegency.value = val!;
+                              onChanged: (Map<String, dynamic>? val) {
+                                if (val != null) {
+                                  controller.namaRegency.value =
+                                      val['nama_kabupaten'];
+                                  controller.idRegency.value =
+                                      val['id'].toString();
+                                }
                               },
-                              items:
-                                  controller.regencyList.map((String regency) {
-                                return DropdownMenuItem<String>(
+                              items: controller.dataRegencyList
+                                  .map<DropdownMenuItem<Map<String, dynamic>>>(
+                                      (Map<String, dynamic> regency) {
+                                return DropdownMenuItem<Map<String, dynamic>>(
                                   value: regency,
                                   child: Text(
-                                    regency,
+                                    regency['nama_kabupaten'],
                                     style: AppFonts.poppins(
                                         fontSize: 12, color: black),
                                   ),

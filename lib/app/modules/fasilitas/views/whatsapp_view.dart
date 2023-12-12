@@ -95,11 +95,9 @@ class WhatsappView extends GetView<WhatsappController> {
                                   width: double.infinity,
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       color: Color(0xff007E6F),
-                                      borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10))),
+                                      borderRadius: BorderRadius.circular(10)),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -119,9 +117,11 @@ class WhatsappView extends GetView<WhatsappController> {
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 8, horizontal: 15),
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       color: Color(0xff007E6F),
-                                      borderRadius: BorderRadius.circular(10)),
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10))),
                                   child: Center(
                                     child: Text(
                                       "Gabung",

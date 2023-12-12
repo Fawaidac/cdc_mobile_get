@@ -23,11 +23,16 @@ class SettingView extends GetView<SettingController> {
         backgroundColor: white,
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Icon(
-            Icons.keyboard_arrow_left_rounded,
-            color: black,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Icon(
+              Icons.keyboard_arrow_left_rounded,
+              color: black,
+            ),
           ),
         ),
         title: Text(

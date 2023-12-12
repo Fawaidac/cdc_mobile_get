@@ -143,7 +143,7 @@ String getTypeText(String? type) {
 void getTypeAction(String? type) {
   switch (type) {
     case 'news':
-      Get.back();
+      Get.toNamed(Routes.ALL_BERITA);
       break;
     case 'quisioner':
       Get.toNamed(Routes.QUISIONER);

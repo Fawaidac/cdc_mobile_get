@@ -16,6 +16,14 @@ class MainSectionController extends GetxController {
   RxList<String> regencyList = RxList<String>();
   RxString selectedRegency = RxString("");
 
+  RxList<Map<String, dynamic>> dataProvinceList = <Map<String, dynamic>>[].obs;
+  RxString namaProvinsi = "".obs;
+  RxString idProvinsi = "".obs;
+
+  RxList<Map<String, dynamic>> dataRegencyList = <Map<String, dynamic>>[].obs;
+  RxString namaRegency = "".obs;
+  RxString idRegency = "".obs;
+
   late TextEditingController jenis;
   late TextEditingController namaPerusahaan;
   late TextEditingController pendapatan;
@@ -111,6 +119,42 @@ class MainSectionController extends GetxController {
     pendapatan.dispose();
   }
 
+  Future<void> fetchDataProv() async {
+    final response = await http.get(
+      Uri.parse('${ApiServices.baseUrl}/province'),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+
+      if (responseData['status'] == true) {
+        dataProvinceList.assignAll(List.from(responseData['data']));
+      } else {
+        print('Error: ${responseData['message']}');
+      }
+    } else {
+      print('Error: ${response.statusCode}');
+    }
+  }
+
+  Future<void> fetchDataReg() async {
+    final response = await http.get(
+      Uri.parse('${ApiServices.baseUrl}/regency'),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+
+      if (responseData['status'] == true) {
+        dataRegencyList.assignAll(List.from(responseData['data']));
+      } else {
+        print('Error: ${responseData['message']}');
+      }
+    } else {
+      print('Error: ${response.statusCode}');
+    }
+  }
+
   Future<void> loadProvinsiData() async {
     try {
       final String data =
@@ -169,7 +213,7 @@ class MainSectionController extends GetxController {
           selectedMonth.toString(),
           gajiValue,
           selectedAfter.toString(),
-          selectedProvinsi.toString(),
+          idProvinsi.toString(),
           selectedRegency.toString(),
           selectedJenisValue,
           namaPerusahaan.text,
