@@ -119,7 +119,7 @@ class _QuisionerViewState extends State<QuisionerView> {
 
                     return GestureDetector(
                       onTap: () {
-                        _navigateToSection(index);
+                        // _navigateToSection(index);
                       },
                       child: Container(
                         color: white,

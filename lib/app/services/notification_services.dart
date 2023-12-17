@@ -13,7 +13,7 @@ class LocalNotificationsServices {
 
   static void showNotificationForeground(RemoteMessage message) {
     final notificationsDetail = NotificationDetails(
-        android: AndroidNotificationDetails("com.jtinova.cdc", "Cdc-Polije",
+        android: AndroidNotificationDetails("com.jtinova.cdc", "CDC POLIJE",
             importance: Importance.max, priority: Priority.high));
     int notificationId = DateTime.now().millisecondsSinceEpoch ~/ 1000;
     notificationsPlugin.show(notificationId, message.notification!.title,

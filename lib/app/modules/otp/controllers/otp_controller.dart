@@ -122,7 +122,7 @@ class OtpController extends GetxController {
       'password': password,
       'no_telp': telp,
       'alamat': alamat,
-      'nim': alamat,
+      'nim': nim,
       'kode_prodi': kode,
       'angkatan': angkatan,
       'tahun_lulus': tahunLulus,

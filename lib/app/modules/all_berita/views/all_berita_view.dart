@@ -2,6 +2,8 @@ import 'package:card_loading/card_loading.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_fonts.dart';
@@ -64,12 +66,20 @@ class AllBeritaView extends GetView<AllBeritaController> {
           scrollDirection: Axis.vertical,
           itemCount: controller.newsList.length,
           itemBuilder: (context, index) {
+            String dateTime = controller.newsList[index]['created_at'];
+            final date = DateTime.parse(dateTime);
+            initializeDateFormatting('id_ID', null);
+            final dateFormat = DateFormat('dd MMMM yyyy', 'id_ID');
+            final timeFormat = DateFormat('HH:mm');
+            final formattedDate = dateFormat.format(date);
+            final formattedTime = timeFormat.format(date);
             return GestureDetector(
               onTap: () {
                 Get.to(
                     () => DetailNewsView(newsItem: controller.newsList[index]));
               },
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: size.width,
@@ -86,18 +96,26 @@ class AllBeritaView extends GetView<AllBeritaController> {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(15, 0, 10, 0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Expanded(
-                          child: Text(
-                            controller.newsList[index]['title'],
-                            style: AppFonts.poppins(
-                              fontSize: 14,
-                              color: black,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        Text(
+                          controller.newsList[index]['title'],
+                          style: AppFonts.poppins(
+                            fontSize: 14,
+                            color: black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          '$formattedDate, $formattedTime',
+                          style: AppFonts.poppins(
+                            fontSize: 12,
+                            color: black,
                           ),
                         ),
                       ],

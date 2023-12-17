@@ -6,6 +6,8 @@ import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:card_loading/card_loading.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore: must_be_immutable
@@ -56,6 +58,13 @@ class NewsView extends GetView<NewsController> {
             scrollDirection: Axis.horizontal,
             itemCount: controller.newsList.length,
             itemBuilder: (context, index) {
+              String dateTime = controller.newsList[index]['created_at'];
+              final date = DateTime.parse(dateTime);
+              initializeDateFormatting('id_ID', null);
+              final dateFormat = DateFormat('dd MMMM yyyy', 'id_ID');
+              final timeFormat = DateFormat('HH:mm');
+              final formattedDate = dateFormat.format(date);
+              final formattedTime = timeFormat.format(date);
               return GestureDetector(
                 onTap: () {
                   Get.to(() =>
@@ -85,27 +94,42 @@ class NewsView extends GetView<NewsController> {
                         padding: const EdgeInsets.all(20),
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.transparent,
-                              white.withOpacity(0.5),
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          // gradient: LinearGradient(
+                          //   colors: [
+                          //     Colors.transparent,
+                          //     white.withOpacity(0.5),
+                          //   ],
+                          //   begin: Alignment.topCenter,
+                          //   end: Alignment.bottomCenter,
+                          // ),
+                          color: black.withOpacity(0.2),
                         ),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Expanded(
-                              child: Text(
-                                controller.newsList[index]['title'],
-                                style: AppFonts.poppins(
-                                  fontSize: 18,
-                                  color: black,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    controller.newsList[index]['title'],
+                                    style: AppFonts.poppins(
+                                      fontSize: 16,
+                                      color: white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    '$formattedDate, $formattedTime',
+                                    style: AppFonts.poppins(
+                                      fontSize: 12,
+                                      color: white,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             if (index == controller.newsList.length - 1)
@@ -117,7 +141,7 @@ class NewsView extends GetView<NewsController> {
                                   'Lihat Semua',
                                   style: AppFonts.poppins(
                                     fontSize: 12,
-                                    color: Colors.black,
+                                    color: white,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),

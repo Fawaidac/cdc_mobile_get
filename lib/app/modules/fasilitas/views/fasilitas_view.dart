@@ -1,5 +1,6 @@
 import 'package:cdc/app/modules/fasilitas/views/whatsapp_view.dart';
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -52,18 +53,22 @@ class FasilitasView extends GetView<FasilitasController> {
               children: [
                 InkWell(
                   onTap: () {
-                    AppDialog.show(
-                      title: "Perhatian !",
-                      isTouch: false,
-                      desc:
-                          "Mohon perhatikan dengan baik, setelah Anda masuk ke dalam kuesioner, tidak ada kemungkinan untuk kembali. Pastikan Anda melengkapi semua pertanyaan disetiap sesi",
-                      onOk: () async {
-                        Get.to(() => IdentitasSectionView());
-                      },
-                      onCancel: () {
-                        Get.back();
-                      },
-                    );
+                    if (currentSection == controller.totalSections) {
+                      Get.toNamed(Routes.QUISIONER);
+                    } else {
+                      AppDialog.show(
+                        title: "Perhatian !",
+                        isTouch: false,
+                        desc:
+                            "Mohon perhatikan dengan baik, setelah Anda masuk ke dalam kuesioner, tidak ada kemungkinan untuk kembali. Pastikan Anda melengkapi semua pertanyaan disetiap sesi",
+                        onOk: () async {
+                          Get.to(() => IdentitasSectionView());
+                        },
+                        onCancel: () {
+                          Get.back();
+                        },
+                      );
+                    }
                   },
                   child: Container(
                     height: 175,

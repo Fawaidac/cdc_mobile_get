@@ -1132,6 +1132,7 @@ class JobSuitabilitySectionView
                             desc:
                                 "Apakah anda yakin untuk menyimpan quisioner?",
                             onOk: () {
+                              Get.back();
                               controller.check();
                             },
                             onCancel: () {

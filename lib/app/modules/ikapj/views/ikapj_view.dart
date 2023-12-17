@@ -20,7 +20,7 @@ class IkapjView extends StatelessWidget {
         },
       ),
     )
-    ..loadRequest(Uri.parse("https://alumni.polije.ac.id/"));
+    ..loadRequest(Uri.parse("https://ikapj.or.id/"));
 
   @override
   Widget build(BuildContext context) {

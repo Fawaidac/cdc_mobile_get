@@ -104,7 +104,7 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.portraitDown,
     ]);
     return GetMaterialApp(
-      title: "Carrer Development & Counseling",
+      title: "CDC POLIJE",
       debugShowCheckedModeBanner: false,
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

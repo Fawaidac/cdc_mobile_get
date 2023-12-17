@@ -80,7 +80,7 @@ class RegisterView extends GetView<RegisterController> {
                   isEnable: true,
                   inputFormatters:
                       FilteringTextInputFormatter.singleLineFormatter,
-                  icon: Icons.mail),
+                  icon: Icons.badge),
               Container(
                   margin: const EdgeInsets.only(top: 10),
                   height: 50,

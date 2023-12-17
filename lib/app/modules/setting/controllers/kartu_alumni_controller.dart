@@ -52,10 +52,10 @@ class KartuAlumniController extends GetxController {
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    getDataAlumni();
+    // getDataAlumni();
   }
 
-    Future<void> launchURL(String url) async {
+  Future<void> launchURL(String url) async {
     final Uri _url = Uri.parse(url);
     if (!await launchUrl(_url)) {
       Get.snackbar("Error", "Tidak bisa mengunjungi situs",
