@@ -161,7 +161,7 @@ class HomepageController extends GetxController {
     return data;
   }
 
-  static Future<List<Map<String, dynamic>>> searchDataUser(String key) async {
+  Future<List<Map<String, dynamic>>> searchDataUser(String key) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
 
@@ -215,4 +215,5 @@ class HomepageController extends GetxController {
       throw Exception('Failed to fetch user data');
     }
   }
+
 }

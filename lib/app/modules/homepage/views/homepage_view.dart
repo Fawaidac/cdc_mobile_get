@@ -127,6 +127,21 @@ class _HomepageViewState extends State<HomepageView> {
   ];
 
   bool active = true;
+  final searchController = TextEditingController();
+  final searchResult = [];
+  Future<void> searchUser(String key) async {
+    try {
+      final result = await controller.searchDataUser(key);
+
+      if (result.isNotEmpty) {
+        searchResult.assignAll(result);
+      } else {
+        throw Exception("Tidak ada data");
+      }
+    } catch (e) {
+      print("Error searching users: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +157,15 @@ class _HomepageViewState extends State<HomepageView> {
               onTap: () {
                 setState(() {
                   active = !active;
-                  print(active);
+                  searchResult.clear();
                 });
               },
               textInputAction: TextInputAction.done,
-              controller: controller.searchController,
+              controller: searchController,
               onChanged: (value) {
-                controller.searchUser(value);
+                setState(() {
+                  searchUser(value);
+                });
               },
               style: AppFonts.poppins(fontSize: 12, color: black),
               keyboardType: TextInputType.text,
@@ -157,6 +174,7 @@ class _HomepageViewState extends State<HomepageView> {
                   onTap: () {
                     setState(() {
                       active = !active;
+                      searchResult.clear();
                     });
                   },
                   child: Icon(
@@ -226,9 +244,9 @@ class _HomepageViewState extends State<HomepageView> {
           body: active == true
               ? screen[i]
               : ListView.builder(
-                  itemCount: controller.searchResult.length,
+                  itemCount: searchResult.length,
                   itemBuilder: (context, index) {
-                    final user = controller.searchResult[index];
+                    final user = searchResult[index];
 
                     return UsersItemView(user);
                   },
