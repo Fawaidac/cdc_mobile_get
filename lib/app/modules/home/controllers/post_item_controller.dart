@@ -20,7 +20,7 @@ class PostItemController extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
-
+      print(token);
       if (token == null) {
         throw Exception("Token not found");
       }

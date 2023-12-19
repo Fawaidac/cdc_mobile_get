@@ -35,7 +35,7 @@ class LoginController extends GetxController {
           DateTime expirationTime = DateTime.now().add(const Duration(days: 7));
           prefs.setInt(
               'tokenExpirationTime', expirationTime.millisecondsSinceEpoch);
-          Get.offNamed(Routes.HOMEPAGE);
+          Get.offAllNamed(Routes.HOMEPAGE);
         } else {
           Get.snackbar("Error", response['message']);
         }

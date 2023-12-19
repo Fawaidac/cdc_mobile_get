@@ -1,11 +1,14 @@
 import 'dart:convert';
 
 import 'package:cdc/app/data/models/quisioner_check_model.dart';
+import 'package:cdc/app/modules/quisioner/controllers/quisioner_controller.dart';
 import 'package:cdc/app/services/api_services.dart';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../routes/app_pages.dart';
@@ -48,6 +51,73 @@ class FasilitasController extends GetxController {
     double progress = completedSections / totalSections;
 
     return progress;
+  }
+
+  Future<Map<String, dynamic>> updateLocationUser(
+      double lat, double long) async {
+    final Map<String, dynamic> requestBody = {
+      "latitude": lat,
+      "longtitude": long,
+    };
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    final response = await http.put(
+      Uri.parse('${ApiServices.baseUrl}/user/position'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestBody),
+    );
+    final data = jsonDecode(response.body);
+    return data;
+  }
+
+  Future<void> requestLocationPermission() async {
+    var status = await Permission.location.status;
+
+    if (status.isPermanentlyDenied) {
+      openAppSettings();
+    }
+
+    if (status.isDenied) {
+      await Permission.location.request();
+    }
+
+    if (status.isGranted) {
+      Map<String, double> locationData = await getCurrentLocation();
+      double latitude = locationData["latitude"] ?? 0.0;
+      double longitude = locationData["longitude"] ?? 0.0;
+
+      final res = await updateLocationUser(latitude, longitude);
+      if (res['code'] == 200) {
+        print("oke");
+      } else {
+        print(res['message'] + "asjalks");
+      }
+    }
+  }
+
+  static Future<Map<String, double>> getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      double latitude = position.latitude;
+      double longitude = position.longitude;
+
+      Map<String, double> locationData = {
+        "latitude": latitude,
+        "longitude": longitude,
+      };
+
+      return locationData;
+    } catch (e) {
+      print("Error getting location: $e");
+      return Future.error("Error getting location: $e");
+    }
   }
 
   Future<QuestionnaireCheck?> quisionerCheck() async {
@@ -96,8 +166,8 @@ class FasilitasController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     quisionerCheck();
+    requestLocationPermission();
   }
 }

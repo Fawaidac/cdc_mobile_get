@@ -32,53 +32,6 @@ class _QuisionerViewState extends State<QuisionerView> {
     // TODO: implement initState
     super.initState();
     controller.fetchQuisionerData();
-    requestLocationPermission();
-  }
-
-  Future<void> requestLocationPermission() async {
-    var status = await Permission.location.status;
-
-    if (status.isPermanentlyDenied) {
-      openAppSettings();
-    }
-
-    if (status.isDenied) {
-      await Permission.location.request();
-    }
-
-    if (status.isGranted) {
-      Map<String, double> locationData = await getCurrentLocation();
-      double latitude = locationData["latitude"] ?? 0.0;
-      double longitude = locationData["longitude"] ?? 0.0;
-
-      final res = await controller.updateLocationUser(latitude, longitude);
-      if (res['code'] == 200) {
-        print("oke");
-      } else {
-        print(res['message']);
-      }
-    }
-  }
-
-  static Future<Map<String, double>> getCurrentLocation() async {
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
-
-      double latitude = position.latitude;
-      double longitude = position.longitude;
-
-      Map<String, double> locationData = {
-        "latitude": latitude,
-        "longitude": longitude,
-      };
-
-      return locationData;
-    } catch (e) {
-      print("Error getting location: $e");
-      return Future.error("Error getting location: $e");
-    }
   }
 
   @override

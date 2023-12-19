@@ -108,7 +108,7 @@ class JobStreetSectionController extends GetxController {
             "Success", "Silahkan isi quisioner identitas terlebih dahulu",
             margin: const EdgeInsets.all(10));
       } else {
-        Get.snackbar("Success", response['message'],
+        Get.snackbar("Error", response['message'],
             margin: const EdgeInsets.all(10));
       }
     } catch (e) {

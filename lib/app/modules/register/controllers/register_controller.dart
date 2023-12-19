@@ -184,6 +184,16 @@ class RegisterController extends GetxController {
               'angkatan': tahunMasuk.text,
               'tahun_lulus': tahunLulus.text,
             });
+            fullname.clear();
+            email.clear();
+            password.clear();
+            phone = "";
+            alamat.clear();
+            nik.clear();
+            nim.clear();
+            kodeProdi = "";
+            tahunLulus.clear();
+            tahunMasuk.clear();
           },
           codeAutoRetrievalTimeout: (verificationId) {
             verifyId = verificationId;

@@ -80,42 +80,43 @@ class OtpView extends GetView<OtpController> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Tidak menerima kode OTP ? ",
-                  style: AppFonts.poppins(fontSize: 12, color: black),
-                ),
-                InkWell(
-                  onTap: () {
-                    if (controller.canResend.value) {
-                      controller.sendOtpAgain();
-                    }
-                  },
-                  child: Text(
-                    "Kirim Ulang",
-                    style: AppFonts.poppins(
-                      fontSize: 12,
-                      color: controller.canResend.value
-                          ? primaryColor
-                          : Colors.grey,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Obx(() {
-              return Center(
-                child: Text(
-                  "Harap tunggu kode dalam 00:${controller.countdown.toString().padLeft(2, '0')}s",
-                  style: AppFonts.poppins(
-                      fontSize: 12,
-                      color: controller.countdown > 0 ? grey : primaryColor),
-                ),
-              );
-            }),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(
+            //       "Tidak menerima kode OTP ? ",
+            //       style: AppFonts.poppins(fontSize: 12, color: black),
+            //     ),
+            //     InkWell(
+            //       onTap: () {
+            //         if (controller.canResend.value) {
+            //           controller.sendOtpAgain();
+            //         }
+            //       },
+            //       child: Text(
+            //         "Kirim Ulang",
+            //         style: AppFonts.poppins(
+            //           fontSize: 12,
+            //           color: controller.canResend.value
+            //               ? primaryColor
+            //               : Colors.grey,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
+
+            // Obx(() {
+            //   return Center(
+            //     child: Text(
+            //       "Harap tunggu kode dalam 00:${controller.countdown.toString().padLeft(2, '0')}s",
+            //       style: AppFonts.poppins(
+            //           fontSize: 12,
+            //           color: controller.countdown > 0 ? grey : primaryColor),
+            //     ),
+            //   );
+            // }),
           ],
         ),
       ),

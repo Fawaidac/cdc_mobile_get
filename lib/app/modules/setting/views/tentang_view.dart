@@ -15,12 +15,16 @@ class TentangView extends GetView {
         shadowColor: Colors.transparent,
         automaticallyImplyLeading: false,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: Icon(
-            Icons.keyboard_arrow_left_rounded,
-            color: black,
-          ),
-        ),
+            padding: const EdgeInsets.only(left: 10),
+            child: IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.keyboard_arrow_left_rounded,
+                color: black,
+              ),
+            )),
         title: Text(
           "Tentang Aplikasi",
           style: AppFonts.poppins(

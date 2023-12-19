@@ -40,6 +40,7 @@ class VerifikasiController extends GetxController {
             "alamat": alamat,
             "prodi": prodi
           });
+          nimOrEmail.clear();
         } else if (response['message'] ==
             'ops , data nim atau email kamu tidak ditemukan silahkan ajukan pengajuan data alumni') {
           Get.snackbar("Error",

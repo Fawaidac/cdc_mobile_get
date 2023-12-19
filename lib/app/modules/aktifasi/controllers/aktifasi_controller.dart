@@ -105,7 +105,7 @@ class AktifasiController extends GetxController {
           pdf: pdf.value!,
           nama: nama.text,
           email: email.text,
-          nim: nim.text,
+          nim: nim.text.toUpperCase(),
           telp: telp.text,
           tempatlahir: tempatLahir.text,
           tanggalLahir: formattedDate,
@@ -116,8 +116,21 @@ class AktifasiController extends GetxController {
           tahunLulus: tahunLulus.text,
           angkatan: angkatan.text);
       if (response['code'] == 200) {
+        // Clear text fields and set pdf to null
+        nama.clear();
+        email.clear();
+        nim.clear();
+        telp.clear();
+        tempatLahir.clear();
+        alamat.clear();
+        jurusan.clear();
+        prodi.clear();
+        tahunLulus.clear();
+        angkatan.clear();
+        pdf.value = null;
         // ignore: use_build_context_synchronously
         Get.toNamed(Routes.LOGIN);
+
         Get.snackbar("Success", "Berhasil mengirim pengajuan aktifasi akun",
             margin: const EdgeInsets.all(10));
       } else if (response['message'] ==

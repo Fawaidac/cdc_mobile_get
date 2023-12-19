@@ -131,7 +131,6 @@ class JobSuitabilitySectionController extends GetxController {
       if (response['code'] == 201) {
         Get.snackbar("Success", response['message'],
             margin: const EdgeInsets.all(10));
-        Get.find<QuisionerController>().quisionerData.clear();
         Get.offAllNamed(Routes.HOMEPAGE);
       } else if (response['message'] ==
           'gagal mengisi kuisioner Gagal mengisi kuisioner , kamu belum mengisi quisioner sebelumnya') {

@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/home/views/home2_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/aktifasi/bindings/aktifasi_binding.dart';
@@ -59,7 +60,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => HomeView2(),
       binding: HomeBinding(),
     ),
     GetPage(

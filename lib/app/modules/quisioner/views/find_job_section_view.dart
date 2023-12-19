@@ -1,4 +1,5 @@
 import 'package:cdc/app/modules/quisioner/controllers/find_job_section_controller.dart';
+import 'package:cdc/app/modules/quisioner/views/company_apply_section_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -1363,9 +1364,9 @@ class FindJobSectionView extends GetView<FindJobSectionController> {
                     TextButton(
                         onPressed: () {
                           if (controller.isUpdate.value == true) {
-                            controller.handleQuisionerFindJobs();
+                            controller.handleQuisionerFindJobsUpdate();
                           } else {
-                            controller.check();
+                            controller.handleQuisionerFindJobs();
                           }
                         },
                         child: Text(

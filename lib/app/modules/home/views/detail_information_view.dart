@@ -1,19 +1,20 @@
 import 'package:cdc/app/utils/app_colors.dart';
-import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
-class DetailNewsView extends GetView {
-  final Map<String, dynamic> newsItem;
+import '../../../utils/app_fonts.dart';
 
-  const DetailNewsView({required this.newsItem, Key? key}) : super(key: key);
+class DetailInformationView extends GetView {
+  final Map<String, dynamic> informationItem;
 
+  const DetailInformationView({required this.informationItem, Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
-    String dateTime = newsItem['created_at'];
+    String dateTime = informationItem['created_at'];
     final date = DateTime.parse(dateTime);
     initializeDateFormatting('id_ID', null);
     final dateFormat = DateFormat('dd MMMM yyyy', 'id_ID');
@@ -32,7 +33,7 @@ class DetailNewsView extends GetView {
               color: black,
             )),
         title: Text(
-          "Berita",
+          "Informasi",
           style: AppFonts.poppins(
               fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
@@ -43,7 +44,7 @@ class DetailNewsView extends GetView {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(newsItem['title'],
+              child: Text(informationItem['title'],
                   style: AppFonts.poppins(
                       fontSize: 20, color: black, fontWeight: FontWeight.bold)),
             ),
@@ -54,30 +55,21 @@ class DetailNewsView extends GetView {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                      image: NetworkImage(newsItem['image']),
+                      image: NetworkImage(informationItem['poster']),
                       fit: BoxFit.cover)),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '$formattedDate',
-                    style: AppFonts.poppins(fontSize: 14, color: grey),
-                  ),
-                  Text(
-                    newsItem['interval'],
-                    style: AppFonts.poppins(fontSize: 14, color: grey),
-                  )
-                ],
+              child: Text(
+                formattedDate,
+                style: AppFonts.poppins(fontSize: 14, color: grey),
               ),
             ),
             Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Html(
-                  data: newsItem['description'],
-                  style: {"body": Style(fontSize: FontSize(16))},
+                child: Text(
+                  informationItem['description'],
+                  style: AppFonts.poppins(fontSize: 14, color: black),
                 )),
           ],
         ),

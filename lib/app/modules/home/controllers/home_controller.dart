@@ -7,7 +7,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with GetSingleTickerProviderStateMixin {
+  late TabController tabController;
+    @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    tabController = TabController(length: 2, vsync: this);
+  }
+
   final search = TextEditingController();
 
   void onChangeSearch(String value) {

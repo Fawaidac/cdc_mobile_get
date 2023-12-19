@@ -112,7 +112,7 @@ class AllBeritaView extends GetView<AllBeritaController> {
                           height: 8,
                         ),
                         Text(
-                          '$formattedDate, $formattedTime',
+                          '$formattedDate',
                           style: AppFonts.poppins(
                             fontSize: 12,
                             color: black,
@@ -159,4 +159,5 @@ class AllBeritaView extends GetView<AllBeritaController> {
       },
     );
   }
+
 }

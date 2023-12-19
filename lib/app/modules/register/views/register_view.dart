@@ -53,17 +53,17 @@ class RegisterView extends GetView<RegisterController> {
                   label: "Nama Lengkap",
                   keyboardType: TextInputType.name,
                   isEnable: true,
+                  isReadOnly: true,
                   inputFormatters:
                       FilteringTextInputFormatter.singleLineFormatter,
                   icon: Icons.person_rounded),
               CustomTextField(
                   controller: controller.nik,
                   label: "Nomer Induk Kependudukan",
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.number,
                   isEnable: true,
                   isLength: 16,
-                  inputFormatters:
-                      FilteringTextInputFormatter.singleLineFormatter,
+                  inputFormatters: FilteringTextInputFormatter.digitsOnly,
                   icon: Icons.badge),
               CustomTextField(
                   controller: controller.email,
@@ -78,6 +78,7 @@ class RegisterView extends GetView<RegisterController> {
                   label: "NIM",
                   keyboardType: TextInputType.name,
                   isEnable: true,
+                  isReadOnly: true,
                   inputFormatters:
                       FilteringTextInputFormatter.singleLineFormatter,
                   icon: Icons.badge),
@@ -140,6 +141,7 @@ class RegisterView extends GetView<RegisterController> {
                   label: "Alamat",
                   keyboardType: TextInputType.emailAddress,
                   isEnable: true,
+                  isReadOnly: true,
                   inputFormatters:
                       FilteringTextInputFormatter.singleLineFormatter,
                   icon: Icons.location_city),
@@ -183,6 +185,10 @@ class RegisterView extends GetView<RegisterController> {
                       onChanged: (value) {
                         controller.phone = value;
                       },
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(13),
+                      ],
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Phone",

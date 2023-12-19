@@ -72,7 +72,6 @@ class IdentitasSectionView extends GetView<IdentitasSectionController> {
           shadowColor: Colors.transparent,
           leading: InkWell(
             onTap: () {
-              // Get.back();
               _showExitConfirmationDialog(context);
             },
             child: Icon(

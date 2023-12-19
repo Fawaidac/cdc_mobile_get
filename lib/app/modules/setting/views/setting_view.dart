@@ -1,4 +1,3 @@
-import 'package:cdc/app/modules/setting/controllers/kartu_alumni_controller.dart';
 import 'package:cdc/app/modules/setting/views/add_education_user_view.dart';
 import 'package:cdc/app/modules/setting/views/add_job_user_view.dart';
 import 'package:cdc/app/modules/setting/views/kartu_alumni_view.dart';
@@ -17,7 +16,6 @@ class SettingView extends GetView<SettingController> {
   const SettingView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Get.find<KartuAlumniController>().getDataAlumni();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: white,

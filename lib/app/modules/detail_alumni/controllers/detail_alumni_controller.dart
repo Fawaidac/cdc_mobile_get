@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:cdc/app/data/models/followers_model.dart';
 import 'package:cdc/app/data/models/user_model.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
+import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -158,6 +160,21 @@ class DetailAlumniController extends GetxController
         throw Exception(
             'Failed to fetch user details: ${jsonResponse['message']}');
       }
+    } else if (response.statusCode == 403) {
+      AppDialog.show(
+        title: "Perhatian !",
+        isTouch: false,
+        desc:
+            "Ops , nampaknya akun kamu belum terverifikasi, Silahkan isi quisioner terlebih dahulu",
+        onOk: () {
+          Get.toNamed(Routes.FASILITAS);
+        },
+        onCancel: () {
+          Get.back();
+        },
+      );
+      throw Exception(
+          'Failed to fetch user details. Status code: ${response.statusCode}');
     } else {
       throw Exception(
           'Failed to fetch user details. Status code: ${response.statusCode}');

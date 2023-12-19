@@ -1,4 +1,5 @@
 import 'package:cdc/app/modules/alumni/views/alumni_view.dart';
+import 'package:cdc/app/modules/home/views/home2_view.dart';
 import 'package:cdc/app/modules/home/views/home_view.dart';
 import 'package:cdc/app/modules/homepage/views/users_item_view.dart';
 import 'package:cdc/app/modules/ikapj/views/ikapj_view.dart';
@@ -118,7 +119,7 @@ class _HomepageViewState extends State<HomepageView> {
   }
 
   List<Widget> screen = <Widget>[
-    const HomeView(),
+    const HomeView2(),
     const AlumniView(),
     PostingView(),
     IkapjView(),
@@ -140,7 +141,8 @@ class _HomepageViewState extends State<HomepageView> {
             title: TextFormField(
               onTap: () {
                 setState(() {
-                  active = true;
+                  active = !active;
+                  print(active);
                 });
               },
               textInputAction: TextInputAction.done,
@@ -154,7 +156,7 @@ class _HomepageViewState extends State<HomepageView> {
                 prefixIcon: InkWell(
                   onTap: () {
                     setState(() {
-                      active = true;
+                      active = !active;
                     });
                   },
                   child: Icon(
@@ -221,7 +223,7 @@ class _HomepageViewState extends State<HomepageView> {
               )
             ],
           ),
-          body: active
+          body: active == true
               ? screen[i]
               : ListView.builder(
                   itemCount: controller.searchResult.length,

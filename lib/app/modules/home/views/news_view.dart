@@ -38,7 +38,60 @@ class NewsView extends GetView<NewsController> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (controller.newsList.isEmpty) {
-            return const SizedBox();
+            return InkWell(
+              onTap: () {
+                Get.toNamed(Routes.FASILITAS);
+              },
+              child: Container(
+                height: 175,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    gradient: LinearGradient(
+                        colors: [primaryColor, first],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter)),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Ayo Isi Kuisioner !",
+                            style: AppFonts.poppins(
+                                fontSize: 18,
+                                color: white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Verifikasi akun anda dan bantu rekan alumni untuk mengetahui track record anda",
+                            style: AppFonts.poppins(fontSize: 12, color: white),
+                          ),
+                          Image.asset(
+                            "images/logowhite.png",
+                            height: 40,
+                          ),
+                        ],
+                      ),
+                    )),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: SizedBox(
+                        height: 120,
+                        child: Image.asset(
+                          "images/quis.png",
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
           }
           return buildNewsListView(context);
         }
@@ -123,7 +176,7 @@ class NewsView extends GetView<NewsController> {
                                     ),
                                   ),
                                   Text(
-                                    '$formattedDate, $formattedTime',
+                                    '$formattedDate',
                                     style: AppFonts.poppins(
                                       fontSize: 12,
                                       color: white,

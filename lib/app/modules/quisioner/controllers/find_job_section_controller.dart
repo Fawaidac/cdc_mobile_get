@@ -33,25 +33,29 @@ class FindJobSectionController extends GetxController {
   var idQuisioner = "";
   RxBool isUpdate = false.obs;
   void check() {
-    if (selectedPlatform == null ||
-        selectedVacancies == null ||
-        selectedExcanges == null ||
-        selectedInternet == null ||
-        selectedCompany == null ||
-        selectedKemenakertrans == null ||
-        selectedAgen == null ||
-        selectedInformasi == null ||
-        selectedKantor == null ||
-        selectedNetwork == null ||
-        selectedRelasi == null ||
-        selectedBisnis == null ||
-        selectedPenempatan == null ||
-        selectedCollage == null ||
+    if (selectedPlatform == null &&
+        selectedVacancies == null &&
+        selectedExcanges == null &&
+        selectedInternet == null &&
+        selectedCompany == null &&
+        selectedKemenakertrans == null &&
+        selectedAgen == null &&
+        selectedInformasi == null &&
+        selectedKantor == null &&
+        selectedNetwork == null &&
+        selectedRelasi == null &&
+        selectedBisnis == null &&
+        selectedPenempatan == null &&
+        selectedCollage == null &&
         selectedLainnya == null) {
       Get.snackbar("Error", "Silakan isi pertanyaan yang diperlukan",
           margin: const EdgeInsets.all(10));
     } else {
-      handleQuisionerFindJobs();
+      if (isUpdate.value == true) {
+        handleQuisionerFindJobsUpdate();
+      } else {
+        handleQuisionerFindJobs();
+      }
     }
   }
 
