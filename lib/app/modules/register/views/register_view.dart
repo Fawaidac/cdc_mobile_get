@@ -145,65 +145,76 @@ class RegisterView extends GetView<RegisterController> {
                   inputFormatters:
                       FilteringTextInputFormatter.singleLineFormatter,
                   icon: Icons.location_city),
-              Container(
-                height: 50,
-                margin: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  color: const Color(0xffC4C4C4).withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: 30,
-                      child: TextField(
-                        controller: controller.countryCode,
-                        enabled: false,
-                        style: AppFonts.poppins(fontSize: 12, color: black),
-                        keyboardType: TextInputType.number,
-                        decoration: const InputDecoration(
-                          isDense: true,
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "|",
-                      style: AppFonts.poppins(fontSize: 20, color: black),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        child: TextField(
-                      keyboardType: TextInputType.phone,
-                      style: AppFonts.poppins(fontSize: 13, color: black),
-                      onChanged: (value) {
-                        controller.phone = value;
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(13),
-                      ],
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Phone",
-                          suffixIcon: Icon(
-                            Icons.phone_android_rounded,
-                            size: 20,
-                            color: grey,
-                          ),
-                          isDense: false,
-                          hintStyle:
-                              AppFonts.poppins(fontSize: 13, color: grey)),
-                    ))
-                  ],
-                ),
-              ),
+              CustomTextField(
+                  controller: controller.nohp,
+                  label: "No. Telepon",
+                  keyboardType: TextInputType.number,
+                  isEnable: true,
+                  isReadOnly: false,
+                  inputFormatters:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  icon: Icons.phone),
+
+              // Container(
+              //   height: 50,
+              //   margin: const EdgeInsets.only(top: 10),
+              //   decoration: BoxDecoration(
+              //     color: const Color(0xffC4C4C4).withOpacity(0.2),
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       const SizedBox(
+              //         width: 10,
+              //       ),
+              //       SizedBox(
+              //         width: 30,
+              //         child: TextField(
+              //           controller: controller.countryCode,
+              //           enabled: false,
+              //           style: AppFonts.poppins(fontSize: 12, color: black),
+              //           keyboardType: TextInputType.number,
+              //           decoration: const InputDecoration(
+              //             isDense: true,
+              //             border: InputBorder.none,
+              //           ),
+              //         ),
+              //       ),
+              //       Text(
+              //         "|",
+              //         style: AppFonts.poppins(fontSize: 20, color: black),
+              //       ),
+              //       const SizedBox(
+              //         width: 10,
+              //       ),
+              //       Expanded(
+              //           child: TextField(
+              //         keyboardType: TextInputType.phone,
+              //         style: AppFonts.poppins(fontSize: 13, color: black),
+              //         onChanged: (value) {
+              //           controller.phone = value;
+              //         },
+              //         inputFormatters: [
+              //           FilteringTextInputFormatter.digitsOnly,
+              //           LengthLimitingTextInputFormatter(13),
+              //         ],
+              //         decoration: InputDecoration(
+              //             border: InputBorder.none,
+              //             hintText: "Phone",
+              //             suffixIcon: Icon(
+              //               Icons.phone_android_rounded,
+              //               size: 20,
+              //               color: grey,
+              //             ),
+              //             isDense: false,
+              //             hintStyle:
+              //                 AppFonts.poppins(fontSize: 13, color: grey)),
+              //       ))
+              //     ],
+              //   ),
+              // ),
+
               CustomTextField(
                   controller: controller.tahunMasuk,
                   label: "Tahun Masuk",
@@ -363,20 +374,11 @@ class RegisterView extends GetView<RegisterController> {
                     onPressed: () {
                       controller.checkRegister();
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Lanjut',
-                            style: AppFonts.poppins(
-                              fontSize: 14,
-                              color: white,
-                            )),
-                        Icon(
-                          Icons.keyboard_arrow_right,
+                    child: Text('Daftar',
+                        style: AppFonts.poppins(
+                          fontSize: 14,
                           color: white,
-                        )
-                      ],
-                    ),
+                        )),
                   )),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

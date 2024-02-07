@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/all_berita/views/all_berita_view.dart';
 import 'package:cdc/app/modules/home/controllers/home_controller.dart';
 import 'package:cdc/app/modules/home/controllers/post_item_controller.dart';
 import 'package:cdc/app/modules/home/views/information_view.dart';
@@ -58,7 +59,7 @@ class _HomeView2State extends State<HomeView2> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                expandedHeight: 420,
+                expandedHeight: 0,
                 pinned: true,
                 backgroundColor: white,
                 automaticallyImplyLeading: false,
@@ -67,32 +68,40 @@ class _HomeView2State extends State<HomeView2> {
                   background: Container(
                     margin: const EdgeInsets.only(top: 10),
                     color: white,
-                    child: Column(
-                      children: [
-                        NewsView(),
-                        TopAlumniView(),
+                  ),
+                ),
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(50),
+                  child: Container(
+                    height: 48,
+                    width: MediaQuery.of(context).size.height,
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: TabBar(
+                      controller: controller.tabController,
+                      unselectedLabelColor: black,
+                      labelColor: primaryColor,
+                      labelStyle: AppFonts.poppins(
+                          fontSize: 12,
+                          color: primaryColor,
+                          fontWeight: FontWeight.w600),
+                      unselectedLabelStyle: AppFonts.poppins(
+                          fontSize: 12,
+                          color: black,
+                          fontWeight: FontWeight.w500),
+                      isScrollable: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      indicator: BoxDecoration(
+                        color: white,
+                        border: Border.all(width: 1, color: primaryColor),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      tabs: const [
+                        Tab(text: "Semua"),
+                        Tab(text: "Informasi"),
                       ],
                     ),
                   ),
                 ),
-                bottom: TabBar(
-                    unselectedLabelColor: grey,
-                    indicatorPadding:
-                        const EdgeInsets.symmetric(horizontal: 10),
-                    labelColor: primaryColor,
-                    controller: controller.tabController,
-                    labelStyle: AppFonts.poppins(
-                        fontSize: 12,
-                        color: black,
-                        fontWeight: FontWeight.bold),
-                    unselectedLabelStyle: AppFonts.poppins(
-                        fontSize: 12, color: grey, fontWeight: FontWeight.w500),
-                    isScrollable: false,
-                    indicatorColor: primaryColor,
-                    tabs: const [
-                      Tab(text: "Postingan"),
-                      Tab(text: "Informasi"),
-                    ]),
               )
             ];
           },
@@ -101,6 +110,11 @@ class _HomeView2State extends State<HomeView2> {
               shrinkWrap: false,
               controller: scrollController,
               children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                NewsView(),
+                const TopAlumniView(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: CustomTextField(
@@ -118,7 +132,7 @@ class _HomeView2State extends State<HomeView2> {
                       },
                       icon: Icons.search),
                 ),
-                PostItemView(),
+                const PostItemView(),
               ],
             ),
             InformationView()

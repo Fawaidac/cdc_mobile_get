@@ -22,6 +22,8 @@ class RegisterController extends GetxController {
   var countryCode = TextEditingController();
   var tahunMasuk = TextEditingController();
   var tahunLulus = TextEditingController();
+  var nohp = TextEditingController();
+
   var phone = "";
 
   String verifyId = "";
@@ -79,6 +81,8 @@ class RegisterController extends GetxController {
   }
 
   Future<void> checkRegister() async {
+    String kodeProdi = selectedId.value;
+
     if (fullname.text.isEmpty) {
       Get.snackbar("Error", "Email harus diisi",
           margin: const EdgeInsets.all(10));
@@ -99,6 +103,9 @@ class RegisterController extends GetxController {
           margin: const EdgeInsets.all(10));
     } else if (alamat.text.isEmpty) {
       Get.snackbar("Error", "Alamat harus diisi",
+          margin: const EdgeInsets.all(10));
+    } else if (nohp.text.isEmpty) {
+      Get.snackbar("Error", "No.Telepon harus diisi",
           margin: const EdgeInsets.all(10));
     } else if (prodi.text.isEmpty) {
       Get.snackbar("Error", "Program Studi harus diisi",
@@ -130,7 +137,17 @@ class RegisterController extends GetxController {
         EasyLoading.show(status: "Loading...");
         final response = await checkEmail(email.text);
         if (response['code'] == 200) {
-          registerWithNumber();
+          handleRegister(
+              email.text,
+              nik.text,
+              fullname.text,
+              password.text,
+              nohp.text,
+              alamat.text,
+              nim.text,
+              kodeProdi,
+              tahunLulus.text,
+              tahunMasuk.text);
         } else {
           Get.snackbar("Error", response['message']);
         }
@@ -203,5 +220,67 @@ class RegisterController extends GetxController {
     } finally {
       EasyLoading.dismiss();
     }
+  }
+
+  Future<void> handleRegister(
+    String email,
+    String nik,
+    String fullname,
+    String password,
+    String telp,
+    String alamat,
+    String nim,
+    String prodi,
+    String tahunLulus,
+    String angkatan,
+  ) async {
+    try {
+      final response = await register(email, nik, fullname, telp, password,
+          alamat, nim, prodi, angkatan, tahunLulus);
+      if (response['code'] == 201) {
+        Get.offAllNamed(Routes.LOGIN);
+        Get.snackbar("Success", response['message'],
+            margin: const EdgeInsets.all(10));
+      } else {
+        Get.snackbar("Error", response['message'],
+            margin: const EdgeInsets.all(10));
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<Map<String, dynamic>> register(
+    String email,
+    String nik,
+    String fullname,
+    String telp,
+    String password,
+    String alamat,
+    String nim,
+    String kode,
+    String angkatan,
+    String tahunLulus,
+  ) async {
+    final Map<String, dynamic> body = {
+      'email': email,
+      'nik': nik,
+      'fullname': fullname,
+      'password': password,
+      'no_telp': telp,
+      'alamat': alamat,
+      'nim': nim.toUpperCase(),
+      'kode_prodi': kode,
+      'angkatan': angkatan,
+      'tahun_lulus': tahunLulus,
+    };
+    final res = await http.post(
+        Uri.parse('${ApiServices.baseUrl}/auth/user/register'),
+        body: jsonEncode(body),
+        headers: {
+          'Content-Type': 'application/json',
+        });
+    final data = jsonDecode(res.body);
+    return data;
   }
 }

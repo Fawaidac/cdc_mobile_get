@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/app_fonts.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class DetailInformationView extends GetView {
   final Map<String, dynamic> informationItem;
@@ -63,13 +64,13 @@ class DetailInformationView extends GetView {
               child: Text(
                 formattedDate,
                 style: AppFonts.poppins(fontSize: 14, color: grey),
-              ),
+              ), 
             ),
             Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  informationItem['description'],
-                  style: AppFonts.poppins(fontSize: 14, color: black),
+                child: Html(
+                  data: informationItem['description'],
+                  style: {"body": Style(fontSize: FontSize(16))},
                 )),
           ],
         ),

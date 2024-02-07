@@ -24,7 +24,7 @@ class TopAlumniView extends GetView {
           ),
         ),
         Container(
-            margin: const EdgeInsets.only(left: 10, bottom: 10, top: 0),
+            margin: const EdgeInsets.only(left: 0, bottom: 10, top: 0),
             padding: const EdgeInsets.all(10),
             height: 125,
             child: ListView.builder(
@@ -44,7 +44,7 @@ class TopAlumniView extends GetView {
                     height: 100,
                     width: 270,
                     padding: const EdgeInsets.all(15),
-                    margin: const EdgeInsets.only(right: 15),
+                    margin: const EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(10),
