@@ -1,5 +1,4 @@
 import 'package:cdc/app/data/models/comment_model.dart';
-import 'package:cdc/app/data/models/user_model.dart';
 
 class PostAllModel {
   final String id;
@@ -69,5 +68,5 @@ class Uploader {
 
   factory Uploader.fromJson(Map<String, dynamic> json) {
     return Uploader(foto: json['foto'], fullname: json['fullname']);
-  } 
+  }
 }

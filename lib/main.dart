@@ -10,25 +10,45 @@ import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
 
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   SystemChrome.setPreferredOrientations([
+//     DeviceOrientation.portraitUp,
+//     DeviceOrientation.portraitDown,
+//   ]);
+//   FirebaseMessaging.onBackgroundMessage(_backgroundMessageHandler);
+//   LocalNotificationsServices.initialized();
+//   await Firebase.initializeApp();
+//   runApp(const MyApp());
+// }
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  if (GetPlatform.isIOS) {
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+  }
+  FirebaseMessaging.onBackgroundMessage(_backgroundMessageHandler);
+  LocalNotificationsServices.initialized();
+  runApp(const MyApp());
+}
+
 Future<void> _backgroundMessageHandler(RemoteMessage message) async {
   // Notifikasi diterima saat aplikasi ditutup (terminated)
   print(
       "Notifikasi diterima saat aplikasi ditutup (terminated): ${message.notification?.title}");
   print(
       "Notifikasi diterima saat aplikasi ditutup (terminated): ${message.notification?.body}");
-  LocalNotificationsServices.showNotificationForeground(message);
-}
-
-void main() async {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-  WidgetsFlutterBinding.ensureInitialized();
-  FirebaseMessaging.onBackgroundMessage(_backgroundMessageHandler);
-  LocalNotificationsServices.initialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  // LocalNotificationsServices.showNotificationForeground(message);
 }
 
 class MyApp extends StatefulWidget {

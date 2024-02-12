@@ -45,5 +45,29 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We use your location to provide relevant information.</string>
+	<!-- Firebase Messaging -->
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>YOUR_REVERSE_CLIENT_ID</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Local Notifications Services -->
+	<!-- Add any additional permissions required for local notifications here -->
+
 </dict>
 </plist>
