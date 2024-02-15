@@ -152,7 +152,7 @@ class RegisterController extends GetxController {
           Get.snackbar("Error", response['message']);
         }
       } catch (e) {
-        print(e);
+        print(e.toString());
       } finally {
         EasyLoading.dismiss();
       }
@@ -216,7 +216,7 @@ class RegisterController extends GetxController {
             verifyId = verificationId;
           });
     } catch (e) {
-      print(e);
+      print(e.toString());
     } finally {
       EasyLoading.dismiss();
     }
@@ -246,7 +246,7 @@ class RegisterController extends GetxController {
             margin: const EdgeInsets.all(10));
       }
     } catch (e) {
-      print(e);
+      print(e.toString());
     }
   }
 

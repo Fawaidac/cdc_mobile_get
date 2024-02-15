@@ -5,6 +5,8 @@ import '../controllers/verifikasi_controller.dart';
 class VerifikasiBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(VerifikasiController());
+    Get.lazyPut<VerifikasiController>(
+      () => VerifikasiController(),
+    );
   }
 }
