@@ -7,6 +7,7 @@ import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../controllers/onboarding_controller.dart';
@@ -58,7 +59,10 @@ class OnboardingView extends GetView<OnboardingController> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 70),
                       child: GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          await prefs.setBool('onBoarding', true);
                           Get.offNamed(Routes.LOGIN);
                         },
                         child: Container(

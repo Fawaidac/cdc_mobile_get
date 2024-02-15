@@ -32,7 +32,11 @@ class SplashController extends GetxController {
         Get.offAllNamed(Routes.ONBOARDING);
       }
     } else {
-      Get.offAllNamed(Routes.ONBOARDING);
+      if (preferences.get('onBoarding') == true) {
+        Get.offAllNamed(Routes.LOGIN);
+      } else {
+        Get.offAllNamed(Routes.ONBOARDING);
+      }
     }
   }
 }
