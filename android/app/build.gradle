@@ -58,6 +58,7 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode 3
         versionName flutterVersionName
+        multiDexEnabled true
     }
 
     signingConfigs {
