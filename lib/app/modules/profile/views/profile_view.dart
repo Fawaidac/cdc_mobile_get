@@ -263,22 +263,21 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                 )),
                 bottom: TabBar(
-                    unselectedLabelColor: grey,
-                    labelColor: primaryColor,
-                    controller: controller.tabController,
-                    labelStyle: AppFonts.poppins(
-                        fontSize: 14,
-                        color: black,
-                        fontWeight: FontWeight.bold),
-                    unselectedLabelStyle: AppFonts.poppins(
-                        fontSize: 14, color: grey, fontWeight: FontWeight.w500),
-                    isScrollable: false,
-                    indicatorColor: primaryColor,
-                    tabs: const [
-                      Tab(text: "Post"),
-                      Tab(text: "Pendidikan"),
-                      Tab(text: "Pekerjaan"),
-                    ]),
+                  unselectedLabelColor: grey,
+                  labelColor: primaryColor,
+                  controller: controller.tabController,
+                  labelStyle: AppFonts.poppins(
+                      fontSize: 14, color: black, fontWeight: FontWeight.bold),
+                  unselectedLabelStyle: AppFonts.poppins(
+                      fontSize: 14, color: grey, fontWeight: FontWeight.w500),
+                  isScrollable: false,
+                  indicatorColor: primaryColor,
+                  tabs: const [
+                    Tab(text: "Post"),
+                    Tab(text: "Pendidikan"),
+                    Tab(text: "Pekerjaan"),
+                  ],
+                ),
               ),
             )
           ];

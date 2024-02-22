@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 
 import '../controllers/verifikasi_controller.dart';
 
-class VerifikasiView extends GetView<VerifikasiController> {
+// ignore: must_be_immutable
+class VerifikasiView extends StatelessWidget {
   VerifikasiView({Key? key}) : super(key: key);
 
-  @override
-  final controller = Get.put(VerifikasiController());
+  VerifikasiController controller = Get.find<VerifikasiController>();
 
   @override
   Widget build(BuildContext context) {
@@ -93,34 +93,35 @@ class VerifikasiView extends GetView<VerifikasiController> {
                   icon: Icons.badge),
               Obx(
                 () => Container(
-                    margin: const EdgeInsets.fromLTRB(0, 50, 0, 45),
-                    height: 48,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
-                          shadowColor: Colors.transparent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )),
-                      onPressed: () {
-                        controller.checkVerifikasi();
-                      },
-                      child: controller.loading.value == true
-                          ? Center(
-                              child: CircularProgressIndicator(
-                                color: white,
-                              ),
-                            )
-                          : Text('Verifikasi',
-                              style: AppFonts.poppins(
-                                fontSize: 14,
-                                color: white,
-                              )),
-                    )),
+                  margin: const EdgeInsets.fromLTRB(0, 50, 0, 45),
+                  height: 48,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        )),
+                    onPressed: () {
+                      controller.checkVerifikasi();
+                    },
+                    child: controller.loading.value == true
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: white,
+                            ),
+                          )
+                        : Text('Verifikasi',
+                            style: AppFonts.poppins(
+                              fontSize: 14,
+                              color: white,
+                            )),
+                  ),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

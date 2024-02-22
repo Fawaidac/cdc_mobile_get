@@ -27,7 +27,11 @@ class PostUserView extends GetView<PostUserController> {
           return Text('Error: ${snapshot.error}');
         } else {
           if (controller.postList.isEmpty) {
-            return const SizedBox();
+            return const SizedBox(
+              child: Center(
+                child: Text("Postingan Masih Kosong!."),
+              ),
+            );
           }
           return buildPost();
         }

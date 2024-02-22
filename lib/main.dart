@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 
 Future<void> _backgroundMessageHandler(RemoteMessage message) async {
-  // Notifikasi diterima saat aplikasi ditutup (terminated)
   print(
       "Notifikasi diterima saat aplikasi ditutup (terminated): ${message.notification?.title}");
   print(
@@ -20,11 +19,11 @@ Future<void> _backgroundMessageHandler(RemoteMessage message) async {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
-  WidgetsFlutterBinding.ensureInitialized();
   FirebaseMessaging.onBackgroundMessage(_backgroundMessageHandler);
   LocalNotificationsServices.initialized();
   await Firebase.initializeApp();

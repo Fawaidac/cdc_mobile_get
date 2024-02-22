@@ -56,56 +56,88 @@ class _HomeView2State extends State<HomeView2> {
     return Scaffold(
       backgroundColor: white,
       body: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return <Widget>[
-              SliverAppBar(
-                expandedHeight: 0,
-                pinned: true,
-                backgroundColor: white,
-                automaticallyImplyLeading: false,
-                floating: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    color: white,
-                  ),
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 0,
+              pinned: true,
+              backgroundColor: white,
+              automaticallyImplyLeading: false,
+              floating: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Container(
+                  margin: const EdgeInsets.only(top: 10),
                 ),
-                bottom: PreferredSize(
-                  preferredSize: const Size.fromHeight(50),
-                  child: Container(
-                    height: 48,
-                    width: MediaQuery.of(context).size.height,
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: TabBar(
-                      controller: controller.tabController,
-                      unselectedLabelColor: black,
-                      labelColor: primaryColor,
-                      labelStyle: AppFonts.poppins(
-                          fontSize: 12,
-                          color: primaryColor,
-                          fontWeight: FontWeight.w600),
-                      unselectedLabelStyle: AppFonts.poppins(
-                          fontSize: 12,
-                          color: black,
-                          fontWeight: FontWeight.w500),
-                      isScrollable: true,
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      indicator: BoxDecoration(
-                        color: white,
-                        border: Border.all(width: 1, color: primaryColor),
-                        borderRadius: BorderRadius.circular(8),
+              ),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(50),
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.height,
+                  decoration: const BoxDecoration(),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 4,
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: grey_300,
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      tabs: const [
-                        Tab(text: "Semua"),
-                        Tab(text: "Informasi"),
-                      ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: grey_300,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: TabBar(
+                            controller: controller.tabController,
+                            unselectedLabelColor: black,
+                            labelColor: white,
+                            dividerColor: grey_300,
+                            indicatorSize: TabBarIndicatorSize.tab,
+                            indicator: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(5),
+                              ),
+                            ),
+                            labelStyle: AppFonts.poppins(
+                              fontSize: 12,
+                              color: white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            unselectedLabelStyle: AppFonts.poppins(
+                              fontSize: 12,
+                              color: black,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            // isScrollable: true,
+                            // padding: const EdgeInsets.symmetric(horizontal: 15),
+                            // indicator: BoxDecoration(
+                            //   color: white,
+                            //   border: Border.all(width: 1, color: primaryColor),
+                            //   borderRadius: BorderRadius.circular(8),
+                            // ),
+                            tabs: const [
+                              Tab(text: "Semua"),
+                              Tab(text: "Informasi"),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              )
-            ];
-          },
-          body: TabBarView(controller: controller.tabController, children: [
+              ),
+            )
+          ];
+        },
+        body: TabBarView(
+          controller: controller.tabController,
+          children: [
             ListView(
               shrinkWrap: false,
               controller: scrollController,
@@ -136,7 +168,9 @@ class _HomeView2State extends State<HomeView2> {
               ],
             ),
             InformationView()
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

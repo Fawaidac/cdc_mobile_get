@@ -13,7 +13,7 @@ class VerifikasiController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    updateUser();
+    // updateUser();
   }
 
   Future<void> checkVerifikasi() async {
