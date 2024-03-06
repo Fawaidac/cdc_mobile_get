@@ -57,110 +57,127 @@ class TopFollowerView extends GetView<TopAlumniController> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                    ListView.builder(
-                      itemCount: controller.topFollowerList.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        final alumni = controller.topFollowerList[index];
-                        final alumniNumber = index + 1;
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: ListView.builder(
+                        itemCount: controller.topFollowerList.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final alumni = controller.topFollowerList[index];
+                          final alumniNumber = index + 1;
 
-                        return InkWell(
-                          onTap: () {
-                            Get.toNamed(Routes.DETAIL_ALUMNI,
-                                arguments: alumni['id']);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: white,
-                                      image: DecorationImage(
-                                          image: NetworkImage(alumni['foto']),
-                                          fit: BoxFit.cover)),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.DETAIL_ALUMNI,
+                                  arguments: alumni['id']);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(7),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 20),
+                                child: Row(
                                   children: [
-                                    Text(
-                                      alumni['fullname'],
-                                      style: AppFonts.poppins(
-                                        fontSize: 16,
-                                        color: white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
                                     Container(
-                                      margin: const EdgeInsets.only(top: 5),
+                                      height: 50,
+                                      width: 50,
                                       decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                          color: alumni['gender'] == "Laki-Laki"
-                                              ? white
-                                              : white,
-                                        ),
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: white,
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          alumni['gender'] == "Laki-Laki"
-                                              ? Icon(
-                                                  Icons.male,
-                                                  size: 15,
-                                                  color: primaryColor,
-                                                )
-                                              : const Icon(
-                                                  Icons.female,
-                                                  size: 15,
-                                                  color: Colors.pink,
-                                                ),
-                                        ],
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Container(
-                                        margin: const EdgeInsets.only(top: 8),
-                                        padding: const EdgeInsets.symmetric(
-                                          vertical: 5,
-                                          horizontal: 20,
-                                        ),
-                                        decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(8),
-                                          color: const Color(0xffFAC301),
+                                              BorderRadius.circular(10),
+                                          color: black,
+                                          image: DecorationImage(
+                                              image:
+                                                  NetworkImage(alumni['foto']),
+                                              fit: BoxFit.cover)),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          alumni['fullname'],
+                                          style: AppFonts.poppins(
+                                            fontSize: 16,
+                                            color: black,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              "Lihat Profile",
-                                              style: AppFonts.poppins(
-                                                fontSize: 12,
-                                                color: black,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                        Container(
+                                          margin: const EdgeInsets.only(top: 5),
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                              width: 1,
+                                              color: alumni['gender'] ==
+                                                      "Laki-Laki"
+                                                  ? primaryColor
+                                                  : primaryColor,
                                             ),
-                                          ],
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: const Color(0xFFD6D6D6),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              alumni['gender'] == "Laki-Laki"
+                                                  ? Icon(
+                                                      Icons.male,
+                                                      size: 15,
+                                                      color: primaryColor,
+                                                    )
+                                                  : const Icon(
+                                                      Icons.female,
+                                                      size: 15,
+                                                      color: Colors.pink,
+                                                    ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
+                                        // Align(
+                                        //   alignment: Alignment.bottomRight,
+                                        //   child: Container(
+                                        //     margin:
+                                        //         const EdgeInsets.only(top: 8),
+                                        //     padding: const EdgeInsets.symmetric(
+                                        //       vertical: 5,
+                                        //       horizontal: 20,
+                                        //     ),
+                                        //     decoration: BoxDecoration(
+                                        //       borderRadius:
+                                        //           BorderRadius.circular(8),
+                                        //       color: const Color(0xffFAC301),
+                                        //     ),
+                                        //     child: Column(
+                                        //       children: [
+                                        //         Text(
+                                        //           "Lihat Profile",
+                                        //           style: AppFonts.poppins(
+                                        //             fontSize: 12,
+                                        //             color: black,
+                                        //             fontWeight: FontWeight.bold,
+                                        //           ),
+                                        //         ),
+                                        //       ],
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
