@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/fasilitas/views/menu_quisioner.dart';
 import 'package:cdc/app/modules/home/views/home2_view.dart';
 import 'package:get/get.dart';
 
@@ -177,6 +178,11 @@ class AppPages {
       name: _Paths.ALL_BERITA,
       page: () => AllBeritaView(),
       binding: AllBeritaBinding(),
+    ),
+    GetPage(
+      name: _Paths.MENU_QUISIONER,
+      page: () => const MenuQuisioner(),
+      // binding: AllBeritaBinding(),
     ),
   ];
 }
