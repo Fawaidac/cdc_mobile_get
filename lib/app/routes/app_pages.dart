@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/fasilitas/bindings/tracer_study_binding.dart';
 import 'package:cdc/app/modules/fasilitas/views/menu_quisioner.dart';
 import 'package:cdc/app/modules/home/views/home2_view.dart';
 import 'package:get/get.dart';
@@ -182,7 +183,7 @@ class AppPages {
     GetPage(
       name: _Paths.MENU_QUISIONER,
       page: () => const MenuQuisioner(),
-      // binding: AllBeritaBinding(),
+      binding: TracerStudyBinding(),
     ),
   ];
 }

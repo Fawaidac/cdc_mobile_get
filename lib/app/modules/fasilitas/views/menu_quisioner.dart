@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/fasilitas/controllers/tracer_study_controller.dart';
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_dialog.dart';
@@ -31,39 +32,59 @@ class MenuQuisioner extends StatelessWidget {
               fontSize: 16, color: black, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Pilih Paket Quesioner",
-              style: AppFonts.poppins(
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-                color: black,
-              ),
-            ),
-            const SizedBox(height: 15),
-            Column(
-              children: [
-                ListView.builder(
-                  itemCount: 3,
-                  shrinkWrap: true,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return cardItems(index);
-                  },
+      body: GetX<TracerStudyContoller>(
+        init: TracerStudyContoller(),
+        initState: (c) {
+          c.controller!.getTracerStudy();
+        },
+        builder: (c) {
+          return c.isLoading.value
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: primaryColor,
+                  ),
                 )
-              ],
-            ),
-          ],
-        ),
+              : Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Pilih Paket Quesioner",
+                        style: AppFonts.poppins(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                          color: black,
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Column(
+                        children: [
+                          ListView.builder(
+                            itemCount: c.model!.data.length,
+                            shrinkWrap: true,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              var data = c.model?.data;
+                              return cardItems(
+                                index,
+                                data?[index].judul,
+                                data?[index].tipe,
+                              );
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+        },
       ),
     );
   }
 
-  InkWell cardItems(index) {
+  InkWell cardItems(index, title, type) {
     return InkWell(
       onTap: () {
         AppDialog.show(
@@ -118,7 +139,7 @@ class MenuQuisioner extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Quesioner Test",
+                      title,
                       style: AppFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
@@ -126,7 +147,7 @@ class MenuQuisioner extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Techer Study",
+                      type,
                       style: AppFonts.poppins(
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
