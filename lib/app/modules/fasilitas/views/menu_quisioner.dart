@@ -1,5 +1,7 @@
 import 'package:cdc/app/modules/fasilitas/controllers/tracer_study_controller.dart';
 import 'package:cdc/app/modules/quisioner/views/identitas_section_view.dart';
+import 'package:cdc/app/modules/quisioner/views/paket_questioner_view.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
@@ -71,6 +73,7 @@ class MenuQuisioner extends StatelessWidget {
                                 index,
                                 data?[index].judul,
                                 data?[index].tipe,
+                                data?[index].id,
                               );
                             },
                           )
@@ -84,7 +87,7 @@ class MenuQuisioner extends StatelessWidget {
     );
   }
 
-  InkWell cardItems(index, title, type) {
+  InkWell cardItems(index, title, type, id) {
     return InkWell(
       onTap: () {
         AppDialog.show(
@@ -93,7 +96,8 @@ class MenuQuisioner extends StatelessWidget {
           desc:
               "Mohon perhatikan dengan baik, setelah Anda masuk ke dalam kuesioner, tidak ada kemungkinan untuk kembali. Pastikan Anda melengkapi semua pertanyaan disetiap sesi",
           onOk: () async {
-            Get.to(() => IdentitasSectionView());
+            // Get.to(() => IdentitasSectionView());
+            Get.toNamed(Routes.PAKET_QUISIONER, arguments: id);
           },
           onCancel: () {
             Get.back();
