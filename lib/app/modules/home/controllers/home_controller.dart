@@ -10,11 +10,39 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late TabController tabController;
+  var isLoading = false.obs;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
+    getUser();
+  }
+
+  Future<void> getUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    await prefs.remove('id_user');
+
+    String url = '${ApiServices.baseUrl}/user';
+
+    try {
+      isLoading(true);
+
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {"Authorization": "Bearer $token"},
+      );
+      final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        prefs.setString('id_user', json['data']['user']['id']);
+      } else {
+        debugPrint(response.statusCode.toString());
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isLoading(false);
+    }
   }
 
   final search = TextEditingController();

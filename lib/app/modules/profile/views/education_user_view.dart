@@ -112,7 +112,7 @@ class _EducationUserViewState extends State<EducationUserView> {
                       )
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   AnimatedSize(
                     duration: const Duration(milliseconds: 1000),
                     curve: Curves.fastOutSlowIn,

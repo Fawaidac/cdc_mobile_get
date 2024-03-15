@@ -1,3 +1,4 @@
+import 'package:cdc/app/modules/quisioner/controllers/paket_questioner_controller.dart';
 import 'package:get/get.dart';
 
 import 'package:cdc/app/modules/quisioner/controllers/company_apply_section_controller.dart';
@@ -44,6 +45,9 @@ class QuisionerBinding extends Bindings {
     );
     Get.lazyPut<QuisionerController>(
       () => QuisionerController(),
+    );
+    Get.lazyPut<PaketQuesionerController>(
+      () => PaketQuesionerController(),
     );
   }
 }

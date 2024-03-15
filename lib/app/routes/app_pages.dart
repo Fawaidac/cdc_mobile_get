@@ -1,4 +1,8 @@
+import 'package:cdc/app/modules/fasilitas/bindings/tracer_study_binding.dart';
+import 'package:cdc/app/modules/fasilitas/views/menu_quisioner.dart';
 import 'package:cdc/app/modules/home/views/home2_view.dart';
+import 'package:cdc/app/modules/quisioner/bindings/paket_quesioner_binding.dart';
+import 'package:cdc/app/modules/quisioner/views/paket_questioner_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/aktifasi/bindings/aktifasi_binding.dart';
@@ -177,6 +181,16 @@ class AppPages {
       name: _Paths.ALL_BERITA,
       page: () => AllBeritaView(),
       binding: AllBeritaBinding(),
+    ),
+    GetPage(
+      name: _Paths.MENU_QUISIONER,
+      page: () => const MenuQuisioner(),
+      binding: TracerStudyBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAKET_QUISIONER,
+      page: () => const PaketQuesionerView(),
+      binding: PaketQuesionerBinding(),
     ),
   ];
 }

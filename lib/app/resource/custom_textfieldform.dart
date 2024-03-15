@@ -19,6 +19,7 @@ class CustomTextFieldForm extends StatefulWidget {
   int isLength;
   bool isRequiredExp;
   Function()? onTap;
+  Function(String)? onChanged;
   CustomTextFieldForm(
       {Key? key,
       required this.controller,
@@ -33,6 +34,7 @@ class CustomTextFieldForm extends StatefulWidget {
       this.isLength = 225,
       required this.inputFormatters,
       this.onTap,
+      this.onChanged,
       this.textInputAction = TextInputAction.done})
       : super(key: key);
 
@@ -84,6 +86,7 @@ class _CustomTextFieldFormState extends State<CustomTextFieldForm> {
             keyboardType: widget.keyboardType,
             enabled: widget.isEnable,
             readOnly: widget.isReadOnly,
+            onChanged: widget.onChanged,
             onSaved: (val) => widget.controller = val as TextEditingController,
             validator: (value) {
               if (value == null || value.isEmpty) {

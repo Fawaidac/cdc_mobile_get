@@ -150,19 +150,20 @@ class _HomeView2State extends State<HomeView2> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: CustomTextField(
-                      controller: controllerP.searchController,
-                      label: "Cari postingan berdasarkan posisi...",
-                      keyboardType: TextInputType.text,
-                      inputFormatters:
-                          FilteringTextInputFormatter.singleLineFormatter,
-                      isLength: 255,
-                      isEnable: true,
-                      isWhite: true,
-                      onTap: () {},
-                      onChange: (value) {
-                        controllerP.filterPosts(value);
-                      },
-                      icon: Icons.search),
+                    controller: controllerP.searchController,
+                    label: "Cari postingan berdasarkan posisi...",
+                    keyboardType: TextInputType.text,
+                    inputFormatters:
+                        FilteringTextInputFormatter.singleLineFormatter,
+                    isLength: 255,
+                    isEnable: true,
+                    isWhite: true,
+                    onTap: () {},
+                    onChange: (value) {
+                      controllerP.filterPosts(value);
+                    },
+                    icon: Icons.search,
+                  ),
                 ),
                 const PostItemView(),
               ],

@@ -160,8 +160,11 @@ class AlumniController extends GetxController {
           preferences.remove('tokenExpirationTime');
 
           Get.offAllNamed(Routes.LOGIN);
-          Get.snackbar("Success", "Berhasil keluar dari aplikasi",
-              margin: const EdgeInsets.all(10));
+          Get.snackbar(
+            "Success",
+            "Berhasil keluar dari aplikasi",
+            margin: const EdgeInsets.all(10),
+          );
         },
         onCancel: () {
           Get.back();

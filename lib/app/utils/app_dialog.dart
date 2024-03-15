@@ -8,7 +8,7 @@ class AppDialog {
     required String title,
     required String desc,
     required VoidCallback onOk,
-    required VoidCallback onCancel,
+    VoidCallback? onCancel,
     bool isTouch = true,
   }) {
     Get.defaultDialog(
