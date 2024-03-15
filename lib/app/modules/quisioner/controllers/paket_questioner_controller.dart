@@ -170,7 +170,7 @@ class PaketQuesionerController extends GetxController {
         AppDialog.show(
           title: "Perhatian !",
           isTouch: false,
-          desc: json['data'][0].toString() + "\n Harap di isi.",
+          desc: json['data'][0].toString(),
           onOk: () async {
             Get.back();
           },
