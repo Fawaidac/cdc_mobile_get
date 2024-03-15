@@ -417,6 +417,21 @@ class PaketQuesionerView extends StatelessWidget {
                                     onPressed: () async {
                                       if (c.kodeQuesionerM!.data.length / 5 ==
                                           c.page.value) {
+                                        // c.requestBody.forEach((key, value) {
+                                        //   if (value == null) {
+                                        //     AppDialog.show(
+                                        //       title: "Perhatian !",
+                                        //       isTouch: false,
+                                        //       desc:
+                                        //           "Quesioner harus terisi semua",
+                                        //       onOk: () async {
+                                        //         await c.postQuesioner();
+                                        //       },
+                                        //       onCancel: () {
+                                        //         Get.back();
+                                        //       },
+                                        //     );
+                                        //   } else {
                                         AppDialog.show(
                                           title: "Perhatian !",
                                           isTouch: false,
@@ -429,6 +444,8 @@ class PaketQuesionerView extends StatelessWidget {
                                             Get.back();
                                           },
                                         );
+                                        //   }
+                                        // });
                                       } else {
                                         c.page.value += 1;
                                         c.update;

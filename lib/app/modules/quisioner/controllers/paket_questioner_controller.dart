@@ -6,6 +6,7 @@ import 'package:cdc/app/data/models/paket_quesioner_model.dart';
 import 'package:cdc/app/data/models/prodi_model.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
+import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -50,7 +51,6 @@ class PaketQuesionerController extends GetxController {
         debugPrint(response.statusCode.toString());
       }
       // List<String> tes = jsonDecode(model!.data[0].options ?? '');
-      print(json);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
@@ -167,8 +167,16 @@ class PaketQuesionerController extends GetxController {
         Get.toNamed(Routes.HOMEPAGE);
       } else {
         debugPrint(response.statusCode.toString());
+        AppDialog.show(
+          title: "Perhatian !",
+          isTouch: false,
+          desc: json['data'][0].toString() + "\n Harap di isi.",
+          onOk: () async {
+            Get.back();
+          },
+        );
       }
-      print(json);
+      // print(json);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
