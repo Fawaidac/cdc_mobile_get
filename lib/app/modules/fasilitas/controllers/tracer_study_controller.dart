@@ -28,8 +28,10 @@ class TracerStudyContoller extends GetxController {
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
         model = TracerStudyModel.fromJson(json);
+        isEmptyData(false);
       } else {
         debugPrint(response.statusCode.toString());
+        isEmptyData(true);
       }
       print(json);
     } catch (e) {

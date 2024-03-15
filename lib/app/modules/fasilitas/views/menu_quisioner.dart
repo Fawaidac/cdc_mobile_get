@@ -46,42 +46,44 @@ class MenuQuisioner extends StatelessWidget {
                     color: primaryColor,
                   ),
                 )
-              : Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Pilih Paket Quesioner",
-                        style: AppFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15,
-                          color: black,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Column(
+              : c.isEmptyData.value
+                  ? const Center(child: Text("Paket Quesioner masih kosong!"))
+                  : Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ListView.builder(
-                            itemCount: c.model!.data.length,
-                            shrinkWrap: true,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              var data = c.model?.data;
-                              return cardItems(
-                                index,
-                                data?[index].judul,
-                                data?[index].tipe,
-                                data?[index].id,
-                              );
-                            },
-                          )
+                          Text(
+                            "Pilih Paket Quesioner",
+                            style: AppFonts.poppins(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15,
+                              color: black,
+                            ),
+                          ),
+                          const SizedBox(height: 15),
+                          Column(
+                            children: [
+                              ListView.builder(
+                                itemCount: c.model!.data.length,
+                                shrinkWrap: true,
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  var data = c.model?.data;
+                                  return cardItems(
+                                    index,
+                                    data?[index].judul,
+                                    data?[index].tipe,
+                                    data?[index].id,
+                                  );
+                                },
+                              )
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
-                );
+                    );
         },
       ),
     );
