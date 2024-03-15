@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:cdc/app/modules/quisioner/controllers/paket_questioner_controller.dart';
 import 'package:cdc/app/resource/custom_textfieldform.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/utils/app_colors.dart';
+import 'package:cdc/app/utils/app_dialog.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -406,46 +408,65 @@ class PaketQuesionerView extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: primaryColor,
-                              ),
-                              onPressed: () async {
-                                c.page.value += 1;
-                                c.update;
-                                print(c.page.value);
-                                await c.getPaket(Get.arguments);
-                              },
-                              child: Text(
-                                c.model!.data.length != 5
-                                    ? "Simpan"
-                                    : "Selanjutnya",
-                                style: AppFonts.poppins(
-                                  fontSize: 12,
-                                  color: white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
+                            c.isLoadingKode.value
+                                ? Container()
+                                : ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: primaryColor,
+                                    ),
+                                    onPressed: () async {
+                                      if (c.kodeQuesionerM!.data.length / 5 ==
+                                          c.page.value) {
+                                        AppDialog.show(
+                                          title: "Perhatian !",
+                                          isTouch: false,
+                                          desc:
+                                              "Apakah anda yakin ingin menyimpan quesioner anda ini ?",
+                                          onOk: () async {
+                                            await c.postQuesioner();
+                                          },
+                                          onCancel: () {
+                                            Get.back();
+                                          },
+                                        );
+                                      } else {
+                                        c.page.value += 1;
+                                        c.update;
+                                        print(c.page.value);
+                                        await c.getPaket(Get.arguments);
+                                      }
+                                    },
+                                    child: Text(
+                                      c.kodeQuesionerM!.data.length / 5 ==
+                                              c.page.value
+                                          ? "Simpan"
+                                          : "Selanjutnya",
+                                      style: AppFonts.poppins(
+                                        fontSize: 12,
+                                        color: white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                           ],
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                          ),
-                          onPressed: () async {
-                            print(c.requestBody);
-                            c.postQuesioner();
-                          },
-                          child: Text(
-                            "Simpan",
-                            style: AppFonts.poppins(
-                              fontSize: 12,
-                              color: white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        // ElevatedButton(
+                        //   style: ElevatedButton.styleFrom(
+                        //     backgroundColor: primaryColor,
+                        //   ),
+                        //   onPressed: () async {
+                        //     print(c.requestBody);
+                        //     c.postQuesioner();
+                        //   },
+                        //   child: Text(
+                        //     "Simpan",
+                        //     style: AppFonts.poppins(
+                        //       fontSize: 12,
+                        //       color: white,
+                        //       fontWeight: FontWeight.bold,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

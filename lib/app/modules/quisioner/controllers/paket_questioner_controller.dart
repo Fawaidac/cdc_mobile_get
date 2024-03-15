@@ -4,6 +4,7 @@ import 'package:cdc/app/data/models/jurusan_model.dart';
 import 'package:cdc/app/data/models/kode_quesioner_model.dart';
 import 'package:cdc/app/data/models/paket_quesioner_model.dart';
 import 'package:cdc/app/data/models/prodi_model.dart';
+import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +50,7 @@ class PaketQuesionerController extends GetxController {
         debugPrint(response.statusCode.toString());
       }
       // List<String> tes = jsonDecode(model!.data[0].options ?? '');
-      // print(json);
+      print(json);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
@@ -113,7 +114,6 @@ class PaketQuesionerController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final idUser = prefs.getString('id_user');
-    print(idUser);
 
     String url = '${ApiServices.baseUrl}/get-kode-kuesioner';
 
@@ -137,7 +137,6 @@ class PaketQuesionerController extends GetxController {
       kodeQuesionerM!.data.forEach((element) {
         requestBody[element.kodePertanyaan] = null;
       });
-      print(requestBody);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
@@ -164,7 +163,8 @@ class PaketQuesionerController extends GetxController {
       );
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        jurusanM = JurusanModel.fromJson(json);
+        Get.snackbar("Success", "Berhasil isi quesioner");
+        Get.toNamed(Routes.HOMEPAGE);
       } else {
         debugPrint(response.statusCode.toString());
       }

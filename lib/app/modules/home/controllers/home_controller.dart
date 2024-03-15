@@ -21,6 +21,7 @@ class HomeController extends GetxController
   Future<void> getUser() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
+    await prefs.remove('id_user');
 
     String url = '${ApiServices.baseUrl}/user';
 

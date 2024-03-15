@@ -76,6 +76,7 @@ class MenuQuisioner extends StatelessWidget {
                                     data?[index].judul,
                                     data?[index].tipe,
                                     data?[index].id,
+                                    c,
                                   );
                                 },
                               )
@@ -89,22 +90,23 @@ class MenuQuisioner extends StatelessWidget {
     );
   }
 
-  InkWell cardItems(index, title, type, id) {
+  InkWell cardItems(index, title, type, id, TracerStudyContoller c) {
     return InkWell(
       onTap: () {
-        AppDialog.show(
-          title: "Perhatian !",
-          isTouch: false,
-          desc:
-              "Mohon perhatikan dengan baik, setelah Anda masuk ke dalam kuesioner, tidak ada kemungkinan untuk kembali. Pastikan Anda melengkapi semua pertanyaan disetiap sesi",
-          onOk: () async {
-            // Get.to(() => IdentitasSectionView());
-            Get.toNamed(Routes.PAKET_QUISIONER, arguments: id);
-          },
-          onCancel: () {
-            Get.back();
-          },
-        );
+        c.checkQuesioner(id);
+        // AppDialog.show(
+        //   title: "Perhatian !",
+        //   isTouch: false,
+        //   desc:
+        //       "Mohon perhatikan dengan baik, setelah Anda masuk ke dalam kuesioner, tidak ada kemungkinan untuk kembali. Pastikan Anda melengkapi semua pertanyaan disetiap sesi",
+        //   onOk: () async {
+        //     // Get.to(() => IdentitasSectionView());
+        //     Get.toNamed(Routes.PAKET_QUISIONER, arguments: id);
+        //   },
+        //   onCancel: () {
+        //     Get.back();
+        //   },
+        // );
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
