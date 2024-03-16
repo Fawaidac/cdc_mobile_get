@@ -120,40 +120,40 @@ class FasilitasView extends GetView<FasilitasController> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: LinearProgressIndicator(
-                    value: progress,
-                    backgroundColor: Colors.grey[300],
-                    valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          "Lengkapi kuisioner anda agar akun anda terverifikasi",
-                          style:
-                              AppFonts.poppins(fontSize: 12, color: softgrey),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          progressText,
-                          textAlign: TextAlign.end,
-                          style:
-                              AppFonts.poppins(fontSize: 12, color: softgrey),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding:
+                //       const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                //   child: LinearProgressIndicator(
+                //     value: progress,
+                //     backgroundColor: Colors.grey[300],
+                //     valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 25),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       Expanded(
+                //         flex: 2,
+                //         child: Text(
+                //           "Lengkapi kuisioner anda agar akun anda terverifikasi",
+                //           style:
+                //               AppFonts.poppins(fontSize: 12, color: softgrey),
+                //         ),
+                //       ),
+                //       Expanded(
+                //         flex: 1,
+                //         child: Text(
+                //           progressText,
+                //           textAlign: TextAlign.end,
+                //           style:
+                //               AppFonts.poppins(fontSize: 12, color: softgrey),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             );
           }),

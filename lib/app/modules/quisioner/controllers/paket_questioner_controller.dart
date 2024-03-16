@@ -137,6 +137,7 @@ class PaketQuesionerController extends GetxController {
       kodeQuesionerM!.data.forEach((element) {
         requestBody[element.kodePertanyaan] = null;
       });
+      print(requestBody);
     } catch (e) {
       debugPrint(e.toString());
     } finally {
@@ -161,6 +162,7 @@ class PaketQuesionerController extends GetxController {
         },
         body: jsonEncode(requestBody),
       );
+      print(requestBody);
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar("Success", "Berhasil isi quesioner");
