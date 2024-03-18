@@ -41,154 +41,160 @@ class _EducationUserViewState extends State<EducationUserView> {
             }
           }
           return GestureDetector(
-            onTap: () {
-              setState(() {
-                isVisible[index] = !isVisible[index];
-              });
+            onTap: () async {
+              if (!mounted) {
+                setState(() {
+                  isVisible[index] = !isVisible[index];
+                });
+              }
             },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 1000),
-              curve: Curves.fastOutSlowIn,
-              height: isVisible[index] ? 175 : 125,
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.only(bottom: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: white,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "${educations.perguruan}",
-                    style: AppFonts.poppins(
-                        fontSize: 14,
-                        color: black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Divider(
-                    height: 20,
-                    color: black,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${educations.strata}, ${educations.jurusan}",
-                            style: AppFonts.poppins(
-                                fontSize: 12,
-                                color: black,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            "${educations.prodi}, ${educations.tahunMasuk}-${educations.tahunLulus}",
-                            style: AppFonts.poppins(
-                                fontSize: 12,
-                                color: primaryColor,
-                                fontWeight: FontWeight.normal),
-                          ),
-                          Text(
-                            "No. Ijazah: ${educations.noIjasah != null ? educations.noIjasah! : '-'}",
-                            style: AppFonts.poppins(
-                              fontSize: 12,
-                              color: grey,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      )),
-                      Icon(
-                        isVisible[index]
-                            ? Icons.keyboard_arrow_down_rounded
-                            : Icons.keyboard_arrow_right_rounded,
-                        color: black,
-                      )
-                    ],
-                  ),
-                  const Spacer(),
-                  AnimatedSize(
+            child: controller.isLoading.value
+                ? const CircularProgressIndicator()
+                : AnimatedContainer(
                     duration: const Duration(milliseconds: 1000),
                     curve: Curves.fastOutSlowIn,
-                    child: Visibility(
-                      visible: isVisible[index],
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Get.to(() => EditEducationUserView(),
-                                    arguments: educations);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shadowColor: Colors.transparent,
-                                primary: primaryColor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                textStyle: AppFonts.poppins(
-                                    fontSize: 12,
-                                    color: white,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              child: Text(
-                                "Edit",
-                                style: TextStyle(color: white),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                AppDialog.show(
-                                  title: "Perhatian !",
-                                  isTouch: true,
-                                  desc:
-                                      "Apakah anda yakin untuk menghapus data ?",
-                                  onOk: () async {
-                                    controller.handleDeleteEducation(
-                                        "${educations.id}");
-                                    Get.back();
-                                  },
-                                  onCancel: () {
-                                    Get.back();
-                                  },
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                shadowColor: Colors.transparent,
-                                primary: Colors.red,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                textStyle: AppFonts.poppins(
-                                    fontSize: 12,
-                                    color: white,
-                                    fontWeight: FontWeight.w500),
-                              ),
-                              child: Text(
-                                "Hapus",
-                                style: TextStyle(color: white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    height: isVisible[index] ? 175 : 125,
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(bottom: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: white,
                     ),
-                  )
-                ],
-              ),
-            ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "${educations.perguruan}",
+                          style: AppFonts.poppins(
+                              fontSize: 14,
+                              color: black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Divider(
+                          height: 20,
+                          color: black,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                                child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${educations.strata}, ${educations.jurusan}",
+                                  style: AppFonts.poppins(
+                                      fontSize: 12,
+                                      color: black,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  "${educations.prodi}, ${educations.tahunMasuk}-${educations.tahunLulus}",
+                                  style: AppFonts.poppins(
+                                      fontSize: 12,
+                                      color: primaryColor,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                Text(
+                                  "No. Ijazah: ${educations.noIjasah != null ? educations.noIjasah! : '-'}",
+                                  style: AppFonts.poppins(
+                                    fontSize: 12,
+                                    color: grey,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                              ],
+                            )),
+                            Icon(
+                              isVisible[index]
+                                  ? Icons.keyboard_arrow_down_rounded
+                                  : Icons.keyboard_arrow_right_rounded,
+                              color: black,
+                            )
+                          ],
+                        ),
+                        const Spacer(),
+                        AnimatedSize(
+                          duration: const Duration(milliseconds: 1000),
+                          curve: Curves.fastOutSlowIn,
+                          child: Visibility(
+                            visible: isVisible[index],
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Get.to(() => EditEducationUserView(),
+                                          arguments: educations);
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shadowColor: Colors.transparent,
+                                      primary: primaryColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      textStyle: AppFonts.poppins(
+                                          fontSize: 12,
+                                          color: white,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    child: Text(
+                                      "Edit",
+                                      style: TextStyle(color: white),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      AppDialog.show(
+                                        title: "Perhatian !",
+                                        isTouch: true,
+                                        desc:
+                                            "Apakah anda yakin untuk menghapus data ?",
+                                        onOk: () async {
+                                          controller.handleDeleteEducation(
+                                              "${educations.id}");
+                                          Get.back();
+                                        },
+                                        onCancel: () {
+                                          Get.back();
+                                        },
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      shadowColor: Colors.transparent,
+                                      primary: Colors.red,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0),
+                                      ),
+                                      textStyle: AppFonts.poppins(
+                                          fontSize: 12,
+                                          color: white,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    child: Text(
+                                      "Hapus",
+                                      style: TextStyle(color: white),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
           );
         },
       ),

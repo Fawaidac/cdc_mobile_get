@@ -44,7 +44,7 @@ class TracerStudyContoller extends GetxController {
     }
   }
 
-  Future<void> checkQuesioner(idPaket) async {
+  Future<void> checkQuesioner(idPaket, title) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final idUser = prefs.getString('id_user');
@@ -77,7 +77,8 @@ class TracerStudyContoller extends GetxController {
             desc:
                 "Mohon perhatikan dengan baik, setelah Anda masuk ke dalam kuesioner, tidak ada kemungkinan untuk kembali. Pastikan Anda melengkapi semua pertanyaan disetiap sesi",
             onOk: () async {
-              Get.toNamed(Routes.PAKET_QUISIONER, arguments: idPaket);
+              Get.toNamed(Routes.PAKET_QUISIONER,
+                  arguments: {'id': idPaket, 'title': title});
             },
             onCancel: () {
               Get.back();

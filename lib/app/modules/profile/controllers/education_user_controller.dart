@@ -9,15 +9,18 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EducationUserController extends GetxController {
-
   RxList<EducationsModel> educationList = <EducationsModel>[].obs;
+  var isLoading = false.obs;
 
   Future<void> fetchAndAssignEducation() async {
     try {
+      isLoading(true);
       final educationData = await fetchEducation();
       educationList.assignAll(educationData);
     } catch (e) {
       print('Error loading education data: $e');
+    } finally {
+      isLoading(false);
     }
   }
 

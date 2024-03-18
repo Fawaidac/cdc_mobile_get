@@ -93,7 +93,7 @@ class MenuQuisioner extends StatelessWidget {
   InkWell cardItems(index, title, type, id, TracerStudyContoller c) {
     return InkWell(
       onTap: () {
-        c.checkQuesioner(id);
+        c.checkQuesioner(id, title);
         // AppDialog.show(
         //   title: "Perhatian !",
         //   isTouch: false,

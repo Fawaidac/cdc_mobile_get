@@ -26,6 +26,7 @@ class PaketQuesionerController extends GetxController {
   var isEmptyData = true.obs;
   var page = 1.obs;
   var idPaket = "".obs;
+  var titlePaket = "".obs;
   List answerQuesioner = [].obs;
 
   Map<String, dynamic> requestBody = {};
@@ -162,7 +163,6 @@ class PaketQuesionerController extends GetxController {
         },
         body: jsonEncode(requestBody),
       );
-      print(requestBody);
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
         Get.snackbar("Success", "Berhasil isi quesioner");
