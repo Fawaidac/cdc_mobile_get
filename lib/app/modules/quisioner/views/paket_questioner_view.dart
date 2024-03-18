@@ -429,7 +429,7 @@ class PaketQuesionerView extends StatelessWidget {
                                           await c.getPaket(Get.arguments['id']);
                                         },
                                         child: Text(
-                                          "Berikutnya",
+                                          "Sebelumnya",
                                           style: AppFonts.poppins(
                                             fontSize: 12,
                                             color: black,
