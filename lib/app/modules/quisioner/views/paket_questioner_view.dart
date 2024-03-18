@@ -75,7 +75,7 @@ class PaketQuesionerView extends StatelessWidget {
           _.controller!.getPaket(id);
           _.controller!.getProdi();
           _.controller!.getJurusan();
-          _.controller!.getKodeQuesioner();
+          _.controller!.getKodeQuesioner(id);
         },
         builder: (c) {
           return Scaffold(
@@ -188,9 +188,9 @@ class PaketQuesionerView extends StatelessWidget {
                                           },
                                           items: option.map((prodi) {
                                             return DropdownMenuItem<String>(
-                                              value: prodi,
+                                              value: prodi.toString(),
                                               child: Text(
-                                                prodi,
+                                                prodi.toString(),
                                                 style: AppFonts.poppins(
                                                     fontSize: 12,
                                                     color: Colors.black),

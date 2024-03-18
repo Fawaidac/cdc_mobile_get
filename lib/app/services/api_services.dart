@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ApiServices {
-  static String _url = "10.10.177.40:8000";
+  static String _url = "192.168.1.32:8000";
   static const int _port = 8000;
 
   static TextEditingController ipAddressController =

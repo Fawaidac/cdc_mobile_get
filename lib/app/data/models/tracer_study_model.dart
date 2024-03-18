@@ -39,7 +39,7 @@ class Datum {
   int id;
   String judul;
   String tipe;
-  int idQuisIdentitasProdi;
+  int? idQuisIdentitasProdi;
   DateTime createdAt;
   DateTime updatedAt;
 

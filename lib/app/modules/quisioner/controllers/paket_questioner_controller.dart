@@ -111,12 +111,12 @@ class PaketQuesionerController extends GetxController {
     }
   }
 
-  Future<void> getKodeQuesioner() async {
+  Future<void> getKodeQuesioner(id) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     final idUser = prefs.getString('id_user');
 
-    String url = '${ApiServices.baseUrl}/get-kode-kuesioner';
+    String url = '${ApiServices.baseUrl}/get-kode-kuesioner/$id';
 
     requestBody = {
       "user_id": idUser,
