@@ -35,6 +35,8 @@ class HomeController extends GetxController
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
         prefs.setString('id_user', json['data']['user']['id']);
+        prefs.setInt('kode_prodi', json['data']['user']['prodi']);
+        print(json['data']['user']['prodi']);
       } else {
         debugPrint(response.statusCode.toString());
       }
@@ -43,6 +45,7 @@ class HomeController extends GetxController
     } finally {
       isLoading(false);
       print("IDDD : " + prefs.getString('id_user').toString());
+      print("KODE PRODI : " + prefs.getInt('kode_prodi').toString());
     }
   }
 

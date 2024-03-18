@@ -62,8 +62,11 @@ class PaketQuesionerController extends GetxController {
   Future<void> getProdi() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
+    final kodeProdi = prefs.getInt('kode_prodi');
 
-    String url = '${ApiServices.baseUrl}/prodi';
+    print("KODE : " + kodeProdi.toString());
+
+    String url = '${ApiServices.baseUrl}/prodi/$kodeProdi';
 
     try {
       isLoadingProdi(true);
@@ -75,6 +78,7 @@ class PaketQuesionerController extends GetxController {
       final json = jsonDecode(response.body);
       if (response.statusCode == 200) {
         prodiM = ProdiModel.fromJson(json);
+        print(json);
       } else {
         debugPrint(response.statusCode.toString());
       }
