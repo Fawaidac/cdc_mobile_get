@@ -11,12 +11,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 class EducationUserController extends GetxController {
   RxList<EducationsModel> educationList = <EducationsModel>[].obs;
   var isLoading = false.obs;
+  var isEmptyData = true.obs;
 
   Future<void> fetchAndAssignEducation() async {
     try {
       isLoading(true);
       final educationData = await fetchEducation();
       educationList.assignAll(educationData);
+      if (educationData.isNotEmpty) {
+        isEmptyData.value = false;
+      } else {
+        isEmptyData.value = true;
+      }
     } catch (e) {
       print('Error loading education data: $e');
     } finally {
