@@ -31,7 +31,13 @@ class _EducationUserViewState extends State<EducationUserView> {
 
     return Obx(
       () => controller.isLoading.value
-          ? const CircularProgressIndicator()
+          ? const Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(),
+              ),
+            )
           : controller.isEmptyData.value
               ? controller.isLoading.value
                   ? const CircularProgressIndicator()
