@@ -27,6 +27,7 @@ class LoginController extends GetxController {
         loading(true);
         final response = await login(nik, password);
         if (response['code'] == 200) {
+          print(response);
           Get.snackbar("Success", "Login berhasil",
               margin: const EdgeInsets.all(10));
           final prefs = await SharedPreferences.getInstance();
@@ -52,6 +53,7 @@ class LoginController extends GetxController {
       String emailOrNik, String password) async {
     final response = await http.post(
       Uri.parse('${ApiServices.baseUrl}/auth/login'),
+      // Uri.parse('http://cdc.polije.ac.id/api/auth/login'),
       body: {
         'emailOrNik': emailOrNik,
         'password': password,
