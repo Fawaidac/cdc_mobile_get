@@ -86,55 +86,59 @@ class RegisterView extends GetView<RegisterController> {
                   margin: const EdgeInsets.only(top: 10),
                   height: 50,
                   child: Obx(
-                    () => DropdownButtonFormField<String>(
-                      isExpanded: true,
-                      value: controller.selectedProdi.value.isEmpty
-                          ? null
-                          : controller.selectedProdi.value,
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: grey,
-                      ),
-                      onChanged: (newValue) {
-                        controller.selectedProdi.value = newValue!;
-                        controller.selectedId.value = controller.prodiList
-                            .firstWhere((prodi) =>
-                                prodi['nama_prodi'] == newValue)['id']
-                            .toString();
-                      },
-                      items: controller.prodiList.map((prodi) {
-                        return DropdownMenuItem<String>(
-                          value: prodi['nama_prodi'],
-                          child: Text(
-                            prodi['nama_prodi'],
-                            style: AppFonts.poppins(
-                                fontSize: 12, color: Colors.black),
+                    () => controller.isLoadingProdi.value
+                        ? CircularProgressIndicator(color: primaryColor)
+                        : DropdownButtonFormField<String>(
+                            isExpanded: true,
+                            value: controller.selectedProdi.value.isEmpty
+                                ? null
+                                : controller.selectedProdi.value,
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: grey,
+                            ),
+                            onChanged: (newValue) {
+                              controller.selectedProdi.value = newValue!;
+                              controller.selectedId.value = controller
+                                  .prodiModel!.data
+                                  .firstWhere(
+                                      (prodi) => prodi.namaProdi == newValue)
+                                  .id
+                                  .toString();
+                            },
+                            items: controller.prodiModel!.data.map((prodi) {
+                              return DropdownMenuItem<String>(
+                                value: prodi.namaProdi,
+                                child: Text(
+                                  prodi.namaProdi,
+                                  style: AppFonts.poppins(
+                                      fontSize: 12, color: Colors.black),
+                                ),
+                              );
+                            }).toList(),
+                            decoration: InputDecoration(
+                              hintText: "Pilih Program Studi",
+                              isDense: true,
+                              hintStyle: GoogleFonts.poppins(
+                                  fontSize: 13, color: Colors.grey),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              filled: true,
+                              fillColor: Color(0xffC4C4C4).withOpacity(0.2),
+                            ),
                           ),
-                        );
-                      }).toList(),
-                      decoration: InputDecoration(
-                        hintText: "Pilih Program Studi",
-                        isDense: true,
-                        hintStyle: GoogleFonts.poppins(
-                            fontSize: 13, color: Colors.grey),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        filled: true,
-                        fillColor: Color(0xffC4C4C4).withOpacity(0.2),
-                      ),
-                    ),
                   )),
               CustomTextField(
                   controller: controller.alamat,

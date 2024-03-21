@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cdc/app/data/models/prodi_model.dart';
 import 'package:cdc/app/routes/app_pages.dart';
 import 'package:cdc/app/services/api_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -30,6 +32,8 @@ class RegisterController extends GetxController {
   var showPassword = true.obs;
   var showConfirmPassword = true.obs;
   var loading = false.obs;
+  var isLoadingProdi = false.obs;
+  ProdiModel? prodiModel;
 
   void toggleShowPassword() {
     showPassword.value = !showPassword.value;
@@ -59,11 +63,37 @@ class RegisterController extends GetxController {
 
   Future<void> fetchData() async {
     try {
+      getProdi2();
       final data = await getProdi();
-
       prodiList.assignAll(data);
     } catch (error) {
       print('Error: $error');
+    }
+  }
+
+  Future<void> getProdi2() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    String url = '${ApiServices.baseUrl}/prodi-without-token';
+
+    try {
+      isLoadingProdi(true);
+
+      final response = await http.get(
+        Uri.parse(url),
+        // headers: {"Authorization": "Bearer $token"},
+      );
+      final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        prodiModel = ProdiModel.fromJson(json);
+      } else {
+        debugPrint(response.statusCode.toString());
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    } finally {
+      isLoadingProdi(false);
     }
   }
 
