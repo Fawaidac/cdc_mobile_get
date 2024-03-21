@@ -2,6 +2,7 @@ import 'package:cdc/app/utils/app_colors.dart';
 import 'package:cdc/app/utils/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // ignore: must_be_immutable
@@ -54,18 +55,26 @@ class _CustomTextFieldFormState extends State<CustomTextFieldForm> {
             padding: const EdgeInsets.only(left: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (widget.isRequiredExp == true)
                   Expanded(
+                    flex: 1,
+                    child: SizedBox(
+                      width: Get.width,
+                      child: Text(
+                        widget.label,
+                        style: GoogleFonts.poppins(fontSize: 12),
+                      ),
+                    ),
+                  ),
+                if (widget.isRequiredExp == false)
+                  SizedBox(
+                    width: Get.width / 1.2,
                     child: Text(
                       widget.label,
                       style: GoogleFonts.poppins(fontSize: 12),
                     ),
-                  ),
-                if (widget.isRequiredExp == false)
-                  Text(
-                    widget.label,
-                    style: GoogleFonts.poppins(fontSize: 12),
                   ),
                 if (widget.isRequired == true)
                   Text(

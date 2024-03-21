@@ -444,8 +444,9 @@ class PaketQuesionerView extends StatelessWidget {
                                           backgroundColor: primaryColor,
                                         ),
                                         onPressed: () async {
-                                          if (c.kodeQuesionerM!.data.length /
-                                                  5 ==
+                                          if ((c.kodeQuesionerM!.data.length /
+                                                      5)
+                                                  .ceil() ==
                                               c.page.value) {
                                             // c.requestBody.forEach((key, value) {
                                             //   if (value == null) {
@@ -483,9 +484,14 @@ class PaketQuesionerView extends StatelessWidget {
                                             await c
                                                 .getPaket(Get.arguments['id']);
                                           }
+                                          print((c.kodeQuesionerM!.data.length /
+                                                  5)
+                                              .ceil());
+                                          print(c.page.value);
                                         },
                                         child: Text(
-                                          c.kodeQuesionerM!.data.length / 5 ==
+                                          (c.kodeQuesionerM!.data.length / 5)
+                                                      .ceil() ==
                                                   c.page.value
                                               ? "Simpan"
                                               : "Selanjutnya",
