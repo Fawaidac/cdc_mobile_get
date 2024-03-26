@@ -130,6 +130,8 @@ class AlumniController extends GetxController {
       headers: {"Authorization": "Bearer $token"},
     );
 
+    print(response.body);
+
     final Map<String, dynamic> jsonResponse = json.decode(response.body);
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonResponse['data'];
