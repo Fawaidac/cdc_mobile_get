@@ -30,6 +30,8 @@ class PaketQuesionerController extends GetxController {
   List answerQuesioner = [].obs;
 
   Map<String, dynamic> requestBody = {};
+  Map<String, dynamic> nullValues = {};
+  List<String> keysKodeQuesioner = [];
 
   Future<void> getPaket(id) async {
     final prefs = await SharedPreferences.getInstance();
@@ -142,7 +144,18 @@ class PaketQuesionerController extends GetxController {
       kodeQuesionerM!.data.forEach((element) {
         requestBody[element.kodePertanyaan] = null;
       });
-      print(requestBody);
+
+      String jsonRequestBody = jsonEncode(requestBody);
+
+      Map<String, dynamic> data = jsonDecode(jsonRequestBody);
+
+      data.forEach((key, value) {
+        if (value == null || value == '') {
+          nullValues[key] = null;
+        }
+      });
+
+      keysKodeQuesioner = nullValues.keys.toList();
     } catch (e) {
       debugPrint(e.toString());
     } finally {

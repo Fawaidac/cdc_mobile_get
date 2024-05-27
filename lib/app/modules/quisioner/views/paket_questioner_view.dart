@@ -126,9 +126,10 @@ class PaketQuesionerView extends StatelessWidget {
                                       "Input Text") {
                                     controllers[data[index].kodePertanyaan] =
                                         TextEditingController(
-                                            text: c.requestBody[data[index]
-                                                    .kodePertanyaan] ??
-                                                "");
+                                      text: c.requestBody[
+                                              data[index].kodePertanyaan] ??
+                                          "",
+                                    );
                                     return Container(
                                       margin: const EdgeInsets.only(bottom: 10),
                                       width: MediaQuery.of(context).size.width,
@@ -238,13 +239,27 @@ class PaketQuesionerView extends StatelessWidget {
                                               horizontal: 5,
                                               vertical: 8,
                                             ),
-                                            child: Text(
-                                              data[index].pertanyaan,
-                                              style: AppFonts.poppins(
-                                                fontSize: 12,
-                                                color: black,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                            child: Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  data[index].pertanyaan,
+                                                  style: AppFonts.poppins(
+                                                    fontSize: 12,
+                                                    color: black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '*',
+                                                  style: AppFonts.poppins(
+                                                    fontSize: 20,
+                                                    color: Colors.red,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                )
+                                              ],
                                             ),
                                           ),
                                           c.isLoadingJurusan.value
@@ -444,50 +459,61 @@ class PaketQuesionerView extends StatelessWidget {
                                           backgroundColor: primaryColor,
                                         ),
                                         onPressed: () async {
-                                          if ((c.kodeQuesionerM!.data.length /
-                                                      5)
-                                                  .ceil() ==
-                                              c.page.value) {
-                                            // c.requestBody.forEach((key, value) {
-                                            //   if (value == null) {
-                                            //     AppDialog.show(
-                                            //       title: "Perhatian !",
-                                            //       isTouch: false,
-                                            //       desc:
-                                            //           "Quesioner harus terisi semua",
-                                            //       onOk: () async {
-                                            //         await c.postQuesioner();
-                                            //       },
-                                            //       onCancel: () {
-                                            //         Get.back();
-                                            //       },
-                                            //     );
-                                            //   } else {
-                                            AppDialog.show(
-                                              title: "Perhatian !",
-                                              isTouch: false,
-                                              desc:
-                                                  "Apakah anda yakin ingin menyimpan quesioner anda ini ?",
-                                              onOk: () async {
-                                                await c.postQuesioner();
-                                              },
-                                              onCancel: () {
-                                                Get.back();
-                                              },
+                                          int currentPage = c.page.value;
+                                          int questionsPerPage = 5;
+                                          int dataSkipped = currentPage == 1
+                                              ? 0
+                                              : questionsPerPage * currentPage -
+                                                  questionsPerPage;
+
+                                          bool hasEmptyValues = c
+                                              .keysKodeQuesioner
+                                              .skip(dataSkipped)
+                                              .take(questionsPerPage)
+                                              .any((field) {
+                                            print(
+                                                'Nilai dari $field: ${c.requestBody[field]}');
+                                            return c.requestBody[field] ==
+                                                    null ||
+                                                c.requestBody[field] == '';
+                                          });
+
+                                          if (hasEmptyValues) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              const SnackBar(
+                                                backgroundColor: Colors.red,
+                                                content: Text(
+                                                    'Salah satu quiz tidak boleh kosong'),
+                                              ),
                                             );
-                                            //   }
-                                            // });
                                           } else {
-                                            c.page.value += 1;
-                                            c.update;
-                                            print(c.page.value);
-                                            await c
-                                                .getPaket(Get.arguments['id']);
+                                            print(
+                                                'Semua pertanyaan pada halaman saat ini telah diisi');
+                                            if ((c.kodeQuesionerM!.data.length /
+                                                        5)
+                                                    .ceil() ==
+                                                c.page.value) {
+                                              AppDialog.show(
+                                                title: "Perhatian !",
+                                                isTouch: false,
+                                                desc:
+                                                    "Apakah anda yakin ingin menyimpan quesioner anda ini ?",
+                                                onOk: () async {
+                                                  await c.postQuesioner();
+                                                },
+                                                onCancel: () {
+                                                  Get.back();
+                                                },
+                                              );
+                                            } else {
+                                              c.page.value += 1;
+                                              c.update;
+                                              // print(c.page.value);
+                                              await c.getPaket(
+                                                  Get.arguments['id']);
+                                            }
                                           }
-                                          print((c.kodeQuesionerM!.data.length /
-                                                  5)
-                                              .ceil());
-                                          print(c.page.value);
                                         },
                                         child: Text(
                                           (c.kodeQuesionerM!.data.length / 5)
